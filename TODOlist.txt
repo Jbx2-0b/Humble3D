@@ -1,0 +1,86 @@
+Mobile version :
+- Gestion du multi-touch avec les CAdvancedApp (si possible ;))
+
+Global :
+- Multipass -> Test & Debug
+			-> revoir grass shader & mesh
+- Quadtree 	-> changer algo pour determiner position dans l'arbre
+			-> verifier app de test
+			-> buffers tournant pour chargement terrains
+- GLRenderer thread 
+			-> Upload textures
+			-> Upload VBOs
+			-> Compile shaders
+			(lors des majs supprimer des conteneurs puis réajouter)
+- Ombres - ShadowVolume
+- Tree Widget : designer widget pour representer pile de transfo
+- Tree Widget : Position orientation mesh
+- Bump multilight
+- Texture 3D
+- Metaballs
+
+
++ Etendre à plus d'un sceneManager()
++ Rendering Queue by Shaders
+
+// OpenGL Thread
+http://stackoverflow.com/questions/8116305/opengl-secondary-thread-for-loading-resources/8126219#8126219
+http://hacksoflife.blogspot.fr/2008/02/creating-opengl-objects-in-second.html
+http://www.developpez.net/forums/d577107/applications/developpement-2d-3d-jeux/qt-opengl-threads/
+
+// Transform feedback
+http://perso.univ-lyon1.fr/jean-claude.iehl/Public/educ/M2PROIMA/2012/opengl_cm6.pdf
+
+// Game Loop
+http://www.koonsolo.com/news/dewitters-gameloop/
+
+// Ombres
+http://fabiensanglard.net/shadowmapping/index.php
+
+// Emulateur OpenGL es 2.0
+http://malideveloper.arm.com/develop-for-mali/tools/opengl-es-2-0-emulator/
+
+Free models :
+http://xfrog.com/mm5/merchant.mvc?#EA15
+
+Picking documentation :
+
+http://eigenclass.blogspot.fr/2008/10/opengl-es-picking-using-ray-boundingbox.html
+http://schabby.de/picking-opengl-ray-tracing/
+
+Picking triangle:
+
+http://stackoverflow.com/questions/2049582/how-to-determine-a-point-in-a-triangle
+
+Tools :
+GPU ShaderAnalyzer
+nVidia nSight
+
+Gimbal lock video
+http://fliperamma.com/euler-gimbal-lock-explained/
+
+Camera 3DS
+- Picking avec selection
+- Changement de FOV
+- equivalent roulette = zoom
+- pan sur plan = clip
+- rotation : au centre du cercle = trackball
+- à l'exterieur rotation autour de l'axe de la vue
+
+Editeur de shader online :
+http://www.kickjs.org/tool/shader_editor/shader_editor.html?null#
+
+Metaballs :
+http://www.alrj.org/docs/3D/metaballs.txt
+
+Grass :
+http://devmaster.net/forums/topic/16637-grass-generation/
+
+
+game engine design and implementation
+http://game-engine-design-and-implementation.ebook-download-now.com/g/search/game%20engine%20design%20and%20implementation/
+
+Geometry Shaders :
+http://www.geeks3d.com/20111111/simple-introduction-to-geometry-shaders-glsl-opengl-tutorial-part1/
+http://www.icare3d.org/codes-and-projects/codes/opengl_geometry_shader_marching_cubes.html
+http://www.twodee.org/weblog/?p=805

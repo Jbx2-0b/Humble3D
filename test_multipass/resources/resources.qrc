@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>shadowvolume-comp.fragment.glsl</file>
+        <file>shadowvolume-comp.vertex.glsl</file>
+        <file>shadowvolume-render.fragment.glsl</file>
+        <file>shadowvolume-render.vertex.glsl</file>
+        <file>shadowvolume-vol.fragment.glsl</file>
+        <file>shadowvolume-vol.geometry.glsl</file>
+        <file>shadowvolume-vol.vertex.glsl</file>
+        <file>blur.fragment.glsl</file>
+        <file>blur.vertex.glsl</file>
+        <file>phong.fragment.glsl</file>
+        <file>phong.vertex.glsl</file>
+        <file>color.fragment.glsl</file>
+        <file>color.vertex.glsl</file>
+    </qresource>
+</RCC>

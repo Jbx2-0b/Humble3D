@@ -1,0 +1,12 @@
+#ifndef LIB_OPENGL_GLOBAL_H
+#define LIB_OPENGL_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(LIB_OPENGL_LIBRARY)
+# define LIB_OPENGLSHARED_EXPORT Q_DECL_EXPORT
+#else
+# define LIB_OPENGLSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // LIB_OPENGL_GLOBAL_H

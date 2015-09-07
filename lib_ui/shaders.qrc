@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>shaders/color.fragment.glsl</file>
+        <file>shaders/color.vertex.glsl</file>
+        <file>shaders/phong.fragment.glsl</file>
+        <file>shaders/phong.vertex.glsl</file>
+        <file>shaders/toon.fragment.glsl</file>
+        <file>shaders/toon.vertex.glsl</file>
+        <file>shaders/phongES.fragment.glsl</file>
+        <file>shaders/phongES.vertex.glsl</file>
+        <file>shaders/colorES.fragment.glsl</file>
+        <file>shaders/colorES.vertex.glsl</file>
+        <file>shaders/toonES.fragment.glsl</file>
+        <file>shaders/toonES.vertex.glsl</file>
+    </qresource>
+</RCC>

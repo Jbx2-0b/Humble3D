@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>color.fragment.glsl</file>
+        <file>color.vertex.glsl</file>
+        <file>phong.fragment.glsl</file>
+        <file>phong.vertex.glsl</file>
+    </qresource>
+</RCC>

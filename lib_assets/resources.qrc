@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/heightmap.fragment.glsl</file>
+        <file>resources/heightmap.geometry.glsl</file>
+        <file>resources/heightmap.vertex.glsl</file>
+        <file>resources/t1.jpg</file>
+        <file>resources/t2.jpg</file>
+        <file>resources/t3.jpg</file>
+        <file>resources/t4.jpg</file>
+        <file>resources/t5.jpg</file>
+        <file>resources/t6.jpg</file>
+        <file>resources/t6.png</file>
+        <file>resources/Detail.jpg</file>
+        <file>resources/Detail2.jpg</file>
+        <file>resources/elevated.glsl</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,12 @@
+#ifndef LIB_ASSIMP_GLOBAL_H
+#define LIB_ASSIMP_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(LIB_ASSIMP_LIBRARY)
+#  define LIB_ASSIMPSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define LIB_ASSIMPSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // LIB_ASSIMP_GLOBAL_H

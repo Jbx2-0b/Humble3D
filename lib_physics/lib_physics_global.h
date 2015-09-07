@@ -1,0 +1,12 @@
+#ifndef LIB_PHYSICS_GLOBAL_H
+#define LIB_PHYSICS_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(LIB_PHYSICS_LIBRARY)
+#  define LIB_PHYSICSSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define LIB_PHYSICSSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // LIB_PHYSICS_GLOBAL_H

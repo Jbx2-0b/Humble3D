@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>models/dwarf.jpg</file>
+        <file>models/dwarf.x</file>
+    </qresource>
+</RCC>

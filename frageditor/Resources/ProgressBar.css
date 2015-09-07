@@ -1,0 +1,21 @@
+QProgressBar:vertical
+{
+	border: 2px solid black;
+	background: rgba(100, 100, 100, 100);
+} 
+
+QProgressBar::chunk:vertical 
+{
+	background: qlineargradient(x1: 0.5, y1: 0, x2: 0.5, y2: 1, stop: 0 rgba(0, 127, 0, 255), stop: 1 rgba(0, 255, 0, 255));
+}
+
+QProgressBar:horizontal
+{
+	border: 2px solid black;
+	background: rgba(100, 100, 100, 100);
+} 
+
+QProgressBar::chunk:horizontal 
+{
+	background: qlineargradient(x1: 0.5, y1: 0, x2: 0.5, y2: 1, stop: 0 rgba(127, 127, 127, 255), stop: 1 rgba(255, 255, 255, 255));
+}

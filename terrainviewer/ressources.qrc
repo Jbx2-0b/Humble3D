@@ -1,0 +1,39 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/Animation.png</file>
+        <file>Resources/Camera.png</file>
+        <file>Resources/download.png</file>
+        <file>Resources/Edit.png</file>
+        <file>Resources/Edit2.png</file>
+        <file>Resources/EditScene.png</file>
+        <file>Resources/EditText.png</file>
+        <file>Resources/ExitFullScreen.png</file>
+        <file>Resources/FileEdit.css</file>
+        <file>Resources/FOV.png</file>
+        <file>Resources/FullScreen.png</file>
+        <file>Resources/geometry.png</file>
+        <file>Resources/Light.png</file>
+        <file>Resources/Material.png</file>
+        <file>Resources/node.png</file>
+        <file>Resources/Notifications.png</file>
+        <file>Resources/Open.png</file>
+        <file>Resources/Pan.png</file>
+        <file>Resources/Play.png</file>
+        <file>Resources/ProgressBar.css</file>
+        <file>Resources/Properties.png</file>
+        <file>Resources/Quit.png</file>
+        <file>Resources/Renderer.png</file>
+        <file>Resources/Reset.png</file>
+        <file>Resources/Rotate.png</file>
+        <file>Resources/Run.png</file>
+        <file>Resources/Save.png</file>
+        <file>Resources/Shaders.png</file>
+        <file>Resources/ToolBar.css</file>
+        <file>Resources/Tree.png</file>
+        <file>Resources/TreeWidget.css</file>
+        <file>Resources/Zoom.png</file>
+        <file>Resources/GeometryShader.png</file>
+        <file>Resources/VertexShader.png</file>
+        <file>Resources/FragmentShader.png</file>
+    </qresource>
+</RCC>

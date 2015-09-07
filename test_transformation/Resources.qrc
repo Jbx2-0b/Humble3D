@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/earth.png</file>
+        <file>Resources/jupiter.png</file>
+        <file>Resources/mars.png</file>
+        <file>Resources/mercure.png</file>
+        <file>Resources/moon.png</file>
+        <file>Resources/sun.png</file>
+        <file>Resources/skybox.fragment.glsl</file>
+        <file>Resources/skybox.vertex.glsl</file>
+        <file>Resources/xneg.png</file>
+        <file>Resources/xpos.png</file>
+        <file>Resources/yneg.png</file>
+        <file>Resources/ypos.png</file>
+        <file>Resources/zneg.png</file>
+        <file>Resources/zpos.png</file>
+        <file>Resources/skyboxES.fragment.glsl</file>
+        <file>Resources/skyboxES.vertex.glsl</file>
+        <file>Resources/billboard.fragment.glsl</file>
+        <file>Resources/billboard.vertex.glsl</file>
+        <file>Resources/particle.png</file>
+        <file>Resources/billboard.geometry.glsl</file>
+    </qresource>
+</RCC>

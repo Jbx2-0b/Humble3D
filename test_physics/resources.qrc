@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/Wood_Boards.jpg</file>
+        <file>resources/NBT.fragment.glsl</file>
+        <file>resources/NBT.vertex.glsl</file>
+        <file>resources/3912-diffuse.jpg</file>
+        <file>resources/3912-normal.jpg</file>
+        <file>resources/ground.jpg</file>
+        <file>resources/fresnel.fragment.glsl</file>
+        <file>resources/fresnel.vertex.glsl</file>
+        <file>resources/xneg.png</file>
+        <file>resources/xpos.png</file>
+        <file>resources/yneg.png</file>
+        <file>resources/ypos.png</file>
+        <file>resources/zneg.png</file>
+        <file>resources/zpos.png</file>
+    </qresource>
+</RCC>

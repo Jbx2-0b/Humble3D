@@ -1,0 +1,11 @@
+QWidget
+{
+	border-style: solid;
+	border-width: 1px;
+	border-color: white;
+	font-family: Tahoma;
+	font-size: 10pt;
+	font-weight: bold;
+	background-color: rgba(20, 20, 20, 40);
+	color: white
+}

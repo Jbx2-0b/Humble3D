@@ -1,0 +1,54 @@
+.QFrame
+{
+	border: 1px solid #2A2A2A;
+	background: #111111;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+QLabel
+{
+	font-weight: bold;
+	color: #fff;
+}
+
+QPushButton
+{
+	border: 1px solid #222;
+	background: #333333;
+	font-weight: bold;
+	color: #fff;
+}
+
+QPushButton:hover
+{
+	border: 1px solid #00516e;
+	background: #2a66a4;
+	font-weight: bold;
+	color: #fff;
+}
+
+QPushButton:pressed
+{
+	border: 3px solid #000;
+	background: #2a66a4;
+	font-weight: bold;
+	color: #fff;
+}
+
+QPushButton:!enabled
+{
+	border: 1px solid #000;
+	background: #aaaaaa;
+	font-weight: bold;
+	color: #fff;
+}
+
+QPushButton:checked
+{
+	border: 1px solid #00516e;
+	background: #4b88b6;
+	font-weight: bold;
+	color: #fff;
+}
+

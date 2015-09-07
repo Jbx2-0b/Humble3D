@@ -1,0 +1,28 @@
+/**
+*10 CSS Notifications
+*Author:http://www.paulund.co.uk/
+*Created:30/05/11
+*/
+
+/*Setup the page*/
+body { background:#eff0eb; color:#7d7d7b; font-size:13px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+#content { margin:0 auto; width:800px; background:#FFF; padding:20px 0; }
+
+/*Setup all boxes*/
+.info,.success,.error,.warning,.tip,.secure,.message,.download,.purchase,.print{margin:20px 50px; padding:10px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 4px 4px #dfe1d8;-webkit-box-shadow: 4px 4px #dfe1d8;box-shadow: 4px 4px #dfe1d8;}
+
+/*Styling for text inside boxes*/
+h4 { margin:5px 5px 5px 80px;padding:0; font-size:16px; }
+p { font-size:10px; color:#000; margin:5px 5px 5px 80px; }
+
+/*Boxes*/
+.info{border:1px solid #0e7fad;color:#0e7fad;background:#c0e9fa url('images/info.png') no-repeat; background-position:30px 20px;}
+.success{border:1px solid #4f8746;color:#4f8746;background:#d4ffcd url('images/success.png') no-repeat; background-position:30px 20px;}
+.error{border:1px solid #641f1a;color:#641f1a;background:#ffd2d4 url('images/error.png') no-repeat; background-position:30px 20px;}
+.warning{border:1px solid #9d9c49;color:#9d9c49;background:#fdfdcb url('images/warning.png') no-repeat; background-position:30px 20px;}
+.tip{border:1px solid #c77d10;color:#c77d10;background:#f9d69e url('images/tip.png') no-repeat; background-position:30px 20px;}
+.secure{border:1px solid #9638f1;color:#9638f1;background:#e5cefc url('images/secure.png') no-repeat; background-position:30px 20px;}
+.message{border:1px solid #000;color:#000;background:#efefef url('images/message.png') no-repeat; background-position:30px 20px;}
+.download{border:1px solid #04b5eb;color:#04b5eb;background:#f7f7f7 url('images/download.png') no-repeat; background-position:30px 20px;}
+.purchase{border:1px solid #426164;color:#426164;background:#c2e1e3 url('images/purchase.png') no-repeat; background-position:30px 20px;}
+.print{border:1px solid #3c4b5e;color:#3c4b5e;background:#c8d9e3 url('images/print.png') no-repeat; background-position:30px 20px;}
