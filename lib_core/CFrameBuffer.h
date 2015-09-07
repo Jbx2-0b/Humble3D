@@ -16,20 +16,20 @@ public:
 
     //! Constructeur
     CFrameBuffer(int iWidth, int iHeight)
-    : AEntity("FrameBuffer")
-    , m_iWidth(iWidth)
-	, m_iHeight(iHeight)
-	{
-	}
-	
+        : AEntity("FrameBuffer")
+        , m_iWidth(iWidth)
+        , m_iHeight(iHeight)
+    {
+    }
+
     //! Retourne le nom du type
     virtual QString getTypeName() const { return "FrameBuffer"; }
 
     //! Retourne la largeur
-	int getWidth() const { return m_iWidth; }
+    int getWidth() const { return m_iWidth; }
 
     //! Retourne la hauteur
-	int getHeight() const { return m_iHeight; }
+    int getHeight() const { return m_iHeight; }
 
     void setDrawBuffers(const QList<EnumDrawBuffer>& drawBuffers)
     {
@@ -46,25 +46,25 @@ public:
     {
         return m_DrawBuffers;
     }
-	
-	ATexture* createRenderTexture(EnumAttachment eAttachment, EnumInternalFormat eInternalFormat)
-	{
+
+    ATexture* createRenderTexture(EnumAttachment eAttachment, EnumInternalFormat eInternalFormat)
+    {
         if (m_TextureTargets.contains(eAttachment))
-		{
+        {
             CTextureManager::getInstance()->removeTexture(m_TextureTargets[eAttachment]);
-		}
-		
+        }
+
         if (m_RenderBuffers.contains(eAttachment))
         {
             CRenderBufferManager::getInstance()->removeRenderBuffer(m_RenderBuffers[eAttachment]);
         }
 
-		CTextureTarget* pTexture = CTextureManager::getInstance()->createTextureTarget("RenderTexture", QSize(m_iWidth, m_iHeight), eInternalFormat);
+        CTextureTarget* pTexture = CTextureManager::getInstance()->createTextureTarget("RenderTexture", QSize(m_iWidth, m_iHeight), eInternalFormat);
         m_TextureTargets[eAttachment] = pTexture;
 
-		return pTexture;
-	}
-	
+        return pTexture;
+    }
+
     CRenderBuffer* createRenderBuffer(EnumAttachment eAttachment, EnumInternalFormat eInternalFormat)
     {
         if (m_TextureTargets.contains(eAttachment))
@@ -79,17 +79,17 @@ public:
 
         CRenderBuffer* pRenderBuffer = CRenderBufferManager::getInstance()->createRenderBuffer("RenderBuffer", eInternalFormat);
         m_RenderBuffers[eAttachment] = pRenderBuffer;
-		
+
         return pRenderBuffer;
-	}
-	
+    }
+
     const QHash<EnumAttachment, CTextureTarget*>& getTextureTargets() const { return m_TextureTargets; }
     const QHash<EnumAttachment, CRenderBuffer*>& getRenderBuffers() const { return m_RenderBuffers; }
-	
+
 private:
 
 
-	int m_iWidth, m_iHeight;
+    int m_iWidth, m_iHeight;
     QHash<EnumAttachment, CTextureTarget*> m_TextureTargets;
     QHash<EnumAttachment, CRenderBuffer*> m_RenderBuffers;
 

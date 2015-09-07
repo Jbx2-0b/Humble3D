@@ -1,8 +1,8 @@
 #include "CXmlAttribute.h"
 
 CXmlAttribute::CXmlAttribute(const QString& name, const QString& value)
-: m_Name(name)
-, m_Value(value)
+    : m_Name(name)
+    , m_Value(value)
 {
 
 }

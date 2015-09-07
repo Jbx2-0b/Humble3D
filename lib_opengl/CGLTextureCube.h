@@ -8,7 +8,7 @@ class CGLTextureCube : public AGLTexture
 
 public:
 
-	CGLTextureCube(const QStringList& fileNames);
+    CGLTextureCube(const QStringList& fileNames);
 };
 
 #endif // CGLTEXTURECUBE_H

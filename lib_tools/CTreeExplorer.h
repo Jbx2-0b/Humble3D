@@ -8,14 +8,14 @@
 
 using namespace std;
 
- /*! \class TreeExplorer
+/*! \class TreeExplorer
    * \brief TreeExplorer permet de parcourir un arbre de façon itérative
    *
    *  Contrat pour le template Node :
    * - Posséder une methode getChildNodes qui retourne les enfants dans un conteneur
    * - Le conteneur des enfants doit posséder une méthode size()
    * Exemple d'utilisation :
-   * 
+   *
    * CTreeExplorer<CSceneNode> te;
    *
    * struct SNodeTreatment : public CTreeExplorer<CSceneNode>::IExploreDepthListener
@@ -24,7 +24,7 @@ using namespace std;
    *	{
    *		qDebug() << pNode->getName();
    *	}
-   * 
+   *
    *	virtual void onExplore(CSceneNode* pNode)
    *	{
    *		qDebug() << pNode->getDepth();
@@ -40,13 +40,13 @@ class CTreeExplorer
 {
 public:
 
-	//! Interface à implémenter pour explorer un arbre en largeur
+    //! Interface à implémenter pour explorer un arbre en largeur
     struct IExploreWidthListener
     {
         virtual void onExplore(Node* pNode) = 0;
     };
 
-	//! Explore un arbre en largeur
+    //! Explore un arbre en largeur
     static void exploreWidth(Node* pRoot, IExploreWidthListener* pListener, bool bMark = true)
     {
         map<Node*, bool> marked;
@@ -83,14 +83,14 @@ public:
         }
     }
 
-	//! Interface à implémenter pour explorer un arbre en profondeur
+    //! Interface à implémenter pour explorer un arbre en profondeur
     struct IExploreDepthListener
     {
         virtual void onExplore(Node* pNode) = 0;
         virtual void onLeaf(Node* pNode) = 0;
     };
 
-	//! Explore un arbre en profondeur
+    //! Explore un arbre en profondeur
     static void exploreDepth(Node* pRoot, IExploreDepthListener* pListener, bool bMark = true)
     {
         map<Node*, bool> marked;

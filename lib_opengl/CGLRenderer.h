@@ -34,10 +34,10 @@ class LIB_OPENGLSHARED_EXPORT CGLRenderer : public ARenderer, protected CGLFunct
 {
 public:
 
-	//! Ctor
+    //! Ctor
     CGLRenderer(CSceneManager* pSceneManager);
 
-	//! Dtor
+    //! Dtor
     virtual ~CGLRenderer();
 
     //-------------------------------------------------------------------------------------------------
@@ -59,38 +59,38 @@ public:
     //! Libére un listener
     void unregisterListener(IGLRendererListener* pListener);
 
-	//--------------------------------------------------------------------------------------------
-	// Implémentation ARenderer
-	//--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    // Implémentation ARenderer
+    //--------------------------------------------------------------------------------------------
 
-	//! Initialise le renderer
-	virtual bool init();
+    //! Initialise le renderer
+    virtual bool init();
 
-	//! Effectue le rendu de l'ensemble des objets du gestionnaire de scene
+    //! Effectue le rendu de l'ensemble des objets du gestionnaire de scene
     virtual void render();
 
-	//! Effectue le rendu d'un vertex buffer
-	virtual void renderMeshBuffer(CMeshBuffer* pBuffer);
+    //! Effectue le rendu d'un vertex buffer
+    virtual void renderMeshBuffer(CMeshBuffer* pBuffer);
 
-	//! Effectue le rendu d'une liste de vertex buffer
-	virtual void renderMeshBuffer(const QList<CMeshBuffer*>& buffers);
-		
-	//! Retourne le nom du type
-	virtual QString getTypeName() const	{ return "GLRenderer"; }
+    //! Effectue le rendu d'une liste de vertex buffer
+    virtual void renderMeshBuffer(const QList<CMeshBuffer*>& buffers);
+
+    //! Retourne le nom du type
+    virtual QString getTypeName() const	{ return "GLRenderer"; }
 
     //! Met à jour les états de rendu
     virtual void onUpdateRenderStates();
 
 
-	//--------------------------------------------------------------------------------------------
-	// Fin implémentation ARenderer
-	//--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    // Fin implémentation ARenderer
+    //--------------------------------------------------------------------------------------------
 
-	//! Retourne le nombre de draw call par frame
-	int getDrawCallCount() const { return m_iDrawCalls; }
+    //! Retourne le nombre de draw call par frame
+    int getDrawCallCount() const { return m_iDrawCalls; }
 
-	//! Retourne le nombre de polygones par frame
-	int getPolygonCount() const { return m_iPolygonsPerFrame; }
+    //! Retourne le nombre de polygones par frame
+    int getPolygonCount() const { return m_iPolygonsPerFrame; }
 
     //! Retourne le type du GPU
     QString getGPUName();
@@ -104,39 +104,39 @@ public:
     //! Retourne vrai si l'extension OpenGL est supportée
     bool isExtensionSupported(const QString& strExtension);
 
-	
+
 protected:
 
-	//! Conteneur associatif qui permet de trouver un buffer GPU décrivant un item
+    //! Conteneur associatif qui permet de trouver un buffer GPU décrivant un item
     QHash<CMeshBuffer*, CGLMeshBuffer*> m_HardwareBuffers;
 
     //! Shader program
     QHash<QString, CGLShaderProgram*> m_ShaderPrograms;
 
-	//! Conteneur de texture
-	QHash<QString, AGLTexture*> m_Textures;
+    //! Conteneur de texture
+    QHash<QString, AGLTexture*> m_Textures;
 
-	//! Conteneur de buffer d'images
+    //! Conteneur de buffer d'images
     QHash<CFrameBuffer*, CGLFrameBuffer*> m_FrameBuffers;
 
-	//--------------------------------------------------------------------------------------------
-	// Listeners
-	//--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    // Listeners
+    //--------------------------------------------------------------------------------------------
 
     //! Implémentation - Interface CTextureManager::ITextureManagerListener
-	virtual void onUpdateTexture(ATexture* pTexture);
+    virtual void onUpdateTexture(ATexture* pTexture);
 
     //! Implémentation - Interface CTextureManager::ITextureManagerListener
-	virtual void onDeleteTexture(ATexture* pTexture);
+    virtual void onDeleteTexture(ATexture* pTexture);
 
     //! Implémentation - Interface CMeshManager::IMeshBufferListener
-	virtual void onDeleteMeshBuffer(CMeshBuffer* pBuffer);
+    virtual void onDeleteMeshBuffer(CMeshBuffer* pBuffer);
 
     //! Implémentation - Interface CShaderManager::IShaderManagerListener
     virtual void onUpdateShader(CShader* pShader);
 
     //! Implémentation - Interface CShaderManager::IShaderManagerListener
-	virtual void onDeleteShader(CShader* pShader);
+    virtual void onDeleteShader(CShader* pShader);
 
     //! Implémentation - Interface CSceneManager::ISceneManagerListener
     virtual void onUpdateCamera(CCamera* pCamera);
@@ -153,54 +153,54 @@ protected:
     //! Implémentation - Interface CSceneManager::ISceneManagerListener
     virtual void onDeleteSceneNode(CSceneNode* pSceneNode);
 
-	//--------------------------------------------------------------------------------------------
-	// Méthodes de rendu
-	//--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    // Méthodes de rendu
+    //--------------------------------------------------------------------------------------------
 
-	//! Rendu des items
+    //! Rendu des items
     void renderItems(const CRenderQueue& renderQueue);
 
     //! Rendu dans un framebuffer
     inline void renderIntoFrameBuffer(CFrameBuffer* pFrameBuffer);
 
-	//! Rendu des meshs en fonction de leur VBO
+    //! Rendu des meshs en fonction de leur VBO
     inline void renderVertexBufferObject(CMeshBuffer* pBuffer);
 
     //! Efface les buffers de rendu
     void clearBuffers(unsigned int& uiFlags);
 
-	//! Lie les paramétres temporels
-	inline void bindTime();
+    //! Lie les paramétres temporels
+    inline void bindTime();
 
-	//! Lie les paramétres de camera (modéle, vue, projection, normal...) au shader
+    //! Lie les paramétres de camera (modéle, vue, projection, normal...) au shader
     inline void bindCamera(const CCamera *pCamera);
 
-	//! Lie les matrices du noeud au shader
+    //! Lie les matrices du noeud au shader
     inline void bindNode(const CCamera *pCamera, CSceneNode* pNode);
 
-	//! Lie les attributs des lumiéres au shader
+    //! Lie les attributs des lumiéres au shader
     inline void bindLights(const CCamera* pCamera);
 
-	//! Lie l'attribut d'un materiau au shader
+    //! Lie l'attribut d'un materiau au shader
     inline void bindMaterial(CMaterial* pMaterial);
 
-	//! Lie un shader
-	inline void bindShader(CShader* pShader);
+    //! Lie un shader
+    inline void bindShader(CShader* pShader);
 
-	//! Crée un VBO en fonction d'un VertexBuffer
-	void createVertexBufferObject(CMeshBuffer* pBuffer);
+    //! Crée un VBO en fonction d'un VertexBuffer
+    void createVertexBufferObject(CMeshBuffer* pBuffer);
 
-	//! Met à jour un VBO
-	void updateVertexBufferObject(CMeshBuffer* pBuffer);
+    //! Met à jour un VBO
+    void updateVertexBufferObject(CMeshBuffer* pBuffer);
 
-	//! Retourne une texture
-	inline AGLTexture* getTexture(const ATexture* pTexture);
+    //! Retourne une texture
+    inline AGLTexture* getTexture(const ATexture* pTexture);
 
-	//! Retourne une buffer d'images
+    //! Retourne une buffer d'images
     inline CGLFrameBuffer* getFrameBuffer(CFrameBuffer* pFrameBuffer);
 
-	//! Delie un materiau
-	inline void releaseMaterial(CMaterial* pMaterial);
+    //! Delie un materiau
+    inline void releaseMaterial(CMaterial* pMaterial);
 
     //! Envoie les informations définies par l'utilisateur au GPU
     inline void bindUserUniformValues(const CRenderPass* pPass);
@@ -208,13 +208,13 @@ protected:
     //! Envoie les informations relatives au squelette d'animation au GPU
     void bindSkeleton(ARenderableItem* pItem);
 
-	//! Fait la correspondance entre un model de shading et un shader
+    //! Fait la correspondance entre un model de shading et un shader
     CGLShaderProgram* getShaderProgram(const CRenderPass* pPass);
 
-	//! Ajoute une texture 2D
+    //! Ajoute une texture 2D
     void createTexture(const ATexture* pTexture);
 
-	//! Ajoute un buffer d'images
+    //! Ajoute un buffer d'images
     void createFrameBuffer(CFrameBuffer* pFrameBuffer);
 
 private:
@@ -225,13 +225,13 @@ private:
     //! Liste des listeners
     QSet<IGLRendererListener*> m_GLRendererListeners;
 
-	//! Shader courant
+    //! Shader courant
     CGLShaderProgram* m_pCurrentShader;
 
-	//! Temps
-	QTime m_Time;
+    //! Temps
+    QTime m_Time;
 
-	//! Retourne vrai si au moins un items est visible et renderable
+    //! Retourne vrai si au moins un items est visible et renderable
     inline bool isOneRenderable(const QList<ARenderableItem*>& items) const
     {
         foreach (ARenderableItem* pItem, items)
@@ -239,19 +239,19 @@ private:
             if (!pItem->isLocked())
             {
                 if (pItem->isVisible() && pItem->isRenderable() && !pItem->getNodes().isEmpty())
-                        return true;
+                    return true;
             }
         }
 
         return false;
     }
 
-	void forceGLStates(const CRenderStates& renderStates);
+    void forceGLStates(const CRenderStates& renderStates);
 
-	int m_iDrawCalls;
-	int m_iPolygonsPerFrame;
-	int m_iMaterialBind;
-	int m_iShaderBind;
+    int m_iDrawCalls;
+    int m_iPolygonsPerFrame;
+    int m_iMaterialBind;
+    int m_iShaderBind;
 
     CGLContext m_PrincipalContext;
     CGLContext* m_pSharedContext;

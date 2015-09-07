@@ -10,27 +10,27 @@
 
 //-----------------------------------------------------------------------------------------
 FormatConverterApp::FormatConverterApp(QWidget* parent /* = 0*/)
-: QMainWindow(parent)
-, m_Settings(configFileName, QSettings::IniFormat)
+    : QMainWindow(parent)
+    , m_Settings(configFileName, QSettings::IniFormat)
 {
-	ui.setupUi(this);
+    ui.setupUi(this);
 
     connect(ui.actionSelect_files,		SIGNAL(triggered()),	this, SLOT(onBrowseClicked()));
     connect(ui.actionSelect_directory,	SIGNAL(triggered()),	this, SLOT(onBrowseClicked()));
-	connect(ui.convertButton,			SIGNAL(clicked()),		this, SLOT(onConvertClicked()));
+    connect(ui.convertButton,			SIGNAL(clicked()),		this, SLOT(onConvertClicked()));
 }
 
 //-----------------------------------------------------------------------------------------
 void FormatConverterApp::onBrowseClicked()
 {
-	bool bIsFile = sender() == ui.actionSelect_files;
+    bool bIsFile = sender() == ui.actionSelect_files;
 
-	m_FilePathNameList.clear();
+    m_FilePathNameList.clear();
 
-	ui.listWidget->clear();
+    ui.listWidget->clear();
 
-	if (bIsFile)
-	{
+    if (bIsFile)
+    {
         QString inDirectory = m_Settings.value("InDirectory", QCoreApplication::applicationDirPath()).toString();
         m_FilePathNameList << QFileDialog::getOpenFileNames(this, tr("Open 3D Model"), inDirectory, tr("*.*"));
 
@@ -38,76 +38,76 @@ void FormatConverterApp::onBrowseClicked()
         {
             m_Settings.setValue("InDirectory", QFileInfo(m_FilePathNameList[0]).canonicalPath());
         }
-	}
-	else // Directory
-	{
+    }
+    else // Directory
+    {
         QString inDirectory = m_Settings.value("InDirectory", QCoreApplication::applicationDirPath()).toString();
         QString strPath = QFileDialog::getExistingDirectory(this, tr("Open Directory"), inDirectory);
 
-		if (!strPath.isEmpty())
-		{
+        if (!strPath.isEmpty())
+        {
             m_Settings.setValue("InDirectory", QFileInfo(strPath).canonicalPath());
-			QStringList listFilter;
-			listFilter << "*.*";
+            QStringList listFilter;
+            listFilter << "*.*";
 
-			QDirIterator dirIterator(strPath, listFilter, QDir::Files);
+            QDirIterator dirIterator(strPath, listFilter, QDir::Files);
 
-			while (dirIterator.hasNext())
-			{
-				m_FilePathNameList << dirIterator.next();
-			}
-		}
-	}
+            while (dirIterator.hasNext())
+            {
+                m_FilePathNameList << dirIterator.next();
+            }
+        }
+    }
 
-	foreach (const QString& filePathName, m_FilePathNameList)
-	{
-		ui.listWidget->addItem(filePathName);
-	}
+    foreach (const QString& filePathName, m_FilePathNameList)
+    {
+        ui.listWidget->addItem(filePathName);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void FormatConverterApp::onConvertClicked()
 {
-	ui.progressBar->setValue(0);
+    ui.progressBar->setValue(0);
 
-	int iFileCount = m_FilePathNameList.count();
-	int i = 0;
+    int iFileCount = m_FilePathNameList.count();
+    int i = 0;
 
-	foreach (const QString& filePathName, m_FilePathNameList)
-	{
-		QFileInfo fileInfo(filePathName);
+    foreach (const QString& filePathName, m_FilePathNameList)
+    {
+        QFileInfo fileInfo(filePathName);
 
-		m_SceneManager.clearAll();
+        m_SceneManager.clearAll();
 
-		CSceneNode* pNode = m_SceneManager.getRootNode()->createChild(fileInfo.baseName());
+        CSceneNode* pNode = m_SceneManager.getRootNode()->createChild(fileInfo.baseName());
 
-		QTime time;
-		time.start();
+        QTime time;
+        time.start();
         if (!CAssimpImporter::mergeScene(filePathName, &m_SceneManager, false, pNode).isEmpty())
-		{
-			qDebug() << "Loaded node tree: " << fileInfo.baseName();
-			pNode->dumpNodeTree();
+        {
+            qDebug() << "Loaded node tree: " << fileInfo.baseName();
+            pNode->dumpNodeTree();
 
-			if (ui.resizeModelsCheckBox->isChecked())
-			{
-				// On récupére la bounding box
-				CBox3D bbox = pNode->getGlobalAxisAlignedBoundingBox();
+            if (ui.resizeModelsCheckBox->isChecked())
+            {
+                // On récupére la bounding box
+                CBox3D bbox = pNode->getGlobalAxisAlignedBoundingBox();
 
-				real sizeX = bbox.getMaximum().x() - bbox.getMinimum().x();
-				real sizeY = bbox.getMaximum().y() - bbox.getMinimum().y();
-				real sizeZ = bbox.getMaximum().z() - bbox.getMinimum().z();
+                real sizeX = bbox.getMaximum().x() - bbox.getMinimum().x();
+                real sizeY = bbox.getMaximum().y() - bbox.getMinimum().y();
+                real sizeZ = bbox.getMaximum().z() - bbox.getMinimum().z();
 
-				real maxSize = sizeX;
-				if (sizeY > maxSize) maxSize = sizeY;
-				if (sizeZ > maxSize) maxSize = sizeZ;
+                real maxSize = sizeX;
+                if (sizeY > maxSize) maxSize = sizeY;
+                if (sizeZ > maxSize) maxSize = sizeZ;
 
-				// On redimensionne la scene
-				pNode->scale(1. / maxSize);
+                // On redimensionne la scene
+                pNode->scale(1. / maxSize);
 
-				CBox3D scaledBbox = pNode->getGlobalAxisAlignedBoundingBox();
+                CBox3D scaledBbox = pNode->getGlobalAxisAlignedBoundingBox();
 
-				pNode->translate(-scaledBbox.getCenter());
-			}
+                pNode->translate(-scaledBbox.getCenter());
+            }
 
             QString newFilePathName = fileInfo.absolutePath() + "/" + QFileInfo(filePathName).baseName() + ".meshgroup";
             CMeshManager::getInstance()->saveMeshGroup(CMeshManager::getInstance()->getMeshs(), newFilePathName, ui.compressionSpinBox->value());
@@ -124,12 +124,12 @@ void FormatConverterApp::onConvertClicked()
 
             Q_ASSERT(iSize1 == iSize2);
 #endif
-		}
-		else
-		{
-			qDebug() << "Not readable by Assimp: " << fileInfo.baseName();
-		}
-		
-		ui.progressBar->setValue(++i / (double) iFileCount * 100.);
-	}
+        }
+        else
+        {
+            qDebug() << "Not readable by Assimp: " << fileInfo.baseName();
+        }
+
+        ui.progressBar->setValue(++i / (double) iFileCount * 100.);
+    }
 }

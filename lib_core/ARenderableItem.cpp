@@ -4,8 +4,8 @@
 
 //-----------------------------------------------------------------------------------------
 ARenderableItem::ARenderableItem(CSceneManager* pSceneManager, const QString& name)
-: ASceneNodeItem(pSceneManager, name)
-, m_bIsRenderingInit(false) {}
+    : ASceneNodeItem(pSceneManager, name)
+    , m_bIsRenderingInit(false) {}
 
 //-----------------------------------------------------------------------------------------
 void ARenderableItem::setMaterialName(const QString& materialName)

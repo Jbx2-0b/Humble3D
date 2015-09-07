@@ -6,17 +6,17 @@
 
 // Assimp
 #ifndef _MSC_VER // Special stuff for GCC
-    #include "include/assimp/Importer.hpp"
-    #include "include/assimp/postprocess.h"
-    #include "include/assimp/scene.h"
-    #include "include/assimp/DefaultLogger.hpp"
-    #include "include/assimp/LogStream.hpp"
+#include "include/assimp/Importer.hpp"
+#include "include/assimp/postprocess.h"
+#include "include/assimp/scene.h"
+#include "include/assimp/DefaultLogger.hpp"
+#include "include/assimp/LogStream.hpp"
 #else
-    #include "assimp/Importer.hpp"
-    #include "assimp/postprocess.h"
-    #include "assimp/scene.h"
-    #include "assimp/DefaultLogger.hpp"
-    #include "assimp/LogStream.hpp"
+#include "assimp/Importer.hpp"
+#include "assimp/postprocess.h"
+#include "assimp/scene.h"
+#include "assimp/DefaultLogger.hpp"
+#include "assimp/LogStream.hpp"
 #endif
 
 // Foundations

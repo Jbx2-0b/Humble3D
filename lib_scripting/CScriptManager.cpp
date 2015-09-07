@@ -9,9 +9,9 @@
 
 //-----------------------------------------------------------------------------------------
 CScriptManager::CScriptManager(CSceneManager* pSceneManager)
-: m_pSceneManager(pSceneManager)
-, m_bSaveOnlyUsed(true)
-, m_bSaveData(true)
+    : m_pSceneManager(pSceneManager)
+    , m_bSaveOnlyUsed(true)
+    , m_bSaveData(true)
 {
 }
 
@@ -69,64 +69,64 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
 
             switch (eType)
             {
-                case eTexture2D:
+            case eTexture2D:
+            {
+                QString fileName = pChild->getAttributeValue<QString>("fileName");
+                if (!fileName.isEmpty())
                 {
-                    QString fileName = pChild->getAttributeValue<QString>("fileName");
-                    if (!fileName.isEmpty())
-                    {
-                        CTextureManager::getInstance()->createTexture2D(name, path(fileName));
-                    }
-                    else
-                    {
-                        QVector2D size = pChild->getAttributeValue<QVector2D>("size");
-                        if (!size.isNull())
-                        {
-                            CTextureManager::getInstance()->createTexture2D(name, QSize(size.x(), size.y()));
-                        }
-                    }
+                    CTextureManager::getInstance()->createTexture2D(name, path(fileName));
                 }
-                break;
-
-                case eTextureCube:
-                {
-                    QString fileNamePosX = pChild->getAttributeValue<QString>("fileNamePosX");
-                    QString fileNameNegX = pChild->getAttributeValue<QString>("fileNameNegX");
-                    QString fileNamePosY = pChild->getAttributeValue<QString>("fileNamePosY");
-                    QString fileNameNegY = pChild->getAttributeValue<QString>("fileNameNegY");
-                    QString fileNamePosZ = pChild->getAttributeValue<QString>("fileNamePosZ");
-                    QString fileNameNegZ = pChild->getAttributeValue<QString>("fileNameNegZ");
-
-                    CTextureManager::getInstance()->createTextureCube(
-                                name,
-                                path(fileNamePosX),
-                                path(fileNameNegX),
-                                path(fileNamePosY),
-                                path(fileNameNegY),
-                                path(fileNamePosZ),
-                                path(fileNameNegZ));
-                }
-                break;
-
-                case eTextureTarget:
+                else
                 {
                     QVector2D size = pChild->getAttributeValue<QVector2D>("size");
-                    EnumInternalFormat eFormat = CGeometryGlobal::internalFormatFromString(pChild->getAttributeValue<QString>("internalFormat"));
-
-                    CTextureManager::getInstance()->createTextureTarget(
-                                name,
-                                QSize(size.x(), size.y()),
-                                eFormat);
+                    if (!size.isNull())
+                    {
+                        CTextureManager::getInstance()->createTexture2D(name, QSize(size.x(), size.y()));
+                    }
                 }
+            }
                 break;
 
-                case eTexture3D:
-                {
-                    // TODO
-                }
+            case eTextureCube:
+            {
+                QString fileNamePosX = pChild->getAttributeValue<QString>("fileNamePosX");
+                QString fileNameNegX = pChild->getAttributeValue<QString>("fileNameNegX");
+                QString fileNamePosY = pChild->getAttributeValue<QString>("fileNamePosY");
+                QString fileNameNegY = pChild->getAttributeValue<QString>("fileNameNegY");
+                QString fileNamePosZ = pChild->getAttributeValue<QString>("fileNamePosZ");
+                QString fileNameNegZ = pChild->getAttributeValue<QString>("fileNameNegZ");
+
+                CTextureManager::getInstance()->createTextureCube(
+                            name,
+                            path(fileNamePosX),
+                            path(fileNameNegX),
+                            path(fileNamePosY),
+                            path(fileNameNegY),
+                            path(fileNamePosZ),
+                            path(fileNameNegZ));
+            }
                 break;
 
-                case eTextureUndefined:
-                    break;
+            case eTextureTarget:
+            {
+                QVector2D size = pChild->getAttributeValue<QVector2D>("size");
+                EnumInternalFormat eFormat = CGeometryGlobal::internalFormatFromString(pChild->getAttributeValue<QString>("internalFormat"));
+
+                CTextureManager::getInstance()->createTextureTarget(
+                            name,
+                            QSize(size.x(), size.y()),
+                            eFormat);
+            }
+                break;
+
+            case eTexture3D:
+            {
+                // TODO
+            }
+                break;
+
+            case eTextureUndefined:
+                break;
             }
         }
         else if (pChild->getName() == "Material")
@@ -182,23 +182,23 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
         {
             QString fileName = pChild->getAttributeValue<QString>("fileName");
             bool bMergeMaterial = pChild->getAttributeValue<bool>("mergeMaterial", true);
-			bool bJustLoad = pChild->getAttributeValue<bool>("justLoad", false);
+            bool bJustLoad = pChild->getAttributeValue<bool>("justLoad", false);
 
-			if (bJustLoad)
-			{
-				CAssimpImporter::loadScene(
-                    path(fileName),
-					m_pSceneManager, 
-					bMergeMaterial);
-			}
-			else
-			{
-				CAssimpImporter::mergeScene(
-                    path(fileName),
-					m_pSceneManager, 
-					bMergeMaterial, 
-					pCurrentNode);
-			}
+            if (bJustLoad)
+            {
+                CAssimpImporter::loadScene(
+                            path(fileName),
+                            m_pSceneManager,
+                            bMergeMaterial);
+            }
+            else
+            {
+                CAssimpImporter::mergeScene(
+                            path(fileName),
+                            m_pSceneManager,
+                            bMergeMaterial,
+                            pCurrentNode);
+            }
         }
         else if (pChild->getName() == "CreateMesh")
         {
@@ -424,46 +424,46 @@ bool CScriptManager::saveScript(const QString& fileName)
             const CRenderStates& renderStates = pRenderPass->getRenderStates();
             // TODO
 
-//            CXmlElement* pRenderStatesElement = pRenderPassElement->createChild("RenderStates");
-//            CXmlElement* pFaceCullingElement = pRenderStatesElement->createChild("FaceCulling");
-//            pFaceCullingElement->addAttribute("enabled", renderStates.getFaceCulling().isEnabled());
-//            pFaceCullingElement->addAttribute("cullFace", renderStates.getFaceCulling().isEnabled());
+            //            CXmlElement* pRenderStatesElement = pRenderPassElement->createChild("RenderStates");
+            //            CXmlElement* pFaceCullingElement = pRenderStatesElement->createChild("FaceCulling");
+            //            pFaceCullingElement->addAttribute("enabled", renderStates.getFaceCulling().isEnabled());
+            //            pFaceCullingElement->addAttribute("cullFace", renderStates.getFaceCulling().isEnabled());
 
-//            CXmlElement* pScissorTestElement = pRenderStatesElement->createChild("ScissorTest");
-//            pScissorTestElement->addAttribute("enabled", renderStates.getScissorTest().isEnabled());
-//            pScissorTestElement->addAttribute("rect", renderStates.getScissorTest().getRect());
+            //            CXmlElement* pScissorTestElement = pRenderStatesElement->createChild("ScissorTest");
+            //            pScissorTestElement->addAttribute("enabled", renderStates.getScissorTest().isEnabled());
+            //            pScissorTestElement->addAttribute("rect", renderStates.getScissorTest().getRect());
 
-//            CXmlElement* pDepthTestElement = pRenderStatesElement->createChild("DepthTest");
-//            pDepthTestElement->addAttribute("enabled", renderStates.getDepthTest().isEnabled());
-//            pDepthTestElement->addAttribute("function", renderStates.getDepthTest().getFunction());
+            //            CXmlElement* pDepthTestElement = pRenderStatesElement->createChild("DepthTest");
+            //            pDepthTestElement->addAttribute("enabled", renderStates.getDepthTest().isEnabled());
+            //            pDepthTestElement->addAttribute("function", renderStates.getDepthTest().getFunction());
 
-//            CXmlElement* pDepthRangeElement = pRenderStatesElement->createChild("DepthRange");
-//            pDepthRangeElement->addAttribute("near", renderStates.getDepthRange().getNear());
-//            pDepthRangeElement->addAttribute("far", renderStates.getDepthRange().getFar());
+            //            CXmlElement* pDepthRangeElement = pRenderStatesElement->createChild("DepthRange");
+            //            pDepthRangeElement->addAttribute("near", renderStates.getDepthRange().getNear());
+            //            pDepthRangeElement->addAttribute("far", renderStates.getDepthRange().getFar());
 
-//            CXmlElement* pBlendingElement = pRenderStatesElement->createChild("Blending");
+            //            CXmlElement* pBlendingElement = pRenderStatesElement->createChild("Blending");
 
-//            pBlendingElement->addAttribute("srcRGBFactor", renderStates.getBlending().getSourceRGBFactor());
-//            pBlendingElement->addAttribute("srcAlphaFactor", renderStates.getBlending().getSourceAlphaFactor());
-//            pBlendingElement->addAttribute("destRGBFactor", renderStates.getBlending().getDestinationRGBFactor());
-//            pBlendingElement->addAttribute("destAlphaFactor", renderStates.getBlending().getDestinationAlphaFactor());
-//            pBlendingElement->addAttribute("rgbEquation", renderStates.getBlending().getRGBEquation());
-//            pBlendingElement->addAttribute("alphaEquation", renderStates.getBlending().getAlphaEquation());
-//            pBlendingElement->addAttribute("color", renderStates.getBlending().getColor());
+            //            pBlendingElement->addAttribute("srcRGBFactor", renderStates.getBlending().getSourceRGBFactor());
+            //            pBlendingElement->addAttribute("srcAlphaFactor", renderStates.getBlending().getSourceAlphaFactor());
+            //            pBlendingElement->addAttribute("destRGBFactor", renderStates.getBlending().getDestinationRGBFactor());
+            //            pBlendingElement->addAttribute("destAlphaFactor", renderStates.getBlending().getDestinationAlphaFactor());
+            //            pBlendingElement->addAttribute("rgbEquation", renderStates.getBlending().getRGBEquation());
+            //            pBlendingElement->addAttribute("alphaEquation", renderStates.getBlending().getAlphaEquation());
+            //            pBlendingElement->addAttribute("color", renderStates.getBlending().getColor());
 
-//            CXmlElement* pColorMaskElement = pRenderStatesElement->createChild("ColorMask");
-//            pColorMaskElement->addAttribute("isRedEnabled", renderStates.getColorMask().isRedEnabled());
-//            pColorMaskElement->addAttribute("isGreenEnabled", renderStates.getColorMask().isGreenEnabled());
-//            pColorMaskElement->addAttribute("isBlueEnabled", renderStates.getColorMask().isBlueEnabled());
-//            pColorMaskElement->addAttribute("isAlphaEnabled", renderStates.getColorMask().isAlphaEnabled());
+            //            CXmlElement* pColorMaskElement = pRenderStatesElement->createChild("ColorMask");
+            //            pColorMaskElement->addAttribute("isRedEnabled", renderStates.getColorMask().isRedEnabled());
+            //            pColorMaskElement->addAttribute("isGreenEnabled", renderStates.getColorMask().isGreenEnabled());
+            //            pColorMaskElement->addAttribute("isBlueEnabled", renderStates.getColorMask().isBlueEnabled());
+            //            pColorMaskElement->addAttribute("isAlphaEnabled", renderStates.getColorMask().isAlphaEnabled());
 
-//            CXmlElement* pStencilStateElement = pRenderStatesElement->createChild("StencilState");
-//            pStencilStateElement->addAttribute("enabled", renderStates.getStencilState().isEnabled());
-//            pStencilStateElement->addAttribute("frontFace", renderStates.getStencilState().getFrontFace());
-//            pStencilStateElement->addAttribute("backFace", renderStates.getStencilState().getBackFace());
-//            pStencilStateElement->addAttribute("function", renderStates.getStencilState().getStencilTestFunction());
-//            pStencilStateElement->addAttribute("referenceValue", renderStates.getStencilState().getReferenceValue());
-//            pStencilStateElement->addAttribute("mask", renderStates.getStencilState().getMask());
+            //            CXmlElement* pStencilStateElement = pRenderStatesElement->createChild("StencilState");
+            //            pStencilStateElement->addAttribute("enabled", renderStates.getStencilState().isEnabled());
+            //            pStencilStateElement->addAttribute("frontFace", renderStates.getStencilState().getFrontFace());
+            //            pStencilStateElement->addAttribute("backFace", renderStates.getStencilState().getBackFace());
+            //            pStencilStateElement->addAttribute("function", renderStates.getStencilState().getStencilTestFunction());
+            //            pStencilStateElement->addAttribute("referenceValue", renderStates.getStencilState().getReferenceValue());
+            //            pStencilStateElement->addAttribute("mask", renderStates.getStencilState().getMask());
         }
 
         CXmlElement* pTexturesElement = pChild->createChild("Textures");

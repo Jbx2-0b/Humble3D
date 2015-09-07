@@ -20,86 +20,86 @@ class LIB_CORE_SHARED_EXPORT CTextureManager : public ATexture::ITextureListener
 {
 public:
 
-	//! Accesseur a l'instance de la classe.
-	static CTextureManager* getInstance()
-	{
-		if (s_pInstance == 0)
-		{
-			QMutexLocker locker(&s_Mutex);
+    //! Accesseur a l'instance de la classe.
+    static CTextureManager* getInstance()
+    {
+        if (s_pInstance == 0)
+        {
+            QMutexLocker locker(&s_Mutex);
 
-			if (s_pInstance == 0)
-			{
-				s_pInstance = new CTextureManager();
-			}
-		}
+            if (s_pInstance == 0)
+            {
+                s_pInstance = new CTextureManager();
+            }
+        }
 
-		return s_pInstance;
+        return s_pInstance;
     }
 
-	//! Destructeur de l'instance de la classe.
-	static void killInstance()
-	{
-		if (s_pInstance)
-		{
-			QMutexLocker locker(&s_Mutex);
-			delete s_pInstance;
-			s_pInstance = 0;
-		}
+    //! Destructeur de l'instance de la classe.
+    static void killInstance()
+    {
+        if (s_pInstance)
+        {
+            QMutexLocker locker(&s_Mutex);
+            delete s_pInstance;
+            s_pInstance = 0;
+        }
     }
 
-	//-------------------------------------------------------------------------------------------------
-	// Listeners
-	//-------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
+    // Listeners
+    //-------------------------------------------------------------------------------------------------
 
     class ITextureManagerListener
-	{
-	public:
+    {
+    public:
 
-		//! Prévient de l'ajout ou de la mise à jour d'un texture
-		virtual void onUpdateTexture(ATexture* pTexture) = 0;
+        //! Prévient de l'ajout ou de la mise à jour d'un texture
+        virtual void onUpdateTexture(ATexture* pTexture) = 0;
 
-		//! Prévient de la suppression d'un texture
-		virtual void onDeleteTexture(ATexture* pTexture) = 0;
-	};
+        //! Prévient de la suppression d'un texture
+        virtual void onDeleteTexture(ATexture* pTexture) = 0;
+    };
 
-	//! Enregistre un listener
+    //! Enregistre un listener
     void registerListener(ITextureManagerListener* pListener);
 
-	//! Libére un listener
+    //! Libére un listener
     void unregisterListener(ITextureManagerListener* pListener);
 
-	//! Retourne le nombre de textures
+    //! Retourne le nombre de textures
     int getTextureCount() const												{ return m_TextureByName.size(); }
 
-	//! Retourne la collection de textures
+    //! Retourne la collection de textures
     const QList<ATexture*> getTextures() const								{ return m_TextureByName.values(); }
 
-	//! Retourne la collection des de textures disponible
+    //! Retourne la collection des de textures disponible
     const QList<QString> getTexturesNames() const							{ return m_TextureByName.keys(); }
 
-	//! Retourne une texture en fonction de son nom
-	ATexture* getTextureByName(const QString& name) const;
+    //! Retourne une texture en fonction de son nom
+    ATexture* getTextureByName(const QString& name) const;
 
-	//! Retourne une texture en fonction de son nom
-	ATexture* getTextureByID(int iID) const;
+    //! Retourne une texture en fonction de son nom
+    ATexture* getTextureByID(int iID) const;
 
-	//! Retourne true si la texture existe
-	bool isTextureExist(const QString& name) const;
+    //! Retourne true si la texture existe
+    bool isTextureExist(const QString& name) const;
 
-	//! Retourne true si la texture existe
-	bool isTextureExist(int iID) const;
+    //! Retourne true si la texture existe
+    bool isTextureExist(int iID) const;
 
     //! Crée une texture 2D non initialisée
-	CTexture2D* createTexture2D(const QString& name);
+    CTexture2D* createTexture2D(const QString& name);
 
     //! Crée une texture 2D vide
-	CTexture2D* createTexture2D(const QString& name, const QSize& size);
+    CTexture2D* createTexture2D(const QString& name, const QSize& size);
 
-	//! Crée une nouvelle texture et retourne son pointeur
-	CTexture2D* createTexture2D(const QString& name, const QString& textureFileName);
+    //! Crée une nouvelle texture et retourne son pointeur
+    CTexture2D* createTexture2D(const QString& name, const QString& textureFileName);
 
     //! Crée une texture cube
-	CTextureCube* createTextureCube(const QString& name, const QStringList& textureFileNames);
+    CTextureCube* createTextureCube(const QString& name, const QStringList& textureFileNames);
 
     //! Crée une texture cube
     CTextureCube* createTextureCube(
@@ -112,24 +112,24 @@ public:
             const QString& fileNameNegZ);
 
     //! Crée une nouvelle texture de rendu
-	CTextureTarget* createTextureTarget(const QString& name, const QSize& size, EnumInternalFormat eFormat);
-	
-    //! Supprime une texture
-	void removeTexture(ATexture* pTexture);	
+    CTextureTarget* createTextureTarget(const QString& name, const QSize& size, EnumInternalFormat eFormat);
 
-	//! Libére l'ensemble des textures du manager
+    //! Supprime une texture
+    void removeTexture(ATexture* pTexture);
+
+    //! Libére l'ensemble des textures du manager
     void clearTextures();
 
-	//! Retourne un ID d'unité de texture non utilisé
-	int getUnReservedTextureUnit();
+    //! Retourne un ID d'unité de texture non utilisé
+    int getUnReservedTextureUnit();
 
 protected:
 
     //! Implémentation de ATexture::ITextureListener
-	virtual void onUpdate(ATexture* pTexture);	
+    virtual void onUpdate(ATexture* pTexture);
 
     //! Implémentation de ATexture::ITextureListener
-	virtual void onDelete(ATexture* pTexture);
+    virtual void onDelete(ATexture* pTexture);
 
     //-------------------------------------------------------------------------------------------------
     // Listeners
@@ -146,20 +146,20 @@ protected:
 
 private:
 
-	//! Constructeur
-	CTextureManager();
+    //! Constructeur
+    CTextureManager();
 
-	//! Destructeur
-	virtual ~CTextureManager();
+    //! Destructeur
+    virtual ~CTextureManager();
 
-	//! Conteneur des textures
+    //! Conteneur des textures
     QMap<QString, ATexture*> m_TextureByName;
 
-	//! Conteneur des textures
+    //! Conteneur des textures
     QMap<int, ATexture*> m_TextureByID;
 
-	static CTextureManager* s_pInstance;
-	static QMutex s_Mutex;
+    static CTextureManager* s_pInstance;
+    static QMutex s_Mutex;
 };
 
 #endif // CTEXTUREMANAGER_H

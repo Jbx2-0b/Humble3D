@@ -2,10 +2,10 @@
 #define ENUMBUFFERTYPE_H
 
 enum EnumBufferType {
-	eVertexBuffer,
-	eIndexBuffer,
-	ePixelPackBuffer,
-	ePixelUnpackBuffer
+    eVertexBuffer,
+    eIndexBuffer,
+    ePixelPackBuffer,
+    ePixelUnpackBuffer
 };
 
 #endif // ENUMBUFFERTYPE_H

@@ -13,63 +13,63 @@
 
 class LIB_NETWORKSHARED_EXPORT CTcpClient : public ISender
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Ctor
-	CTcpClient(int iPort = 0, QObject *parent = 0);
+    //! Ctor
+    CTcpClient(int iPort = 0, QObject *parent = 0);
 
-	//! Dtor
-	virtual ~CTcpClient();
+    //! Dtor
+    virtual ~CTcpClient();
 
-	//! Définit le port pour se connecter au serveur
-	void setPort(int iPort);
+    //! Définit le port pour se connecter au serveur
+    void setPort(int iPort);
 
-	//! Transmet un objet
-	bool sendMessage(const QVariant& message);
+    //! Transmet un objet
+    bool sendMessage(const QVariant& message);
 
-	//! Retourne vrai si est connecté
-	bool isConnected();
+    //! Retourne vrai si est connecté
+    bool isConnected();
 
-	//! Retourne l'état de la connexion
-	QAbstractSocket::SocketState getState() const;
+    //! Retourne l'état de la connexion
+    QAbstractSocket::SocketState getState() const;
 
 signals:
 
-	void connectionError(const QString& strError);
+    void connectionError(const QString& strError);
 
-	void connected();
+    void connected();
 
 public slots:
 
-	//! Connecte au serveur
-	void connectToHost(const QString& strHostIPAdress);
+    //! Connecte au serveur
+    void connectToHost(const QString& strHostIPAdress);
 
-	//! reconnecte au serveur si déconnecté
-	void reconnectToHost();
+    //! reconnecte au serveur si déconnecté
+    void reconnectToHost();
 
-	//! Déconnecte du serveur
-	void disconnectFromHost();
-	
+    //! Déconnecte du serveur
+    void disconnectFromHost();
+
 protected slots:
 
-	void onSocketReadyRead();
-	void onSocketError(QAbstractSocket::SocketError socketError);
-		
+    void onSocketReadyRead();
+    void onSocketError(QAbstractSocket::SocketError socketError);
+
 protected:
 
-	void doSendMessage();
+    void doSendMessage();
 
-	static const int iDTReconnection = 5000;
+    static const int iDTReconnection = 5000;
 
-	QVariant		m_SendMessage;
-	QTimer			m_RetryConnectionTimer;
-	QTcpSocket*		m_TcpSocket;
-	MaxPacketSize	m_iBlockSize;
-	int				m_iPort;
-	QString			m_strHostIPAdress;
-	bool			m_bLastMessageNotSend;
+    QVariant		m_SendMessage;
+    QTimer			m_RetryConnectionTimer;
+    QTcpSocket*		m_TcpSocket;
+    MaxPacketSize	m_iBlockSize;
+    int				m_iPort;
+    QString			m_strHostIPAdress;
+    bool			m_bLastMessageNotSend;
 };
 
 #endif

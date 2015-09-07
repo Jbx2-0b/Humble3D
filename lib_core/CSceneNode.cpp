@@ -5,24 +5,24 @@
 
 //-----------------------------------------------------------------------------------------
 CSceneNode::CSceneNode(CSceneManager* pSceneManager, CSceneNode* pParent /*= 0*/)
-: CNode(pParent)
-, m_pSceneManager(pSceneManager)
-, m_LocalScaling(1., 1., 1.)
-, m_bNeedUpdateGlobalTransformation(true)
-, m_bNeedUpdateLocalBoundingBox(true)
-, m_bNeedUpdateGlobalBoundingBox(true)
+    : CNode(pParent)
+    , m_pSceneManager(pSceneManager)
+    , m_LocalScaling(1., 1., 1.)
+    , m_bNeedUpdateGlobalTransformation(true)
+    , m_bNeedUpdateLocalBoundingBox(true)
+    , m_bNeedUpdateGlobalBoundingBox(true)
 {
     pSceneManager->addSceneNode(this);
 }
 
 //-----------------------------------------------------------------------------------------
 CSceneNode::CSceneNode(CSceneManager* pSceneManager, const QString& name, CSceneNode* pParent /*= 0*/)
-: CNode(name, pParent)
-, m_pSceneManager(pSceneManager)
-, m_LocalScaling(1., 1., 1.)
-, m_bNeedUpdateGlobalTransformation(true)
-, m_bNeedUpdateLocalBoundingBox(true)
-, m_bNeedUpdateGlobalBoundingBox(true)
+    : CNode(name, pParent)
+    , m_pSceneManager(pSceneManager)
+    , m_LocalScaling(1., 1., 1.)
+    , m_bNeedUpdateGlobalTransformation(true)
+    , m_bNeedUpdateLocalBoundingBox(true)
+    , m_bNeedUpdateGlobalBoundingBox(true)
 {
     pSceneManager->addSceneNode(this);
 }
@@ -31,32 +31,32 @@ CSceneNode::CSceneNode(CSceneManager* pSceneManager, const QString& name, CScene
 CSceneNode::~CSceneNode()
 {
     foreach (CSceneNode* pNode, m_ChildNodes)
-	{
-		// On prévient les NodeItems qu'on détruit ler noeud
-		foreach (ASceneNodeItem* pNodeItem, m_NodeItems)
-		{
-			pNodeItem->removeNode(pNode);
-		}
-	}
+    {
+        // On prévient les NodeItems qu'on détruit ler noeud
+        foreach (ASceneNodeItem* pNodeItem, m_NodeItems)
+        {
+            pNodeItem->removeNode(pNode);
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 CSceneNode* CSceneNode::clone() const
 {
-	CSceneNode* pClone = 0;
+    CSceneNode* pClone = 0;
 
-	if (m_pParent)
-	{
-		pClone = m_pParent->createChild(m_LocalTransformation);
-	}
-	else
-	{
+    if (m_pParent)
+    {
+        pClone = m_pParent->createChild(m_LocalTransformation);
+    }
+    else
+    {
         pLog->addMessage(eERROR, "Can't clone root node !");
-	}
+    }
 
-	pClone->addItems(m_NodeItems);
+    pClone->addItems(m_NodeItems);
 
-	return pClone;
+    return pClone;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -159,8 +159,8 @@ unsigned int CSceneNode::getGlobalPolygonCount() const
 //-----------------------------------------------------------------------------------------
 void CSceneNode::addItem(ASceneNodeItem* pNodeItem)
 {
-	m_NodeItems.append(pNodeItem);
-	pNodeItem->addNode(this);
+    m_NodeItems.append(pNodeItem);
+    pNodeItem->addNode(this);
     pNodeItem->registerListener(this);
     needUpdateBoundingBox();
     notifyUpdate();
@@ -169,10 +169,10 @@ void CSceneNode::addItem(ASceneNodeItem* pNodeItem)
 //-----------------------------------------------------------------------------------------
 void CSceneNode::addItems(const QList<ASceneNodeItem*>& nodeItems)
 {
-	foreach (ASceneNodeItem* pNodeItem, nodeItems)
-	{
-		m_NodeItems.append(pNodeItem);
-		pNodeItem->addNode(this);
+    foreach (ASceneNodeItem* pNodeItem, nodeItems)
+    {
+        m_NodeItems.append(pNodeItem);
+        pNodeItem->addNode(this);
         pNodeItem->registerListener(this);
     }
     needUpdateBoundingBox();
@@ -207,14 +207,14 @@ CSceneNode* CSceneNode::createChild(const QVector3D& vTranslation /*= QVector3D(
 {
     CSceneNode* pNode = new CSceneNode(m_pSceneManager, "Node", this);
     pNode->setNotificationsEnabled(false);
-	QMatrix4x4 mTransformation;
-	mTransformation.translate(vTranslation);
-	mTransformation.rotate(qRotation);
-	pNode->setLocalTransformation(mTransformation);
+    QMatrix4x4 mTransformation;
+    mTransformation.translate(vTranslation);
+    mTransformation.rotate(qRotation);
+    pNode->setLocalTransformation(mTransformation);
     m_ChildNodes.append(pNode);
     pNode->setNotificationsEnabled(true);
-	notifyUpdate();
-	return pNode;
+    notifyUpdate();
+    return pNode;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -222,93 +222,93 @@ CSceneNode* CSceneNode::createChild(const QMatrix4x4& transformation)
 {
     CSceneNode* pNode = new CSceneNode(m_pSceneManager, "Node", this);
     pNode->setNotificationsEnabled(false);
-	pNode->setLocalTransformation(transformation);
+    pNode->setLocalTransformation(transformation);
     m_ChildNodes.append(pNode);
     pNode->setNotificationsEnabled(true);
-	notifyUpdate();
-	return pNode;
+    notifyUpdate();
+    return pNode;
 }
 
 //-----------------------------------------------------------------------------------------
 CSceneNode* CSceneNode::createChild(const QString& nodeName, const QVector3D& vTranslation /*= QVector3D()*/, const QQuaternion& qRotation /*= QQuaternion()*/)
 {
-	CSceneNode* pNode = createChild(vTranslation, qRotation);
-	pNode->setName(nodeName);
-	return pNode;
+    CSceneNode* pNode = createChild(vTranslation, qRotation);
+    pNode->setName(nodeName);
+    return pNode;
 }
 
 //-----------------------------------------------------------------------------------------
 CSceneNode* CSceneNode::createChild(const QString& nodeName, const QMatrix4x4& transformation)
 {
-	CSceneNode* pNode = createChild(transformation);
-	pNode->setName(nodeName);
-	return pNode;
+    CSceneNode* pNode = createChild(transformation);
+    pNode->setName(nodeName);
+    return pNode;
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::setLocalTransformation(const QMatrix4x4& mTransformation)
 {
-	m_LocalTransformation = mTransformation;
-	m_LocalInverseTransformation = mTransformation.inverted();
+    m_LocalTransformation = mTransformation;
+    m_LocalInverseTransformation = mTransformation.inverted();
     needUpdateTransformationMatrix();
     needUpdateBoundingBox();
-	notifyUpdate();
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 const QMatrix4x4& CSceneNode::getLocalTransformation() const
 {
-	return m_LocalTransformation;
+    return m_LocalTransformation;
 }
 
 //-----------------------------------------------------------------------------------------
 const QMatrix4x4& CSceneNode::getLocalInverseTransformation() const
 {
-	return m_LocalInverseTransformation;
+    return m_LocalInverseTransformation;
 }
 
 //-----------------------------------------------------------------------------------------
 const QMatrix4x4& CSceneNode::getGlobalTransformation() const
 {
-	if (m_bNeedUpdateGlobalTransformation)
-	{
-		const CSceneNode* pCurrent = this;
+    if (m_bNeedUpdateGlobalTransformation)
+    {
+        const CSceneNode* pCurrent = this;
 
-		m_GlobalTransformation.setToIdentity();
+        m_GlobalTransformation.setToIdentity();
 
-		while (pCurrent)
-		{
-			m_GlobalTransformation = pCurrent->getLocalTransformation() * m_GlobalTransformation;
-			pCurrent = pCurrent->getParent();
-		}
+        while (pCurrent)
+        {
+            m_GlobalTransformation = pCurrent->getLocalTransformation() * m_GlobalTransformation;
+            pCurrent = pCurrent->getParent();
+        }
 
-		m_GlobalInverseTransformation = m_GlobalTransformation.inverted();
-		m_bNeedUpdateGlobalTransformation = false;
-	}
+        m_GlobalInverseTransformation = m_GlobalTransformation.inverted();
+        m_bNeedUpdateGlobalTransformation = false;
+    }
 
-	return m_GlobalTransformation;
+    return m_GlobalTransformation;
 }
 
 //-----------------------------------------------------------------------------------------
 const QMatrix4x4& CSceneNode::getGlobalInverseTransformation() const
 {
-	if (m_bNeedUpdateGlobalTransformation)
-	{
-		const CSceneNode* pCurrent = this;
+    if (m_bNeedUpdateGlobalTransformation)
+    {
+        const CSceneNode* pCurrent = this;
 
-		m_GlobalTransformation.setToIdentity();
+        m_GlobalTransformation.setToIdentity();
 
-		while (pCurrent)
-		{
-			m_GlobalTransformation = pCurrent->getLocalTransformation() * m_GlobalTransformation;
-			pCurrent = pCurrent->getParent();
-		}
+        while (pCurrent)
+        {
+            m_GlobalTransformation = pCurrent->getLocalTransformation() * m_GlobalTransformation;
+            pCurrent = pCurrent->getParent();
+        }
 
-		m_GlobalInverseTransformation = m_GlobalTransformation.inverted();
-		m_bNeedUpdateGlobalTransformation = false;
-	}
+        m_GlobalInverseTransformation = m_GlobalTransformation.inverted();
+        m_bNeedUpdateGlobalTransformation = false;
+    }
 
-	return m_GlobalInverseTransformation;
+    return m_GlobalInverseTransformation;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -320,97 +320,97 @@ QVector3D CSceneNode::getLocalScaling() const
 //-----------------------------------------------------------------------------------------
 QVector3D CSceneNode::getGlobalPosition() const
 {
-	return getGlobalTransformation().column(3).toVector3D();
+    return getGlobalTransformation().column(3).toVector3D();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::resetTransformation()
 {
-	m_LocalTransformation.setToIdentity();
+    m_LocalTransformation.setToIdentity();
     needUpdateTransformationMatrix();
-	notifyUpdate();
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::translate(const QVector3D &vTranslate)
 {
-	m_LocalTransformation.translate(vTranslate);
+    m_LocalTransformation.translate(vTranslate);
     needUpdateTransformationMatrix();
-	notifyUpdate();
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::translate(real dX, real dY, real dZ)
 {
-	m_LocalTransformation.translate(dX, dY, dZ);
+    m_LocalTransformation.translate(dX, dY, dZ);
     needUpdateTransformationMatrix();
-	notifyUpdate();
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::scale(const QVector3D &vScale)
 {
     m_LocalScaling *= vScale;
-	m_LocalTransformation.scale(vScale);
+    m_LocalTransformation.scale(vScale);
     needUpdateTransformationMatrix();
-	notifyUpdate();
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::scale(real dX, real dY, real dZ)
 {
     m_LocalScaling *= QVector3D(dX, dY, dZ);
-	m_LocalTransformation.scale(dX, dY, dZ);
-	notifyUpdate();
+    m_LocalTransformation.scale(dX, dY, dZ);
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::scale(real dS)
 {
     m_LocalScaling *= QVector3D(dS, dS, dS);
-	m_LocalTransformation.scale(dS, dS, dS);
+    m_LocalTransformation.scale(dS, dS, dS);
     needUpdateTransformationMatrix();
-	notifyUpdate();
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::rotate(const QVector3D &vAxis, real dAngle)
 {
-	m_LocalTransformation.rotate(QQuaternion::fromAxisAndAngle(vAxis, dAngle));
+    m_LocalTransformation.rotate(QQuaternion::fromAxisAndAngle(vAxis, dAngle));
     needUpdateTransformationMatrix();
-	notifyUpdate();
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::rotate(const QQuaternion &qRotation)
 {
-	m_LocalTransformation.rotate(qRotation);
+    m_LocalTransformation.rotate(qRotation);
     needUpdateTransformationMatrix();
-	notifyUpdate();
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::pitch(real dAngle)
 {
-	m_LocalTransformation.rotate(dAngle, QVector3D(1., 0., 0.));
+    m_LocalTransformation.rotate(dAngle, QVector3D(1., 0., 0.));
     needUpdateTransformationMatrix();
-	notifyUpdate();
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::roll(real dAngle)
 {
-	m_LocalTransformation.rotate(dAngle, QVector3D(0., 0., 1.));
+    m_LocalTransformation.rotate(dAngle, QVector3D(0., 0., 1.));
     needUpdateTransformationMatrix();
-	notifyUpdate();
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneNode::yaw(real dAngle)
 {
-	m_LocalTransformation.rotate(dAngle, QVector3D(0., 1., 0.));
+    m_LocalTransformation.rotate(dAngle, QVector3D(0., 1., 0.));
     needUpdateTransformationMatrix();
-	notifyUpdate();
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
@@ -422,25 +422,25 @@ void CSceneNode::dumpNodeTree() const
 //-----------------------------------------------------------------------------------------
 void CSceneNode::recursiveDump(int iLevel) const
 {
-	QString branchNode = "|";
-	QString branchItems = " ";
+    QString branchNode = "|";
+    QString branchItems = " ";
 
-	for (int i = 0; i < iLevel; ++i)
-	{
-		branchNode += "-";
-		branchItems += " ";
-	}
-	qDebug() << branchNode << "Node name : " << getName();
+    for (int i = 0; i < iLevel; ++i)
+    {
+        branchNode += "-";
+        branchItems += " ";
+    }
+    qDebug() << branchNode << "Node name : " << getName();
 
-	foreach (ASceneNodeItem* pItem, m_NodeItems)
-	{
-		qDebug() << branchItems << "Node item : " << pItem->getName();
-	}
+    foreach (ASceneNodeItem* pItem, m_NodeItems)
+    {
+        qDebug() << branchItems << "Node item : " << pItem->getName();
+    }
 
     foreach (CSceneNode* pChild, m_ChildNodes)
-	{
+    {
         pChild->recursiveDump(iLevel + 1);
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------

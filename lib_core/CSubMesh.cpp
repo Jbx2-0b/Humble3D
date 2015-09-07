@@ -5,7 +5,7 @@
 
 //-----------------------------------------------------------------------------------------
 CSubMesh::CSubMesh(CMesh* pParentMesh)
-: m_pParentMesh(pParentMesh)
+    : m_pParentMesh(pParentMesh)
 {
 }
 

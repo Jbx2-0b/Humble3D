@@ -38,9 +38,9 @@
 #endif
 
 #ifdef ENV_64BITS
-    typedef double real;
+typedef double real;
 #else // ENV_32BITS
-    typedef float real;
+typedef float real;
 #endif
 
 
@@ -57,7 +57,7 @@ public:
 
     //! Initialise une graine pour les nombres aléatoires
     static void initRand();
-	
+
     //! Retourne un nombre aléatoire entre 0. et 1.
     static real randNorm();
 
@@ -186,8 +186,8 @@ public:
 
     //! Interpolation cubique basée sur le polynôme f(x)=ax3+bx2+cx+d
     static double cubicInterpolation2D(double y00, double y01, double y02, double y03,
-        double y10, double y11, double y12, double y13, double y20, double y21, double y22,
-        double y23, double y30, double y31, double y32, double y33, double x, double y);
+                                       double y10, double y11, double y12, double y13, double y20, double y21, double y22,
+                                       double y23, double y30, double y31, double y32, double y33, double x, double y);
 
     //! saturate - returns smallest integer not less than a scalar
     static real saturate(real x);

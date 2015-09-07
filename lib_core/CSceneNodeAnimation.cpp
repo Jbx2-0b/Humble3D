@@ -21,7 +21,7 @@ QPair<CVectorKey, CVectorKey> CSceneNodeAnimation::getPositionKeys(real dT) cons
 
     if (!m_PositionKeys.isEmpty())
     {
-		int iKey = 0;
+        int iKey = 0;
 
         result.first = result.second = m_PositionKeys.first();
 
@@ -46,7 +46,7 @@ QPair<CQuaternionKey, CQuaternionKey> CSceneNodeAnimation::getRotationKeys(real 
 
     if (!m_RotationKeys.isEmpty())
     {
-		int iKey = 0;
+        int iKey = 0;
 
         result.first = result.second = m_RotationKeys.first();
 
@@ -71,7 +71,7 @@ QPair<CVectorKey, CVectorKey> CSceneNodeAnimation::getScalingKeys(real dT) const
 
     if (!m_ScalingKeys.isEmpty())
     {
-		int iKey = 0;
+        int iKey = 0;
 
         result.first = result.second = m_ScalingKeys.first();
 
@@ -81,7 +81,7 @@ QPair<CVectorKey, CVectorKey> CSceneNodeAnimation::getScalingKeys(real dT) const
             {
                 result.first = m_ScalingKeys[iKey - 1];
                 result.second = m_ScalingKeys[iKey];
-				return result;
+                return result;
             }
         }
     }

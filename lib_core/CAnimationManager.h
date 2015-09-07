@@ -16,87 +16,87 @@
 
 class LIB_CORE_SHARED_EXPORT CAnimationManager : public QObject, public CSceneManager::IAnimationListener
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Constructeur
-	CAnimationManager(CSceneManager* pSceneManager);
+    //! Constructeur
+    CAnimationManager(CSceneManager* pSceneManager);
 
-	//! Destructeur
-	virtual ~CAnimationManager();
+    //! Destructeur
+    virtual ~CAnimationManager();
 
-	//! Joue les animations
+    //! Joue les animations
     void run();
 
-	//! Arrête les animations
-	void stop();
+    //! Arrête les animations
+    void stop();
 
-	//! Définit le temps entre deux mise à jour des animations
-	void setDT(unsigned int iDT);
+    //! Définit le temps entre deux mise à jour des animations
+    void setDT(unsigned int iDT);
 
-	//! Retourne le temps entre deux mise à jour des animations
-	unsigned int getDT() const;
+    //! Retourne le temps entre deux mise à jour des animations
+    unsigned int getDT() const;
 
     class IAnimationManagerListener
-	{
-		friend class CAnimationManager;
+    {
+        friend class CAnimationManager;
 
-	protected:
-		//! Prévient du démarrage d'une animation
-		virtual void onUpdateAnimation() = 0;
-	};
+    protected:
+        //! Prévient du démarrage d'une animation
+        virtual void onUpdateAnimation() = 0;
+    };
 
-	//! Enregistre un listener
+    //! Enregistre un listener
     void registerListener(IAnimationManagerListener* pListener);
 
-	//! Libére un listener
+    //! Libére un listener
     void unregisterListener(IAnimationManagerListener* pListener);
 
 protected:
 
-	//! Implémentation de CSceneManager::IAnimationListener
-	virtual void onStartAnimation(CAnimation* pAnimation);
+    //! Implémentation de CSceneManager::IAnimationListener
+    virtual void onStartAnimation(CAnimation* pAnimation);
 
-	//! Implémentation de CSceneManager::IAnimationListener
-	virtual void onPauseAnimation(CAnimation* pAnimation);
+    //! Implémentation de CSceneManager::IAnimationListener
+    virtual void onPauseAnimation(CAnimation* pAnimation);
 
-	//! Implémentation de CSceneManager::IAnimationListener
-	virtual void onStopAnimation(CAnimation* pAnimation);
+    //! Implémentation de CSceneManager::IAnimationListener
+    virtual void onStopAnimation(CAnimation* pAnimation);
 
     //! Liste des listeners
     QSet<IAnimationManagerListener*> m_AnimationManagerListeners;
 
 private slots:
 
-	void onTimerTimeout();
+    void onTimerTimeout();
 
 private:
-	
-	//! Vrai si est démarré
-	bool m_bRun;
 
-	//! Pointeur sur le gestionnaire de scénes
-	CSceneManager* m_pSceneManager;
+    //! Vrai si est démarré
+    bool m_bRun;
 
-	//! Timer de mise à jur des animations
-	QTimer m_Timer;
+    //! Pointeur sur le gestionnaire de scénes
+    CSceneManager* m_pSceneManager;
 
-	//! Temps
-	QTime m_Time;
+    //! Timer de mise à jur des animations
+    QTimer m_Timer;
 
-	//! Temps entre deux mise à jour des animations
-	unsigned int m_iDT;
+    //! Temps
+    QTime m_Time;
 
-	//! Temps par défaut entre deux mise à jour des animations
-	static const unsigned int s_iDefaultDT = 1000 / 60;
+    //! Temps entre deux mise à jour des animations
+    unsigned int m_iDT;
+
+    //! Temps par défaut entre deux mise à jour des animations
+    static const unsigned int s_iDefaultDT = 1000 / 60;
 
     struct SAnimationProperties
-	{
+    {
         real dStartTime;
         real dPauseTime;
         bool bIsPausing;
-		bool bIsRunning;
+        bool bIsRunning;
     };
 
     //! Conteneur des animations
@@ -107,8 +107,8 @@ private:
     CAnimationHelper::Interpolator<CQuaternionKey> m_qIpl;
     CAnimationHelper::Interpolator<CMeshKey> m_mIpl;
 
-	//! Notifie les listeners qu'au moins une animation a été mise à jour
-	void notifyUpdate();
+    //! Notifie les listeners qu'au moins une animation a été mise à jour
+    void notifyUpdate();
 };
 
 #endif // CANIMATIONMANAGER_H

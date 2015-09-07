@@ -13,19 +13,19 @@
 class LIB_CORE_SHARED_EXPORT CTexture3D : public ATexture
 {
 public:
-	
 
-	//! Retourne le nom du type
-	virtual QString getTypeName() const					{ return "Texture3D"; }
 
-	//! Affiche les propriétés sur la console
+    //! Retourne le nom du type
+    virtual QString getTypeName() const					{ return "Texture3D"; }
+
+    //! Affiche les propriétés sur la console
     virtual QString toString() const
-	{
-		QString result;
-		result += "[Texture 3D\n";
-		ATexture::toString();
-		return result;
-	}
+    {
+        QString result;
+        result += "[Texture 3D\n";
+        ATexture::toString();
+        return result;
+    }
 };
 
 

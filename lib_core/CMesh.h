@@ -22,7 +22,7 @@ typedef QList<CMesh*> CMeshGroup;
 //#define ENABLE_MULTITHREADING
 
 #ifdef ENABLE_MULTITHREADING
-    #include "CGeometryInstancer.h"
+#include "CGeometryInstancer.h"
 #endif // ENABLE_MULTITHREADING
 
 //-----------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ public:
     //! Constructeur
     CMesh(const QString& name);
 
-	//! Destructeur
+    //! Destructeur
     virtual ~CMesh();
 
     //! Initialise l'objet
@@ -66,25 +66,25 @@ public:
     void unregisterListener(IMeshListener* pListener);
 
 
-	//-------------------------------------------------------------------------------------------------
-	// Gestion des sous-objets
-	//-------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
+    // Gestion des sous-objets
+    //-------------------------------------------------------------------------------------------------
 
-	//! Crée un sous-objet
+    //! Crée un sous-objet
     CSubMesh* createSubMesh();
 
-	//! Supprime un sous-objet
-	void removeSubMesh(CSubMesh* pSubMesh);
+    //! Supprime un sous-objet
+    void removeSubMesh(CSubMesh* pSubMesh);
 
     //! Supprime l'ensemble des sous-objets
     void clearSubMeshs();
 
-	//! Accesseur sur les submeshs
+    //! Accesseur sur les submeshs
     const QList<CSubMesh*>& subMeshs() const { return m_SubMeshs; }
 
-	//--------------------------------------------------------------------------------------------
-	// Setters
-	//--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    // Setters
+    //--------------------------------------------------------------------------------------------
 
     //! Définit le materiau
     void setMaterialName(const QString& materialName);
@@ -92,56 +92,56 @@ public:
     //! Définit le multithreading est activé
     void setMultithreadingEnabled(bool bEnabled);
 
-	//--------------------------------------------------------------------------------------------
-	// Getters
-	//--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    // Getters
+    //--------------------------------------------------------------------------------------------
 
-	//! Retourne le nom du type
-	virtual QString getTypeName() const { return "Mesh"; }
+    //! Retourne le nom du type
+    virtual QString getTypeName() const { return "Mesh"; }
 
-	//! Retourne la boîte englobant l'objet
+    //! Retourne la boîte englobant l'objet
     const CBox3D& getBoundingBox() const;
 
     //! Retourne la sphere englobant l'objet
     const CSphere& getBoundingSphere() const;
 
-	//! Retourne true si le mesh a un squelette d'animation
-	bool hasSkeleton() const;
+    //! Retourne true si le mesh a un squelette d'animation
+    bool hasSkeleton() const;
 
-	//! Retourne le nombre de face du mesh
+    //! Retourne le nombre de face du mesh
     unsigned int getPolygonCount() const;
 
-	//! Retourne la liste de noeuds associés aux bones
+    //! Retourne la liste de noeuds associés aux bones
     QMultiHash<CSceneNode*, CBone> getBoneNodes(CSceneManager* pSceneManager) const;
 
 
-	//--------------------------------------------------------------------------------------------
-	// Fonctions mathématiques
-	//--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    // Fonctions mathématiques
+    //--------------------------------------------------------------------------------------------
 
-	//! Calcule les normales
-	virtual void computeNormals();
+    //! Calcule les normales
+    virtual void computeNormals();
 
-	//! Calcule les tangeantes
-	virtual void computeTangents();
+    //! Calcule les tangeantes
+    virtual void computeTangents();
 
-	//! Calcule l'intersection avec un rayon
+    //! Calcule l'intersection avec un rayon
     virtual bool intersection(const CRay& ray, real* dDistance, const QMatrix4x4& transformation = QMatrix4x4()) const;
 
-	//! Calcule l'intersection avec un rayon
-	bool intersects(const CRay &ray, const QMatrix4x4& transformation = QMatrix4x4()) const;
+    //! Calcule l'intersection avec un rayon
+    bool intersects(const CRay &ray, const QMatrix4x4& transformation = QMatrix4x4()) const;
 
-	//! Crée une string contenant les propriétés de l'objet
+    //! Crée une string contenant les propriétés de l'objet
     virtual QString toString() const
-	{
-		QString result;
-		result += "[Mesh \n";
+    {
+        QString result;
+        result += "[Mesh \n";
         result += AEntity::toString();
         result += QString("SubMesh count: %1\n").arg(m_SubMeshs.size());
         result += QString("Face count: %1\n").arg(getPolygonCount());
-		result += "]\n";
-		return result;
-	}
+        result += "]\n";
+        return result;
+    }
 
     //! Met à jour le mesh (appelle updateGeometry)
     void update();
@@ -153,7 +153,7 @@ public:
     //! Passe l'entitée à sale = nécessite une mise à jour
     virtual void setDirty();
 
- protected:
+protected:
 
     //! Transmet le message de mise à jour
     virtual void notifyUpdate();
@@ -164,7 +164,7 @@ public:
     //! Liste des listeners
     QSet<IMeshListener*> m_MeshListeners;
 
-	//! Boîte englobante
+    //! Boîte englobante
     mutable CBox3D m_BoundingBox;
 
     //! Sphère englobante

@@ -8,7 +8,7 @@ class CGLTextureTarget : public AGLTexture
 {
 public:
 
-	CGLTextureTarget(int iWidth, int iHeight, EnumInternalFormat eFormat);
+    CGLTextureTarget(int iWidth, int iHeight, EnumInternalFormat eFormat);
 };
 
 #endif // CGLTEXTURETARGET_H

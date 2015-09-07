@@ -17,7 +17,7 @@ public:
 
 protected slots:
 
-	void onTimeout();
+    void onTimeout();
 
 protected:
 

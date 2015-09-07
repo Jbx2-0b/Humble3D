@@ -29,9 +29,9 @@ public:
 
 protected:
 
-	real m_dRadius;
-	int m_iRings;
-	int m_iSectors;
+    real m_dRadius;
+    int m_iRings;
+    int m_iSectors;
     CSubMesh* m_pSphereSubMesh;
 
     virtual void updateGeometry();

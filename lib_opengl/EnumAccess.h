@@ -2,7 +2,7 @@
 #define ENUMACCESS_H
 
 enum EnumAccess {
-	eReadOnly, eWriteOnly, eReadWrite
+    eReadOnly, eWriteOnly, eReadWrite
 };
 
 

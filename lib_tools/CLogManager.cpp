@@ -16,18 +16,18 @@ CLogManager::CLogManager()
 {
     QFile file(m_FileName.isEmpty() ? defaultLogFileName : m_FileName);
 
-	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-	{
-		qDebug() << "Impossible de créer le fichier de log !";
-	}
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Impossible de créer le fichier de log !";
+    }
 
-	m_ActiveLogTypes[eFATAL]		= true;
-	m_ActiveLogTypes[eERROR]		= true;
-	m_ActiveLogTypes[eWARN]			= true;
-	m_ActiveLogTypes[eDEBUG]		= true;
+    m_ActiveLogTypes[eFATAL]		= true;
+    m_ActiveLogTypes[eERROR]		= true;
+    m_ActiveLogTypes[eWARN]			= true;
+    m_ActiveLogTypes[eDEBUG]		= true;
     m_ActiveLogTypes[eDEBUGMEMORY]	= false;
     m_ActiveLogTypes[eDEBUGTHREAD]	= false;
-	m_ActiveLogTypes[eINFO]			= true;
+    m_ActiveLogTypes[eINFO]			= true;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -56,23 +56,23 @@ void CLogManager::setFileName(const QString& fileName)
 //-----------------------------------------------------------------------------------------
 void CLogManager::setActive(EnumLogType eType, bool bVisible)
 {
-	m_ActiveLogTypes[eType] = bVisible;
+    m_ActiveLogTypes[eType] = bVisible;
 }
 
 //-----------------------------------------------------------------------------------------
 void CLogManager::addMessage(EnumLogType eType, const QString& msg)
 {
-	if (msg.isEmpty())
-		return;
+    if (msg.isEmpty())
+        return;
 
     if (!m_ActiveLogTypes[eType])
-	{
-		return;
-	}
+    {
+        return;
+    }
 
-	QString trimmedMsg = msg.trimmed();
+    QString trimmedMsg = msg.trimmed();
 
-	qDebug() << msg;
+    qDebug() << msg;
 
     QString newLine = QString(s_LogTypeNames[eType]) + "\t" + QTime::currentTime().toString("hh:mm:ss.zzz") + "\t" + trimmedMsg;
     m_listMsg.append(newLine);
@@ -90,6 +90,6 @@ void CLogManager::addMessage(EnumLogType eType, const QString& msg)
     out << newLine + "\n";
     file.close();
 
-	notifyNewMessage(eType, trimmedMsg);
+    notifyNewMessage(eType, trimmedMsg);
 }
 

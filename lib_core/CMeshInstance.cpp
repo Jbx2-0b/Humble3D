@@ -5,9 +5,9 @@
 
 //-----------------------------------------------------------------------------------------
 CMeshInstance::CMeshInstance(CSceneManager* pSceneManager, CMesh* pMesh, const QString& name)
-: ASceneNodeItem(pSceneManager, name)
-, m_pMesh(pMesh)
-, m_pLocalRootNode(0)
+    : ASceneNodeItem(pSceneManager, name)
+    , m_pMesh(pMesh)
+    , m_pLocalRootNode(0)
 {
     m_pMesh->lock();
     foreach (CSubMesh* pSubMesh, m_pMesh->subMeshs())

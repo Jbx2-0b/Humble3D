@@ -120,7 +120,7 @@ public:
     //! Sauvegarde un groupe de mesh
     bool saveMeshGroup(const CMeshGroup& meshGroup, const QString& fileName, int iCompressionFactor);
 
-     //! Supprime un mesh
+    //! Supprime un mesh
     void removeMesh(CMesh* pMesh);
 
     //! Libére l'ensemble des meshs du manager
@@ -136,7 +136,7 @@ public:
     //! Crée un type de mesh personnalisé
     template<typename CustomMesh> CustomMesh* createCustomMesh(const QString& typeName, const QString& itemName = "");
 
- protected:
+protected:
 
     //! Fabrique pour les objets personnalisés
     CRegisterFactory<CMesh> m_CustomMeshFactory;

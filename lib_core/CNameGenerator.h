@@ -14,19 +14,19 @@ class CNameGenerator
 {
 
 public:
-	
+
     //! Constructeur
     CNameGenerator();
 
     //! Destructeur
     ~CNameGenerator();
 
-	//! Genere un nom unique
+    //! Genere un nom unique
     QString generateName(const QString& prefix);
 
 
 private:
-	
+
     mutable QMutex m_Mutex;
 
     QHash<QString, unsigned int> m_NameCount;

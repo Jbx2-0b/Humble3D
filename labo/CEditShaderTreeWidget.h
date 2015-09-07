@@ -7,23 +7,23 @@
 
 class CEditShaderTreeWidget : public CButtonTreeWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Constructeur
-	CEditShaderTreeWidget(QWidget *parent = 0);
+    //! Constructeur
+    CEditShaderTreeWidget(QWidget *parent = 0);
 
-	//! Destructeur
-	virtual ~CEditShaderTreeWidget();
+    //! Destructeur
+    virtual ~CEditShaderTreeWidget();
 
 signals:
 
-	void editShader(const QString& name);
+    void editShader(const QString& name);
 
 private slots:
 
-	void onEditClicked();
+    void onEditClicked();
 };
 
 #endif // CEDITSHADERTREEWIDGET_H

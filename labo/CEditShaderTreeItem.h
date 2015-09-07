@@ -7,21 +7,21 @@
 
 class CEditShaderTreeItem : public CTreeWidgetItemBase<CEditShaderTreeWidget>
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Constructeur
-	CEditShaderTreeItem(CNodeTreeWidget* pTreeWidget, QTreeWidgetItem* pParent = 0, bool bWidthEditButton = false);
+    //! Constructeur
+    CEditShaderTreeItem(CNodeTreeWidget* pTreeWidget, QTreeWidgetItem* pParent = 0, bool bWidthEditButton = false);
 
-	//! Destructeur
-	virtual ~CEditShaderTreeItem();
+    //! Destructeur
+    virtual ~CEditShaderTreeItem();
 
-	//! Définit le chemin du fichier
-	void setName(const QString& filePathName);
+    //! Définit le chemin du fichier
+    void setName(const QString& filePathName);
 
-	//! Retourne le chemin du fichier
-	QString getName() const;
+    //! Retourne le chemin du fichier
+    QString getName() const;
 };
 
 

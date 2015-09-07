@@ -22,20 +22,20 @@ public:
     //! Constructeur
     CFrustum() {}
 
-	//! Constructeur
+    //! Constructeur
     CFrustum(const QMatrix4x4& modelViewProjectionMatrix);
 
     //! Met à jour le frustum
     void update(const QMatrix4x4& mvp);
 
-	//! Teste l'intersetion avec un point
-	EnumIntersectionType isPointInFrustum(const QVector3D& point) const;
+    //! Teste l'intersetion avec un point
+    EnumIntersectionType isPointInFrustum(const QVector3D& point) const;
 
-	//! Teste l'intersetion avec une sphere
+    //! Teste l'intersetion avec une sphere
     EnumIntersectionType isSphereInFrustum(const CSphere& sphere) const;
 
-	//! Teste l'intersetion avec une boite
-	EnumIntersectionType isBoxInFrustum(const CBox3D& box) const;
+    //! Teste l'intersetion avec une boite
+    EnumIntersectionType isBoxInFrustum(const CBox3D& box) const;
 
     bool isVisible(const CBox3D& box) const;
 

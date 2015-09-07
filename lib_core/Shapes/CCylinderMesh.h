@@ -15,22 +15,22 @@ class LIB_CORE_SHARED_EXPORT CCylinderMesh : public CMesh
 {
 public:
 
-	//! Constructeur
+    //! Constructeur
     CCylinderMesh(real dRadius = 0.5, real dHeight = 1., int iSegmentCount = DefaultCylinderSegmentCount);
 
-	//! Destructeur
+    //! Destructeur
     virtual ~CCylinderMesh();
 
 protected:
 
-	virtual void updateGeometry();
+    virtual void updateGeometry();
 
 private:
-	
+
     CSubMesh* m_pCylinderBuffer;
-	real m_dRadius;
-	real m_dHeight; 
-	int m_iSegmentCount;
+    real m_dRadius;
+    real m_dHeight;
+    int m_iSegmentCount;
 };
 
 #endif // CCYLINDERMESH_H

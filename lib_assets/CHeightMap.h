@@ -30,67 +30,67 @@ class LIB_ASSETS_SHARED_EXPORT CHeightMap : public CMesh
 
 public:
 
-	//! Constructeur
+    //! Constructeur
     CHeightMap(real dLength = DefaultHeightMapSize,
-			   real dWidth =  DefaultHeightMapSize,
-			   int iLineCount = DefaultLineCount,
-			   int iColumnCount = DefaultLineCount);
+               real dWidth =  DefaultHeightMapSize,
+               int iLineCount = DefaultLineCount,
+               int iColumnCount = DefaultLineCount);
 
-	//! Destructeur
-	virtual ~CHeightMap();
+    //! Destructeur
+    virtual ~CHeightMap();
 
-	//! Retourne l'altitude de l'heightmap pour un point (x, z)
-	real getAltitude(real x, real z) const;
+    //! Retourne l'altitude de l'heightmap pour un point (x, z)
+    real getAltitude(real x, real z) const;
 
-	//! Retourne la normale de l'heightmap pour un point (x, z)
-	QVector3D getNormal(real x, real z) const;
+    //! Retourne la normale de l'heightmap pour un point (x, z)
+    QVector3D getNormal(real x, real z) const;
 
-	//! Calcule les normales
-	virtual void computeNormals();
+    //! Calcule les normales
+    virtual void computeNormals();
 
-	real getLength() const { return m_dLength; }
+    real getLength() const { return m_dLength; }
 
-	real getWidth() const { return m_dWidth; }
+    real getWidth() const { return m_dWidth; }
 
 protected:
 
-	virtual void updateGeometry();
+    virtual void updateGeometry();
 
-	void createHeightMapMeshBuffer();
+    void createHeightMapMeshBuffer();
 
-	inline void addBlade(real dL, real dW, real dRotX, real dRotY, real dRotZ, real dScaleY);
-	
-	void setHeight(int l, int w, real dValue);
+    inline void addBlade(real dL, real dW, real dRotX, real dRotY, real dRotZ, real dScaleY);
 
-	real getHeight(int l, int w) const;
+    void setHeight(int l, int w, real dValue);
 
-	QVector3D getNormal(int l, int w) const;
+    real getHeight(int l, int w) const;
 
-	QVector3D getPosition(int l, int w) const;
+    QVector3D getNormal(int l, int w) const;
 
-	void smooth();
+    QVector3D getPosition(int l, int w) const;
 
-	QImage computeNormalMap(const QImage& heightmap, double pStrength = 4.0);
+    void smooth();
+
+    QImage computeNormalMap(const QImage& heightmap, double pStrength = 4.0);
 
 private:
-	
+
     real intensity(const QColor& color)
     {
         return ((color.red() + color.green() + color.blue()) / 3.) / 255.;
     }
 
     QVector<real> m_Height;
-	
-	CMaterial* m_pHeightMapMaterial;
+
+    CMaterial* m_pHeightMapMaterial;
 
     CMeshBuffer* m_pHeigthMapBuffer;
 
-	real m_dLength;
-	real m_dWidth;
-	real m_dCenterL;
-	real m_dCenterW;
-	unsigned int m_uiLineCount;
-	unsigned int m_uiColumnCount;
+    real m_dLength;
+    real m_dWidth;
+    real m_dCenterL;
+    real m_dCenterW;
+    unsigned int m_uiLineCount;
+    unsigned int m_uiColumnCount;
 };
 
 #endif // CHEIGHTMAP_H

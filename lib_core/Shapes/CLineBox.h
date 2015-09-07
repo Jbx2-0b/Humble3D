@@ -15,7 +15,7 @@ public:
 
     CLineBox(const QVector3D& size = QVector3D(1.0, 1.0, 1.0));
 
-	void setSize(const QVector3D& size);
+    void setSize(const QVector3D& size);
 
     void setBoundingBox(const CBox3D& bbox);
 

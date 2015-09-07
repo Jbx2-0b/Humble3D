@@ -20,20 +20,20 @@ public:
     //! Destructeur
     ~CIDGenerator();
 
-	//! Genere un ID unique
+    //! Genere un ID unique
     unsigned int generateID(AEntity* pEntity);
 
-	//! Retourne true si l'ID existe deja
+    //! Retourne true si l'ID existe deja
     bool isExist(unsigned int iID) const;
 
-	//! Desenregistre un ID
+    //! Desenregistre un ID
     void unregisterID(unsigned int iID);
 
 private:
 
     mutable QMutex m_Mutex;
 
-	unsigned int m_iCurrentID;
+    unsigned int m_iCurrentID;
 
     QHash<unsigned int, AEntity*> m_Entities;
 };

@@ -5,14 +5,14 @@
 
 class TestMultiPass : public QObject, public Humble3DApp
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Constructeur
+    //! Constructeur
     TestMultiPass();
 
-	//! Destructeur
+    //! Destructeur
     virtual ~TestMultiPass();
 
 protected slots:

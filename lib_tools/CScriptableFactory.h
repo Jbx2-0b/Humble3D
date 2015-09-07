@@ -9,26 +9,26 @@ class CScriptableFactory : public CRegisterFactory<IScriptable>
 
 public:
 
-	template<typename Scriptable> void registerScriptable(const QString& typeName)
-	{
-		registerClass<Scriptable>(typeName);
-	}
+    template<typename Scriptable> void registerScriptable(const QString& typeName)
+    {
+        registerClass<Scriptable>(typeName);
+    }
 
-	IScriptable* createScriptable(const QString& typeName, const TParameters& parameters)
-	{
-		if (IScriptable* pScriptable = create(typeName))
-		{
-			pScriptable->init(parameters);
-			return pScriptable;
-		}
+    IScriptable* createScriptable(const QString& typeName, const TParameters& parameters)
+    {
+        if (IScriptable* pScriptable = create(typeName))
+        {
+            pScriptable->init(parameters);
+            return pScriptable;
+        }
 
-		return 0;
-	}
+        return 0;
+    }
 
-	template<typename Scriptable> IScriptable* createScriptable(const QString& typeName, const TParameters& parameters)
-	{
-		return dynamic_cast<Scriptable*>(createScriptable(typeName, parameters));
-	}
+    template<typename Scriptable> IScriptable* createScriptable(const QString& typeName, const TParameters& parameters)
+    {
+        return dynamic_cast<Scriptable*>(createScriptable(typeName, parameters));
+    }
 
 };
 

@@ -3,9 +3,9 @@
 
 //-----------------------------------------------------------------------
 CPolyLine::CPolyLine()
-: CMesh("PolyLine")
-, m_pBuffer(0)
-, m_bClosed(true)
+    : CMesh("PolyLine")
+    , m_pBuffer(0)
+    , m_bClosed(true)
 {
     setMultithreadingEnabled(true);
 }

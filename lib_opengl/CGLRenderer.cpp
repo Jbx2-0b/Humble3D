@@ -12,14 +12,14 @@
 
 //-----------------------------------------------------------------------------------------
 CGLRenderer::CGLRenderer(CSceneManager* pSceneManager)
-: ARenderer(pSceneManager)
-, m_pCurrentShader(0)
-, m_iDrawCalls(0)
-, m_iPolygonsPerFrame(0)
+    : ARenderer(pSceneManager)
+    , m_pCurrentShader(0)
+    , m_iDrawCalls(0)
+    , m_iPolygonsPerFrame(0)
 {
-	m_Time.start();
+    m_Time.start();
 
-	setName("OpenGL Renderer");
+    setName("OpenGL Renderer");
 
 #ifdef EMBEDDED_TARGET
     pLog->addMessage(eINFO, "Creating OpenGL Renderer - Embedded Version");
@@ -43,15 +43,15 @@ CGLRenderer::~CGLRenderer()
     m_pSceneManager->unregisterListener(this);
     CMeshManager::getInstance()->unregisterMeshBufferListener(this);
     CShaderManager::getInstance()->unregisterListener(this);
-	CTextureManager::getInstance()->unregisterListener(this);
+    CTextureManager::getInstance()->unregisterListener(this);
 
     // On supprime le stuff OpenGL
     foreach (AGLTexture* pGLTexture, m_Textures)
-	{
+    {
         delete pGLTexture;
-	}
+    }
 
-	m_Textures.clear();
+    m_Textures.clear();
 
     foreach (CGLFrameBuffer* pGLFrameBuffer, m_FrameBuffers)
     {
@@ -61,11 +61,11 @@ CGLRenderer::~CGLRenderer()
     m_FrameBuffers.clear();
 
     foreach (CGLShaderProgram* pGLShaderProgram, m_ShaderPrograms)
-	{
+    {
         delete pGLShaderProgram;
-	}
+    }
 
-	m_ShaderPrograms.clear();
+    m_ShaderPrograms.clear();
 
     foreach (CGLMeshBuffer* pGLMeshBuffer, m_HardwareBuffers.values())
     {
@@ -108,15 +108,15 @@ bool CGLRenderer::init()
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::render()
 {
-	if (!m_pSceneManager)
-		return;
-	
+    if (!m_pSceneManager)
+        return;
+
     if (isEnabled() && isDirty())
-	{
-		m_iDrawCalls = 0;
-		m_iPolygonsPerFrame = 0;
-		m_iMaterialBind = 0;
-		m_iShaderBind = 0;
+    {
+        m_iDrawCalls = 0;
+        m_iPolygonsPerFrame = 0;
+        m_iMaterialBind = 0;
+        m_iShaderBind = 0;
 
         // Need to restore Depth write before clear it
         glDepthMask(GL_TRUE);
@@ -127,15 +127,15 @@ void CGLRenderer::render()
         // Efface le buffer GL
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		////////////////////////////////////////////////////////////////////////////
-		// Rendu des ARenderableItem
-		////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
+        // Rendu des ARenderableItem
+        ////////////////////////////////////////////////////////////////////////////
 
-		// Items opaques
-		renderItems(m_pSceneManager->getRenderQueue());
+        // Items opaques
+        renderItems(m_pSceneManager->getRenderQueue());
 
-		// Items transparents
-		renderItems(m_pSceneManager->getTransparentRenderQueue());
+        // Items transparents
+        renderItems(m_pSceneManager->getTransparentRenderQueue());
 
         wash();
     }
@@ -144,35 +144,35 @@ void CGLRenderer::render()
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::renderMeshBuffer(CMeshBuffer* pBuffer)
 {
-	if (!m_pSceneManager)
-		return;
+    if (!m_pSceneManager)
+        return;
 
-	if (!ARenderer::isInit())
-		return;
+    if (!ARenderer::isInit())
+        return;
 
     if (!m_HardwareBuffers.contains(pBuffer))
-	{
-		createVertexBufferObject(pBuffer);
-	}
-	else if (pBuffer->isDirty())
-	{
-		updateVertexBufferObject(pBuffer);
-	}
+    {
+        createVertexBufferObject(pBuffer);
+    }
+    else if (pBuffer->isDirty())
+    {
+        updateVertexBufferObject(pBuffer);
+    }
 
-	renderVertexBufferObject(pBuffer);
+    renderVertexBufferObject(pBuffer);
 }
 
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::renderMeshBuffer(const QList<CMeshBuffer*>& buffers)
 {
-	if (!m_pSceneManager)
-		return;
+    if (!m_pSceneManager)
+        return;
 
-	if (!ARenderer::isInit())
-		return;
+    if (!ARenderer::isInit())
+        return;
 
-	foreach (CMeshBuffer* pBuffer, buffers)
-	{
+    foreach (CMeshBuffer* pBuffer, buffers)
+    {
         if (!pBuffer->isLocked())
         {
             if (!m_HardwareBuffers.contains(pBuffer))
@@ -186,7 +186,7 @@ void CGLRenderer::renderMeshBuffer(const QList<CMeshBuffer*>& buffers)
 
             renderVertexBufferObject(pBuffer);
         }
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -273,7 +273,7 @@ void CGLRenderer::onUpdateRenderStates()
     const CDepthRange& requestDepthRange = m_RequestRenderStates.getDepthRange();
 
     if (currentDepthRange.getNear() != requestDepthRange.getNear() ||
-        currentDepthRange.getFar() != requestDepthRange.getFar())
+            currentDepthRange.getFar() != requestDepthRange.getFar())
     {
 #ifdef DESKTOP_TARGET
         glDepthRange(requestDepthRange.getNear(), requestDepthRange.getFar());
@@ -300,10 +300,10 @@ void CGLRenderer::onUpdateRenderStates()
             Destination::EnumBlendingFactor eRequestDstAlphaFactor = requestBlending.getDestinationAlphaFactor();
 
             glBlendFuncSeparate(
-                CGLHelper::toGLType(eRequestSrcRGBFactor),
-                CGLHelper::toGLType(eRequestDstRGBFactor),
-                CGLHelper::toGLType(eRequestSrcAlphaFactor),
-                CGLHelper::toGLType(eRequestDstAlphaFactor));
+                        CGLHelper::toGLType(eRequestSrcRGBFactor),
+                        CGLHelper::toGLType(eRequestDstRGBFactor),
+                        CGLHelper::toGLType(eRequestSrcAlphaFactor),
+                        CGLHelper::toGLType(eRequestDstAlphaFactor));
 
             currentBlending.setSourceRGBFactor(eRequestSrcRGBFactor);
             currentBlending.setDestinationRGBFactor(eRequestDstRGBFactor);
@@ -314,8 +314,8 @@ void CGLRenderer::onUpdateRenderStates()
             EnumBlendEquation eRequestAlphaEquation = requestBlending.getAlphaEquation();
 
             glBlendEquationSeparate(
-                CGLHelper::toGLType(eRequestRGBEquation),
-                CGLHelper::toGLType(eRequestAlphaEquation));
+                        CGLHelper::toGLType(eRequestRGBEquation),
+                        CGLHelper::toGLType(eRequestAlphaEquation));
 
             currentBlending.setRGBEquation(eRequestRGBEquation);
             currentBlending.setAlphaEquation(eRequestAlphaEquation);
@@ -382,10 +382,10 @@ void CGLRenderer::onUpdateRenderStates()
             if (currentStencilTestBackFace != requestStencilTestBackFace)
             {
                 glStencilOpSeparate(
-                    GL_BACK,
-                    CGLHelper::toGLType(requestStencilTestBackFace.getStencilFailOperation()),
-                    CGLHelper::toGLType(requestStencilTestBackFace.getDepthFailStencilPassOperation()),
-                    CGLHelper::toGLType(requestStencilTestBackFace.getDepthPassStencilPassOperation()));
+                            GL_BACK,
+                            CGLHelper::toGLType(requestStencilTestBackFace.getStencilFailOperation()),
+                            CGLHelper::toGLType(requestStencilTestBackFace.getDepthFailStencilPassOperation()),
+                            CGLHelper::toGLType(requestStencilTestBackFace.getDepthPassStencilPassOperation()));
 
                 currentStencilTestBackFace = requestStencilTestBackFace;
             }
@@ -396,10 +396,10 @@ void CGLRenderer::onUpdateRenderStates()
             if (currentStencilTestFrontFace != requestStencilTestFrontFace)
             {
                 glStencilOpSeparate(
-                    GL_FRONT,
-                    CGLHelper::toGLType(requestStencilTestFrontFace.getStencilFailOperation()),
-                    CGLHelper::toGLType(requestStencilTestFrontFace.getDepthFailStencilPassOperation()),
-                    CGLHelper::toGLType(requestStencilTestFrontFace.getDepthPassStencilPassOperation()));
+                            GL_FRONT,
+                            CGLHelper::toGLType(requestStencilTestFrontFace.getStencilFailOperation()),
+                            CGLHelper::toGLType(requestStencilTestFrontFace.getDepthFailStencilPassOperation()),
+                            CGLHelper::toGLType(requestStencilTestFrontFace.getDepthPassStencilPassOperation()));
 
                 currentStencilTestFrontFace = requestStencilTestFrontFace;
             }
@@ -443,14 +443,14 @@ bool CGLRenderer::isExtensionSupported(const QString& strExtension)
 void CGLRenderer::onDeleteMeshBuffer(CMeshBuffer* pBuffer)
 {
     if (m_HardwareBuffers.contains(pBuffer))
-	{
+    {
         CGLMeshBuffer* pGPUBuffer = m_HardwareBuffers[pBuffer];
         m_HardwareBuffers.remove(pBuffer);
         pLog->addMessage(eDEBUGMEMORY, QString("Removing GPU Buffer (Count: %1)").arg(m_HardwareBuffers.count()));
-		delete pGPUBuffer;
+        delete pGPUBuffer;
 
         // La destruction du buffer induit la liberation de la memoire occupee sur le serveur OpenGL
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -458,21 +458,21 @@ void CGLRenderer::onDeleteMeshBuffer(CMeshBuffer* pBuffer)
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::onUpdateTexture(ATexture* pTexture)
 {
-	if (pTexture->isValid())
-	{
+    if (pTexture->isValid())
+    {
         createTexture(pTexture);
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::onDeleteTexture(ATexture* pTexture)
 {
-	QString textureName = pTexture->getName();
+    QString textureName = pTexture->getName();
 
-	if (m_Textures.contains(textureName))
-	{
-		m_Textures.remove(textureName);
-	}
+    if (m_Textures.contains(textureName))
+    {
+        m_Textures.remove(textureName);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -481,33 +481,33 @@ void CGLRenderer::onDeleteTexture(ATexture* pTexture)
 void CGLRenderer::onUpdateShader(CShader* pShader)
 {
     if (!ARenderer::isInit())
-		return;
+        return;
 
-	if (m_ShaderPrograms.contains(pShader->getName()))
-	{
+    if (m_ShaderPrograms.contains(pShader->getName()))
+    {
         // Shader already exist ? we remove it
-		delete m_ShaderPrograms[pShader->getName()];
-	}
+        delete m_ShaderPrograms[pShader->getName()];
+    }
 
-	bindShader(pShader);
+    bindShader(pShader);
 }
 
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::onDeleteShader(CShader* pShader)
 {
     if (!ARenderer::isInit())
-		return;
+        return;
 
-	if (m_ShaderPrograms.contains(pShader->getName()))
-	{
+    if (m_ShaderPrograms.contains(pShader->getName()))
+    {
         pLog->addMessage(eINFO, "Removing shader: " + pShader->getName());
 
         CGLShaderProgram* pProgram = m_ShaderPrograms[pShader->getName()];
 
-		m_ShaderPrograms.remove(pShader->getName());
+        m_ShaderPrograms.remove(pShader->getName());
 
-		delete pProgram;
-	}
+        delete pProgram;
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -521,7 +521,7 @@ void CGLRenderer::onUpdateCamera(CCamera* /*pCamera*/)
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::onUpdateAnimation(CAnimation* /*pAnimation*/)
 {
-	setDirty();
+    setDirty();
 }
 
 //-----------------------------------------------------------------------------------------
@@ -552,7 +552,7 @@ void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
     const QList<CMaterial*> materials = CMaterialManager::getInstance()->getMaterials();
 
     foreach (CMaterial* pMaterial, materials)
-	{
+    {
         foreach (CRenderPass* pPass, pMaterial->renderingPassList())
         {
             const CCamera* pCamera = pPass->getCamera() ? pPass->getCamera() : m_pCurrentCamera;
@@ -577,7 +577,7 @@ void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
 
                             if (pFrameBuffer->isValid())
                             {
-    #ifdef DESKTOP_TARGET // Not supported before OpenGL ES 3.0
+#ifdef DESKTOP_TARGET // Not supported before OpenGL ES 3.0
                                 foreach (const CRenderOperation& op, pPass->getPreOperations())
                                 {
                                     CGLFrameBuffer* pSrcFrameBuffer = getFrameBuffer(op.getSource());
@@ -599,7 +599,7 @@ void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
                                                 mask,
                                                 CGLHelper::toGLType(op.getFilter()));
                                 }
-    #endif // DESKTOP_TARGET
+#endif // DESKTOP_TARGET
                                 glViewport(0, 0, pFrameBuffer->getWidth(), pFrameBuffer->getHeight());
                                 pFrameBuffer->bind();
                             }
@@ -683,9 +683,9 @@ void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
                         m_pCurrentShader->release();
                     }
                 }
-			}
+            }
         }
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -693,11 +693,11 @@ void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::renderVertexBufferObject(CMeshBuffer* pBuffer)
 {
-	m_iDrawCalls++;
+    m_iDrawCalls++;
 
-	// BONES
-	m_pCurrentShader->setUniformValue("hasSkeleton", pBuffer->hasSkeleton());
-	
+    // BONES
+    m_pCurrentShader->setUniformValue("hasSkeleton", pBuffer->hasSkeleton());
+
     m_iPolygonsPerFrame += pBuffer->getPolygonCount();
 
     CGLMeshBuffer* pGPUBuffer = m_HardwareBuffers.value(pBuffer);
@@ -710,8 +710,8 @@ void CGLRenderer::renderVertexBufferObject(CMeshBuffer* pBuffer)
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::bindTime()
 {
-	if (!m_pSceneManager)
-		return;
+    if (!m_pSceneManager)
+        return;
 
     m_pCurrentShader->setUniformValue("iGlobalTime", (GLfloat) (m_Time.elapsed() / 1000.));
 }
@@ -719,92 +719,92 @@ void CGLRenderer::bindTime()
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::bindCamera(const CCamera* pCamera)
 {
-	if (!m_pSceneManager)
-		return;
+    if (!m_pSceneManager)
+        return;
 
     // On recupere la camera courante
     if (pCamera)
-	{
-		QMatrix4x4 projectionMatrix = pCamera->getProjectionMatrix();
-		m_pCurrentShader->setUniformValue("projectionMatrix", projectionMatrix);
+    {
+        QMatrix4x4 projectionMatrix = pCamera->getProjectionMatrix();
+        m_pCurrentShader->setUniformValue("projectionMatrix", projectionMatrix);
 
-		QVector3D eyePosition = pCamera->getEyePosition();
-		m_pCurrentShader->setUniformValue("eyePosition", eyePosition);
-	}
+        QVector3D eyePosition = pCamera->getEyePosition();
+        m_pCurrentShader->setUniformValue("eyePosition", eyePosition);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::bindNode(const CCamera* pCamera, CSceneNode* pNode)
 {
-	if (!m_pSceneManager)
-		return;
+    if (!m_pSceneManager)
+        return;
 
     if (pCamera)
-	{
+    {
         // For each node we compute is own Model-View-Projection matrix by multipling is transformation matrix (model)
         // by camera transformation matrix (View-Projection)
         // We do same stuff for other useful matrix (Model-View, Normal matrix...)
-		QMatrix4x4 modelViewProjectionMatrix = pCamera->getTransformation() * pNode->getGlobalTransformation();
-		m_pCurrentShader->setUniformValue("modelViewProjectionMatrix", modelViewProjectionMatrix);
+        QMatrix4x4 modelViewProjectionMatrix = pCamera->getTransformation() * pNode->getGlobalTransformation();
+        m_pCurrentShader->setUniformValue("modelViewProjectionMatrix", modelViewProjectionMatrix);
 
-		QMatrix4x4 modelViewMatrix = pCamera->getViewMatrix() * pNode->getGlobalTransformation();
-		m_pCurrentShader->setUniformValue("modelViewMatrix", modelViewMatrix);
+        QMatrix4x4 modelViewMatrix = pCamera->getViewMatrix() * pNode->getGlobalTransformation();
+        m_pCurrentShader->setUniformValue("modelViewMatrix", modelViewMatrix);
 
-		QMatrix4x4 viewInverseMatrix = pCamera->getViewMatrix().inverted() * pNode->getGlobalTransformation();
-		m_pCurrentShader->setUniformValue("viewInverseMatrix", viewInverseMatrix);
+        QMatrix4x4 viewInverseMatrix = pCamera->getViewMatrix().inverted() * pNode->getGlobalTransformation();
+        m_pCurrentShader->setUniformValue("viewInverseMatrix", viewInverseMatrix);
 
         // Normal matrix is defined by "the transposed of the inverted model view matrix"
-		QMatrix3x3 normalMatrix = modelViewMatrix.normalMatrix();
-		m_pCurrentShader->setUniformValue("normalMatrix", normalMatrix);
-	}
+        QMatrix3x3 normalMatrix = modelViewMatrix.normalMatrix();
+        m_pCurrentShader->setUniformValue("normalMatrix", normalMatrix);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::bindLights(const CCamera* pCamera)
 {
-	////////////////////////////////////////////////////////////////////////////////////////////
-	// TRAITEMENTS DES LUMIERES
-	////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    // TRAITEMENTS DES LUMIERES
+    ////////////////////////////////////////////////////////////////////////////////////////////
 
-	m_pCurrentShader->setUniformValue("sceneAmbient", m_pSceneManager->getAmbientColor());
-	m_pCurrentShader->setUniformValue("lightCount", m_pSceneManager->getLightCount());
+    m_pCurrentShader->setUniformValue("sceneAmbient", m_pSceneManager->getAmbientColor());
+    m_pCurrentShader->setUniformValue("lightCount", m_pSceneManager->getLightCount());
 
-	int iLightID = 0;
+    int iLightID = 0;
 
-	foreach (CLight* pLight, m_pSceneManager->getLights())
-	{
-		if (CSceneNode* pLightNode = pLight->getNode())
-		{
+    foreach (CLight* pLight, m_pSceneManager->getLights())
+    {
+        if (CSceneNode* pLightNode = pLight->getNode())
+        {
             // On calcul la position de la lumiere dans le repere de l'oeil
-			QVector4D lightPosition = pCamera->getViewMatrix() * pLightNode->getGlobalTransformation() * QVector4D(0.0, 0.0, 0.0, 1.0);
+            QVector4D lightPosition = pCamera->getViewMatrix() * pLightNode->getGlobalTransformation() * QVector4D(0.0, 0.0, 0.0, 1.0);
 
-			m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eIsEnabled)).constData(),				pLight->isEnabled());
-			m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, ePosition)).constData(),				lightPosition);
-			m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eDirection)).constData(),				pLight->getDirection());
-			m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eAmbientColor)).constData(),			pLight->getAmbientColor());
-			m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eDiffuseColor)).constData(),			pLight->getDiffuseColor());
-			m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eSpecularColor)).constData(),			pLight->getSpecularColor());
+            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eIsEnabled)).constData(),				pLight->isEnabled());
+            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, ePosition)).constData(),				lightPosition);
+            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eDirection)).constData(),				pLight->getDirection());
+            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eAmbientColor)).constData(),			pLight->getAmbientColor());
+            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eDiffuseColor)).constData(),			pLight->getDiffuseColor());
+            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eSpecularColor)).constData(),			pLight->getSpecularColor());
             m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eConstantAttenuation)).constData(),		(GLfloat)pLight->getConstantAttenuation());
             m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eLinearAttenuation)).constData(),		(GLfloat)pLight->getLinearAttenuation());
             m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eQuadraticAttenuation)).constData(),	(GLfloat)pLight->getQuadraticAttenuation());
             QMatrix4x4 lightViewMatrix = pLight->getViewMatrix() * pLightNode->getGlobalTransformation();
             m_pCurrentShader->setUniformValue("lightViewMatrix", lightViewMatrix);
 
-			iLightID++;
-		}
-	}
+            iLightID++;
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::bindMaterial(CMaterial* pMaterial)
 {
-	m_iMaterialBind++;
+    m_iMaterialBind++;
 
-	m_pCurrentShader->setUniformValue("material.ambient",		pMaterial->getAmbientColor());
-	m_pCurrentShader->setUniformValue("material.diffuse",		pMaterial->getDiffuseColor());
-	m_pCurrentShader->setUniformValue("material.specular",		pMaterial->getSpecularColor());
-	m_pCurrentShader->setUniformValue("material.alphaMask",		pMaterial->getAlphaMaskColor());
-	m_pCurrentShader->setUniformValue("material.alphaMaskFunc",	(int)pMaterial->getAlphaMaskFunc());
+    m_pCurrentShader->setUniformValue("material.ambient",		pMaterial->getAmbientColor());
+    m_pCurrentShader->setUniformValue("material.diffuse",		pMaterial->getDiffuseColor());
+    m_pCurrentShader->setUniformValue("material.specular",		pMaterial->getSpecularColor());
+    m_pCurrentShader->setUniformValue("material.alphaMask",		pMaterial->getAlphaMaskColor());
+    m_pCurrentShader->setUniformValue("material.alphaMaskFunc",	(int)pMaterial->getAlphaMaskFunc());
     m_pCurrentShader->setUniformValue("material.shininess",		(GLfloat)pMaterial->getShininessFactor());
     m_pCurrentShader->setUniformValue("material.opacity",		(GLfloat)pMaterial->getOpacity());
 
@@ -831,44 +831,44 @@ void CGLRenderer::bindMaterial(CMaterial* pMaterial)
             {
             case eTexture2D:
             case eTextureTarget:
+            {
+                if (AGLTexture* pGLTexture = getTexture(pTexture))
                 {
-                    if (AGLTexture* pGLTexture = getTexture(pTexture))
+                    if (pGLTexture->isValid())
                     {
-                        if (pGLTexture->isValid())
-                        {
-                            glActiveTexture(GL_TEXTURE0 + iUnit);
-                            m_pCurrentShader->setUniformValue(QString("%1%2").arg(pGLHelper->fromType(eType)).arg(m_MaterialParameterCount[eType]).toLatin1().constData(), iUnit);
-                            pGLTexture->bind();
-                            m_MaterialParameterCount[eType]++;
-                        }
+                        glActiveTexture(GL_TEXTURE0 + iUnit);
+                        m_pCurrentShader->setUniformValue(QString("%1%2").arg(pGLHelper->fromType(eType)).arg(m_MaterialParameterCount[eType]).toLatin1().constData(), iUnit);
+                        pGLTexture->bind();
+                        m_MaterialParameterCount[eType]++;
                     }
                 }
+            }
                 break;
 
             case eTexture3D:
-                {
-                    // TODO
-                }
+            {
+                // TODO
+            }
                 break;
 
             case eTextureCube:
+            {
+                if (AGLTexture* pGLTexture = getTexture(pTexture))
                 {
-                    if (AGLTexture* pGLTexture = getTexture(pTexture))
+                    if (pGLTexture->isValid())
                     {
-                        if (pGLTexture->isValid())
-                        {
-                            glActiveTexture(GL_TEXTURE0 + iUnit);
-                            m_pCurrentShader->setUniformValue("cubeMapTex", iUnit);
-                            pGLTexture->bind();
-                        }
+                        glActiveTexture(GL_TEXTURE0 + iUnit);
+                        m_pCurrentShader->setUniformValue("cubeMapTex", iUnit);
+                        pGLTexture->bind();
                     }
                 }
+            }
                 break;
 
             case eTextureUndefined:
             default:
-                {
-                }
+            {
+            }
                 break;
             }
         }
@@ -950,11 +950,11 @@ void CGLRenderer::bindShader(CShader* pShader)
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::createVertexBufferObject(CMeshBuffer* pBuffer)
 {
-	if (!m_pSceneManager)
-		return;
+    if (!m_pSceneManager)
+        return;
 
     if (!ARenderer::isInit())
-		return;
+        return;
     
     CGLMeshBuffer* m_pGLMeshBuffer = new CGLMeshBuffer();
     m_HardwareBuffers[pBuffer] = m_pGLMeshBuffer;
@@ -963,7 +963,7 @@ void CGLRenderer::createVertexBufferObject(CMeshBuffer* pBuffer)
 
     m_PrincipalContext.doneCurrent();
     m_GeometryInstancer.addMeshBuffer(m_pGLMeshBuffer, pBuffer);
-	pBuffer->wash();
+    pBuffer->wash();
     m_PrincipalContext.makeCurrent();
 
 #else // SINGLE_THREADED
@@ -977,99 +977,99 @@ void CGLRenderer::createVertexBufferObject(CMeshBuffer* pBuffer)
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::updateVertexBufferObject(CMeshBuffer* pBuffer)
 {
-	if (!m_pSceneManager)
-		return;	
+    if (!m_pSceneManager)
+        return;
 
-	if (!ARenderer::isInit())
-		return;
+    if (!ARenderer::isInit())
+        return;
 
     CGLMeshBuffer* pGPUBuffer = m_HardwareBuffers[pBuffer];
-	pGPUBuffer->update(pBuffer);
+    pGPUBuffer->update(pBuffer);
 
-	pBuffer->wash();
+    pBuffer->wash();
 }
 
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::createTexture(const ATexture* pTexture)
 {
     if (!ARenderer::isInit())
-		return;
+        return;
 
     if (m_Textures.contains(pTexture->getName())) // texture already exist ?
-	{
+    {
         pLog->addMessage(eDEBUG, "GLRenderer:  : " + pTexture->getName() + " removed for update.");
-		AGLTexture* pGLTexture = m_Textures[pTexture->getName()];
-		m_Textures.remove(pTexture->getName());
-		delete pGLTexture;
-	}
+        AGLTexture* pGLTexture = m_Textures[pTexture->getName()];
+        m_Textures.remove(pTexture->getName());
+        delete pGLTexture;
+    }
 
-	AGLTexture* pGLTexture = 0;
+    AGLTexture* pGLTexture = 0;
 
-	if (const CTexture2D* pTexture2D = dynamic_cast<const CTexture2D*>(pTexture))
-	{
-		bool bIsEmpty = pTexture2D->imageRects().isEmpty();
+    if (const CTexture2D* pTexture2D = dynamic_cast<const CTexture2D*>(pTexture))
+    {
+        bool bIsEmpty = pTexture2D->imageRects().isEmpty();
 
-		QSize texSize = pTexture2D->getSize();
+        QSize texSize = pTexture2D->getSize();
 
-		if (bIsEmpty)
-		{
-			pGLTexture = new CGLTexture2D(texSize.width(), texSize.height());
-		}
-		else
-		{
-			CGLTexture2D* pGLTexture2D = new CGLTexture2D(texSize.width(), texSize.height());
-			pGLTexture = pGLTexture2D;
+        if (bIsEmpty)
+        {
+            pGLTexture = new CGLTexture2D(texSize.width(), texSize.height());
+        }
+        else
+        {
+            CGLTexture2D* pGLTexture2D = new CGLTexture2D(texSize.width(), texSize.height());
+            pGLTexture = pGLTexture2D;
 
-			foreach (const SImageRect& imgRect, pTexture2D->imageRects())
-			{
-				pGLTexture2D->loadSub(imgRect.first, imgRect.second);
-			}
-		}
-	}
-	else if (const CTextureTarget* pTextureTarget = dynamic_cast<const CTextureTarget*>(pTexture))
-	{
-		QSize texSize = pTextureTarget->getSize();
-		pGLTexture = new CGLTextureTarget(texSize.width(), texSize.height(), pTextureTarget->getFormat());
-	}
-	else if (const CTextureCube* pTextureCube = dynamic_cast<const CTextureCube*>(pTexture))
-	{
-		pGLTexture = new CGLTextureCube(pTextureCube->getFileNames());
-	}
-	
-	if (pGLTexture)
-	{
-		m_Textures.insert(pTexture->getName(), pGLTexture);
+            foreach (const SImageRect& imgRect, pTexture2D->imageRects())
+            {
+                pGLTexture2D->loadSub(imgRect.first, imgRect.second);
+            }
+        }
+    }
+    else if (const CTextureTarget* pTextureTarget = dynamic_cast<const CTextureTarget*>(pTexture))
+    {
+        QSize texSize = pTextureTarget->getSize();
+        pGLTexture = new CGLTextureTarget(texSize.width(), texSize.height(), pTextureTarget->getFormat());
+    }
+    else if (const CTextureCube* pTextureCube = dynamic_cast<const CTextureCube*>(pTexture))
+    {
+        pGLTexture = new CGLTextureCube(pTextureCube->getFileNames());
+    }
 
-		if (!pGLTexture->isValid())
-		{
+    if (pGLTexture)
+    {
+        m_Textures.insert(pTexture->getName(), pGLTexture);
+
+        if (!pGLTexture->isValid())
+        {
             pLog->addMessage(eWARN, "GLRenderer::addTexture() : Error loading : " + pTexture->getName());
-		}
-		else
-		{		
+        }
+        else
+        {
             pLog->addMessage(eDEBUG, "GLRenderer:  : " + pTexture->getName() + " loading succefully.");
             pLog->addMessage(eDEBUG, "GLRenderer: Add OpenGL texture, id [" + QString::number(pGLTexture->getID()) + "], ("+
-				QString::number(pGLTexture->getWidth()) + " * " + QString::number(pGLTexture->getHeight()) + ")");
-		}
-	}
-	else
-	{
+                             QString::number(pGLTexture->getWidth()) + " * " + QString::number(pGLTexture->getHeight()) + ")");
+        }
+    }
+    else
+    {
         pLog->addMessage(eWARN, "GLRenderer: Texture type not supported" + pTexture->getName());
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::createFrameBuffer(CFrameBuffer* pFrameBuffer)
 {
-	if (!ARenderer::isInit())
-		return;
+    if (!ARenderer::isInit())
+        return;
 
     if (m_FrameBuffers.contains(pFrameBuffer)) // FrameBuffer already exist ?
-	{
+    {
         pLog->addMessage(eDEBUG, "GLRenderer : FrameBuffer - suppression pour mise a jour.");
         CGLFrameBuffer* pGLFrameBuffer = m_FrameBuffers[pFrameBuffer];
         m_FrameBuffers.remove(pFrameBuffer);
         delete pGLFrameBuffer;
-	}
+    }
 
     CGLFrameBuffer* pGLFrameBuffer = new CGLFrameBuffer(pFrameBuffer->getWidth(), pFrameBuffer->getHeight());
 
@@ -1109,45 +1109,45 @@ void CGLRenderer::createFrameBuffer(CFrameBuffer* pFrameBuffer)
     m_FrameBuffers.insert(pFrameBuffer, pGLFrameBuffer);
 
     if (pGLFrameBuffer->isValid())
-	{
+    {
         pLog->addMessage(eDEBUG, "GLRenderer : FrameBuffer created succefully." );
         pLog->addMessage(eDEBUG, "GLRenderer : FrameBuffer textures : " + QString::number(iTextureCount));
         pLog->addMessage(eDEBUG, "GLRenderer : FrameBuffer renderbuffers : "  + QString::number(iRenderBufferCount));
 
-	}
-	else
-	{
+    }
+    else
+    {
         pLog->addMessage(eDEBUG, "GLRenderer : Failure when creating.");
-	}
-	
+    }
+
     pGLFrameBuffer->release();
 }
 
 //-----------------------------------------------------------------------------------------
 AGLTexture* CGLRenderer::getTexture(const ATexture* pTexture)
 {
-	if (pTexture->isValid())
-	{
-		QString textureName = pTexture->getName();
+    if (pTexture->isValid())
+    {
+        QString textureName = pTexture->getName();
 
-		if (!m_Textures.contains(textureName))
-		{
+        if (!m_Textures.contains(textureName))
+        {
             createTexture(pTexture);
-		}
+        }
 
-		return m_Textures.value(textureName);
-	}
+        return m_Textures.value(textureName);
+    }
 
-	return 0;
+    return 0;
 }
 
 //-----------------------------------------------------------------------------------------
 CGLFrameBuffer* CGLRenderer::getFrameBuffer(CFrameBuffer* pFrameBuffer)
 {
     if (!m_FrameBuffers.contains(pFrameBuffer))
-	{
+    {
         createFrameBuffer(pFrameBuffer);
-	}
+    }
 
     return m_FrameBuffers.value(pFrameBuffer);
 }
@@ -1156,7 +1156,7 @@ CGLFrameBuffer* CGLRenderer::getFrameBuffer(CFrameBuffer* pFrameBuffer)
 void CGLRenderer::releaseMaterial(CMaterial* pMaterial)
 {
     foreach (const CTextureParam& texture, pMaterial->getTextureParams())
-	{
+    {
         if (ATexture* pTexture = CTextureManager::getInstance()->getTextureByName(texture.getTextureName()))
         {
             if (AGLTexture* pGLTexture = getTexture(pTexture))
@@ -1167,7 +1167,7 @@ void CGLRenderer::releaseMaterial(CMaterial* pMaterial)
                 }
             }
         }
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -1259,117 +1259,117 @@ CGLShaderProgram* CGLRenderer::getShaderProgram(const CRenderPass* pPass)
     CGLShaderProgram* pShaderProgram = 0;
 
     if (CShader* pShader = CShaderManager::getInstance()->getShaderByName(shaderName))
-	{
-		if (!m_ShaderPrograms.contains(pShader->getName()))
-		{
-			bindShader(pShader);
-		}
+    {
+        if (!m_ShaderPrograms.contains(pShader->getName()))
+        {
+            bindShader(pShader);
+        }
 
         pShaderProgram = m_ShaderPrograms.value(pShader->getName(), 0);
-	}
+    }
     else
     {
         pLog->addMessage(eWARN, "Shader not found: " + shaderName);
     }
 
-	return pShaderProgram;
+    return pShaderProgram;
 }
 
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::forceGLStates(const CRenderStates& renderStates)
 {	
-	// Culling
+    // Culling
     glCullFace(CGLHelper::toGLType(renderStates.getFaceCulling().getCullFace()));
-	renderStates.getFaceCulling().isEnabled() ? glEnable(GL_CULL_FACE) : glDisable(GL_CULL_FACE);
+    renderStates.getFaceCulling().isEnabled() ? glEnable(GL_CULL_FACE) : glDisable(GL_CULL_FACE);
 
     checkError("glCullFace");
 
-	// ScissorTest
-	renderStates.getScissorTest().isEnabled() ? glEnable(GL_SCISSOR_TEST) : glDisable(GL_SCISSOR_TEST);
-	QRect scissorRect = renderStates.getScissorTest().getRect();
-	glScissor(scissorRect.x(), scissorRect.y(), scissorRect.width(), scissorRect.height());
+    // ScissorTest
+    renderStates.getScissorTest().isEnabled() ? glEnable(GL_SCISSOR_TEST) : glDisable(GL_SCISSOR_TEST);
+    QRect scissorRect = renderStates.getScissorTest().getRect();
+    glScissor(scissorRect.x(), scissorRect.y(), scissorRect.width(), scissorRect.height());
 
     checkError("glScissor");
-	
-	// Depth Func
-	renderStates.getDepthTest().isEnabled() ? glEnable(GL_DEPTH_TEST) : glDisable(GL_DEPTH_TEST);
+
+    // Depth Func
+    renderStates.getDepthTest().isEnabled() ? glEnable(GL_DEPTH_TEST) : glDisable(GL_DEPTH_TEST);
     glDepthFunc(CGLHelper::toGLType(renderStates.getDepthTest().getFunction()));
-	
+
     checkError("glScissor");
 
-	// Depth Range
+    // Depth Range
 #ifdef DESKTOP_TARGET
-	glDepthRange(renderStates.getDepthRange().getNear(), renderStates.getDepthRange().getFar());
+    glDepthRange(renderStates.getDepthRange().getNear(), renderStates.getDepthRange().getFar());
 #endif //DESKTOP_TARGET
 
     checkError("glScissor");
-	
-	// Blending
-	renderStates.getBlending().isEnabled() ? glEnable(GL_BLEND) : glDisable(GL_BLEND);
 
-	Source::EnumBlendingFactor eSrcRGBFactor = renderStates.getBlending().getSourceRGBFactor();
-	Destination::EnumBlendingFactor eDstRGBFactor = renderStates.getBlending().getDestinationRGBFactor();
-	Source::EnumBlendingFactor eSrcAlphaFactor = renderStates.getBlending().getSourceAlphaFactor();
-	Destination::EnumBlendingFactor eDstAlphaFactor = renderStates.getBlending().getDestinationAlphaFactor();
-	
-	glBlendFuncSeparate(
-        CGLHelper::toGLType(eSrcRGBFactor),
-        CGLHelper::toGLType(eDstRGBFactor),
-        CGLHelper::toGLType(eSrcAlphaFactor),
-        CGLHelper::toGLType(eDstAlphaFactor));
+    // Blending
+    renderStates.getBlending().isEnabled() ? glEnable(GL_BLEND) : glDisable(GL_BLEND);
+
+    Source::EnumBlendingFactor eSrcRGBFactor = renderStates.getBlending().getSourceRGBFactor();
+    Destination::EnumBlendingFactor eDstRGBFactor = renderStates.getBlending().getDestinationRGBFactor();
+    Source::EnumBlendingFactor eSrcAlphaFactor = renderStates.getBlending().getSourceAlphaFactor();
+    Destination::EnumBlendingFactor eDstAlphaFactor = renderStates.getBlending().getDestinationAlphaFactor();
+
+    glBlendFuncSeparate(
+                CGLHelper::toGLType(eSrcRGBFactor),
+                CGLHelper::toGLType(eDstRGBFactor),
+                CGLHelper::toGLType(eSrcAlphaFactor),
+                CGLHelper::toGLType(eDstAlphaFactor));
 
     checkError("glBlendFuncSeparate");
-	
-	EnumBlendEquation eRGBEquation = renderStates.getBlending().getRGBEquation();
-	EnumBlendEquation eAlphaEquation = renderStates.getBlending().getAlphaEquation();
 
-	glBlendEquationSeparate(
-        CGLHelper::toGLType(eRGBEquation),
-        CGLHelper::toGLType(eAlphaEquation));
+    EnumBlendEquation eRGBEquation = renderStates.getBlending().getRGBEquation();
+    EnumBlendEquation eAlphaEquation = renderStates.getBlending().getAlphaEquation();
+
+    glBlendEquationSeparate(
+                CGLHelper::toGLType(eRGBEquation),
+                CGLHelper::toGLType(eAlphaEquation));
 
     checkError("glBlendEquationSeparate");
-	
-	const QVector4D& color = renderStates.getBlending().getColor();
-	glBlendColor(color.x(), color.y(), color.z(), color.w());
-	
+
+    const QVector4D& color = renderStates.getBlending().getColor();
+    glBlendColor(color.x(), color.y(), color.z(), color.w());
+
     checkError("glBlendColor");
 
-	// ColorMask
-	const CColorMask& colorMask = renderStates.getColorMask();
+    // ColorMask
+    const CColorMask& colorMask = renderStates.getColorMask();
     glColorMask(colorMask.isRedEnabled(), colorMask.isGreenEnabled(), colorMask.isBlueEnabled(), colorMask.isAlphaEnabled());
-	
+
     checkError("glColorMask");
 
-	// DepthMask
-	glDepthMask(renderStates.hasDepthMask());
+    // DepthMask
+    glDepthMask(renderStates.hasDepthMask());
 
     checkError("glDepthMask");
-	
-	// StencilState
+
+    // StencilState
     renderStates.getStencilState().isEnabled() ? glEnable(GL_STENCIL_TEST) : glDisable(GL_STENCIL_TEST);
 
     checkError("glStencil");
-	
-	const CStencilTestFace& stencilTestBackFace = renderStates.getStencilState().getBackFace();
-	const CStencilTestFace& stencilTestFrontFace = renderStates.getStencilState().getFrontFace();
 
-	glStencilOpSeparate(
-		GL_BACK, 
-        CGLHelper::toGLType(stencilTestBackFace.getStencilFailOperation()),
-        CGLHelper::toGLType(stencilTestBackFace.getDepthFailStencilPassOperation()),
-        CGLHelper::toGLType(stencilTestBackFace.getDepthPassStencilPassOperation()));
+    const CStencilTestFace& stencilTestBackFace = renderStates.getStencilState().getBackFace();
+    const CStencilTestFace& stencilTestFrontFace = renderStates.getStencilState().getFrontFace();
+
+    glStencilOpSeparate(
+                GL_BACK,
+                CGLHelper::toGLType(stencilTestBackFace.getStencilFailOperation()),
+                CGLHelper::toGLType(stencilTestBackFace.getDepthFailStencilPassOperation()),
+                CGLHelper::toGLType(stencilTestBackFace.getDepthPassStencilPassOperation()));
 
     checkError("glStencilOpSeparateBack");
 
-	glStencilOpSeparate(
-		GL_FRONT, 
-        CGLHelper::toGLType(stencilTestFrontFace.getStencilFailOperation()),
-        CGLHelper::toGLType(stencilTestFrontFace.getDepthFailStencilPassOperation()),
-        CGLHelper::toGLType(stencilTestFrontFace.getDepthPassStencilPassOperation()));
+    glStencilOpSeparate(
+                GL_FRONT,
+                CGLHelper::toGLType(stencilTestFrontFace.getStencilFailOperation()),
+                CGLHelper::toGLType(stencilTestFrontFace.getDepthFailStencilPassOperation()),
+                CGLHelper::toGLType(stencilTestFrontFace.getDepthPassStencilPassOperation()));
 
     checkError("glStencilOpSeparateFront");
 
-	m_CurrentRenderStates = m_RequestRenderStates = renderStates;
+    m_CurrentRenderStates = m_RequestRenderStates = renderStates;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -1431,12 +1431,12 @@ void CGLRenderer::notifyNewMessage(bool bIsError, const QString& message)
 //-----------------------------------------------------------------------------------------
 
 CGLRenderer::CGLGeometryInstancer::CGLGeometryInstancer()
-: QThread()
-, m_pSharedContext(0)
-, m_pSurface(0)
-, m_pRenderer(0)
-, m_bRun(false)
-, m_Mutex(QMutex::Recursive)
+    : QThread()
+    , m_pSharedContext(0)
+    , m_pSurface(0)
+    , m_pRenderer(0)
+    , m_bRun(false)
+    , m_Mutex(QMutex::Recursive)
 {
 }
 

@@ -21,7 +21,7 @@ public:
         ePlaneYZ
     };
 
-	//! Constructeur
+    //! Constructeur
     CPlaneMesh(real dLength = DefaultPlaneMeshSize,
                real dWidth =  DefaultPlaneMeshSize,
                int iLengthSquareCount = DefaultPlaneMeshQuadCount,
@@ -35,19 +35,19 @@ public:
             int iWidthSquareCount,
             real fLengthTextureRepeat = 1.0,
             real fWidthTextureRepeat = 1.0)
-	{
+    {
         m_ePlaneAxis = ePlaneAxis;
         m_dLength = dLength;
-		m_dWidth = dWidth;
+        m_dWidth = dWidth;
         m_iLengthQuadCount = iLengthSquareCount;
-		m_iWidthQuadCount = iWidthSquareCount;
+        m_iWidthQuadCount = iWidthSquareCount;
         m_fLengthTextureRepeat = fLengthTextureRepeat;
         m_fWidthTextureRepeat = fWidthTextureRepeat;
 
         update();
-	}
+    }
 
-	//! Destructeur
+    //! Destructeur
     virtual ~CPlaneMesh();
 
 protected:
@@ -56,9 +56,9 @@ protected:
     CSubMesh* m_pGridBuffer;
     EnumPlaneAxis m_ePlaneAxis;
     real m_dLength;
-	real m_dWidth;
+    real m_dWidth;
     int m_iLengthQuadCount;
-	int m_iWidthQuadCount;
+    int m_iWidthQuadCount;
     real m_fLengthTextureRepeat;
     real m_fWidthTextureRepeat;
 };

@@ -9,19 +9,19 @@
 
 class CTcpClientTest : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	CTcpClientTest();
+    CTcpClientTest();
 
 public slots:
 
-	void onNewMessage(const QVariant& component);
+    void onNewMessage(const QVariant& component);
 
 protected:
 
-	CTcpClient* m_pTcpClient;
+    CTcpClient* m_pTcpClient;
 };
 
 #endif // CTCPCLIENTTEST_H

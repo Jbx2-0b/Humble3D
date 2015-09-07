@@ -10,9 +10,9 @@
 
 //-----------------------------------------------------------------------------------------
 CGraphicsScene3D::CGraphicsScene3D(CFPSManager* pFPSManager, QObject* pParent /*= 0*/)
-: QGraphicsScene(pParent)
-, m_pRenderer(0)
-, m_pFPSManager(pFPSManager)
+    : QGraphicsScene(pParent)
+    , m_pRenderer(0)
+    , m_pFPSManager(pFPSManager)
 {   
 #ifndef USE_QT_OPENGL
     setSceneRect(QRect(QPoint(0, 0), QSize(DefaultResolutionWidth, DefaultResolutionHeight)));
@@ -78,11 +78,11 @@ void CGraphicsScene3D::drawBackground(QPainter* painter, const QRectF& rect)
         qApp->exit();
     }
 
-	QGraphicsScene::drawBackground(painter, rect);
+    QGraphicsScene::drawBackground(painter, rect);
 }
 
 //-----------------------------------------------------------------------------------------
 void CGraphicsScene3D::setRenderer(CGLRenderer* pRenderer)
 {
-	m_pRenderer = pRenderer;
+    m_pRenderer = pRenderer;
 }

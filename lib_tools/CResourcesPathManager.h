@@ -119,7 +119,7 @@ public:
 
     bool isExist(const QString& filePathName) const
     {
-		return QFileInfo(filePathName).exists();
+        return QFileInfo(filePathName).exists();
     }
 
     QString getPathName(const QString& resourceName) const

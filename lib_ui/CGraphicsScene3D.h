@@ -11,23 +11,23 @@
 
 class CGraphicsScene3D : public QGraphicsScene
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Constructeur.
+    //! Constructeur.
     CGraphicsScene3D(CFPSManager* pFPSManager, QObject* pParent = 0);
 
-	//! Destructeur.
+    //! Destructeur.
     virtual ~CGraphicsScene3D();
 
-	//! Change le moteur de rendu
-	void setRenderer(CGLRenderer* pRenderer);
+    //! Change le moteur de rendu
+    void setRenderer(CGLRenderer* pRenderer);
 
 protected:
 
-	//! Rendu du fond
-	void drawBackground(QPainter *painter, const QRectF &rect);
+    //! Rendu du fond
+    void drawBackground(QPainter *painter, const QRectF &rect);
 
 protected slots:
 
@@ -35,13 +35,13 @@ protected slots:
 
 private:
 
-	//! Couleur de fond
-	QColor m_BackgroundColor;
-	
-	//! Gestionnaire de rendu
-	CGLRenderer* m_pRenderer;
+    //! Couleur de fond
+    QColor m_BackgroundColor;
 
-	CFPSManager* m_pFPSManager;
+    //! Gestionnaire de rendu
+    CGLRenderer* m_pRenderer;
+
+    CFPSManager* m_pFPSManager;
 };
 
 

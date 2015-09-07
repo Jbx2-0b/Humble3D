@@ -18,23 +18,23 @@ class LIB_CORE_SHARED_EXPORT COctreeNode : public CNode<COctreeNode>
 
 public:
 
-	//! Constructeur
+    //! Constructeur
     COctreeNode(const CBox3D& bbox, COctreeNode* pParent = 0);
 
-	//! Destructeur
+    //! Destructeur
     virtual ~COctreeNode();
 
     //! Retourne le nom du type
     virtual QString getTypeName() const { return "OctreeNode"; }
 
     //! Retourne la bounding box associée
-	const CBox3D& getBoundingBox() const;
+    const CBox3D& getBoundingBox() const;
 
     //! Crée 8 enfants
     const QList<COctreeNode*>& createChilds();
 
-	//! Retourne un pointeur sur le mutex
-	QMutex* getMutex() { return &m_Mutex; }
+    //! Retourne un pointeur sur le mutex
+    QMutex* getMutex() { return &m_Mutex; }
 
     //! Retourne le nombre de polygons associes a ce noeud
     unsigned int getPolygonCount() const;
@@ -54,11 +54,11 @@ public:
     //! Vide la liste des noeuds
     void clearSceneNodes();
 
-	//! Affiche l'arbre des noeuds sur la console
-	void dumpNodeTree() const;
+    //! Affiche l'arbre des noeuds sur la console
+    void dumpNodeTree() const;
 
-	//! Affiche le noeud et ses enfants sur la sortie standard
-	virtual void recursiveDump(int iLevel) const;
+    //! Affiche le noeud et ses enfants sur la sortie standard
+    virtual void recursiveDump(int iLevel) const;
 
 protected:
 
@@ -67,9 +67,9 @@ protected:
 
     QSet<CSceneNode*> m_SceneNodes;
 
-	CBox3D m_BoundingBox;
+    CBox3D m_BoundingBox;
 
-	QMutex m_Mutex;
+    QMutex m_Mutex;
 };
 
 #endif // COCTREENODE_H

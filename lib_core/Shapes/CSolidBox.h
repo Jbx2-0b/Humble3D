@@ -14,7 +14,7 @@ public:
 
     CSolidBox(const QVector3D& size = QVector3D(1.0, 1.0, 1.0));
 
-	void setSize(const QVector3D& size);
+    void setSize(const QVector3D& size);
 
     QVector3D getSize() const { return m_vMax - m_vMin; }
 

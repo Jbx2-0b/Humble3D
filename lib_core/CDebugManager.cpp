@@ -10,7 +10,7 @@ QMutex CDebugManager::s_Mutex(QMutex::Recursive);
 
 //-----------------------------------------------------------------------------------------
 CDebugManager::CDebugManager(CSceneManager* pSceneManager)
-: m_pSceneManager(pSceneManager)
+    : m_pSceneManager(pSceneManager)
 {}
 
 //-----------------------------------------------------------------------------------------

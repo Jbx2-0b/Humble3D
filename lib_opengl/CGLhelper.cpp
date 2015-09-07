@@ -16,32 +16,32 @@ CGLHelper::CGLHelper()
     }
 
     m_MaterialParameterName
-        << "texture"
-        << "textureDiffuse"
-        << "textureSpecular"
-        << "textureAmbient"
-        << "textureEmissive"
-        << "textureHeight"
-        << "textureNormals"
-        << "textureShininess"
-        << "textureOpacity"
-        << "textureDisplacement"
-        << "textureLightmap"
-        << "textureReflection";
+            << "texture"
+            << "textureDiffuse"
+            << "textureSpecular"
+            << "textureAmbient"
+            << "textureEmissive"
+            << "textureHeight"
+            << "textureNormals"
+            << "textureShininess"
+            << "textureOpacity"
+            << "textureDisplacement"
+            << "textureLightmap"
+            << "textureReflection";
 
     m_MaterialParameterCountName
-        << "textureCount"
-        << "textureDiffuseCount"
-        << "textureSpecularCount"
-        << "textureAmbientCount"
-        << "textureEmissiveCount"
-        << "textureHeightCount"
-        << "textureNormalsCount"
-        << "textureShininessCount"
-        << "textureOpacityCount"
-        << "textureDisplacementCount"
-        << "textureLightmapCount"
-        << "textureReflectionCount";
+            << "textureCount"
+            << "textureDiffuseCount"
+            << "textureSpecularCount"
+            << "textureAmbientCount"
+            << "textureEmissiveCount"
+            << "textureHeightCount"
+            << "textureNormalsCount"
+            << "textureShininessCount"
+            << "textureOpacityCount"
+            << "textureDisplacementCount"
+            << "textureLightmapCount"
+            << "textureReflectionCount";
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -146,22 +146,22 @@ GLenum CGLHelper::toGLType(CDepthTest::EnumDepthTestFunction eFunction)
 {
     switch (eFunction)
     {
-        case CDepthTest::eNever:
-            return GL_NEVER;
-        case CDepthTest::eLess:
-            return GL_LESS;
-        case CDepthTest::eEqual:
-            return GL_EQUAL;
-        case CDepthTest::eLessThanOrEqual:
-            return GL_LEQUAL;
-        case CDepthTest::eGreater:
-            return GL_GREATER;
-        case CDepthTest::eNotEqual:
-            return GL_NOTEQUAL;
-        case CDepthTest::eGreaterThanOrEqual:
-            return GL_GEQUAL;
-        case CDepthTest::eAlways:
-            return GL_ALWAYS;
+    case CDepthTest::eNever:
+        return GL_NEVER;
+    case CDepthTest::eLess:
+        return GL_LESS;
+    case CDepthTest::eEqual:
+        return GL_EQUAL;
+    case CDepthTest::eLessThanOrEqual:
+        return GL_LEQUAL;
+    case CDepthTest::eGreater:
+        return GL_GREATER;
+    case CDepthTest::eNotEqual:
+        return GL_NOTEQUAL;
+    case CDepthTest::eGreaterThanOrEqual:
+        return GL_GEQUAL;
+    case CDepthTest::eAlways:
+        return GL_ALWAYS;
     }
     return GL_NEVER; /// avoid warning
 }

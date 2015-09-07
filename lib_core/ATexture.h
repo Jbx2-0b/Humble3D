@@ -9,36 +9,36 @@ class LIB_CORE_SHARED_EXPORT ATexture : public AEntity
 
 public:
 
-	ATexture(const QString& name, EnumTextureType eType, int iTextureUnit)
-		: AEntity(name)
-		, m_eType(eType)
-		, m_iTextureUnit(iTextureUnit)
-		, m_bIsValid(false)
-	{
-	}
+    ATexture(const QString& name, EnumTextureType eType, int iTextureUnit)
+        : AEntity(name)
+        , m_eType(eType)
+        , m_iTextureUnit(iTextureUnit)
+        , m_bIsValid(false)
+    {
+    }
 
-	//! Destructeur
-	virtual ~ATexture() {}
+    //! Destructeur
+    virtual ~ATexture() {}
 
-	//-------------------------------------------------------------------------------------------------
-	// Setters
-	//-------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
+    // Setters
+    //-------------------------------------------------------------------------------------------------
 
     //! Définit le type de cible (2D, 3D, Cube...)
     void setType(EnumTextureType eType)					{ m_eType = eType; notifyUpdate(); }
 
-	//-------------------------------------------------------------------------------------------------
-	// Getters
-	//-------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
+    // Getters
+    //-------------------------------------------------------------------------------------------------
 
-	//! Retourne le type de cible (2D, 3D, Cube...)
-	EnumTextureType getType() const						{ return m_eType; }
+    //! Retourne le type de cible (2D, 3D, Cube...)
+    EnumTextureType getType() const						{ return m_eType; }
 
-	//! Retourne le numéro d'unité de texture
-	int getTextureUnit() const							{ return m_iTextureUnit; }
+    //! Retourne le numéro d'unité de texture
+    int getTextureUnit() const							{ return m_iTextureUnit; }
 
-	//! Retourne vrai si la texture est valide
-	bool isValid() const								{ return m_bIsValid; }
+    //! Retourne vrai si la texture est valide
+    bool isValid() const								{ return m_bIsValid; }
 
 
     //-------------------------------------------------------------------------------------------------
@@ -99,14 +99,14 @@ protected:
     //! Liste des listeners
     QSet<ITextureListener*> m_TextureListeners;
 
-	//! Type de cible (2D, 3D, Cube...)
-	EnumTextureType m_eType;
+    //! Type de cible (2D, 3D, Cube...)
+    EnumTextureType m_eType;
 
-	//! Numéro d'unité de texture
-	int m_iTextureUnit;
+    //! Numéro d'unité de texture
+    int m_iTextureUnit;
 
-	//! Vrai si la texture est valide
-	bool m_bIsValid;
+    //! Vrai si la texture est valide
+    bool m_bIsValid;
 };
 
 

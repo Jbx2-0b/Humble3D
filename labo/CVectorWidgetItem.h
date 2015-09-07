@@ -7,23 +7,23 @@
 
 class CVectorWidgetItem : public CTreeWidgetItemBase<CVectorWidget>
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Constructeur
-	CVectorWidgetItem(CNodeTreeWidget* pTreeWidget, QTreeWidgetItem* pParent = 0, CVectorWidget::EnumType eWidgetType = CVectorWidget::eVectorWidget4D);
-	
-	//! Destructeur
-	virtual ~CVectorWidgetItem();
+    //! Constructeur
+    CVectorWidgetItem(CNodeTreeWidget* pTreeWidget, QTreeWidgetItem* pParent = 0, CVectorWidget::EnumType eWidgetType = CVectorWidget::eVectorWidget4D);
 
-	//! Accesseur sur le widget
-	CVectorWidget* vectorWidget();
+    //! Destructeur
+    virtual ~CVectorWidgetItem();
+
+    //! Accesseur sur le widget
+    CVectorWidget* vectorWidget();
 
 protected slots:
 
-	void onEditingFinished();
-	
+    void onEditingFinished();
+
 };
 
 #endif // CVECTORWIDGETITEM_H

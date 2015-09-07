@@ -87,21 +87,21 @@ COctreeNode* COctreeNode::createChild(const CBox3D& bbox)
 //-----------------------------------------------------------------------------------------
 void COctreeNode::recursiveDump(int iLevel) const
 {
-	QString branchNode = "|";
-	QString branchItems = " ";
+    QString branchNode = "|";
+    QString branchItems = " ";
 
-	for (int i = 0; i < iLevel; ++i)
-	{
-		branchNode += "-";
-		branchItems += " ";
-	}
+    for (int i = 0; i < iLevel; ++i)
+    {
+        branchNode += "-";
+        branchItems += " ";
+    }
 
-	qDebug() << branchNode + "O";
+    qDebug() << branchNode + "O";
 
 
     foreach (COctreeNode* pChild, m_ChildNodes)
-	{
-		pChild->recursiveDump(iLevel + 1);
-	}
+    {
+        pChild->recursiveDump(iLevel + 1);
+    }
 }
 

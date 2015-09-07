@@ -2,11 +2,11 @@
 
 //-----------------------------------------------------------------------------------------
 Controller::Controller(CWidget3D* pView)
-: m_pView(pView)
-, m_bPressed(false)
-, m_bTouch(false)
-, m_StartPan(-1, -1)
-, m_LastPan(-1, -1)
+    : m_pView(pView)
+    , m_bPressed(false)
+    , m_bTouch(false)
+    , m_StartPan(-1, -1)
+    , m_LastPan(-1, -1)
 {
     m_pView->setAttribute(Qt::WA_AcceptTouchEvents);
 
@@ -18,7 +18,7 @@ Controller::Controller(CWidget3D* pView)
     //connect(m_pView, SIGNAL(touchScaleEnded()), this, SLOT(onTouchScaleEnded()));
     connect(m_pView, SIGNAL(keyPressed()), this, SLOT(onKeyPressed()));
     connect(m_pView->getFPSManager(), SIGNAL(FPSChanged(int)), this, SLOT(onFPSChanged(int)));
-	
+
     pView->setGeometry(QRect(100, 100, 800, 600));
 }
 
@@ -34,21 +34,21 @@ void Controller::onMousePressed()
         return;
 
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
+    {
         CMouseStates mouseStates = m_pView->getMouseStates();
 
-		m_bPressed = true;
-		m_StartPan = m_LastPan = mouseStates.getPosition();
-		m_vStartEye = pCamera->getEyePosition();
-		m_vStartCenter = pCamera->getCenter();
-		m_vStartUpVector = pCamera->getUp();
-	}
+        m_bPressed = true;
+        m_StartPan = m_LastPan = mouseStates.getPosition();
+        m_vStartEye = pCamera->getEyePosition();
+        m_vStartCenter = pCamera->getCenter();
+        m_vStartUpVector = pCamera->getUp();
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void Controller::onMouseReleased()
 {
-	m_bPressed = false;
+    m_bPressed = false;
     m_bTouch = false;
 }
 
@@ -59,39 +59,39 @@ void Controller::onMouseMoved()
         return;
 
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
-		if (m_bPressed)
-		{
+    {
+        if (m_bPressed)
+        {
             CMouseStates mouseStates = m_pView->getMouseStates();
 
-			QPoint delta = mouseStates.getPosition() - m_StartPan;
+            QPoint delta = mouseStates.getPosition() - m_StartPan;
 
-			if (mouseStates.isRightButtonPressed())
-			{
-				pCamera->setEyePosition(m_vStartEye);
-				pCamera->setCenter(m_vStartCenter);
-				pCamera->setUp(m_vStartUpVector);
-			}
-			else
-			{
-				m_StartPan = m_LastPan;
-				delta = mouseStates.getPosition() - m_StartPan;
-				m_vStartEye = pCamera->getEyePosition();
-				m_vStartCenter = pCamera->getCenter();
-				m_vStartUpVector = pCamera->getUp();
-			}
+            if (mouseStates.isRightButtonPressed())
+            {
+                pCamera->setEyePosition(m_vStartEye);
+                pCamera->setCenter(m_vStartCenter);
+                pCamera->setUp(m_vStartUpVector);
+            }
+            else
+            {
+                m_StartPan = m_LastPan;
+                delta = mouseStates.getPosition() - m_StartPan;
+                m_vStartEye = pCamera->getEyePosition();
+                m_vStartCenter = pCamera->getCenter();
+                m_vStartUpVector = pCamera->getUp();
+            }
 
-			m_LastPan = mouseStates.getPosition();
+            m_LastPan = mouseStates.getPosition();
 
-			if (mouseStates.isRightButtonPressed())
-			{
-				wheel(-delta.y());
-			}
-			else
-			{
-				rotate(delta.x(), delta.y());
-			}
-		}
+            if (mouseStates.isRightButtonPressed())
+            {
+                wheel(-delta.y());
+            }
+            else
+            {
+                rotate(delta.x(), delta.y());
+            }
+        }
     }
 }
 
@@ -99,20 +99,20 @@ void Controller::onMouseMoved()
 void Controller::wheel(int delta)
 {
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
-		QVector3D viewVector = pCamera->getEyePosition() - pCamera->getCenter();
-		real zoomMag = viewVector.length();
-		real zoomIncrement = -real(delta) / 100.;
-		if (!qFuzzyIsNull(zoomIncrement))
-		{
-			zoomMag += zoomIncrement;
+    {
+        QVector3D viewVector = pCamera->getEyePosition() - pCamera->getCenter();
+        real zoomMag = viewVector.length();
+        real zoomIncrement = -real(delta) / 100.;
+        if (!qFuzzyIsNull(zoomIncrement))
+        {
+            zoomMag += zoomIncrement;
             if (zoomMag < 2.)
                 zoomMag = 2.;
 
-			CRay viewLine(pCamera->getCenter(), viewVector.normalized());
-			pCamera->setEyePosition(viewLine.point(zoomMag));
-		}
-	}
+            CRay viewLine(pCamera->getCenter(), viewVector.normalized());
+            pCamera->setEyePosition(viewLine.point(zoomMag));
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -122,16 +122,16 @@ void Controller::rotate(int deltax, int deltay)
         return;
 
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
+    {
         real angleX = deltax * 90. / m_pView->width();
         real angleY = deltay * 90. / m_pView->height();
 
-		QQuaternion q = pCamera->pan(-angleX);
-		q *= pCamera->tilt(-angleY);
-		pCamera->rotateCenter(q);
+        QQuaternion q = pCamera->pan(-angleX);
+        q *= pCamera->tilt(-angleY);
+        pCamera->rotateCenter(q);
 
-		pCamera->setUp(QVector3D(0., 1., 0.));
-	}
+        pCamera->setUp(QVector3D(0., 1., 0.));
+    }
 }
 
 //-----------------------------------------------------------------------------------------

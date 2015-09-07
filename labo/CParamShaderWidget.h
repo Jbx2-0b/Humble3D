@@ -9,36 +9,36 @@
 
 class CParamShaderWidget : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Constructeur
-	CParamShaderWidget(QWidget *parent = 0);
+    //! Constructeur
+    CParamShaderWidget(QWidget *parent = 0);
 
-	//! Destructeur
-	virtual ~CParamShaderWidget();
+    //! Destructeur
+    virtual ~CParamShaderWidget();
 
-	//! Retourne le chemin du fichier
-	QString getFilePathName() const { return m_pFilePathNameLineEdit->text(); }
+    //! Retourne le chemin du fichier
+    QString getFilePathName() const { return m_pFilePathNameLineEdit->text(); }
 
-	//! Définit le chemin du fichier
-	void setFilePathName(const QString& filePathName) { m_pFilePathNameLineEdit->setText(filePathName); }
+    //! Définit le chemin du fichier
+    void setFilePathName(const QString& filePathName) { m_pFilePathNameLineEdit->setText(filePathName); }
 
 signals:
 
-	void updateText();
-	void saveFile();
-	
+    void updateText();
+    void saveFile();
+
 private:
 
-	QHBoxLayout* m_pHorizontalLayout;
-	QLineEdit* m_pFilePathNameLineEdit;
-	QPushButton* m_pFilePathNameSelectorButton;
-	
+    QHBoxLayout* m_pHorizontalLayout;
+    QLineEdit* m_pFilePathNameLineEdit;
+    QPushButton* m_pFilePathNameSelectorButton;
+
 private slots:
 
-	void onFilePathNameSelectorButtonClicked();
+    void onFilePathNameSelectorButtonClicked();
 };
 
 #endif // QPARAMSHADERWIDGET_H

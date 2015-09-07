@@ -6,10 +6,10 @@
 
 //-----------------------------------------------------------------------------------------
 COctree::COctree(CSceneManager* pSceneManager, const CBox3D& worldBbox, unsigned int uiPolygonCountThreshold, unsigned int iMaxDepth)
-: m_pSceneManager(pSceneManager)
-, m_RootNode(worldBbox)
-, m_uiPolygonCountThreshold(uiPolygonCountThreshold)
-, m_uiMaxDepth(iMaxDepth)
+    : m_pSceneManager(pSceneManager)
+    , m_RootNode(worldBbox)
+    , m_uiPolygonCountThreshold(uiPolygonCountThreshold)
+    , m_uiMaxDepth(iMaxDepth)
 {
     foreach (CSceneNode* pSceneNode, pSceneManager->getSceneNodes())
     {
@@ -48,11 +48,11 @@ void COctree::removeSceneNode(CSceneNode* pSceneNode)
     {
         pOctreeNode->removeSceneNode(pSceneNode);
 
-//        if (!pOctreeNode->getSceneNodes().isEmpty() && !pOctreeNode->hasChildNodes() && pOctreeNode != &m_RootNode)
-//        {
-//            m_SceneNodes.remove(pSceneNode, pOctreeNode);
-//            delete pOctreeNode;
-//        }
+        //        if (!pOctreeNode->getSceneNodes().isEmpty() && !pOctreeNode->hasChildNodes() && pOctreeNode != &m_RootNode)
+        //        {
+        //            m_SceneNodes.remove(pSceneNode, pOctreeNode);
+        //            delete pOctreeNode;
+        //        }
     }
 
     m_SceneNodes.remove(pSceneNode);
@@ -76,8 +76,8 @@ void COctree::recursiveAddSceneNode(COctreeNode* pOctreeNode, CSceneNode* pScene
             QVector3D octreeNodeBBoxSize = octreeNodeBBox.getSize();
             // Si le noeud est saturé, et qu'on a pas atteint les limites de l'arbre, on lui crée des enfants
             if ((octreeNodeBBoxSize.x() > 1 || octreeNodeBBoxSize.y() > 1 || octreeNodeBBoxSize.z() > 1) &&
-                pOctreeNode->getPolygonCount() > m_uiPolygonCountThreshold &&
-                uiDepth < m_uiMaxDepth)
+                    pOctreeNode->getPolygonCount() > m_uiPolygonCountThreshold &&
+                    uiDepth < m_uiMaxDepth)
             {
                 pOctreeNode->createChilds();
 

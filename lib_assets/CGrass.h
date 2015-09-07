@@ -34,17 +34,17 @@ public:
 
     virtual ~CGrass();
 
-	void setHeightMap(CHeightMap* pHeightMap);
+    void setHeightMap(CHeightMap* pHeightMap);
 
 protected:
 
-	virtual void updateGeometry();
+    virtual void updateGeometry();
 
 private:
 
-	CHeightMap* m_pHeightMap;
+    CHeightMap* m_pHeightMap;
     CSubMesh* m_pGrassBuffer;
-	CMaterial* m_pGrassMaterial;	
+    CMaterial* m_pGrassMaterial;
 };
 
 #endif // CGRASS_H

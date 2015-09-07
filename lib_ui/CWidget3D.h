@@ -28,7 +28,7 @@ public:
     //! Destructeur
     virtual ~CWidget3D();
 
-	//! Retourne un pointeur sur le renderer OpenGL
+    //! Retourne un pointeur sur le renderer OpenGL
     CGLRenderer* getGLRenderer() { return m_pGLRenderer; }
 
     //! Force la mise à jour du rendu
@@ -36,21 +36,21 @@ public:
 
 signals:
 
-	void mouseMoved();
-	void mousePressed();
-	void mouseReleased();
-	void mouseDoubleClicked();
-	void mouseWheelMoved();
-	void keyPressed();
-	void keyReleased();
-	void sizeChanged(QSize size);
-	void touchScaleStarted();
-	void touchScaleChanged(real dScale);
-	void touchScaleEnded();
+    void mouseMoved();
+    void mousePressed();
+    void mouseReleased();
+    void mouseDoubleClicked();
+    void mouseWheelMoved();
+    void keyPressed();
+    void keyReleased();
+    void sizeChanged(QSize size);
+    void touchScaleStarted();
+    void touchScaleChanged(real dScale);
+    void touchScaleEnded();
 
 protected slots:
 
-	void onTimeOut();
+    void onTimeOut();
 
 protected:
 
@@ -69,13 +69,13 @@ protected:
     //! Capture les evenements de double clique souris
     virtual void mouseDoubleClickEvent(QMouseEvent* pEvent);
 
-	void initializeGL();
+    void initializeGL();
 
     void resizeGL(int w, int h);
 
     void paintGL();
 
-	CGLRenderer* m_pGLRenderer;
+    CGLRenderer* m_pGLRenderer;
 
     bool m_bForceUpdate;
 

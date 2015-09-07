@@ -9,11 +9,11 @@ static void convertToGLFormatHelper(QImage &dst, const QImage &img);
 // AGLTEXTURE
 //-----------------------------------------------------------------------------------------
 AGLTexture::AGLTexture()
-: m_iTextureID(0)
-, m_bValid(false)
-, m_iType(0)
-, m_iWidth(0)
-, m_iHeight(0)
+    : m_iTextureID(0)
+    , m_bValid(false)
+    , m_iType(0)
+    , m_iWidth(0)
+    , m_iHeight(0)
 {
     initializeOpenGLFunctions();
     glGenTextures(1, &m_iTextureID);
@@ -22,31 +22,31 @@ AGLTexture::AGLTexture()
 //-----------------------------------------------------------------------------------------
 AGLTexture::~AGLTexture()
 {
-	if (m_iTextureID)
-	{
-		glDeleteTextures(1, &m_iTextureID);
-		m_iTextureID = 0;
-	}
+    if (m_iTextureID)
+    {
+        glDeleteTextures(1, &m_iTextureID);
+        m_iTextureID = 0;
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void AGLTexture::generateMipMaps()
 {
-	glGenerateMipmap(m_iType);
+    glGenerateMipmap(m_iType);
 }
 
 //-----------------------------------------------------------------------------------------
 void AGLTexture::bind()
 {
-	glBindTexture(m_iType, m_iTextureID);
-	glEnable(m_iType);
+    glBindTexture(m_iType, m_iTextureID);
+    glEnable(m_iType);
 }
 
 //-----------------------------------------------------------------------------------------
 void AGLTexture::release()
 {
-	glBindTexture(m_iType, 0);
-	glDisable(m_iType);
+    glBindTexture(m_iType, 0);
+    glDisable(m_iType);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -91,8 +91,8 @@ static void convertToGLFormatHelper(QImage &dst, const QImage &img)
                     dest[x] = (src_pixel << 8) | ((src_pixel >> 24) & 0xff);
                 } else {
                     dest[x] = ((src_pixel << 16) & 0xff0000)
-                              | ((src_pixel >> 16) & 0xff)
-                              | (src_pixel & 0xff00ff00);
+                            | ((src_pixel >> 16) & 0xff)
+                            | (src_pixel & 0xff00ff00);
                 }
                 srcx += ix;
             }

@@ -4,11 +4,11 @@
 
 int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
+    QApplication a(argc, argv);
 
     TestMultiPass w;
 
     //TestShadowVolume sv;
 
-	return a.exec();
+    return a.exec();
 }

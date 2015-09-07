@@ -5,26 +5,26 @@
 
 class CAnimationTreeWidget : public CButtonTreeWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	CAnimationTreeWidget(QWidget *parent = 0);
+    CAnimationTreeWidget(QWidget *parent = 0);
 
-	virtual ~CAnimationTreeWidget();
+    virtual ~CAnimationTreeWidget();
 
 signals:
 
-	void playAnimation(const QString& name, bool bPlay);
+    void playAnimation(const QString& name, bool bPlay);
 
 private slots:
 
-	void onPlayClicked();
+    void onPlayClicked();
 
 private:
 
-	bool m_bPlay;
-	
+    bool m_bPlay;
+
 };
 
 #endif // CANIMATIONTREEWIDGET_H

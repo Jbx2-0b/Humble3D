@@ -9,8 +9,8 @@
 
 //--------------------------------------------------------------------------
 CBillboard::CBillboard(CSceneManager* pSceneManager, const QString& name)
-: ARenderableItem(pSceneManager, name)
-, m_fSize(1.0f)
+    : ARenderableItem(pSceneManager, name)
+    , m_fSize(1.0f)
 {
     m_MeshBuffer.setPrimitiveType(ePrimitivePoint);
     m_MeshBuffer.setUsagePattern(eDynamicDraw);
@@ -33,14 +33,14 @@ void CBillboard::addPositions(const QVector<QVector3D>& positions)
     CBuffer<QVector3D>& posBuffer = m_MeshBuffer.positionsBuffer();
     CBuffer<IndiceType>& idBuffer = m_MeshBuffer.indicesBuffer();
 
-	foreach (const QVector3D& position, positions)
-	{
-		posBuffer << position;
-		idBuffer << idBuffer.size();
-	}
+    foreach (const QVector3D& position, positions)
+    {
+        posBuffer << position;
+        idBuffer << idBuffer.size();
+    }
 
-	posBuffer.setDirty();
-	idBuffer.setDirty();
+    posBuffer.setDirty();
+    idBuffer.setDirty();
     m_MeshBuffer.setDirty();
 }
 

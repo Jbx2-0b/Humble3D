@@ -65,7 +65,7 @@ Humble3DApp::~Humble3DApp()
 {
     foreach (AView* pView, m_Views)
     {
-       delete pView;
+        delete pView;
     }
 
     CDebugManager::getInstance()->killInstance();

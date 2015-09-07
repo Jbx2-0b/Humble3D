@@ -63,9 +63,9 @@ private:
                         x < im.width();
                         ++x)
                         line[x] = qRgba(changeUsingTable(qRed(line[x]), table),
-                        changeUsingTable(qGreen(line[x]), table),
-                        changeUsingTable(qBlue(line[x]), table),
-                        changeUsingTable(qAlpha(line[x]), table));
+                                        changeUsingTable(qGreen(line[x]), table),
+                                        changeUsingTable(qBlue(line[x]), table),
+                                        changeUsingTable(qAlpha(line[x]), table));
                 }
             }
             else
@@ -78,8 +78,8 @@ private:
 
                     for(int x = 0; x < im.width(); ++x)
                         line[x] = qRgb(changeUsingTable(qRed(line[x]), table),
-                        changeUsingTable(qGreen(line[x]), table),
-                        changeUsingTable(qBlue(line[x]), table));
+                                       changeUsingTable(qGreen(line[x]), table),
+                                       changeUsingTable(qBlue(line[x]), table));
                 }
             }
         }
@@ -90,8 +90,8 @@ private:
                 i < im.colorCount();
                 ++i)
                 colors[i] = qRgb(operation(qRed(colors[i]), value),
-                operation(qGreen(colors[i]), value),
-                operation(qBlue(colors[i]), value));
+                                 operation(qGreen(colors[i]), value),
+                                 operation(qBlue(colors[i]), value));
         }
         return im;
     }

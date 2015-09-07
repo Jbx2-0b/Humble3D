@@ -27,10 +27,10 @@
 
 //-----------------------------------------------------------------------------------------
 TestPhysics::TestPhysics()
-: m_bPressed(false)
-, m_bTouch(false)
-, m_StartPan(-1, -1)
-, m_LastPan(-1, -1)
+    : m_bPressed(false)
+    , m_bTouch(false)
+    , m_StartPan(-1, -1)
+    , m_LastPan(-1, -1)
 {
     //CShaderManager::getInstance()->createShader("bump", "://resources/NBT.vertex.glsl", "", "://resources/NBT.fragment.glsl");
 
@@ -46,7 +46,7 @@ TestPhysics::TestPhysics()
     m_pView->setGeometry(2000, 100, 800, 800);
     m_pView->setBackgroundColor(QVector4D(0.2, 0.2, 0.6, 1.0));
 
-	// On crée un noeud afin d'y placer une lumiére
+    // On crée un noeud afin d'y placer une lumiére
     CSceneNode* pRootNode = getSceneManager()->getRootNode();
 
     CSceneNode* pLightNode = pRootNode->createChild("LightNode", QVector3D(40., 40., 0.));
@@ -55,10 +55,10 @@ TestPhysics::TestPhysics()
     CLight* pLight = getSceneManager()->createLight();
     pLight->setDiffuseColor(1.0, 1.0, 1.0);
     pLight->setAmbientColor(1.0, 1.0, 1.0);
-	pLight->setDirection(QVector3D(-1, 0, 0));
+    pLight->setDirection(QVector3D(-1, 0, 0));
     pLight->setSpecularColor(1.0f, 1.0f, 1.0f);
 
-	// On l'associe au noeud
+    // On l'associe au noeud
     pLightNode->addItem(pLight);
 
     CSceneNode* pLightNode2 = pRootNode->createChild("LightNode2", QVector3D(0., 40., 30.));
@@ -74,34 +74,34 @@ TestPhysics::TestPhysics()
     pLightNode2->addItem(pLight2);
 
     //CSceneNode* pModelNode = pRootNode->createChild("ModelNode", QVector3D(0, 0, 0));
-//    QList<AEntity*> loadedEntities = CAssimpImporter::loadScene("beer.3ds", m_pSceneManager, true);
+    //    QList<AEntity*> loadedEntities = CAssimpImporter::loadScene("beer.3ds", m_pSceneManager, true);
 
-//    CMaterial* pModelMat = CMaterialManager::getInstance()->createMaterial("ModelMat");
-//    pModelMat->setDiffuseColor(0.2, 1., 0.2, 1.0);
-//    pModelMat->setOpacity(0.4);
-//    pModelMat->getRenderPass(0)->renderStates().blending().setEnabled(true);
-//    //pModelMat->getRenderPass(0)->renderStates().blending().setBlendFunction(Source::eSourceAlpha, Destination::eOneMinusDestinationAlpha);
-//    pModelMat->getRenderPass(0)->renderStates().blending().setBlendFunction(Source::eZero, Destination::eSourceColor);
-//    //pModelMat->getRenderPass(0)->renderStates().blending().setBlendFunction(Source::eDestinationColor, Destination::eSourceColor);
-//    pModelMat->getRenderPass(0)->renderStates().faceCulling().setEnabled(false);
-//    pModelMat->getRenderPass(0)->renderStates().setDepthMask(false);
-//    pModelMat->getRenderPass(0)->setShaderName("toon");
+    //    CMaterial* pModelMat = CMaterialManager::getInstance()->createMaterial("ModelMat");
+    //    pModelMat->setDiffuseColor(0.2, 1., 0.2, 1.0);
+    //    pModelMat->setOpacity(0.4);
+    //    pModelMat->getRenderPass(0)->renderStates().blending().setEnabled(true);
+    //    //pModelMat->getRenderPass(0)->renderStates().blending().setBlendFunction(Source::eSourceAlpha, Destination::eOneMinusDestinationAlpha);
+    //    pModelMat->getRenderPass(0)->renderStates().blending().setBlendFunction(Source::eZero, Destination::eSourceColor);
+    //    //pModelMat->getRenderPass(0)->renderStates().blending().setBlendFunction(Source::eDestinationColor, Destination::eSourceColor);
+    //    pModelMat->getRenderPass(0)->renderStates().faceCulling().setEnabled(false);
+    //    pModelMat->getRenderPass(0)->renderStates().setDepthMask(false);
+    //    pModelMat->getRenderPass(0)->setShaderName("toon");
 
-//    foreach (AEntity* pEntity, loadedEntities)
-//    {
-//        if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(pEntity))
-//        {
-//            CSceneNode* pModelNode = pRootNode->createChild("ModelNode", QVector3D(0, 10, 0));
-//            pModelNode->scale(5.0);
-//            pMeshInstance->setMass(0.5);
-//            pMeshInstance->setPhysicShape(eCylinderShapeY);
-//            pMeshInstance->setRollingFriction(0.4);
-//            pMeshInstance->setMaterialName(pModelMat->getName());
-//            pModelNode->addItem(pMeshInstance);
-//            pMeshInstance->getNode()->addItem(CDebugManager::getInstance()->createBox(pMeshInstance->getBoundingBox(), Color::eGreen));
-//            m_PhysicsManager.registerItem(pMeshInstance);
-//        }
-//    }
+    //    foreach (AEntity* pEntity, loadedEntities)
+    //    {
+    //        if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(pEntity))
+    //        {
+    //            CSceneNode* pModelNode = pRootNode->createChild("ModelNode", QVector3D(0, 10, 0));
+    //            pModelNode->scale(5.0);
+    //            pMeshInstance->setMass(0.5);
+    //            pMeshInstance->setPhysicShape(eCylinderShapeY);
+    //            pMeshInstance->setRollingFriction(0.4);
+    //            pMeshInstance->setMaterialName(pModelMat->getName());
+    //            pModelNode->addItem(pMeshInstance);
+    //            pMeshInstance->getNode()->addItem(CDebugManager::getInstance()->createBox(pMeshInstance->getBoundingBox(), Color::eGreen));
+    //            m_PhysicsManager.registerItem(pMeshInstance);
+    //        }
+    //    }
 
     CSphereMesh* pSphereMesh = CMeshManager::getInstance()->createCustomMesh<CSphereMesh>("CSphereMesh", "Cube");
     pSphereMesh->setRadius(1.);
@@ -129,7 +129,7 @@ TestPhysics::TestPhysics()
                 pSphere->setMass(1.0);
 
                 CSceneNode* pSphereNode = pRootNode->createChild(
-                                QVector3D(0, i * pSphereMesh->getRadius() + 30, 0));
+                            QVector3D(0, i * pSphereMesh->getRadius() + 30, 0));
                 pSphereNode->addItem(pSphere);
                 pSphereNode->scale(Math::randInt(1, 6));
                 m_PhysicsManager.registerItem(pSphere);
@@ -199,7 +199,7 @@ TestPhysics::TestPhysics()
     connect(m_pView, SIGNAL(touchScaleStarted()),  this, SLOT(onTouchScaleStarted()));
     //connect(m_pView, SIGNAL(touchScaleChanged(real)),      this, SLOT(onTouchScaleChanged(real)));
     //connect(m_pView, SIGNAL(touchScaleEnded()),                this, SLOT(onTouchScaleEnded()));
-	
+
     m_PhysicsManager.start();
 
     //m_pView->getRenderer()->setRasterizationMode(eRasterizationLine);
@@ -217,21 +217,21 @@ void TestPhysics::onMousePressed()
         return;
 
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
+    {
         CMouseStates mouseStates = m_pView->getMouseStates();
 
-		m_bPressed = true;
-		m_StartPan = m_LastPan = mouseStates.getPosition();
-		m_vStartEye = pCamera->getEyePosition();
-		m_vStartCenter = pCamera->getCenter();
-		m_vStartUpVector = pCamera->getUp();
-	}
+        m_bPressed = true;
+        m_StartPan = m_LastPan = mouseStates.getPosition();
+        m_vStartEye = pCamera->getEyePosition();
+        m_vStartCenter = pCamera->getCenter();
+        m_vStartUpVector = pCamera->getUp();
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void TestPhysics::onMouseReleased()
 {
-	m_bPressed = false;
+    m_bPressed = false;
     m_bTouch = false;
 
     if (CCamera* pCamera = m_pView->getCurrentCamera())
@@ -247,39 +247,39 @@ void TestPhysics::onMouseMoved()
         return;
 
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
-		if (m_bPressed)
-		{
+    {
+        if (m_bPressed)
+        {
             CMouseStates mouseStates = m_pView->getMouseStates();
 
-			QPoint delta = mouseStates.getPosition() - m_StartPan;
+            QPoint delta = mouseStates.getPosition() - m_StartPan;
 
-			if (mouseStates.isRightButtonPressed())
-			{
-				pCamera->setEyePosition(m_vStartEye);
-				pCamera->setCenter(m_vStartCenter);
-				pCamera->setUp(m_vStartUpVector);
-			}
-			else
-			{
-				m_StartPan = m_LastPan;
-				delta = mouseStates.getPosition() - m_StartPan;
-				m_vStartEye = pCamera->getEyePosition();
-				m_vStartCenter = pCamera->getCenter();
-				m_vStartUpVector = pCamera->getUp();
-			}
+            if (mouseStates.isRightButtonPressed())
+            {
+                pCamera->setEyePosition(m_vStartEye);
+                pCamera->setCenter(m_vStartCenter);
+                pCamera->setUp(m_vStartUpVector);
+            }
+            else
+            {
+                m_StartPan = m_LastPan;
+                delta = mouseStates.getPosition() - m_StartPan;
+                m_vStartEye = pCamera->getEyePosition();
+                m_vStartCenter = pCamera->getCenter();
+                m_vStartUpVector = pCamera->getUp();
+            }
 
-			m_LastPan = mouseStates.getPosition();
+            m_LastPan = mouseStates.getPosition();
 
-			if (mouseStates.isRightButtonPressed())
-			{
+            if (mouseStates.isRightButtonPressed())
+            {
                 wheel(-delta.y() * 2);
-			}
-			else
-			{
-				rotate(delta.x(), delta.y());
-			}
-		}
+            }
+            else
+            {
+                rotate(delta.x(), delta.y());
+            }
+        }
     }
 }
 
@@ -287,20 +287,20 @@ void TestPhysics::onMouseMoved()
 void TestPhysics::wheel(int delta)
 {
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
-		QVector3D viewVector = pCamera->getEyePosition() - pCamera->getCenter();
-		real zoomMag = viewVector.length();
-		real zoomIncrement = -real(delta) / 100.;
-		if (!qFuzzyIsNull(zoomIncrement))
-		{
-			zoomMag += zoomIncrement;
+    {
+        QVector3D viewVector = pCamera->getEyePosition() - pCamera->getCenter();
+        real zoomMag = viewVector.length();
+        real zoomIncrement = -real(delta) / 100.;
+        if (!qFuzzyIsNull(zoomIncrement))
+        {
+            zoomMag += zoomIncrement;
             if (zoomMag < 2.)
                 zoomMag = 2.;
 
-			CRay viewLine(pCamera->getCenter(), viewVector.normalized());
-			pCamera->setEyePosition(viewLine.point(zoomMag));
-		}
-	}
+            CRay viewLine(pCamera->getCenter(), viewVector.normalized());
+            pCamera->setEyePosition(viewLine.point(zoomMag));
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -310,16 +310,16 @@ void TestPhysics::rotate(int deltax, int deltay)
         return;
 
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
+    {
         real angleX = deltax * 90. / m_pView->width();
         real angleY = deltay * 90. / m_pView->height();
 
-		QQuaternion q = pCamera->pan(-angleX);
-		q *= pCamera->tilt(-angleY);
-		pCamera->rotateCenter(q);
+        QQuaternion q = pCamera->pan(-angleX);
+        q *= pCamera->tilt(-angleY);
+        pCamera->rotateCenter(q);
 
-		pCamera->setUp(QVector3D(0., 1., 0.));
-	}
+        pCamera->setUp(QVector3D(0., 1., 0.));
+    }
 }
 
 //-----------------------------------------------------------------------------------------

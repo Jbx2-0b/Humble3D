@@ -25,69 +25,69 @@ class QTextEdit;
 class GLSLSyntaxHighlighter;
 
 class CEditShaderTextItem : public CGraphicsWidgetItem
-                          , public CShader::IShaderListener
+        , public CShader::IShaderListener
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Constructeur
-	CEditShaderTextItem(QGraphicsScene* pScene);
+    //! Constructeur
+    CEditShaderTextItem(QGraphicsScene* pScene);
 
-	//! Destructeur
-	virtual ~CEditShaderTextItem();
+    //! Destructeur
+    virtual ~CEditShaderTextItem();
 
-	//! Definit la feuille de style CSS
-	void setStyleSheet(const QString& styleSheet);
+    //! Definit la feuille de style CSS
+    void setStyleSheet(const QString& styleSheet);
 
-	//! Retourne le texte
-	QString getText() const { return m_pEdit->toPlainText(); }
+    //! Retourne le texte
+    QString getText() const { return m_pEdit->toPlainText(); }
 
-	//! Definit le type de shader en cours d'edition
-	void setShaderType(EnumShaderType eType);
+    //! Definit le type de shader en cours d'edition
+    void setShaderType(EnumShaderType eType);
 
     //! Met a jour le texte
-	void updateText();
+    void updateText();
 
     //! Définit un nouveau message
     void setMessage(bool bIsError, const QString& message);
 
 protected:
 
-	//! Implementation de CShader::IListener
-	virtual void onUpdate(CShader* pShader);
+    //! Implementation de CShader::IListener
+    virtual void onUpdate(CShader* pShader);
 
     //! Implementation de CShader::IListener
-	virtual void onDelete(CShader* pShader);
+    virtual void onDelete(CShader* pShader);
 
 public slots:
 
-	void onEditShader(CShader* pShader);
+    void onEditShader(CShader* pShader);
 
-	void onSaveShader();
+    void onSaveShader();
 
 private slots:
 
-	void onTextChanged();
-	void onUpdateTimerTimeout();
+    void onTextChanged();
+    void onUpdateTimerTimeout();
 
 private:
 
-	QFrame* m_pCentralFrame;
+    QFrame* m_pCentralFrame;
 
-	QVBoxLayout* m_pCentralLayout;
+    QVBoxLayout* m_pCentralLayout;
 
-	CCodeEditor* m_pEdit;
+    CCodeEditor* m_pEdit;
 
-	QTextEdit* m_pConsole;
+    QTextEdit* m_pConsole;
 
-	GLSLSyntaxHighlighter* m_pHighlighter;
+    GLSLSyntaxHighlighter* m_pHighlighter;
 
-	CShader* m_pCurrentShader;
+    CShader* m_pCurrentShader;
 
-	EnumShaderType m_eCurrentType;
+    EnumShaderType m_eCurrentType;
 
-	QTimer m_UpdateShaderTimer;
+    QTimer m_UpdateShaderTimer;
 };
 
 
@@ -95,21 +95,21 @@ private:
 //-----------------------------------------------------------------------
 class GLSLSyntaxHighlighter  : public QSyntaxHighlighter
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	GLSLSyntaxHighlighter(QTextDocument* document);
+    GLSLSyntaxHighlighter(QTextDocument* document);
 
-	virtual void highlightBlock(const QString & text);
+    virtual void highlightBlock(const QString & text);
 
 private:
-	QList<QString>  m_Keywords;
-	QList<QString>  m_Variables;
+    QList<QString>  m_Keywords;
+    QList<QString>  m_Variables;
 
-	QTextCharFormat m_KeywordFormat;
-	QTextCharFormat m_VariableFormat;
-	QTextCharFormat m_CommentFormat;
-	QTextCharFormat m_VersionFormat;
+    QTextCharFormat m_KeywordFormat;
+    QTextCharFormat m_VariableFormat;
+    QTextCharFormat m_CommentFormat;
+    QTextCharFormat m_VersionFormat;
 };
 
 #endif // CEDITSHADERTEXTITEM_H

@@ -17,7 +17,7 @@
 
 //-----------------------------------------------------------------------
 CPhysicsManager::CPhysicsManager()
-: m_dTimeStep(dDefaultTimeStep)
+    : m_dTimeStep(dDefaultTimeStep)
 {
     ///collision configuration contains default setup for memory, collision setup
     m_pCollisionConfiguration = new btDefaultCollisionConfiguration();
@@ -53,7 +53,7 @@ void CPhysicsManager::start()
 //-----------------------------------------------------------------------
 void CPhysicsManager::stop()
 {
-    m_Timer.stop();           
+    m_Timer.stop();
 }
 
 //-----------------------------------------------------------------------
@@ -206,73 +206,73 @@ CPhysicsManager::CShapeInfo::CShapeInfo(btDiscreteDynamicsWorld* pWorld, CSceneN
 {
     switch (pItem->getPhysicShape())
     {
-        case eBoxShape:
-        {
-            btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
-            m_pShape = new btBoxShape(halfSize);
-        }
+    case eBoxShape:
+    {
+        btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
+        m_pShape = new btBoxShape(halfSize);
+    }
         break;
 
-        case eCylinderShapeX:
-        {
-            btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
-            m_pShape = new btCylinderShapeX(halfSize);
-        }
+    case eCylinderShapeX:
+    {
+        btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
+        m_pShape = new btCylinderShapeX(halfSize);
+    }
         break;
 
-        case eCylinderShapeY:
-        {
-            btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
-            m_pShape = new btCylinderShape(halfSize);
-        }
+    case eCylinderShapeY:
+    {
+        btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
+        m_pShape = new btCylinderShape(halfSize);
+    }
         break;
 
-        case eCylinderShapeZ:
-        {
-            btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
-            m_pShape = new btCylinderShapeZ(halfSize);
-        }
+    case eCylinderShapeZ:
+    {
+        btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
+        m_pShape = new btCylinderShapeZ(halfSize);
+    }
         break;
 
-        case eConvexHullShape:
+    case eConvexHullShape:
+    {
+        m_pShape = new btConvexHullShape();
+        if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(pItem))
         {
-            m_pShape = new btConvexHullShape();
-            if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(pItem))
+            btConvexHullShape* pConvexShape = static_cast<btConvexHullShape*>(m_pShape);
+            foreach (CSubMesh* pSubMesh, pMeshInstance->getMesh()->subMeshs())
             {
-                btConvexHullShape* pConvexShape = static_cast<btConvexHullShape*>(m_pShape);
-                foreach (CSubMesh* pSubMesh, pMeshInstance->getMesh()->subMeshs())
+                foreach (const QVector3D& pt, pSubMesh->positionsBuffer())
                 {
-                        foreach (const QVector3D& pt, pSubMesh->positionsBuffer())
-                        {
-                            pConvexShape->addPoint(CBulletHelper::toBulletVector3D(pt), false);
-                        }
+                    pConvexShape->addPoint(CBulletHelper::toBulletVector3D(pt), false);
                 }
-                pConvexShape->recalcLocalAabb();
             }
-            else
-            {
-                pLog->addMessage(eERROR, "Only mesh can have convex hull shape !");
-            }
+            pConvexShape->recalcLocalAabb();
         }
-        break;
-
-        default:
-        case eSphereShape:
+        else
         {
-            real radius = CSphere(m_pNode->getLocalAxisAlignedBoundingBox(false), CSphere::eInnerSphere).getRadius();
-            m_pShape = new btSphereShape(radius);
+            pLog->addMessage(eERROR, "Only mesh can have convex hull shape !");
         }
+    }
         break;
 
-//            TODO
-//            eCapsuleShape,
-//            eConeShape,
-//            eMultiSphereShape,
-//            eCompoundShape,
-//            eConvexHullShape,
-//            eBvhTriangleMeshShape,
-//            eHeightfieldTerrainShape,
-//            eStaticPlaneShape
+    default:
+    case eSphereShape:
+    {
+        real radius = CSphere(m_pNode->getLocalAxisAlignedBoundingBox(false), CSphere::eInnerSphere).getRadius();
+        m_pShape = new btSphereShape(radius);
+    }
+        break;
+
+        //            TODO
+        //            eCapsuleShape,
+        //            eConeShape,
+        //            eMultiSphereShape,
+        //            eCompoundShape,
+        //            eConvexHullShape,
+        //            eBvhTriangleMeshShape,
+        //            eHeightfieldTerrainShape,
+        //            eStaticPlaneShape
     }
 
     // Mass, inertia
@@ -302,15 +302,15 @@ CPhysicsManager::CShapeInfo::CShapeInfo(btDiscreteDynamicsWorld* pWorld, CSceneN
     QVector3D localScaling = pNode->getLocalScaling();
     m_pShape->setLocalScaling(CBulletHelper::toBulletVector3D(localScaling));
 
-//    btTransform t;
-//    t.setIdentity();
-//    btVector3 min, max;
-//    m_pShape->getAabb(t, min, max);
+    //    btTransform t;
+    //    t.setIdentity();
+    //    btVector3 min, max;
+    //    m_pShape->getAabb(t, min, max);
 
-//    m_pNode->addItem(CDebugManager::getInstance()->createBox(
-//                         CBox3D(Math::divide(CBulletHelper::toQVector3D(min), localScaling),
-//                                Math::divide(CBulletHelper::toQVector3D(max), localScaling)),
-//                         Color::eRed));
+    //    m_pNode->addItem(CDebugManager::getInstance()->createBox(
+    //                         CBox3D(Math::divide(CBulletHelper::toQVector3D(min), localScaling),
+    //                                Math::divide(CBulletHelper::toQVector3D(max), localScaling)),
+    //                         Color::eRed));
 }
 
 //-----------------------------------------------------------------------

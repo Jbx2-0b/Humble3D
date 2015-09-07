@@ -169,7 +169,7 @@ public:
 
     bool operator==(const CPlane& rhs) const
     {
-          return (rhs.m_fD == m_fD && rhs.m_vNormal == m_vNormal);
+        return (rhs.m_fD == m_fD && rhs.m_vNormal == m_vNormal);
     }
 
     bool operator!=(const CPlane& rhs) const

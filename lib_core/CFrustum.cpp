@@ -11,80 +11,80 @@ CFrustum::CFrustum(const QMatrix4x4& modelViewProjectionMatrix)
 void CFrustum::update(const QMatrix4x4& mvp)
 {
     m_Planes[eLeft] = CPlane(
-            mvp(3, 0) + mvp(0, 0),
-            mvp(3, 1) + mvp(0, 1),
-            mvp(3, 2) + mvp(0, 2),
-            mvp(3, 3) + mvp(0, 3));
+                mvp(3, 0) + mvp(0, 0),
+                mvp(3, 1) + mvp(0, 1),
+                mvp(3, 2) + mvp(0, 2),
+                mvp(3, 3) + mvp(0, 3));
 
     m_Planes[eRight] = CPlane(
-            mvp(3, 0) - mvp(0, 0),
-            mvp(3, 1) - mvp(0, 1),
-            mvp(3, 2) - mvp(0, 2),
-            mvp(3, 3) - mvp(0, 3));
+                mvp(3, 0) - mvp(0, 0),
+                mvp(3, 1) - mvp(0, 1),
+                mvp(3, 2) - mvp(0, 2),
+                mvp(3, 3) - mvp(0, 3));
 
     m_Planes[eTop] = CPlane(
-            mvp(3, 0) - mvp(1, 0),
-            mvp(3, 1) - mvp(1, 1),
-            mvp(3, 2) - mvp(1, 2),
-            mvp(3, 3) - mvp(1, 3));
+                mvp(3, 0) - mvp(1, 0),
+                mvp(3, 1) - mvp(1, 1),
+                mvp(3, 2) - mvp(1, 2),
+                mvp(3, 3) - mvp(1, 3));
 
     m_Planes[eBottom] = CPlane(
-            mvp(3, 0) + mvp(1, 0),
-            mvp(3, 1) + mvp(1, 1),
-            mvp(3, 2) + mvp(1, 2),
-            mvp(3, 3) + mvp(1, 3));
+                mvp(3, 0) + mvp(1, 0),
+                mvp(3, 1) + mvp(1, 1),
+                mvp(3, 2) + mvp(1, 2),
+                mvp(3, 3) + mvp(1, 3));
 
     m_Planes[eNear] = CPlane(
-            mvp(3, 0) + mvp(2, 0),
-            mvp(3, 1) + mvp(2, 1),
-            mvp(3, 2) + mvp(2, 2),
-            mvp(3, 3) + mvp(2, 3));
+                mvp(3, 0) + mvp(2, 0),
+                mvp(3, 1) + mvp(2, 1),
+                mvp(3, 2) + mvp(2, 2),
+                mvp(3, 3) + mvp(2, 3));
 
     m_Planes[eFar] = CPlane(
-            mvp(3, 0) - mvp(2, 0),
-            mvp(3, 1) - mvp(2, 1),
-            mvp(3, 2) - mvp(2, 2),
-            mvp(3, 3) - mvp(2, 3));
+                mvp(3, 0) - mvp(2, 0),
+                mvp(3, 1) - mvp(2, 1),
+                mvp(3, 2) - mvp(2, 2),
+                mvp(3, 3) - mvp(2, 3));
 
     for(int i = 0; i < 6; i++)
     {
         m_Planes[i].normalize();
-//        real length = m_Planes[i].getNormal().length();
-//        m_Planes[i].getNormal().normalize();
-//        m_Planes[i].setConstant(m_Planes[i].getConstant() / length);
+        //        real length = m_Planes[i].getNormal().length();
+        //        m_Planes[i].getNormal().normalize();
+        //        m_Planes[i].setConstant(m_Planes[i].getConstant() / length);
     }
 }
 
 //-----------------------------------------------------------------------------------------
 EnumIntersectionType CFrustum::isPointInFrustum(const QVector3D& point) const
 {
-	EnumIntersectionType eResult = eInside;
+    EnumIntersectionType eResult = eInside;
 
-	for (int i = 0; i < 6; i++)
-	{
+    for (int i = 0; i < 6; i++)
+    {
         if (m_Planes[i].getDistance(point) < 0)
-			return eOutside;
-	}
+            return eOutside;
+    }
 
-	return eResult;
+    return eResult;
 }
 
 //-----------------------------------------------------------------------------------------
 EnumIntersectionType CFrustum::isSphereInFrustum(const CSphere& sphere) const
 {
-	real dDistance;
-	EnumIntersectionType eResult = eInside;
+    real dDistance;
+    EnumIntersectionType eResult = eInside;
 
-	for(int i=0; i < 6; i++)
-	{
+    for(int i=0; i < 6; i++)
+    {
         dDistance = m_Planes[i].getDistance(sphere.getCenter());
         if (dDistance < -sphere.getRadius())
-			return eOutside;
+            return eOutside;
         else if (dDistance < sphere.getRadius())
-			eResult =  eIntersect;
-	}
+            eResult =  eIntersect;
+    }
 
-	return eResult;
+    return eResult;
 }
 
 //-----------------------------------------------------------------------------------------

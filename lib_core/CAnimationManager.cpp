@@ -2,22 +2,22 @@
 
 //-----------------------------------------------------------------------------------------
 CAnimationManager::CAnimationManager(CSceneManager* pSceneManager)
-: m_bRun(false)
-, m_pSceneManager(pSceneManager)
-, m_iDT(s_iDefaultDT)
+    : m_bRun(false)
+    , m_pSceneManager(pSceneManager)
+    , m_iDT(s_iDefaultDT)
 {
-	m_pSceneManager->registerAnimationListener(this);
-	m_Time.start();
-	connect(&m_Timer, SIGNAL(timeout()), this, SLOT(onTimerTimeout()));
+    m_pSceneManager->registerAnimationListener(this);
+    m_Time.start();
+    connect(&m_Timer, SIGNAL(timeout()), this, SLOT(onTimerTimeout()));
 }
 
 //-----------------------------------------------------------------------------------------
 CAnimationManager::~CAnimationManager()
 {
-	if (m_pSceneManager)
-	{
-		m_pSceneManager->unregisterAnimationListener(this);
-	}
+    if (m_pSceneManager)
+    {
+        m_pSceneManager->unregisterAnimationListener(this);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -35,29 +35,29 @@ void CAnimationManager::unregisterListener(IAnimationManagerListener* pListener)
 //-----------------------------------------------------------------------------------------
 void CAnimationManager::run()
 {
-	m_bRun = true;
-	m_Timer.start(m_iDT);
+    m_bRun = true;
+    m_Timer.start(m_iDT);
 }
 
 //-----------------------------------------------------------------------------------------
 void CAnimationManager::stop()
 {
-	m_bRun = false;
-	m_Timer.stop();
+    m_bRun = false;
+    m_Timer.stop();
 }
 
 //-----------------------------------------------------------------------------------------
 void CAnimationManager::setDT(unsigned int iDT)
 {
-	m_iDT = iDT;
-	m_Timer.stop();
-	m_Timer.start(m_iDT);
+    m_iDT = iDT;
+    m_Timer.stop();
+    m_Timer.start(m_iDT);
 }
 
 //-----------------------------------------------------------------------------------------
 unsigned int CAnimationManager::getDT() const
 {
-	return m_iDT;
+    return m_iDT;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -65,17 +65,17 @@ void CAnimationManager::onTimerTimeout()
 {
     if (m_bRun)
     {
-		bool bNeedUpdate = false;
+        bool bNeedUpdate = false;
 
         foreach (CAnimation* pAnimation, m_Animations)
         {
-			real dTicksPerSecond = pAnimation->getTicksPerSecond() != 0 ? pAnimation->getTicksPerSecond() : DefaultTicksPerSecond;
+            real dTicksPerSecond = pAnimation->getTicksPerSecond() != 0 ? pAnimation->getTicksPerSecond() : DefaultTicksPerSecond;
 
             const QList<CSceneNodeAnimation*>& nodeChannels = pAnimation->getNodeAnimations();
 
             foreach (CSceneNodeAnimation* pNodeAnimation, nodeChannels)
             {
-				real dNodeAnimationTime = pNodeAnimation->getAnimationTime();
+                real dNodeAnimationTime = pNodeAnimation->getAnimationTime();
 
                 if (dNodeAnimationTime > 0.)
                 {
@@ -98,79 +98,79 @@ void CAnimationManager::onTimerTimeout()
                         }
 
                         if (dCurrentAnimationTime < dTotalAnimationTime)
-						{
-							pNode->resetTransformation();
+                        {
+                            pNode->resetTransformation();
 
-							double t = (dCurrentAnimationTime / 1000.) * dTicksPerSecond;
+                            double t = (dCurrentAnimationTime / 1000.) * dTicksPerSecond;
 
-							//---------------------------------------------------------
-							// Positions Interpolation
-							//---------------------------------------------------------
-							QPair<CVectorKey, CVectorKey> posKeys = pNodeAnimation->getPositionKeys(t);
-							QVector3D position;
+                            //---------------------------------------------------------
+                            // Positions Interpolation
+                            //---------------------------------------------------------
+                            QPair<CVectorKey, CVectorKey> posKeys = pNodeAnimation->getPositionKeys(t);
+                            QVector3D position;
 
-							if (posKeys.first == posKeys.second)
-							{
-								position = posKeys.first.getValue();
-							}
-							else
-							{
-								double t1 = posKeys.first.getTime();
-								double t2 = posKeys.second.getTime();
+                            if (posKeys.first == posKeys.second)
+                            {
+                                position = posKeys.first.getValue();
+                            }
+                            else
+                            {
+                                double t1 = posKeys.first.getTime();
+                                double t2 = posKeys.second.getTime();
 
-								m_vIpl(position, posKeys.first, posKeys.second, (t - t1)/(t2 - t1));
-							}
-							
-							//---------------------------------------------------------
-							// Rotations Interpolation
-							//---------------------------------------------------------
-							QPair<CQuaternionKey, CQuaternionKey> rotKeys = pNodeAnimation->getRotationKeys(t);
-							QQuaternion rotation;
+                                m_vIpl(position, posKeys.first, posKeys.second, (t - t1)/(t2 - t1));
+                            }
 
-							if (rotKeys.first == rotKeys.second)
-							{
-								rotation = rotKeys.first.getValue();
-							}
-							else
-							{
-								double t1 = rotKeys.first.getTime();
-								double t2 = rotKeys.second.getTime();
-								m_qIpl(rotation, rotKeys.first, rotKeys.second, (t - t1)/(t2 - t1));
-							}
+                            //---------------------------------------------------------
+                            // Rotations Interpolation
+                            //---------------------------------------------------------
+                            QPair<CQuaternionKey, CQuaternionKey> rotKeys = pNodeAnimation->getRotationKeys(t);
+                            QQuaternion rotation;
 
-							//---------------------------------------------------------
-							// Scaling Interpolation
-							//---------------------------------------------------------
-							QPair<CVectorKey, CVectorKey> scaKeys = pNodeAnimation->getScalingKeys(t);
-							QVector3D scaling;
+                            if (rotKeys.first == rotKeys.second)
+                            {
+                                rotation = rotKeys.first.getValue();
+                            }
+                            else
+                            {
+                                double t1 = rotKeys.first.getTime();
+                                double t2 = rotKeys.second.getTime();
+                                m_qIpl(rotation, rotKeys.first, rotKeys.second, (t - t1)/(t2 - t1));
+                            }
 
-							if (scaKeys.first == scaKeys.second)
-							{
-								scaling = scaKeys.first.getValue();
-							}
-							else
-							{
-								double t1 = scaKeys.first.getTime();
-								double t2 = scaKeys.second.getTime();
-								m_vIpl(scaling, scaKeys.first, scaKeys.second, (t - t1)/(t2 - t1));
-							}
-						
-							pNode->translate(position);
-							pNode->rotate(rotation);
-							pNode->scale(scaling);						
+                            //---------------------------------------------------------
+                            // Scaling Interpolation
+                            //---------------------------------------------------------
+                            QPair<CVectorKey, CVectorKey> scaKeys = pNodeAnimation->getScalingKeys(t);
+                            QVector3D scaling;
 
-							bNeedUpdate = true;
-						}
+                            if (scaKeys.first == scaKeys.second)
+                            {
+                                scaling = scaKeys.first.getValue();
+                            }
+                            else
+                            {
+                                double t1 = scaKeys.first.getTime();
+                                double t2 = scaKeys.second.getTime();
+                                m_vIpl(scaling, scaKeys.first, scaKeys.second, (t - t1)/(t2 - t1));
+                            }
+
+                            pNode->translate(position);
+                            pNode->rotate(rotation);
+                            pNode->scale(scaling);
+
+                            bNeedUpdate = true;
+                        }
                     }
                 }
-			}
-		}
+            }
+        }
 
-		if (bNeedUpdate)
-		{
-			notifyUpdate();
-		}
-	}
+        if (bNeedUpdate)
+        {
+            notifyUpdate();
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -220,7 +220,7 @@ void CAnimationManager::onStopAnimation(CAnimation* pAnimation)
 void CAnimationManager::notifyUpdate()
 {
     foreach (IAnimationManagerListener* pListener, m_AnimationManagerListeners)
-	{
-		pListener->onUpdateAnimation();
-	}
+    {
+        pListener->onUpdateAnimation();
+    }
 }

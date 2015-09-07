@@ -25,43 +25,43 @@
 /// \brief Interface pour les renderers
 //////////////////////////////////////////////////////
 class LIB_CORE_SHARED_EXPORT ARenderer 
-    : public AEntity
-    , public AWashable
-    , public CShaderManager::IShaderManagerListener
-    , public CMeshManager::IMeshBufferListener
-    , public CSceneManager::ISceneManagerListener
-    , public CTextureManager::ITextureManagerListener
+        : public AEntity
+        , public AWashable
+        , public CShaderManager::IShaderManagerListener
+        , public CMeshManager::IMeshBufferListener
+        , public CSceneManager::ISceneManagerListener
+        , public CTextureManager::ITextureManagerListener
 {
 public:
 
-	//! Constructeur
+    //! Constructeur
     ARenderer(CSceneManager* pSceneManager)
-		: AEntity("Renderer")
+        : AEntity("Renderer")
         , m_isInitialized(false)
-		, m_pSceneManager(pSceneManager)
-		, m_bEnabled(false)
-		, m_eRasterizationMode(eRasterizationFill)
+        , m_pSceneManager(pSceneManager)
+        , m_bEnabled(false)
+        , m_eRasterizationMode(eRasterizationFill)
         , m_iWidth(DefaultResolutionWidth)
         , m_iHeight(DefaultResolutionHeight)
         , m_bFrustumCullingEnabled(true)
         , m_pCurrentCamera(0)
-	{
-	}
+    {
+    }
 
-	//! Destructeur
+    //! Destructeur
     virtual ~ARenderer() {}
 
-	//! Effectue le rendu de l'ensemble des objets du gestionnaire de scene
+    //! Effectue le rendu de l'ensemble des objets du gestionnaire de scene
     virtual void render() = 0;
 
-	//! Initialise le renderer
+    //! Initialise le renderer
     inline virtual bool init() = 0;
 
-	//! Effectue le rendu d'un vertexbuffer
-	virtual void renderMeshBuffer(CMeshBuffer* pBuffer) = 0;
+    //! Effectue le rendu d'un vertexbuffer
+    virtual void renderMeshBuffer(CMeshBuffer* pBuffer) = 0;
 
-	//! Effectue le rendu d'une liste de vertex buffer
-	virtual void renderMeshBuffer(const QList<CMeshBuffer*>& buffers) = 0;
+    //! Effectue le rendu d'une liste de vertex buffer
+    virtual void renderMeshBuffer(const QList<CMeshBuffer*>& buffers) = 0;
 
     //! Définit la résolution
     virtual void setResolution(int iWidth, int iHeight)                 { m_iWidth = iWidth; m_iHeight = iHeight; setDirty(); }
@@ -75,7 +75,7 @@ public:
     //! Retourne la hauteur
     int getHeight() const                                               { return m_iHeight; }
 
-	//! Démarre le renderer
+    //! Démarre le renderer
     void run()                                                          { m_bEnabled = true; }
 
     //! Arrête le renderer
@@ -84,29 +84,29 @@ public:
     //! Définit l'état du renderer
     void setEnabled(bool bEnabled)                                      { m_bEnabled = bEnabled; }
 
-	//! Retourne true si est démarré
+    //! Retourne true si est démarré
     bool isEnabled() const												{ return m_bEnabled; }
     
-	//! Retourne true si le renderer est initialisé
+    //! Retourne true si le renderer est initialisé
     virtual bool isInit() const											{ return m_isInitialized; }
 
-	//! Accesseur sur le gestionnaire de scene
-	CSceneManager* getSceneManager()									{ return m_pSceneManager; }
+    //! Accesseur sur le gestionnaire de scene
+    CSceneManager* getSceneManager()									{ return m_pSceneManager; }
 
-	//! Invalide le gestionnaire de scene
-	virtual void invalidSceneManager()									{ m_pSceneManager = 0; }
+    //! Invalide le gestionnaire de scene
+    virtual void invalidSceneManager()									{ m_pSceneManager = 0; }
 
-	//! Accesseur sur les états
-	CRenderStates& renderStates()										{ return m_RequestRenderStates; }
+    //! Accesseur sur les états
+    CRenderStates& renderStates()										{ return m_RequestRenderStates; }
 
-	//! Accesseur sur les états
+    //! Accesseur sur les états
     void setRenderStates(const CRenderStates& states)					{ m_RequestRenderStates = states; onUpdateRenderStates(); }
 
-	//! Définit le mode de rasterization
-	void setRasterizationMode(EnumRasterizationMode eRasterizationMode)	{ m_eRasterizationMode = eRasterizationMode; }
-	
-	//! Retourne le mode de rasterization
-	EnumRasterizationMode getRasterizationMode() const					{ return m_eRasterizationMode; }
+    //! Définit le mode de rasterization
+    void setRasterizationMode(EnumRasterizationMode eRasterizationMode)	{ m_eRasterizationMode = eRasterizationMode; }
+
+    //! Retourne le mode de rasterization
+    EnumRasterizationMode getRasterizationMode() const					{ return m_eRasterizationMode; }
 
     //! Active ou desactive le frustum culling.
     void setFrustumCullingEnabled(bool bEnabled)                        { m_bFrustumCullingEnabled = bEnabled; }
@@ -128,26 +128,26 @@ public:
 
 protected:   
 
-	//! True si initialisé
-	bool m_isInitialized;
+    //! True si initialisé
+    bool m_isInitialized;
 
-	//! Pointeur sur le gestionnaire de scene
-	CSceneManager* m_pSceneManager;
+    //! Pointeur sur le gestionnaire de scene
+    CSceneManager* m_pSceneManager;
 
-	//! Si vrai, effectue le rendu
-	bool m_bEnabled;
+    //! Si vrai, effectue le rendu
+    bool m_bEnabled;
 
     //! Couleur d'effacement
     QVector4D m_BackgroundColor;
 
-	//! Etat en cours
-	CRenderStates m_CurrentRenderStates;
+    //! Etat en cours
+    CRenderStates m_CurrentRenderStates;
 
-	//! Etat désiré
-	CRenderStates m_RequestRenderStates;
+    //! Etat désiré
+    CRenderStates m_RequestRenderStates;
 
-	//! Mode de rasterization
-	EnumRasterizationMode m_eRasterizationMode;
+    //! Mode de rasterization
+    EnumRasterizationMode m_eRasterizationMode;
 
     //! Largeur
     int m_iWidth;

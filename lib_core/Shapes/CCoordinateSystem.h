@@ -12,22 +12,22 @@ class LIB_CORE_SHARED_EXPORT CCoordinateSystem : public CMesh
 {
 public:
 
-	enum EnumArrowAxis
-	{
-		eArrowAxisX,
-		eArrowAxisY,
-		eArrowAxisZ,
-	};
+    enum EnumArrowAxis
+    {
+        eArrowAxisX,
+        eArrowAxisY,
+        eArrowAxisZ,
+    };
 
-	//! Constructeur
-	CCoordinateSystem();
+    //! Constructeur
+    CCoordinateSystem();
 
-	//! Destructeur
-	virtual ~CCoordinateSystem();
+    //! Destructeur
+    virtual ~CCoordinateSystem();
 
 protected:
 
-	virtual void updateGeometry();
+    virtual void updateGeometry();
 
 private:
 

@@ -25,106 +25,106 @@ class LIB_CORE_SHARED_EXPORT AEntity : public ALockable
 {
 public:
 
-	//! Constructeur
+    //! Constructeur
     AEntity();
 
-	//! Constructeur
+    //! Constructeur
     AEntity(const QString& name);
 
-	//! Destructeur
+    //! Destructeur
     virtual ~AEntity();
 
-	//-------------------------------------------------------------------------------------------------
-	// Setters
-	//-------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
+    // Setters
+    //-------------------------------------------------------------------------------------------------
 
-	//! Définit le nom
+    //! Définit le nom
     void setName(const QString& name);
 
-	//! Définit si les notifications sont activées
-	void setNotificationsEnabled(bool bEnabled) { m_bNotificationsEnabled = bEnabled; }
+    //! Définit si les notifications sont activées
+    void setNotificationsEnabled(bool bEnabled) { m_bNotificationsEnabled = bEnabled; }
 
-	//-------------------------------------------------------------------------------------------------
-	// Getters
-	//-------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
+    // Getters
+    //-------------------------------------------------------------------------------------------------
 
-	//! Retourne le nom du type
+    //! Retourne le nom du type
     virtual QString getTypeName() const = 0;
 
-	//! Retourne le nom
-	const QString& getName() const { return m_Name; }
+    //! Retourne le nom
+    const QString& getName() const { return m_Name; }
 
-	//! Retourne l'ID
+    //! Retourne l'ID
     int getID() const { return m_iID; }
 
-	//! Retourne vrai si les notifications sont activées
-	bool isNotificationsEnabled() const { return m_bNotificationsEnabled; }
+    //! Retourne vrai si les notifications sont activées
+    bool isNotificationsEnabled() const { return m_bNotificationsEnabled; }
 
-	//! Crée une string contenant les propriétés de l'objet
+    //! Crée une string contenant les propriétés de l'objet
     virtual QString toString() const
-	{
-		QString result;
-		result += "[Entity \n";
-		result += QString("Name: %1\n").arg(m_Name);
-		result += QString("ID: %1\n").arg(m_iID);
-		result += QString("Notifications: %1\n").arg(m_bNotificationsEnabled);
-		result += "]\n";
-		return result;
-	}
+    {
+        QString result;
+        result += "[Entity \n";
+        result += QString("Name: %1\n").arg(m_Name);
+        result += QString("ID: %1\n").arg(m_iID);
+        result += QString("Notifications: %1\n").arg(m_bNotificationsEnabled);
+        result += "]\n";
+        return result;
+    }
 
-	//-------------------------------------------------------------------------------------------------
-	// Listeners
-	//-------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
+    // Listeners
+    //-------------------------------------------------------------------------------------------------
 
     class IEntityListener
-	{
-		friend class AEntity;
+    {
+        friend class AEntity;
 
-	protected:
+    protected:
 
-		virtual void onUpdate(AEntity* pEntity) = 0;
+        virtual void onUpdate(AEntity* pEntity) = 0;
         virtual void onDelete(AEntity* pEntity) = 0;
-	};
+    };
 
-	//! Enregistre un listener
+    //! Enregistre un listener
     void registerListener(IEntityListener* pListener)
-	{
+    {
         m_EntityListeners.insert(pListener);
-	}
+    }
 
-	//! Libére un listener
+    //! Libére un listener
     void unregisterListener(IEntityListener* pListener)
-	{
+    {
         m_EntityListeners.remove(pListener);
-	}
+    }
 
 protected:
 
-	//! Notifie d'une mise à jour
-	virtual void notifyUpdate()
-	{
-		if (m_bNotificationsEnabled)
-		{
+    //! Notifie d'une mise à jour
+    virtual void notifyUpdate()
+    {
+        if (m_bNotificationsEnabled)
+        {
             foreach (IEntityListener* pListener, m_EntityListeners)
-			{
-				pListener->onUpdate(this);
-			}
-		}
-	}
+            {
+                pListener->onUpdate(this);
+            }
+        }
+    }
 
-	//! Notifie d'une suppression
-	virtual void notifyDelete()
-	{
-		if (m_bNotificationsEnabled)
-		{
+    //! Notifie d'une suppression
+    virtual void notifyDelete()
+    {
+        if (m_bNotificationsEnabled)
+        {
             foreach (IEntityListener* pListener, m_EntityListeners)
-			{
-				pListener->onDelete(this);
-			}
-		}
-	}
+            {
+                pListener->onDelete(this);
+            }
+        }
+    }
 
-	//! Liste des listeners
+    //! Liste des listeners
     QSet<IEntityListener*> m_EntityListeners;
 
     //! Nom
@@ -138,10 +138,10 @@ private:
     //! ID unique
     int m_iID;
 
-	//! Generateur d'ID
+    //! Generateur d'ID
     static CIDGenerator s_IDGenerator;
 
-	//! Generateur de noms
+    //! Generateur de noms
     static CNameGenerator s_NameGenerator;
 };
 

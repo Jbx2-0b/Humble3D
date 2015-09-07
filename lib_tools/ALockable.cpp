@@ -1,8 +1,8 @@
 #include "ALockable.h"
 
 ALockable::ALockable()
-: m_Mutex(QMutex::Recursive)
-, m_bIsLocked(false){}
+    : m_Mutex(QMutex::Recursive)
+    , m_bIsLocked(false){}
 
 //! Rend la ressource accessible
 void ALockable::lock()

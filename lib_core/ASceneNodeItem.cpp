@@ -4,16 +4,16 @@
 
 //-----------------------------------------------------------------------------------------
 ASceneNodeItem::ASceneNodeItem(CSceneManager* pSceneManager, const QString& name)
-: AEntity(name)
-, m_pSceneManager(pSceneManager)
-, m_bVisible(true)
-, m_bSelectable(true)
-, m_bSelected(false)
-, m_ePhysicShape(eBoxShape)
-, m_dMass(0.)
-, m_dRestitution(0)
-, m_dFriction(0.5)
-, m_dRollingFriction(0)
+    : AEntity(name)
+    , m_pSceneManager(pSceneManager)
+    , m_bVisible(true)
+    , m_bSelectable(true)
+    , m_bSelected(false)
+    , m_ePhysicShape(eBoxShape)
+    , m_dMass(0.)
+    , m_dRestitution(0)
+    , m_dFriction(0.5)
+    , m_dRollingFriction(0)
 
 {
 }
@@ -21,14 +21,14 @@ ASceneNodeItem::ASceneNodeItem(CSceneManager* pSceneManager, const QString& name
 //-----------------------------------------------------------------------------------------
 ASceneNodeItem::~ASceneNodeItem()
 {
-	// Previent les abonnés que l'objet va être détruit
-	notifyDelete();
+    // Previent les abonnés que l'objet va être détruit
+    notifyDelete();
 
-	// On prévient les noeuds qu'on supprime l'item
-	foreach (CSceneNode* pNode, m_Nodes)
-	{
-		pNode->removeItem(this);
-	}
+    // On prévient les noeuds qu'on supprime l'item
+    foreach (CSceneNode* pNode, m_Nodes)
+    {
+        pNode->removeItem(this);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -78,31 +78,31 @@ void ASceneNodeItem::notifyDelete()
 //-----------------------------------------------------------------------------------------
 void ASceneNodeItem::setVisible(bool bVisible)
 {
-	m_bVisible = bVisible;
-	notifyUpdate();
+    m_bVisible = bVisible;
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void ASceneNodeItem::setSelectable(bool bSelectable)
 {
-	m_bSelectable = bSelectable;
-	notifyUpdate();
+    m_bSelectable = bSelectable;
+    notifyUpdate();
 }
 
 //-----------------------------------------------------------------------------------------
 void ASceneNodeItem::setSelected(bool bSelected)
 {
-	if (m_bSelectable)
-	{
-		m_bSelected = bSelected;
-		notifyUpdate();
-	}
+    if (m_bSelectable)
+    {
+        m_bSelected = bSelected;
+        notifyUpdate();
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void ASceneNodeItem::setPhysicShape(EnumPhysicShape ePhysicShape)
 {
-	m_ePhysicShape = ePhysicShape;
+    m_ePhysicShape = ePhysicShape;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -146,7 +146,7 @@ void ASceneNodeItem::setAngularVelocity(const QVector3D& angularVelocity)
 //-----------------------------------------------------------------------------------------
 CSceneManager* ASceneNodeItem::getSceneManager() const
 { 
-	return m_pSceneManager;
+    return m_pSceneManager;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -158,13 +158,13 @@ bool ASceneNodeItem::isVisible() const
 //-----------------------------------------------------------------------------------------
 bool ASceneNodeItem::isSelectable() const
 {
-	return m_bSelectable;
+    return m_bSelectable;
 }
 
 //-----------------------------------------------------------------------------------------
 bool ASceneNodeItem::isSelected() const
 {
-	return m_bSelected;
+    return m_bSelected;
 }
 
 //-----------------------------------------------------------------------------------------

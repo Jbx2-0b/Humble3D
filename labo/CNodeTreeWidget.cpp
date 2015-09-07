@@ -82,109 +82,109 @@ static const QString GeometryShaderKey = "Geometry Shader";
 
 //-----------------------------------------------------------------------------------------
 CNodeTreeWidget::CNodeTreeWidget(CSceneManager* pSceneManager, AView* pView, CEditShaderTextItem* pEditItem, QWidget* parent /*= 0*/)
-: QTreeWidget(parent)
-, m_pSceneManager(pSceneManager)
-, m_pView(pView)
-, m_pCurrentEntity(0)
-, m_pEditItem(pEditItem)
+    : QTreeWidget(parent)
+    , m_pSceneManager(pSceneManager)
+    , m_pView(pView)
+    , m_pCurrentEntity(0)
+    , m_pEditItem(pEditItem)
 {
-	setColumnCount(1);
-	header()->setVisible(false);
+    setColumnCount(1);
+    header()->setVisible(false);
 
-	updateData();
+    updateData();
 
-	setEditTriggers(QAbstractItemView::EditKeyPressed | QAbstractItemView::SelectedClicked);
-	setExpandsOnDoubleClick(false);
+    setEditTriggers(QAbstractItemView::EditKeyPressed | QAbstractItemView::SelectedClicked);
+    setExpandsOnDoubleClick(false);
 
-	connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(onItemChanged(QTreeWidgetItem*, int)));
+    connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(onItemChanged(QTreeWidgetItem*, int)));
 
-	m_pDeleteAction = new QAction(tr("Delete"), this);
-	connect(m_pDeleteAction, SIGNAL(triggered()), this, SLOT(onDeleteClicked()));
+    m_pDeleteAction = new QAction(tr("Delete"), this);
+    connect(m_pDeleteAction, SIGNAL(triggered()), this, SLOT(onDeleteClicked()));
 
     m_pSaveAction = new QAction(tr("Save"), this);
     connect(m_pSaveAction, SIGNAL(triggered()), this, SLOT(onSaveClicked()));
 
-	m_pSetCurrentAction = new QAction(tr("Set Current"), this);
-	connect(m_pSetCurrentAction, SIGNAL(triggered()), this, SLOT(onSetCurrentClicked()));
-	
-	QTimer* pUpdateTimer = new QTimer(this);
-	connect(pUpdateTimer, SIGNAL(timeout()), this, SLOT(onUpdate()));
+    m_pSetCurrentAction = new QAction(tr("Set Current"), this);
+    connect(m_pSetCurrentAction, SIGNAL(triggered()), this, SLOT(onSetCurrentClicked()));
+
+    QTimer* pUpdateTimer = new QTimer(this);
+    connect(pUpdateTimer, SIGNAL(timeout()), this, SLOT(onUpdate()));
     pUpdateTimer->start(200);
 }
 
 //-----------------------------------------------------------------------------------------
 CNodeTreeWidget::~CNodeTreeWidget()
 {
-	foreach (AEntity* pEntity, m_Entities)
-	{
-		pEntity->unregisterListener(this);
-	}
+    foreach (AEntity* pEntity, m_Entities)
+    {
+        pEntity->unregisterListener(this);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::clearData()
 {
-	foreach (AEntity* pEntity, m_Entities)
-	{
-		pEntity->unregisterListener(this);
-	}
+    foreach (AEntity* pEntity, m_Entities)
+    {
+        pEntity->unregisterListener(this);
+    }
 
-	m_Entities.clear();
-	m_PropertiesItems.clear();
+    m_Entities.clear();
+    m_PropertiesItems.clear();
 
-	clear();
+    clear();
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::updateData()
 {
-	pLog->addMessage(eDEBUG, "NodeTreeWidget::updateData()");
+    pLog->addMessage(eDEBUG, "NodeTreeWidget::updateData()");
 
-	clearData();
+    clearData();
 
-	// On bloque les signaux pour éviter de boucler sur les événements Listener
-	blockSignals(true);
-	createTreeSceneManager();
-	createTreeRenderer();
+    // On bloque les signaux pour éviter de boucler sur les événements Listener
+    blockSignals(true);
+    createTreeSceneManager();
+    createTreeRenderer();
     recursiveCreateTreeNodes(m_pSceneManager->getRootNode());
     //createTreeMeshs(CMeshManager::getInstance()->getMeshs());
     createTreeLights(m_pSceneManager->getLights());
     createTreeCameras(m_pSceneManager->getCameras());
-	createTreeMaterials(CMaterialManager::getInstance()->getMaterials());
-	createTreeAnimations(m_pSceneManager->getAnimations());
+    createTreeMaterials(CMaterialManager::getInstance()->getMaterials());
+    createTreeAnimations(m_pSceneManager->getAnimations());
     createTreeShaders(CShaderManager::getInstance()->getShaders());
-	blockSignals(false);
+    blockSignals(false);
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::contextMenuEvent(QContextMenuEvent* pEvent)
 {
-	QList<QTreeWidgetItem*> items = selectedItems();
+    QList<QTreeWidgetItem*> items = selectedItems();
 
-	if (items.count() > 0)
-	{
-		QTreeWidgetItem* pCurrentItem = items[0];
+    if (items.count() > 0)
+    {
+        QTreeWidgetItem* pCurrentItem = items[0];
 
-		if (AEntity* pEntity = m_Entities.value(pCurrentItem))
-		{
-			m_pCurrentEntity = pEntity;
+        if (AEntity* pEntity = m_Entities.value(pCurrentItem))
+        {
+            m_pCurrentEntity = pEntity;
 
-			QMenu menu(this);
+            QMenu menu(this);
 
-			if (ASceneNodeItem* pNodeItem = dynamic_cast<ASceneNodeItem*>(pEntity))
-			{
+            if (ASceneNodeItem* pNodeItem = dynamic_cast<ASceneNodeItem*>(pEntity))
+            {
                 menu.addAction(m_pSaveAction);
-				menu.addAction(m_pDeleteAction);
+                menu.addAction(m_pDeleteAction);
 
                 if (dynamic_cast<CCamera*>(pNodeItem))
-				{
-					menu.addAction(m_pSetCurrentAction);
-				}
-			}
+                {
+                    menu.addAction(m_pSetCurrentAction);
+                }
+            }
 
             menu.exec(pEvent->globalPos());
-		}
-	}
+        }
+    }
     QTreeWidget::contextMenuEvent(pEvent);
 }
 
@@ -193,8 +193,8 @@ void CNodeTreeWidget::contextMenuEvent(QContextMenuEvent* pEvent)
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onUpdate(AEntity* pEntity)
 {
-	if (m_Entities.key(pEntity, 0))
-	{
+    if (m_Entities.key(pEntity, 0))
+    {
         pEntity->unregisterListener(this);
 
         if (CMaterial* pMaterial = dynamic_cast<CMaterial*>(pEntity))
@@ -227,12 +227,12 @@ void CNodeTreeWidget::onUpdate(AEntity* pEntity)
                 }
             }
         }
-		else if (CRenderPass* pPass =  dynamic_cast<CRenderPass*>(pEntity))
-		{
+        else if (CRenderPass* pPass =  dynamic_cast<CRenderPass*>(pEntity))
+        {
             updateProperty(pPass, ShaderNameKey,	pPass->getShaderName());
-			updateProperty(pPass, RenderingTargetKey,	CGeometryGlobal::stringFromTargetType(pPass->getTargetType()));
-			updateProperty(pPass, ClearColorKey,		pPass->getClearColor());
-		}
+            updateProperty(pPass, RenderingTargetKey,	CGeometryGlobal::stringFromTargetType(pPass->getTargetType()));
+            updateProperty(pPass, ClearColorKey,		pPass->getClearColor());
+        }
         else if (CLight* pLight = dynamic_cast<CLight*>(pEntity))
         {
             updateProperty(pLight, EnabledKey,				pLight->isEnabled());
@@ -256,7 +256,7 @@ void CNodeTreeWidget::onUpdate(AEntity* pEntity)
             updateProperty(pCamera, HorizontalFOVKey,	QString::number(pCamera->getHorizontalFOV()));
             updateProperty(pCamera, ClipPlaneNearKey,	QString::number(pCamera->getNear()));
             updateProperty(pCamera, ClipPlaneFarKey,	QString::number(pCamera->getFar()));
-			updateProperty(pCamera, AspectRatioKey,		QString::number(pCamera->getAspectRatio()));
+            updateProperty(pCamera, AspectRatioKey,		QString::number(pCamera->getAspectRatio()));
             updateProperty(pCamera, ProjectionTypeKey,	CGeometryGlobal::stringFromProjectionType(pCamera->getProjectionType()));
         }
         else if (CAnimation* pAnimation = dynamic_cast<CAnimation*>(pEntity))
@@ -321,86 +321,86 @@ void CNodeTreeWidget::onUpdate(AEntity* pEntity)
         }
 
         pEntity->registerListener(this);
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onDelete(AEntity* pEntity)
 {
-	pLog->addMessage(eDEBUG, "NodeTreeWidget::onDestroy() : " + pEntity->getName());
+    pLog->addMessage(eDEBUG, "NodeTreeWidget::onDestroy() : " + pEntity->getName());
 
-	if (QTreeWidgetItem* pItem = m_Entities.key(pEntity, 0))
-	{	
-		m_Entities.remove(pItem);
-		delete pItem;
-	}
+    if (QTreeWidgetItem* pItem = m_Entities.key(pEntity, 0))
+    {
+        m_Entities.remove(pItem);
+        delete pItem;
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onUpdate(CMaterial* pMaterial)
 {
     foreach (CMeshInstance* pMeshInstance, m_pSceneManager->getMeshInstances())
-	{
+    {
         if (QTreeWidgetItem* pItem = getPropertyTreeItem(pMeshInstance, MaterialKey))
-		{
-			addComboBoxEntry(pItem, pMaterial->getName());
-		}
-	}
+        {
+            addComboBoxEntry(pItem, pMaterial->getName());
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onDelete(CMaterial* pMaterial)
 {
     foreach (CMeshInstance* pMeshInstance, m_pSceneManager->getMeshInstances())
-	{
+    {
         if (QTreeWidgetItem* pItem = getPropertyTreeItem(pMeshInstance, MaterialKey))
-		{
-			removeComboBoxEntry(pItem, pMaterial->getName());
-		}
-	}
+        {
+            removeComboBoxEntry(pItem, pMaterial->getName());
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::selectEntity(AEntity* pEntity)
 {
-	if (QTreeWidgetItem* pItem = m_Entities.key(pEntity, 0))
-	{
-		setCurrentItem(pItem);
-		expandItem(pItem);
-	}
+    if (QTreeWidgetItem* pItem = m_Entities.key(pEntity, 0))
+    {
+        setCurrentItem(pItem);
+        expandItem(pItem);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::addEntity(QTreeWidgetItem* pTreeWidgetItem, AEntity* pEntity)
 {
-	m_Entities[pTreeWidgetItem] = pEntity;
-	pEntity->registerListener(this);
+    m_Entities[pTreeWidgetItem] = pEntity;
+    pEntity->registerListener(this);
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::createTreeSceneManager()
 {
-	QTreeWidgetItem* pSMWidgetItem = new QTreeWidgetItem();
-	addTopLevelItem(pSMWidgetItem);
-	pSMWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+    QTreeWidgetItem* pSMWidgetItem = new QTreeWidgetItem();
+    addTopLevelItem(pSMWidgetItem);
+    pSMWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
-	addEntity(pSMWidgetItem, m_pSceneManager);
+    addEntity(pSMWidgetItem, m_pSceneManager);
 
-	pSMWidgetItem->setText(0, m_pSceneManager->getName());
-	pSMWidgetItem->setIcon(0, QIcon(":/Resources/Notifications.png"));
+    pSMWidgetItem->setText(0, m_pSceneManager->getName());
+    pSMWidgetItem->setIcon(0, QIcon(":/Resources/Notifications.png"));
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::createTreeRenderer()
 {
-	QTreeWidgetItem* pRendererWidgetItem = new QTreeWidgetItem();
-	addTopLevelItem(pRendererWidgetItem);
-	pRendererWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+    QTreeWidgetItem* pRendererWidgetItem = new QTreeWidgetItem();
+    addTopLevelItem(pRendererWidgetItem);
+    pRendererWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
     addEntity(pRendererWidgetItem, m_pView->getRenderer());
 
     pRendererWidgetItem->setText(0, m_pView->getRenderer()->getName());
-	pRendererWidgetItem->setIcon(0, QIcon(":/Resources/Renderer.png"));
+    pRendererWidgetItem->setIcon(0, QIcon(":/Resources/Renderer.png"));
 
     addProperty(m_pView->getRenderer(), pRendererWidgetItem, RasterizationModeKey,	CGeometryGlobal::rasterizationModeEntries(), CGeometryGlobal::stringFromRasterizationMode(m_pView->getRenderer()->getRasterizationMode()));
 }
@@ -408,40 +408,40 @@ void CNodeTreeWidget::createTreeRenderer()
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::recursiveCreateTreeNodes(CSceneNode* pNode, QTreeWidgetItem* pParent /*= 0*/)
 {
-	QTreeWidgetItem* pNodeWidgetItem = 0;
+    QTreeWidgetItem* pNodeWidgetItem = 0;
 
-	if (pParent)
-	{
-		pNodeWidgetItem = new QTreeWidgetItem();
-		pParent->addChild(pNodeWidgetItem);
-	}
-	else
-	{
-		pNodeWidgetItem = new QTreeWidgetItem();
-		addTopLevelItem(pNodeWidgetItem);
-	}
+    if (pParent)
+    {
+        pNodeWidgetItem = new QTreeWidgetItem();
+        pParent->addChild(pNodeWidgetItem);
+    }
+    else
+    {
+        pNodeWidgetItem = new QTreeWidgetItem();
+        addTopLevelItem(pNodeWidgetItem);
+    }
 
-	pNodeWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+    pNodeWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
-	addEntity(pNodeWidgetItem, pNode);
-	
-	pNodeWidgetItem->setText(0, pNode->getName());
-	pNodeWidgetItem->setIcon(0, QIcon(":/Resources/node.png"));
+    addEntity(pNodeWidgetItem, pNode);
 
-	foreach (ASceneNodeItem* pItem, pNode->getItems())
-	{
-		QTreeWidgetItem* pNodeItemWidgetItem = new QTreeWidgetItem();
-		pNodeItemWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+    pNodeWidgetItem->setText(0, pNode->getName());
+    pNodeWidgetItem->setIcon(0, QIcon(":/Resources/node.png"));
 
-		pNodeWidgetItem->addChild(pNodeItemWidgetItem);
-		pNodeItemWidgetItem->setText(0, pItem->getName());
+    foreach (ASceneNodeItem* pItem, pNode->getItems())
+    {
+        QTreeWidgetItem* pNodeItemWidgetItem = new QTreeWidgetItem();
+        pNodeItemWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
+        pNodeWidgetItem->addChild(pNodeItemWidgetItem);
+        pNodeItemWidgetItem->setText(0, pItem->getName());
         pNodeItemWidgetItem->setIcon(0, QIcon(":/Resources/warning.png"));
 
-		addEntity(pNodeItemWidgetItem, pItem);
+        addEntity(pNodeItemWidgetItem, pItem);
 
-		addProperty(pItem, pNodeItemWidgetItem, VisibleKey,	pItem->isVisible());
-		addProperty(pItem, pNodeItemWidgetItem, SelectableKey, pItem->isSelectable());
-		addProperty(pItem, pNodeItemWidgetItem, SelectedKey,	pItem->isSelected());
+        addProperty(pItem, pNodeItemWidgetItem, VisibleKey,	pItem->isVisible());
+        addProperty(pItem, pNodeItemWidgetItem, SelectableKey, pItem->isSelectable());
+        addProperty(pItem, pNodeItemWidgetItem, SelectedKey,	pItem->isSelected());
 
         if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(pItem))
         {
@@ -458,7 +458,7 @@ void CNodeTreeWidget::recursiveCreateTreeNodes(CSceneNode* pNode, QTreeWidgetIte
 
                 addProperty(pSubMeshInstance, pSubMeshInstanceWidgetItem, MaterialKey, CMaterialManager::getInstance()->getMaterialsNames(), pSubMeshInstance->getMaterialName(), true);
             }
-		}
+        }
         else if (CLight* pLight = dynamic_cast<CLight*>(pItem))
         {
             pNodeItemWidgetItem->setIcon(0, QIcon(":/Resources/Light.png"));
@@ -489,22 +489,22 @@ void CNodeTreeWidget::recursiveCreateTreeNodes(CSceneNode* pNode, QTreeWidgetIte
             addProperty(pCamera, pNodeItemWidgetItem, AspectRatioKey,		QString::number(pCamera->getAspectRatio()));
             addProperty(pCamera, pNodeItemWidgetItem, ProjectionTypeKey,	CGeometryGlobal::projectionTypeEntries(), CGeometryGlobal::stringFromProjectionType(pCamera->getProjectionType()));
         }
-	}
+    }
 
-	foreach (CSceneNode* pChild, pNode->getChildNodes())
-	{
-		recursiveCreateTreeNodes(pChild, pNodeWidgetItem);
-	}
+    foreach (CSceneNode* pChild, pNode->getChildNodes())
+    {
+        recursiveCreateTreeNodes(pChild, pNodeWidgetItem);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::createTreeMeshs(const QList<CMesh*>& meshs)
 {
     foreach (CMesh* pMesh, meshs)
-	{
+    {
         QTreeWidgetItem* pMeshWidgetItem = new QTreeWidgetItem();
         addTopLevelItem(pMeshWidgetItem);
-		
+
         pMeshWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
         addEntity(pMeshWidgetItem, pMesh);
@@ -527,7 +527,7 @@ void CNodeTreeWidget::createTreeMeshs(const QList<CMesh*>& meshs)
             addProperty(pSubMesh, pSubMeshWidgetItem, PositionsCountKey,    QString::number(pSubMesh->positionsBuffer().count()), false);
             addProperty(pSubMesh, pSubMeshWidgetItem, IndicesCountKey,      QString::number(pSubMesh->indicesBuffer().count()), false);
         }
-	}	
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -655,619 +655,619 @@ void CNodeTreeWidget::createTreeMaterials(const QList<CMaterial*>& materials)
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::createTreeAnimations(const QList<CAnimation*>& animations)
 {
-	foreach (CAnimation* pAnimation, animations)
-	{
-		CAnimationTreeItem* pAnimationWidgetItem = new CAnimationTreeItem(this, invisibleRootItem());
-		addTopLevelItem(pAnimationWidgetItem);
+    foreach (CAnimation* pAnimation, animations)
+    {
+        CAnimationTreeItem* pAnimationWidgetItem = new CAnimationTreeItem(this, invisibleRootItem());
+        addTopLevelItem(pAnimationWidgetItem);
 
-		pAnimationWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+        pAnimationWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
-		addEntity(pAnimationWidgetItem, pAnimation);
+        addEntity(pAnimationWidgetItem, pAnimation);
 
-		pAnimationWidgetItem->setName(pAnimation->getName());
-		pAnimationWidgetItem->setIcon(0, QIcon(":/Resources/Animation.png"));
+        pAnimationWidgetItem->setName(pAnimation->getName());
+        pAnimationWidgetItem->setIcon(0, QIcon(":/Resources/Animation.png"));
 
-		addProperty(pAnimation, pAnimationWidgetItem, DurationKey,		QString::number(pAnimation->getDuration()));
-		addProperty(pAnimation, pAnimationWidgetItem, TicksPerSecKey,	QString::number(pAnimation->getTicksPerSecond()));
+        addProperty(pAnimation, pAnimationWidgetItem, DurationKey,		QString::number(pAnimation->getDuration()));
+        addProperty(pAnimation, pAnimationWidgetItem, TicksPerSecKey,	QString::number(pAnimation->getTicksPerSecond()));
 
-	
-		foreach (CSceneNodeAnimation* pNA, pAnimation->getNodeAnimations())
-		{
-			QTreeWidgetItem* pNAWidgetItem = new QTreeWidgetItem();
-			pNAWidgetItem->setText(0, pNA->getName());
-			pAnimationWidgetItem->addChild(pNAWidgetItem);
 
-			addProperty(pNA, pNAWidgetItem, StateBehaviorKey,	CGeometryGlobal::animationBehaviorTypeEntries(), CGeometryGlobal::stringFromAnimationBehaviorType(pNA->getAnimationBehavior()));
-			
+        foreach (CSceneNodeAnimation* pNA, pAnimation->getNodeAnimations())
+        {
+            QTreeWidgetItem* pNAWidgetItem = new QTreeWidgetItem();
+            pNAWidgetItem->setText(0, pNA->getName());
+            pAnimationWidgetItem->addChild(pNAWidgetItem);
 
-			foreach (const CVectorKey& vK, pNA->positionKeys())
-			{
-				QTreeWidgetItem* pPKWidgetItem = new QTreeWidgetItem();
-				pPKWidgetItem->setText(0, PositionKey);
-				pNAWidgetItem->addChild(pPKWidgetItem);
+            addProperty(pNA, pNAWidgetItem, StateBehaviorKey,	CGeometryGlobal::animationBehaviorTypeEntries(), CGeometryGlobal::stringFromAnimationBehaviorType(pNA->getAnimationBehavior()));
 
-				addProperty(pNA, pPKWidgetItem, TimeKey,	QString::number(vK.getTime()));
-				addProperty(pNA, pPKWidgetItem, ValueKey,	vK.getValue());
-			}
 
-			foreach (const CQuaternionKey& qK, pNA->rotationKeys())
-			{
-				QTreeWidgetItem* pRKWidgetItem = new QTreeWidgetItem();
-				pRKWidgetItem->setText(0, RotationKey);
-				pNAWidgetItem->addChild(pRKWidgetItem);
+            foreach (const CVectorKey& vK, pNA->positionKeys())
+            {
+                QTreeWidgetItem* pPKWidgetItem = new QTreeWidgetItem();
+                pPKWidgetItem->setText(0, PositionKey);
+                pNAWidgetItem->addChild(pPKWidgetItem);
 
-				addProperty(pNA, pRKWidgetItem, TimeKey,	QString::number(qK.getTime()));
-				//addProperty(pNA, pQKWidgetItem, ValueKey,	qK.getValue());
-			}
+                addProperty(pNA, pPKWidgetItem, TimeKey,	QString::number(vK.getTime()));
+                addProperty(pNA, pPKWidgetItem, ValueKey,	vK.getValue());
+            }
 
-			foreach (const CVectorKey& vK, pNA->scalingKeys())
-			{
-				QTreeWidgetItem* pSKWidgetItem = new QTreeWidgetItem();
-				pSKWidgetItem->setText(0, ScaleKey);
-				pNAWidgetItem->addChild(pSKWidgetItem);
+            foreach (const CQuaternionKey& qK, pNA->rotationKeys())
+            {
+                QTreeWidgetItem* pRKWidgetItem = new QTreeWidgetItem();
+                pRKWidgetItem->setText(0, RotationKey);
+                pNAWidgetItem->addChild(pRKWidgetItem);
 
-				addProperty(pNA, pSKWidgetItem, TimeKey,	QString::number(vK.getTime()));
-				addProperty(pNA, pSKWidgetItem, ValueKey,	vK.getValue());
-			}
-		}
+                addProperty(pNA, pRKWidgetItem, TimeKey,	QString::number(qK.getTime()));
+                //addProperty(pNA, pQKWidgetItem, ValueKey,	qK.getValue());
+            }
 
-		foreach (CMeshAnimation* pMA, pAnimation->getMeshAnimations())
-		{
-			QTreeWidgetItem* pMAWidgetItem = new QTreeWidgetItem();
-			pMAWidgetItem->setText(0, pMA->getName());
-			pAnimationWidgetItem->addChild(pMAWidgetItem);
-		}
-	}
+            foreach (const CVectorKey& vK, pNA->scalingKeys())
+            {
+                QTreeWidgetItem* pSKWidgetItem = new QTreeWidgetItem();
+                pSKWidgetItem->setText(0, ScaleKey);
+                pNAWidgetItem->addChild(pSKWidgetItem);
+
+                addProperty(pNA, pSKWidgetItem, TimeKey,	QString::number(vK.getTime()));
+                addProperty(pNA, pSKWidgetItem, ValueKey,	vK.getValue());
+            }
+        }
+
+        foreach (CMeshAnimation* pMA, pAnimation->getMeshAnimations())
+        {
+            QTreeWidgetItem* pMAWidgetItem = new QTreeWidgetItem();
+            pMAWidgetItem->setText(0, pMA->getName());
+            pAnimationWidgetItem->addChild(pMAWidgetItem);
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::createTreeShaders(const QList<CShader*>& shaders)
 {
-	foreach (CShader* pShader, shaders)
-	{
-		CEditShaderTreeItem* pSDWidgetItem = new CEditShaderTreeItem(this, invisibleRootItem(), true);
-		addTopLevelItem(pSDWidgetItem);
-		pSDWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+    foreach (CShader* pShader, shaders)
+    {
+        CEditShaderTreeItem* pSDWidgetItem = new CEditShaderTreeItem(this, invisibleRootItem(), true);
+        addTopLevelItem(pSDWidgetItem);
+        pSDWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
-		addEntity(pSDWidgetItem, pShader);
+        addEntity(pSDWidgetItem, pShader);
 
-		pSDWidgetItem->setName(pShader->getName());
-		pSDWidgetItem->setIcon(0, QIcon(":/Resources/Shaders.png"));
+        pSDWidgetItem->setName(pShader->getName());
+        pSDWidgetItem->setIcon(0, QIcon(":/Resources/Shaders.png"));
 
-		addFileProperty(pShader, pSDWidgetItem, VertexShaderKey,	pShader->getVertexShaderFileName());
-		addFileProperty(pShader, pSDWidgetItem, FragmentShaderKey,	pShader->getFragmentShaderFileName());
-		addFileProperty(pShader, pSDWidgetItem, GeometryShaderKey,	pShader->getGeometryShaderFileName());
+        addFileProperty(pShader, pSDWidgetItem, VertexShaderKey,	pShader->getVertexShaderFileName());
+        addFileProperty(pShader, pSDWidgetItem, FragmentShaderKey,	pShader->getFragmentShaderFileName());
+        addFileProperty(pShader, pSDWidgetItem, GeometryShaderKey,	pShader->getGeometryShaderFileName());
 
-		foreach (const TUniformValue& uniformValue, pShader->getUniformValues())
-		{
+        foreach (const TUniformValue& uniformValue, pShader->getUniformValues())
+        {
             switch (int(uniformValue.second.type()))
-			{
-			case QMetaType::Int:
-				addProperty(pShader, pSDWidgetItem, uniformValue.first, QString::number(uniformValue.second.value<int>()));
-				break;
-			case QMetaType::Float:
-				addProperty(pShader, pSDWidgetItem, uniformValue.first, QString::number(uniformValue.second.value<float>()));
-				break;
-			case QMetaType::Double:
-				addProperty(pShader, pSDWidgetItem, uniformValue.first, QString::number(uniformValue.second.value<double>()));
-				break;
-			case QMetaType::QVector2D:
-				addProperty(pShader, pSDWidgetItem, uniformValue.first, uniformValue.second.value<QVector2D>().toVector3D());
-				break;
-			case QMetaType::QVector3D:
-				addProperty(pShader, pSDWidgetItem, uniformValue.first, uniformValue.second.value<QVector3D>());
-				break;
-			case QMetaType::QVector4D:
-				addProperty(pShader, pSDWidgetItem, uniformValue.first, uniformValue.second.value<QVector4D>());
-				break;
-			case QMetaType::QMatrix4x4:
-				// TODO
-				break;
-			default:
-				break;
-			}
-		}
-	}
+            {
+            case QMetaType::Int:
+                addProperty(pShader, pSDWidgetItem, uniformValue.first, QString::number(uniformValue.second.value<int>()));
+                break;
+            case QMetaType::Float:
+                addProperty(pShader, pSDWidgetItem, uniformValue.first, QString::number(uniformValue.second.value<float>()));
+                break;
+            case QMetaType::Double:
+                addProperty(pShader, pSDWidgetItem, uniformValue.first, QString::number(uniformValue.second.value<double>()));
+                break;
+            case QMetaType::QVector2D:
+                addProperty(pShader, pSDWidgetItem, uniformValue.first, uniformValue.second.value<QVector2D>().toVector3D());
+                break;
+            case QMetaType::QVector3D:
+                addProperty(pShader, pSDWidgetItem, uniformValue.first, uniformValue.second.value<QVector3D>());
+                break;
+            case QMetaType::QVector4D:
+                addProperty(pShader, pSDWidgetItem, uniformValue.first, uniformValue.second.value<QVector4D>());
+                break;
+            case QMetaType::QMatrix4x4:
+                // TODO
+                break;
+            default:
+                break;
+            }
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::addProperty(AEntity* pEntity, QTreeWidgetItem* pParent, const QString& name, const QString& property, bool bEditable /*= true*/)
 {
-	QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
-	pHeaderWidgetItem->setText(0, name);
-	pParent->addChild(pHeaderWidgetItem);
+    QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
+    pHeaderWidgetItem->setText(0, name);
+    pParent->addChild(pHeaderWidgetItem);
 
-	QTreeWidgetItem* propertyWidgetItem  = new QTreeWidgetItem();
-	if (bEditable) propertyWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-	propertyWidgetItem->setText(0, property);
-	pHeaderWidgetItem->addChild(propertyWidgetItem);
+    QTreeWidgetItem* propertyWidgetItem  = new QTreeWidgetItem();
+    if (bEditable) propertyWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+    propertyWidgetItem->setText(0, property);
+    pHeaderWidgetItem->addChild(propertyWidgetItem);
 
-	m_PropertiesItems[propertyWidgetItem] = TProperty(pEntity, name);
+    m_PropertiesItems[propertyWidgetItem] = TProperty(pEntity, name);
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::addProperty(AEntity* pEntity, QTreeWidgetItem* pParent, const QString& name, bool bProperty, bool bEditable /*= true*/)
 {
-	QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
-	pHeaderWidgetItem->setText(0, name);
-	pHeaderWidgetItem->setCheckState(0, bProperty ? Qt::Checked : Qt::Unchecked);
-	if (bEditable)pHeaderWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
-	else pHeaderWidgetItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
-	pParent->addChild(pHeaderWidgetItem);
+    QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
+    pHeaderWidgetItem->setText(0, name);
+    pHeaderWidgetItem->setCheckState(0, bProperty ? Qt::Checked : Qt::Unchecked);
+    if (bEditable)pHeaderWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
+    else pHeaderWidgetItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
+    pParent->addChild(pHeaderWidgetItem);
 
-	m_PropertiesItems[pHeaderWidgetItem] = TProperty(pEntity, name);
+    m_PropertiesItems[pHeaderWidgetItem] = TProperty(pEntity, name);
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::addProperty(AEntity* pEntity, QTreeWidgetItem* pParent, const QString& name, const QList<QString>& properties, const QString& property, bool bEditable /*= true*/)
 {
-	QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
-	pHeaderWidgetItem->setText(0, name);
-	pParent->addChild(pHeaderWidgetItem);
+    QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
+    pHeaderWidgetItem->setText(0, name);
+    pParent->addChild(pHeaderWidgetItem);
 
-	CComboBoxItem* propertyWidgetItem = new CComboBoxItem(this, pHeaderWidgetItem);
-	
-	propertyWidgetItem->addEntries(properties);
-	propertyWidgetItem->setCurrentEntry(property);
-	propertyWidgetItem->setEnabled(bEditable);
+    CComboBoxItem* propertyWidgetItem = new CComboBoxItem(this, pHeaderWidgetItem);
 
-	m_PropertiesItems[propertyWidgetItem] = TProperty(pEntity, name);
+    propertyWidgetItem->addEntries(properties);
+    propertyWidgetItem->setCurrentEntry(property);
+    propertyWidgetItem->setEnabled(bEditable);
+
+    m_PropertiesItems[propertyWidgetItem] = TProperty(pEntity, name);
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::addProperty(AEntity* pEntity, QTreeWidgetItem* pParent, const QString& name, const QVector3D& property, bool bEditable /*= true*/)
 {
-	QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
-	pHeaderWidgetItem->setText(0, name);
-	pParent->addChild(pHeaderWidgetItem);
+    QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
+    pHeaderWidgetItem->setText(0, name);
+    pParent->addChild(pHeaderWidgetItem);
 
-	CVectorWidgetItem* propertyWidgetItem = new CVectorWidgetItem(this, pHeaderWidgetItem, CVectorWidget::eVectorWidget3D);
+    CVectorWidgetItem* propertyWidgetItem = new CVectorWidgetItem(this, pHeaderWidgetItem, CVectorWidget::eVectorWidget3D);
 
-	propertyWidgetItem->vectorWidget()->setVector(property);
-	propertyWidgetItem->setEnabled(bEditable);
+    propertyWidgetItem->vectorWidget()->setVector(property);
+    propertyWidgetItem->setEnabled(bEditable);
 
-	m_PropertiesItems[propertyWidgetItem] = TProperty(pEntity, name);
+    m_PropertiesItems[propertyWidgetItem] = TProperty(pEntity, name);
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::addProperty(AEntity* pEntity, QTreeWidgetItem* pParent, const QString& name, const QVector4D& property, bool bEditable /*= true*/)
 {
-	QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
-	pHeaderWidgetItem->setText(0, name);
-	pParent->addChild(pHeaderWidgetItem);
+    QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
+    pHeaderWidgetItem->setText(0, name);
+    pParent->addChild(pHeaderWidgetItem);
 
-	CVectorWidgetItem* propertyWidgetItem = new CVectorWidgetItem(this, pHeaderWidgetItem, CVectorWidget::eVectorWidget4D);
+    CVectorWidgetItem* propertyWidgetItem = new CVectorWidgetItem(this, pHeaderWidgetItem, CVectorWidget::eVectorWidget4D);
 
-	propertyWidgetItem->vectorWidget()->setVector(property);
-	propertyWidgetItem->setEnabled(bEditable);
+    propertyWidgetItem->vectorWidget()->setVector(property);
+    propertyWidgetItem->setEnabled(bEditable);
 
-	m_PropertiesItems[propertyWidgetItem] = TProperty(pEntity, name);
+    m_PropertiesItems[propertyWidgetItem] = TProperty(pEntity, name);
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::addFileProperty(AEntity* pEntity, QTreeWidgetItem* pParent, const QString& name, const QString& property, bool bEditable /*= true*/)
 {
-	QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
-	pHeaderWidgetItem->setText(0, name);
-	pParent->addChild(pHeaderWidgetItem);
+    QTreeWidgetItem* pHeaderWidgetItem  = new QTreeWidgetItem();
+    pHeaderWidgetItem->setText(0, name);
+    pParent->addChild(pHeaderWidgetItem);
 
-	CParamShaderItem* propertyWidgetItem = new CParamShaderItem(this, pHeaderWidgetItem, true);
+    CParamShaderItem* propertyWidgetItem = new CParamShaderItem(this, pHeaderWidgetItem, true);
 
-	propertyWidgetItem->setFilePathName(property);
-	propertyWidgetItem->setEnabled(bEditable);
+    propertyWidgetItem->setFilePathName(property);
+    propertyWidgetItem->setEnabled(bEditable);
 
-	m_PropertiesItems[propertyWidgetItem] = TProperty(pEntity, name);
+    m_PropertiesItems[propertyWidgetItem] = TProperty(pEntity, name);
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::updateProperty(AEntity* pEntity, const QString& name, const QString& property)
 {
-	QTreeWidgetItem* propertyWidgetItem = m_PropertiesItems.key(TProperty(pEntity, name));
+    QTreeWidgetItem* propertyWidgetItem = m_PropertiesItems.key(TProperty(pEntity, name));
 
-	if (CComboBoxItem* pComboItem = dynamic_cast<CComboBoxItem*>(propertyWidgetItem))
-	{
-		pComboItem->setCurrentEntry(property);
-	}
-	else
-	{
-		propertyWidgetItem->setText(0, property);
-	}
+    if (CComboBoxItem* pComboItem = dynamic_cast<CComboBoxItem*>(propertyWidgetItem))
+    {
+        pComboItem->setCurrentEntry(property);
+    }
+    else
+    {
+        propertyWidgetItem->setText(0, property);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::updateProperty(AEntity* pEntity, const QString& name, bool bProperty)
 {
-	QTreeWidgetItem* propertyWidgetItem = m_PropertiesItems.key(TProperty(pEntity, name));
-	propertyWidgetItem->setCheckState(0, bProperty ? Qt::Checked : Qt::Unchecked);
+    QTreeWidgetItem* propertyWidgetItem = m_PropertiesItems.key(TProperty(pEntity, name));
+    propertyWidgetItem->setCheckState(0, bProperty ? Qt::Checked : Qt::Unchecked);
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::updateProperty(AEntity* pEntity, const QString& name, const QVector3D& property)
 {
-	QTreeWidgetItem* propertyWidgetItem = m_PropertiesItems.key(TProperty(pEntity, name));
+    QTreeWidgetItem* propertyWidgetItem = m_PropertiesItems.key(TProperty(pEntity, name));
 
-	if (CVectorWidgetItem* pVWItem = dynamic_cast<CVectorWidgetItem*>(propertyWidgetItem))
-	{
-		pVWItem->vectorWidget()->setVector(property);
-	}
+    if (CVectorWidgetItem* pVWItem = dynamic_cast<CVectorWidgetItem*>(propertyWidgetItem))
+    {
+        pVWItem->vectorWidget()->setVector(property);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::updateProperty(AEntity* pEntity, const QString& name, const QVector4D& property)
 {
-	QTreeWidgetItem* propertyWidgetItem = m_PropertiesItems.key(TProperty(pEntity, name));
+    QTreeWidgetItem* propertyWidgetItem = m_PropertiesItems.key(TProperty(pEntity, name));
 
-	if (CVectorWidgetItem* pVWItem = dynamic_cast<CVectorWidgetItem*>(propertyWidgetItem))
-	{
-		pVWItem->vectorWidget()->setVector(property);
-	}
+    if (CVectorWidgetItem* pVWItem = dynamic_cast<CVectorWidgetItem*>(propertyWidgetItem))
+    {
+        pVWItem->vectorWidget()->setVector(property);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 QVector2D CNodeTreeWidget::getVector2DValue(QTreeWidgetItem* pItem)
 {
-	if (CVectorWidgetItem* pVectorWidgetItem = dynamic_cast<CVectorWidgetItem*>(pItem))
-	{
-		return pVectorWidgetItem->vectorWidget()->getVector2D();
-	}
+    if (CVectorWidgetItem* pVectorWidgetItem = dynamic_cast<CVectorWidgetItem*>(pItem))
+    {
+        return pVectorWidgetItem->vectorWidget()->getVector2D();
+    }
 
-	qDebug() << "Cet item n'est pas un VectorWidgetItem !";
+    qDebug() << "Cet item n'est pas un VectorWidgetItem !";
 
-	return QVector2D();
+    return QVector2D();
 }
 
 //-----------------------------------------------------------------------------------------
 QVector3D CNodeTreeWidget::getVector3DValue(QTreeWidgetItem* pItem)
 {
-	if (CVectorWidgetItem* pVectorWidgetItem = dynamic_cast<CVectorWidgetItem*>(pItem))
-	{
-		return pVectorWidgetItem->vectorWidget()->getVector3D();
-	}
+    if (CVectorWidgetItem* pVectorWidgetItem = dynamic_cast<CVectorWidgetItem*>(pItem))
+    {
+        return pVectorWidgetItem->vectorWidget()->getVector3D();
+    }
 
-	qDebug() << "Cet item n'est pas un VectorWidgetItem !";
+    qDebug() << "Cet item n'est pas un VectorWidgetItem !";
 
-	return QVector3D();
+    return QVector3D();
 }
 
 //-----------------------------------------------------------------------------------------
 QVector4D CNodeTreeWidget::getVector4DValue(QTreeWidgetItem* pItem)
 {
-	if (CVectorWidgetItem* pVectorWidgetItem = dynamic_cast<CVectorWidgetItem*>(pItem))
-	{
-		return pVectorWidgetItem->vectorWidget()->getVector4D();
-	}
+    if (CVectorWidgetItem* pVectorWidgetItem = dynamic_cast<CVectorWidgetItem*>(pItem))
+    {
+        return pVectorWidgetItem->vectorWidget()->getVector4D();
+    }
 
-	qDebug() << "Cet item n'est pas un VectorWidgetItem !";
+    qDebug() << "Cet item n'est pas un VectorWidgetItem !";
 
-	return QVector4D();
+    return QVector4D();
 }
 
 //-----------------------------------------------------------------------------------------
 QString CNodeTreeWidget::getComboBoxCurrentEntry(QTreeWidgetItem* pItem)
 {
-	if (CComboBoxItem* pComboBoxItem = dynamic_cast<CComboBoxItem*>(pItem))
-	{
-		return pComboBoxItem->getCurrentEntry();
-	}
-	
-	qDebug() << "Cet item n'est pas un ComboBoxItem !";
+    if (CComboBoxItem* pComboBoxItem = dynamic_cast<CComboBoxItem*>(pItem))
+    {
+        return pComboBoxItem->getCurrentEntry();
+    }
 
-	return "";
+    qDebug() << "Cet item n'est pas un ComboBoxItem !";
+
+    return "";
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::addComboBoxEntry(QTreeWidgetItem* pItem, const QString& entry)
 {
-	if (CComboBoxItem* pComboBoxItem = dynamic_cast<CComboBoxItem*>(pItem))
-	{
-		pComboBoxItem->addEntry(entry);
-	}
+    if (CComboBoxItem* pComboBoxItem = dynamic_cast<CComboBoxItem*>(pItem))
+    {
+        pComboBoxItem->addEntry(entry);
+    }
 
-	qDebug() << "Cet item n'est pas un ComboBoxItem !";
+    qDebug() << "Cet item n'est pas un ComboBoxItem !";
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::removeComboBoxEntry(QTreeWidgetItem* pItem, const QString& entry)
 {
-	if (CComboBoxItem* pComboBoxItem = dynamic_cast<CComboBoxItem*>(pItem))
-	{
-		pComboBoxItem->removeEntry(entry);
-	}
+    if (CComboBoxItem* pComboBoxItem = dynamic_cast<CComboBoxItem*>(pItem))
+    {
+        pComboBoxItem->removeEntry(entry);
+    }
 
-	qDebug() << "Cet item n'est pas un ComboBoxItem !";
+    qDebug() << "Cet item n'est pas un ComboBoxItem !";
 }
 
 //-----------------------------------------------------------------------------------------
 QString CNodeTreeWidget::getFileSelectorFilePathName(QTreeWidgetItem* pItem)
 {
-	if (CParamShaderItem* pFileSelectorItem = dynamic_cast<CParamShaderItem*>(pItem))
-	{
-		return pFileSelectorItem->getFilePathName();
-	}
+    if (CParamShaderItem* pFileSelectorItem = dynamic_cast<CParamShaderItem*>(pItem))
+    {
+        return pFileSelectorItem->getFilePathName();
+    }
 
-	qDebug() << "Cet item n'est pas un FileSelectorItem !";
+    qDebug() << "Cet item n'est pas un FileSelectorItem !";
 
-	return "";
+    return "";
 }
 
 //-----------------------------------------------------------------------------------------
 QTreeWidgetItem* CNodeTreeWidget::getPropertyTreeItem(AEntity* pEntity, const QString& name)
 {
-	return m_PropertiesItems.key(TProperty(pEntity, name));
+    return m_PropertiesItems.key(TProperty(pEntity, name));
 }
 
 //-----------------------------------------------------------------------------------------
 QList<QTreeWidgetItem*> CNodeTreeWidget::getPropertiesTreeItems(AEntity* pEntity)
 {
-	QList<QTreeWidgetItem*> propertiesTreeItems;
+    QList<QTreeWidgetItem*> propertiesTreeItems;
 
-	foreach (const TProperty& property, m_PropertiesItems.values())
-	{
-		if (property.first == pEntity)
-		{
-			propertiesTreeItems << m_PropertiesItems.key(property);
-		}
-	}
+    foreach (const TProperty& property, m_PropertiesItems.values())
+    {
+        if (property.first == pEntity)
+        {
+            propertiesTreeItems << m_PropertiesItems.key(property);
+        }
+    }
 
-	return propertiesTreeItems;
+    return propertiesTreeItems;
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onItemChanged(QTreeWidgetItem* pItem, int /*iColumnID*/)
 {
-	if (m_Entities.contains(pItem))
-	{
-		m_Entities[pItem]->setName(pItem->text(0));
-	}
+    if (m_Entities.contains(pItem))
+    {
+        m_Entities[pItem]->setName(pItem->text(0));
+    }
 
-	if (m_PropertiesItems.contains(pItem))
-	{
-		updateItem(pItem);
-	}
+    if (m_PropertiesItems.contains(pItem))
+    {
+        updateItem(pItem);
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::updateItem(QTreeWidgetItem* pItem)
 {
-	TProperty property = m_PropertiesItems[pItem];
+    TProperty property = m_PropertiesItems[pItem];
 
-	AEntity* pEntity = property.first;
-	QString propertyName = property.second;
-	
-	QString itemText = pItem->text(0);
-	bool itemChecked = pItem->checkState(0);
+    AEntity* pEntity = property.first;
+    QString propertyName = property.second;
 
-	//-----------------------------------------------------------------------------------------
-	// TRAITEMENT DU GESTIONNAIRE DE SCENE
-	//-----------------------------------------------------------------------------------------
+    QString itemText = pItem->text(0);
+    bool itemChecked = pItem->checkState(0);
 
-	if (CSceneManager* pSM = dynamic_cast<CSceneManager*>(pEntity))
-	{
+    //-----------------------------------------------------------------------------------------
+    // TRAITEMENT DU GESTIONNAIRE DE SCENE
+    //-----------------------------------------------------------------------------------------
+
+    if (CSceneManager* pSM = dynamic_cast<CSceneManager*>(pEntity))
+    {
         // TODO (ambient color)
-	}
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// TRAITEMENT DU GESTIONNAIRE DE RENDU
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // TRAITEMENT DU GESTIONNAIRE DE RENDU
+    //-----------------------------------------------------------------------------------------
 
-	if (ARenderer* pRenderer = dynamic_cast<ARenderer*>(pEntity))
-	{
-		if		(propertyName == RasterizationModeKey)	{ pRenderer->setRasterizationMode(CGeometryGlobal::rasterizationModeFromString(getComboBoxCurrentEntry(pItem))); }
-	}
+    if (ARenderer* pRenderer = dynamic_cast<ARenderer*>(pEntity))
+    {
+        if		(propertyName == RasterizationModeKey)	{ pRenderer->setRasterizationMode(CGeometryGlobal::rasterizationModeFromString(getComboBoxCurrentEntry(pItem))); }
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// TRAITEMENT DES SHADERS
-	//-----------------------------------------------------------------------------------------
-	else if (CShader* pShader = dynamic_cast<CShader*>(pEntity))
-	{
-		if		(propertyName == NameKey)				{ pShader->setName(itemText); }
-		else if (propertyName == VertexShaderKey)		{ pShader->setVertexShaderFileName(itemText); }
-		else if (propertyName == FragmentShaderKey)		{ pShader->setFragmentShaderFileName(getFileSelectorFilePathName(pItem)); }
-		else if (propertyName == GeometryShaderKey)		{ pShader->setGeometryShaderFileName(getFileSelectorFilePathName(pItem)); }
-		else
-		{
-			TUniformValue uniformValue = pShader->getUniformValueByName(propertyName);
-			if (uniformValue != InvalidUniformValue)
-			{
+    //-----------------------------------------------------------------------------------------
+    // TRAITEMENT DES SHADERS
+    //-----------------------------------------------------------------------------------------
+    else if (CShader* pShader = dynamic_cast<CShader*>(pEntity))
+    {
+        if		(propertyName == NameKey)				{ pShader->setName(itemText); }
+        else if (propertyName == VertexShaderKey)		{ pShader->setVertexShaderFileName(itemText); }
+        else if (propertyName == FragmentShaderKey)		{ pShader->setFragmentShaderFileName(getFileSelectorFilePathName(pItem)); }
+        else if (propertyName == GeometryShaderKey)		{ pShader->setGeometryShaderFileName(getFileSelectorFilePathName(pItem)); }
+        else
+        {
+            TUniformValue uniformValue = pShader->getUniformValueByName(propertyName);
+            if (uniformValue != InvalidUniformValue)
+            {
                 switch (int(uniformValue.second.type()))
-				{
-				case QMetaType::Int:
-					pShader->setUniformValue(propertyName, itemText.toInt());
-					break;
-				case QMetaType::Float:
-					pShader->setUniformValue(propertyName, itemText.toFloat());
-					break;
-				case QMetaType::Double:
-					pShader->setUniformValue(propertyName, itemText.toDouble());
-					break;
-				case QMetaType::QVector2D:
-					pShader->setUniformValue(propertyName, getVector2DValue(pItem));
-					break;
-				case QMetaType::QVector3D:
-					pShader->setUniformValue(propertyName, getVector3DValue(pItem));
-					break;
-				case QMetaType::QVector4D:
-					pShader->setUniformValue(propertyName, getVector4DValue(pItem));
-					break;
-				case QMetaType::QMatrix4x4:
-					// TODO
-					break;
-				default:
-					break;
-				}
-			}
-		}
-	}
+                {
+                case QMetaType::Int:
+                    pShader->setUniformValue(propertyName, itemText.toInt());
+                    break;
+                case QMetaType::Float:
+                    pShader->setUniformValue(propertyName, itemText.toFloat());
+                    break;
+                case QMetaType::Double:
+                    pShader->setUniformValue(propertyName, itemText.toDouble());
+                    break;
+                case QMetaType::QVector2D:
+                    pShader->setUniformValue(propertyName, getVector2DValue(pItem));
+                    break;
+                case QMetaType::QVector3D:
+                    pShader->setUniformValue(propertyName, getVector3DValue(pItem));
+                    break;
+                case QMetaType::QVector4D:
+                    pShader->setUniformValue(propertyName, getVector4DValue(pItem));
+                    break;
+                case QMetaType::QMatrix4x4:
+                    // TODO
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// TRAITEMENT DES ITEMS
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // TRAITEMENT DES ITEMS
+    //-----------------------------------------------------------------------------------------
 
-	if (ASceneNodeItem* pNodeItem = dynamic_cast<ASceneNodeItem*>(pEntity))
-	{
-		if		(propertyName == VisibleKey)	{ pNodeItem->setVisible(itemChecked); }
-		else if (propertyName == SelectableKey)	{ pNodeItem->setSelectable(itemChecked); }
-		else if (propertyName == SelectedKey)	{ pNodeItem->setSelected(itemChecked); }
+    if (ASceneNodeItem* pNodeItem = dynamic_cast<ASceneNodeItem*>(pEntity))
+    {
+        if		(propertyName == VisibleKey)	{ pNodeItem->setVisible(itemChecked); }
+        else if (propertyName == SelectableKey)	{ pNodeItem->setSelectable(itemChecked); }
+        else if (propertyName == SelectedKey)	{ pNodeItem->setSelected(itemChecked); }
 
-		//-----------------------------------------------------------------------------------------
-		// TRAITEMENT DES MESHS
-		//-----------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------
+        // TRAITEMENT DES MESHS
+        //-----------------------------------------------------------------------------------------
 
         if (CSubMeshInstance* pSubMeshInstance = dynamic_cast<CSubMeshInstance*>(pNodeItem))
         {
             if (propertyName == MaterialKey) { pSubMeshInstance->setMaterialName(getComboBoxCurrentEntry(pItem)); }
         }
 
-		//-----------------------------------------------------------------------------------------
-		// TRAITEMENT DES LUMIERES
-		//-----------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------
+        // TRAITEMENT DES LUMIERES
+        //-----------------------------------------------------------------------------------------
 
-		else if (CLight* pLight = dynamic_cast<CLight*>(pNodeItem))
-		{
-			if		(propertyName == EnabledKey)				{ pLight->setEnabled(itemChecked); }
-			else if	(propertyName == SourceTypeKey)				{ pLight->setSourceType(CGeometryGlobal::lightSourceTypeFromString(getComboBoxCurrentEntry(pItem))); }
-			else if	(propertyName == DirectionKey)				{ pLight->setDirection(getVector3DValue(pItem)); }
-			else if	(propertyName == ConstantAttenuationKey)	{ pLight->setConstantAttenuation(CGeometryGlobal::scalaireFromQString(itemText)); }
-			else if	(propertyName == LinearAttenuationKey)		{ pLight->setLinearAttenuation(CGeometryGlobal::scalaireFromQString(itemText)); }
-			else if	(propertyName == QuadraticAttenuationKey)	{ pLight->setQuadraticAttenuation(CGeometryGlobal::scalaireFromQString(itemText)); }
-			else if	(propertyName == AmbientColorKey)			{ pLight->setAmbientColor(getVector4DValue(pItem)); }
-			else if (propertyName == DiffuseColorKey)			{ pLight->setDiffuseColor(getVector4DValue(pItem)); }
-			else if (propertyName == SpecularColorKey)			{ pLight->setSpecularColor(getVector4DValue(pItem)); }
-			else if	(propertyName == InnerConeKey)				{ pLight->setInnerConeAngle(CGeometryGlobal::scalaireFromQString(itemText)); }
-			else if	(propertyName == OuterConeKey)				{ pLight->setOuterConeAngle(CGeometryGlobal::scalaireFromQString(itemText)); }
-		}
+        else if (CLight* pLight = dynamic_cast<CLight*>(pNodeItem))
+        {
+            if		(propertyName == EnabledKey)				{ pLight->setEnabled(itemChecked); }
+            else if	(propertyName == SourceTypeKey)				{ pLight->setSourceType(CGeometryGlobal::lightSourceTypeFromString(getComboBoxCurrentEntry(pItem))); }
+            else if	(propertyName == DirectionKey)				{ pLight->setDirection(getVector3DValue(pItem)); }
+            else if	(propertyName == ConstantAttenuationKey)	{ pLight->setConstantAttenuation(CGeometryGlobal::scalaireFromQString(itemText)); }
+            else if	(propertyName == LinearAttenuationKey)		{ pLight->setLinearAttenuation(CGeometryGlobal::scalaireFromQString(itemText)); }
+            else if	(propertyName == QuadraticAttenuationKey)	{ pLight->setQuadraticAttenuation(CGeometryGlobal::scalaireFromQString(itemText)); }
+            else if	(propertyName == AmbientColorKey)			{ pLight->setAmbientColor(getVector4DValue(pItem)); }
+            else if (propertyName == DiffuseColorKey)			{ pLight->setDiffuseColor(getVector4DValue(pItem)); }
+            else if (propertyName == SpecularColorKey)			{ pLight->setSpecularColor(getVector4DValue(pItem)); }
+            else if	(propertyName == InnerConeKey)				{ pLight->setInnerConeAngle(CGeometryGlobal::scalaireFromQString(itemText)); }
+            else if	(propertyName == OuterConeKey)				{ pLight->setOuterConeAngle(CGeometryGlobal::scalaireFromQString(itemText)); }
+        }
 
-		//-----------------------------------------------------------------------------------------
-		// TRAITEMENT DES CAMERAS
-		//-----------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------
+        // TRAITEMENT DES CAMERAS
+        //-----------------------------------------------------------------------------------------
 
-		else if (CCamera* pCamera = dynamic_cast<CCamera*>(pNodeItem))
-		{
-			if		(propertyName == EyePositionKey)			{ pCamera->setEyePosition(getVector3DValue(pItem)); }
-			else if	(propertyName == CenterKey)					{ pCamera->setCenter(getVector3DValue(pItem)); }
-			else if	(propertyName == UpKey)						{ pCamera->setUp(getVector3DValue(pItem)); }
-			else if	(propertyName == HorizontalFOVKey)			{ pCamera->setHorizontalFOV(CGeometryGlobal::scalaireFromQString(itemText)); }
+        else if (CCamera* pCamera = dynamic_cast<CCamera*>(pNodeItem))
+        {
+            if		(propertyName == EyePositionKey)			{ pCamera->setEyePosition(getVector3DValue(pItem)); }
+            else if	(propertyName == CenterKey)					{ pCamera->setCenter(getVector3DValue(pItem)); }
+            else if	(propertyName == UpKey)						{ pCamera->setUp(getVector3DValue(pItem)); }
+            else if	(propertyName == HorizontalFOVKey)			{ pCamera->setHorizontalFOV(CGeometryGlobal::scalaireFromQString(itemText)); }
             else if	(propertyName == ClipPlaneNearKey)			{ pCamera->setNear(CGeometryGlobal::scalaireFromQString(itemText)); }
             else if	(propertyName == ClipPlaneFarKey)			{ pCamera->setFar(CGeometryGlobal::scalaireFromQString(itemText)); }
-			else if	(propertyName == AspectRatioKey)			{ pCamera->setAspectRatio(CGeometryGlobal::scalaireFromQString(itemText)); }
-		}
-	}
+            else if	(propertyName == AspectRatioKey)			{ pCamera->setAspectRatio(CGeometryGlobal::scalaireFromQString(itemText)); }
+        }
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// TRAITEMENT DES MATERIAUX
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // TRAITEMENT DES MATERIAUX
+    //-----------------------------------------------------------------------------------------
 
-	else if (CMaterial* pMaterial = dynamic_cast<CMaterial*>(pEntity))
-	{
-		if		(propertyName == AmbientColorKey)		{ pMaterial->setAmbientColor(getVector4DValue(pItem)); }
-		else if (propertyName == DiffuseColorKey)		{ pMaterial->setDiffuseColor(getVector4DValue(pItem)); }
-		else if (propertyName == SpecularColorKey)		{ pMaterial->setSpecularColor(getVector4DValue(pItem)); }
-		else if (propertyName == AlphaMaskColorKey)		{ pMaterial->setAlphaMaskColor(getVector4DValue(pItem)); }
-		else if (propertyName == AlphaMaskFuncKey)		{ pMaterial->setAlphaMaskFunc(CGeometryGlobal::alphaMaskFuncFromString(getComboBoxCurrentEntry(pItem))); }
-		else if (propertyName == ShininessFactorKey)	{ pMaterial->setShininessFactor(CGeometryGlobal::scalaireFromQString(itemText)); }
-		else if (propertyName == OpacityKey)			{ pMaterial->setOpacity(CGeometryGlobal::scalaireFromQString(itemText)); }
-	}
+    else if (CMaterial* pMaterial = dynamic_cast<CMaterial*>(pEntity))
+    {
+        if		(propertyName == AmbientColorKey)		{ pMaterial->setAmbientColor(getVector4DValue(pItem)); }
+        else if (propertyName == DiffuseColorKey)		{ pMaterial->setDiffuseColor(getVector4DValue(pItem)); }
+        else if (propertyName == SpecularColorKey)		{ pMaterial->setSpecularColor(getVector4DValue(pItem)); }
+        else if (propertyName == AlphaMaskColorKey)		{ pMaterial->setAlphaMaskColor(getVector4DValue(pItem)); }
+        else if (propertyName == AlphaMaskFuncKey)		{ pMaterial->setAlphaMaskFunc(CGeometryGlobal::alphaMaskFuncFromString(getComboBoxCurrentEntry(pItem))); }
+        else if (propertyName == ShininessFactorKey)	{ pMaterial->setShininessFactor(CGeometryGlobal::scalaireFromQString(itemText)); }
+        else if (propertyName == OpacityKey)			{ pMaterial->setOpacity(CGeometryGlobal::scalaireFromQString(itemText)); }
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// RENDERING PASS
-	//-----------------------------------------------------------------------------------------
-	else if (CRenderPass* pPass = dynamic_cast<CRenderPass*>(pEntity))
-	{
+    //-----------------------------------------------------------------------------------------
+    // RENDERING PASS
+    //-----------------------------------------------------------------------------------------
+    else if (CRenderPass* pPass = dynamic_cast<CRenderPass*>(pEntity))
+    {
         if (propertyName == ShaderNameKey)
-		{ 
-			pPass->setShaderName(itemText);
-		}
-		else if (propertyName == RenderingTargetKey)
-		{ 
-			pPass->setTargetType(CGeometryGlobal::targetTypeFromString(getComboBoxCurrentEntry(pItem)));
-		}
-		else if (propertyName == ClearColorBufferKey)
-		{ 
-			unsigned int flags = pPass->clearBufferFlags();
-			itemChecked ? flags |= ColorBuffer : flags & ~ColorBuffer;
-			pPass->setClearBufferFlags(flags);
-		}
-		else if (propertyName == ClearDepthBufferKey)
-		{ 
-			unsigned int flags = pPass->clearBufferFlags();
-			itemChecked ? flags |= DepthBuffer : flags & ~DepthBuffer;
-			pPass->setClearBufferFlags(flags);
-		}
-		else if (propertyName == ClearStencilBufferKey)
-		{ 
-			unsigned int flags = pPass->clearBufferFlags();
-			itemChecked ? flags |= StencilBuffer : flags & ~StencilBuffer;
-			pPass->setClearBufferFlags(flags);
-		}
-		else if (propertyName == ClearColorKey) { pPass->setClearColor(getVector4DValue(pItem)); }
-	}
+        {
+            pPass->setShaderName(itemText);
+        }
+        else if (propertyName == RenderingTargetKey)
+        {
+            pPass->setTargetType(CGeometryGlobal::targetTypeFromString(getComboBoxCurrentEntry(pItem)));
+        }
+        else if (propertyName == ClearColorBufferKey)
+        {
+            unsigned int flags = pPass->clearBufferFlags();
+            itemChecked ? flags |= ColorBuffer : flags & ~ColorBuffer;
+            pPass->setClearBufferFlags(flags);
+        }
+        else if (propertyName == ClearDepthBufferKey)
+        {
+            unsigned int flags = pPass->clearBufferFlags();
+            itemChecked ? flags |= DepthBuffer : flags & ~DepthBuffer;
+            pPass->setClearBufferFlags(flags);
+        }
+        else if (propertyName == ClearStencilBufferKey)
+        {
+            unsigned int flags = pPass->clearBufferFlags();
+            itemChecked ? flags |= StencilBuffer : flags & ~StencilBuffer;
+            pPass->setClearBufferFlags(flags);
+        }
+        else if (propertyName == ClearColorKey) { pPass->setClearColor(getVector4DValue(pItem)); }
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// DESCRIPTION DE TEXTURES
-	//-----------------------------------------------------------------------------------------
-	else if (CTexture2D* pTexture = dynamic_cast<CTexture2D*>(pEntity))
-	{
-		if (propertyName == NameKey)					{ pTexture->setName(itemText); }
-		else if (propertyName == FileNamesKey)			{ pTexture->setFileName(itemText); }
-	}		
+    //-----------------------------------------------------------------------------------------
+    // DESCRIPTION DE TEXTURES
+    //-----------------------------------------------------------------------------------------
+    else if (CTexture2D* pTexture = dynamic_cast<CTexture2D*>(pEntity))
+    {
+        if (propertyName == NameKey)					{ pTexture->setName(itemText); }
+        else if (propertyName == FileNamesKey)			{ pTexture->setFileName(itemText); }
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// TRAITEMENT DES ANIMATIONS
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // TRAITEMENT DES ANIMATIONS
+    //-----------------------------------------------------------------------------------------
 
-	else if (CAnimation* pAnimation = dynamic_cast<CAnimation*>(pEntity))
-	{
+    else if (CAnimation* pAnimation = dynamic_cast<CAnimation*>(pEntity))
+    {
         // TODO
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onUpdate()
 {
-	updateGeometries();
-	//viewport()->update();
+    updateGeometries();
+    //viewport()->update();
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onDeleteClicked()
 {
-	blockSignals(true);
+    blockSignals(true);
 
-	if (m_pCurrentEntity)
-	{
-		m_pCurrentEntity->unregisterListener(this);
+    if (m_pCurrentEntity)
+    {
+        m_pCurrentEntity->unregisterListener(this);
 
         QTreeWidgetItem* pItem = m_Entities.key(m_pCurrentEntity, 0);
         m_Entities.remove(pItem);
         delete pItem;
-	
+
         if (CMesh* pMesh = dynamic_cast<CMesh*>(m_pCurrentEntity))
         {
             CMeshManager::getInstance()->removeMesh(pMesh);
         }
         else if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(m_pCurrentEntity))
-		{
+        {
             m_pSceneManager->deleteMeshInstance(pMeshInstance);
-		}
-		else if (CLight* pLight = dynamic_cast<CLight*>(m_pCurrentEntity))
-		{
+        }
+        else if (CLight* pLight = dynamic_cast<CLight*>(m_pCurrentEntity))
+        {
             m_pSceneManager->deleteLight(pLight);
-		}
-		else if (CCamera* pCamera = dynamic_cast<CCamera*>(m_pCurrentEntity))
-		{
+        }
+        else if (CCamera* pCamera = dynamic_cast<CCamera*>(m_pCurrentEntity))
+        {
             m_pSceneManager->deleteCamera(pCamera);
-		}
-		else if (CAnimation* pAnimation = dynamic_cast<CAnimation*>(m_pCurrentEntity))
-		{
+        }
+        else if (CAnimation* pAnimation = dynamic_cast<CAnimation*>(m_pCurrentEntity))
+        {
             m_pSceneManager->deleteAnimation(pAnimation);
-		}
+        }
 
-		m_pCurrentEntity = 0;
-	}
+        m_pCurrentEntity = 0;
+    }
 
-	blockSignals(false);
+    blockSignals(false);
 
-	m_pSceneManager->clearEmptyNodes();
+    m_pSceneManager->clearEmptyNodes();
 }
 
 //-----------------------------------------------------------------------------------------
@@ -1298,49 +1298,49 @@ void CNodeTreeWidget::onSaveClicked()
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onSetCurrentClicked()
 {
-	if (m_pCurrentEntity)
-	{
-		if (CCamera* pCamera = dynamic_cast<CCamera*>(m_pCurrentEntity))
-		{
+    if (m_pCurrentEntity)
+    {
+        if (CCamera* pCamera = dynamic_cast<CCamera*>(m_pCurrentEntity))
+        {
             m_pView->setCurrentCamera(pCamera);
-		}
-	}
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onUdpateShader(QTreeWidgetItem* pSender)
 {
-	if (m_PropertiesItems.contains(pSender))
-	{
-		TProperty property = m_PropertiesItems[pSender];
+    if (m_PropertiesItems.contains(pSender))
+    {
+        TProperty property = m_PropertiesItems[pSender];
 
-		AEntity* pEntity = property.first;
-		QString propertyName = property.second;
+        AEntity* pEntity = property.first;
+        QString propertyName = property.second;
 
-		if (CShader* pShader = dynamic_cast<CShader*>(pEntity))
-		{
-			if		(propertyName == VertexShaderKey)		{ pShader->setVertexShaderCode(m_pEditItem->getText()); }
-			else if (propertyName == FragmentShaderKey)		{ pShader->setFragmentShaderCode(m_pEditItem->getText()); }
-			else if (propertyName == GeometryShaderKey)		{ pShader->setGeometryShaderCode(m_pEditItem->getText()); }
-		}
-	}
+        if (CShader* pShader = dynamic_cast<CShader*>(pEntity))
+        {
+            if		(propertyName == VertexShaderKey)		{ pShader->setVertexShaderCode(m_pEditItem->getText()); }
+            else if (propertyName == FragmentShaderKey)		{ pShader->setFragmentShaderCode(m_pEditItem->getText()); }
+            else if (propertyName == GeometryShaderKey)		{ pShader->setGeometryShaderCode(m_pEditItem->getText()); }
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onSaveShader(QTreeWidgetItem* pSender)
 {
-	if (m_PropertiesItems.contains(pSender))
-	{
-		TProperty property = m_PropertiesItems[pSender];
+    if (m_PropertiesItems.contains(pSender))
+    {
+        TProperty property = m_PropertiesItems[pSender];
 
-		AEntity* pEntity = property.first;
-		QString propertyName = property.second;
+        AEntity* pEntity = property.first;
+        QString propertyName = property.second;
 
-		if (CShader* pShader = dynamic_cast<CShader*>(pEntity))
-		{
-			if		(propertyName == VertexShaderKey)		{ pShader->saveVertexShader(); }
-			else if (propertyName == FragmentShaderKey)		{ pShader->saveFragmentShader(); }
-			else if (propertyName == GeometryShaderKey)		{ pShader->saveGeometryShader(); }
-		}
-	}
+        if (CShader* pShader = dynamic_cast<CShader*>(pEntity))
+        {
+            if		(propertyName == VertexShaderKey)		{ pShader->saveVertexShader(); }
+            else if (propertyName == FragmentShaderKey)		{ pShader->saveFragmentShader(); }
+            else if (propertyName == GeometryShaderKey)		{ pShader->saveGeometryShader(); }
+        }
+    }
 }

@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-	QApplication app(argc, argv);
-	FragEditor window;
+    QApplication app(argc, argv);
+    FragEditor window;
     return app.exec();
 }

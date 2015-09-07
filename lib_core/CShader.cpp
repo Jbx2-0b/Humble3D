@@ -4,31 +4,31 @@
 
 //-------------------------------------------------------------------------------------------------
 CShader::CShader(const QString& name /*= "Shader"*/)
-: AEntity(name)
-, m_bValid(false)
+    : AEntity(name)
+    , m_bValid(false)
 {
 
 }
 
 //-------------------------------------------------------------------------------------------------
 CShader::CShader(const QString& name, 
-				 const QString& vertexShaderFileName, 
-				 const QString& geometryShaderFileName, 
-				 const QString& fragmentShaderFileName)
-: AEntity(name)
-, m_bValid(false)
+                 const QString& vertexShaderFileName,
+                 const QString& geometryShaderFileName,
+                 const QString& fragmentShaderFileName)
+    : AEntity(name)
+    , m_bValid(false)
 {
-	m_VertexShaderFileName = vertexShaderFileName;
-	m_GeometryShaderFileName = geometryShaderFileName;
-	m_FragmentShaderFileName = fragmentShaderFileName;
+    m_VertexShaderFileName = vertexShaderFileName;
+    m_GeometryShaderFileName = geometryShaderFileName;
+    m_FragmentShaderFileName = fragmentShaderFileName;
 
-	load();
+    load();
 }
 
 //-------------------------------------------------------------------------------------------------
 CShader::~CShader()
 {
-	notifyDelete();
+    notifyDelete();
 }
 
 //-------------------------------------------------------------------------------------------------

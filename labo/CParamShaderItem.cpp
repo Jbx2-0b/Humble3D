@@ -3,9 +3,9 @@
 
 //-----------------------------------------------------------------------------------------
 CParamShaderItem::CParamShaderItem(CNodeTreeWidget* pTreeWidget, QTreeWidgetItem* pParent /*= 0*/, bool bEditable /*= false*/)
-: CTreeWidgetItemBase(pTreeWidget, pParent)
+    : CTreeWidgetItemBase(pTreeWidget, pParent)
 {
-	m_pWidget->setEnabled(bEditable);
+    m_pWidget->setEnabled(bEditable);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -17,11 +17,11 @@ CParamShaderItem::~CParamShaderItem()
 //-----------------------------------------------------------------------------------------
 void CParamShaderItem::setFilePathName(const QString& filePathName)
 {
-	m_pWidget->setFilePathName(filePathName);
+    m_pWidget->setFilePathName(filePathName);
 }
 
 //-----------------------------------------------------------------------------------------
 QString CParamShaderItem::getFilePathName() const
 {
-	return m_pWidget->getFilePathName();
+    return m_pWidget->getFilePathName();
 }

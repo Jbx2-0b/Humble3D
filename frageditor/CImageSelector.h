@@ -13,29 +13,29 @@
 
 class CImageSelector : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	CImageSelector(QWidget *parent = 0);
+    CImageSelector(QWidget *parent = 0);
 
-	virtual ~CImageSelector();
+    virtual ~CImageSelector();
 
-	void setMaterial(CMaterial* pMaterial) { m_pMaterial = pMaterial; }
-	
-	void setShader(CShader* pShader) { m_pShader = pShader; }
+    void setMaterial(CMaterial* pMaterial) { m_pMaterial = pMaterial; }
+
+    void setShader(CShader* pShader) { m_pShader = pShader; }
 
 protected:
 
-	virtual void mousePressEvent(QMouseEvent* pEvent);
+    virtual void mousePressEvent(QMouseEvent* pEvent);
 
 private:
-	Ui::CImageSelector ui;
+    Ui::CImageSelector ui;
 
-	QVector<QLabel*> channelLabels;
+    QVector<QLabel*> channelLabels;
 
-	CMaterial* m_pMaterial;
+    CMaterial* m_pMaterial;
 
-	CShader* m_pShader;
+    CShader* m_pShader;
 };
 
 #endif // CIMAGESELECTOR_H

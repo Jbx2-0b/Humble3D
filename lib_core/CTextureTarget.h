@@ -17,45 +17,45 @@ class LIB_CORE_SHARED_EXPORT CTextureTarget : public ATexture
 {
 public:
 
-	//! Constructeur
-	CTextureTarget(const QString& name, int iTextureUnit, EnumInternalFormat eFormat)
+    //! Constructeur
+    CTextureTarget(const QString& name, int iTextureUnit, EnumInternalFormat eFormat)
         : ATexture(name, eTextureTarget, iTextureUnit)
         , m_eFormat(eFormat)
     {
-	}
+    }
 
-	//! Constructeur
-	CTextureTarget(const QString& name, int iTextureUnit, const QSize& size, EnumInternalFormat eFormat)
+    //! Constructeur
+    CTextureTarget(const QString& name, int iTextureUnit, const QSize& size, EnumInternalFormat eFormat)
         : ATexture(name, eTextureTarget, iTextureUnit)
-		, m_Size(size)
+        , m_Size(size)
         , m_eFormat(eFormat)
     {
-		m_bIsValid = true;
-	}
+        m_bIsValid = true;
+    }
 
-	//! Retourne le nom du type
-	virtual QString getTypeName() const					{ return "TextureTarget"; }
+    //! Retourne le nom du type
+    virtual QString getTypeName() const					{ return "TextureTarget"; }
 
-	//! Retourne la taille de la texture
-	QSize getSize() const								{ return m_Size; }
-	
+    //! Retourne la taille de la texture
+    QSize getSize() const								{ return m_Size; }
+
     //! Retourne le format de la texture
     EnumInternalFormat getFormat() const				{ return m_eFormat; }
 
-	//! Affiche les propriétés sur la console
+    //! Affiche les propriétés sur la console
     virtual QString toString() const
-	{
-		QString result;
-		result += "[Texture Target\n";
-		ATexture::toString();
-		result += QString("Size: %1x%2\n").arg(m_Size.width()).arg(m_Size.height());
+    {
+        QString result;
+        result += "[Texture Target\n";
+        ATexture::toString();
+        result += QString("Size: %1x%2\n").arg(m_Size.width()).arg(m_Size.height());
 
-		return result;
-	}
+        return result;
+    }
 
 protected:
-	//! Taille de la texture
-	QSize m_Size;
+    //! Taille de la texture
+    QSize m_Size;
 
     //! Format de la texture
     EnumInternalFormat m_eFormat;

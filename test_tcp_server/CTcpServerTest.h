@@ -11,14 +11,14 @@ class CUserMessage
 {
 public:
 
-	CUserMessage() {}
+    CUserMessage() {}
 
 protected:
 
-	QString name;
+    QString name;
 
-	friend QDataStream& operator << (QDataStream& out,	const CUserMessage& userMessage);
-	friend QDataStream& operator >> (QDataStream& in,	CUserMessage& userMessage);
+    friend QDataStream& operator << (QDataStream& out,	const CUserMessage& userMessage);
+    friend QDataStream& operator >> (QDataStream& in,	CUserMessage& userMessage);
 
 };
 Q_DECLARE_METATYPE(CUserMessage)
@@ -29,23 +29,23 @@ QDataStream& operator >> (QDataStream& in,	CUserMessage& userMessage);
 //-------------------------------------------------------------------------------------------------
 class CTcpServerTest : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	CTcpServerTest();
+    CTcpServerTest();
 
-	void sendMessage(const QVariant& message);
+    void sendMessage(const QVariant& message);
 
 public slots:
 
-	void onConnected(const QString& strIP);
-	void onDisconnected(const QString& strIP);
-	void onNewMessage(const QVariant& strMessage);
+    void onConnected(const QString& strIP);
+    void onDisconnected(const QString& strIP);
+    void onNewMessage(const QVariant& strMessage);
 
 private:
 
-	CTcpServer* m_TcpServer;
+    CTcpServer* m_TcpServer;
 };
 
 

@@ -14,10 +14,10 @@
 
 //-----------------------------------------------------------------------------------------
 TestTransformation::TestTransformation()
-: m_bPressed(false)
-, m_bTouch(false)
-, m_StartPan(-1, -1)
-, m_LastPan(-1, -1)
+    : m_bPressed(false)
+    , m_bTouch(false)
+    , m_StartPan(-1, -1)
+    , m_LastPan(-1, -1)
 {
     // On crée une camera
     CCamera* pCamera = m_pSceneManager->createCamera();
@@ -31,89 +31,89 @@ TestTransformation::TestTransformation()
     m_pView->setAttribute(Qt::WA_AcceptTouchEvents);
     qDebug() << "End create View";
 
-	// On crée un noeud afin d'y placer une lumiére
+    // On crée un noeud afin d'y placer une lumiére
     CSceneNode* pRootNode = getSceneManager()->getRootNode();
 
-	// On crée une lumiére diffuse bleue
+    // On crée une lumiére diffuse bleue
     CLight* pLight = getSceneManager()->createLight();
     pLight->setDiffuseColor(1.0, 1.0, 1.0);
     pLight->setAmbientColor(1.0, 1.0, 1.0);
-	pLight->setDirection(QVector3D(-1, 0, 0));
+    pLight->setDirection(QVector3D(-1, 0, 0));
     pLight->setSpecularColor(1.0f, 1.0f, 1.0f);
 
-	// On l'associe au noeud
+    // On l'associe au noeud
     pRootNode->addItem(pLight);
 
     // SkyBox
-//    CSkyBox* pSkyBoxMesh = CMeshManager::getInstance()->createCustomMesh<CSkyBox>("CSkyBox", "SkyBoxMesh");
+    //    CSkyBox* pSkyBoxMesh = CMeshManager::getInstance()->createCustomMesh<CSkyBox>("CSkyBox", "SkyBoxMesh");
 
-//    CMeshInstance* pSkyBox = getSceneManager()->createMeshInstance(pSkyBoxMesh, "SkyBox");
-//    pSkyBox->setSelectable(false);
-//    CSceneNode* pSkyBoxNode = pRootNode->createChild("SkyBoxNode");
-//    pSkyBoxNode->scale(400.);
-//    pSkyBoxNode->addItem(pSkyBox);
+    //    CMeshInstance* pSkyBox = getSceneManager()->createMeshInstance(pSkyBoxMesh, "SkyBox");
+    //    pSkyBox->setSelectable(false);
+    //    CSceneNode* pSkyBoxNode = pRootNode->createChild("SkyBoxNode");
+    //    pSkyBoxNode->scale(400.);
+    //    pSkyBoxNode->addItem(pSkyBox);
 
 
-//    CMaterial* pSkyBoxMat = CMaterialManager::getInstance()->createMaterial("SkyBoxMaterial");
-//    pSkyBox->setMaterialName(pSkyBoxMat->getName());
+    //    CMaterial* pSkyBoxMat = CMaterialManager::getInstance()->createMaterial("SkyBoxMaterial");
+    //    pSkyBox->setMaterialName(pSkyBoxMat->getName());
 
-//    QStringList fileNames;
-//    fileNames << "://Resources/xpos.png" << "://Resources/xneg.png" << "://Resources/ypos.png"
-//              << "://Resources/yneg.png" << "://Resources/zpos.png" << "://Resources/zneg.png";
+    //    QStringList fileNames;
+    //    fileNames << "://Resources/xpos.png" << "://Resources/xneg.png" << "://Resources/ypos.png"
+    //              << "://Resources/yneg.png" << "://Resources/zpos.png" << "://Resources/zneg.png";
 
-//    ATexture* pSkyBoxTexture = CTextureManager::getInstance()->createTextureCube("SkyBoxTexCube", fileNames);
-//    pSkyBoxMat->addTexture(pSkyBoxTexture, eDiffuse);
+    //    ATexture* pSkyBoxTexture = CTextureManager::getInstance()->createTextureCube("SkyBoxTexCube", fileNames);
+    //    pSkyBoxMat->addTexture(pSkyBoxTexture, eDiffuse);
 
-//#ifdef EMBEDDED_TARGET
-//    CShader* pShader = CShaderManager::getInstance()->createShader(
-//                "SkyBoxShader",
-//                "://Resources/skyboxES.vertex.glsl",
-//                "",
-//                "://Resources/skyboxES.fragment.glsl");
-//#else
-//    CShader* pShader = CShaderManager::getInstance()->createShader(
-//                "SkyBoxShader",
-//                "://Resources/skybox.vertex.glsl",
-//                "",
-//                "://Resources/skybox.fragment.glsl");
-//#endif
+    //#ifdef EMBEDDED_TARGET
+    //    CShader* pShader = CShaderManager::getInstance()->createShader(
+    //                "SkyBoxShader",
+    //                "://Resources/skyboxES.vertex.glsl",
+    //                "",
+    //                "://Resources/skyboxES.fragment.glsl");
+    //#else
+    //    CShader* pShader = CShaderManager::getInstance()->createShader(
+    //                "SkyBoxShader",
+    //                "://Resources/skybox.vertex.glsl",
+    //                "",
+    //                "://Resources/skybox.fragment.glsl");
+    //#endif
 
-//    pSkyBoxMat->getRenderPass(0)->setShaderName(pShader->getName());
-//    pSkyBoxMat->getRenderPass(0)->renderStates().setFaceCulling(CFaceCulling(false));
+    //    pSkyBoxMat->getRenderPass(0)->setShaderName(pShader->getName());
+    //    pSkyBoxMat->getRenderPass(0)->renderStates().setFaceCulling(CFaceCulling(false));
 
-//    // Particules
-//    CBillboard* pBillboard = getSceneManager()->createBillboard();
-//    QVector<QVector3D> pos;
-//    for (int i = 0; i < 1000; ++i)
-//        pos << QVector3D(
-//                   Math::randDouble(-200., +200.),
-//                   Math::randDouble(-200., +200.),
-//                   Math::randDouble(-200., +200.));
-//    pBillboard->addPositions(pos);
+    //    // Particules
+    //    CBillboard* pBillboard = getSceneManager()->createBillboard();
+    //    QVector<QVector3D> pos;
+    //    for (int i = 0; i < 1000; ++i)
+    //        pos << QVector3D(
+    //                   Math::randDouble(-200., +200.),
+    //                   Math::randDouble(-200., +200.),
+    //                   Math::randDouble(-200., +200.));
+    //    pBillboard->addPositions(pos);
 
-//    CMaterial* pBillboardMat = CMaterialManager::getInstance()->createMaterial("BillboardMaterial");
-//    pBillboardMat->getRenderPass(0)->renderStates().setFaceCulling(CFaceCulling(false));
-//    CBlending blending;
-//    blending.setEnabled(true);
-//    blending.setBlendEquation(eAdd, eAdd);
+    //    CMaterial* pBillboardMat = CMaterialManager::getInstance()->createMaterial("BillboardMaterial");
+    //    pBillboardMat->getRenderPass(0)->renderStates().setFaceCulling(CFaceCulling(false));
+    //    CBlending blending;
+    //    blending.setEnabled(true);
+    //    blending.setBlendEquation(eAdd, eAdd);
 
-//    blending.setBlendSeparateFunction(Source::eSourceAlpha, Destination::eOneMinusSourceAlpha, Source::eOne, Destination::eZero);
-//    pBillboardMat->getRenderPass(0)->renderStates().setBlending(blending);
+    //    blending.setBlendSeparateFunction(Source::eSourceAlpha, Destination::eOneMinusSourceAlpha, Source::eOne, Destination::eZero);
+    //    pBillboardMat->getRenderPass(0)->renderStates().setBlending(blending);
 
-//    ATexture* pBillboardTexture = CTextureManager::getInstance()->createTexture2D("BillBoardTex", "://Resources/particle.png");
-//    pBillboardMat->addTexture(pBillboardTexture, eDiffuse);
+    //    ATexture* pBillboardTexture = CTextureManager::getInstance()->createTexture2D("BillBoardTex", "://Resources/particle.png");
+    //    pBillboardMat->addTexture(pBillboardTexture, eDiffuse);
 
-//    CShader* pBillboardShader = CShaderManager::getInstance()->createShader("BillboardShader",
-//        "://Resources/billboard.vertex.glsl",
-//        "://Resources/billboard.geometry.glsl",
-//        "://Resources/billboard.fragment.glsl");
+    //    CShader* pBillboardShader = CShaderManager::getInstance()->createShader("BillboardShader",
+    //        "://Resources/billboard.vertex.glsl",
+    //        "://Resources/billboard.geometry.glsl",
+    //        "://Resources/billboard.fragment.glsl");
 
-//    pBillboardMat->getRenderPass(0)->setShaderName(pBillboardShader->getName());
-//    pBillboard->setMaterialName(pBillboardMat->getName());
-//    pBillboardShader->setUniformValue("halfSize", 1.);
+    //    pBillboardMat->getRenderPass(0)->setShaderName(pBillboardShader->getName());
+    //    pBillboard->setMaterialName(pBillboardMat->getName());
+    //    pBillboardShader->setUniformValue("halfSize", 1.);
 
-//    CSceneNode* pBillboardNode = pRootNode->createChild("BillboardNode");
-//    pBillboardNode->addItem(pBillboard);
+    //    CSceneNode* pBillboardNode = pRootNode->createChild("BillboardNode");
+    //    pBillboardNode->addItem(pBillboard);
 
     // Orbites
     CPolyLine* pPolyLine = CMeshManager::getInstance()->createCustomMesh<CPolyLine>("CPolyLine", "CPolyLine");
@@ -199,7 +199,7 @@ TestTransformation::TestTransformation()
     m_pMoonNode = m_pEarthToMoonNode->createChild(QVector3D(1.0, 0.0, 0.));
     m_pMoonNode->scale(1.0);
     m_pMoonNode->addItem(pMoon);
-	
+
     QTimer* pTimer = new QTimer(this);
     connect(pTimer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     pTimer->start(5);
@@ -211,7 +211,7 @@ TestTransformation::TestTransformation()
     connect(m_pView, SIGNAL(touchScaleStarted()),       this, SLOT(onTouchScaleStarted()));
     connect(m_pView, SIGNAL(touchScaleChanged(real)),	this, SLOT(onTouchScaleChanged(real)));
     connect(m_pView, SIGNAL(touchScaleEnded()),         this, SLOT(onTouchScaleEnded()));
-	
+
     //m_pView->setGeometry(QRect(1920, 100, 400, 300));
 
     m_GlobalTime.start();
@@ -243,22 +243,22 @@ void TestTransformation::onMousePressed()
         return;
 
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
+    {
         CMouseStates mouseStates = m_pView->getMouseStates();
 
-		m_bPressed = true;
-		m_StartPan = m_LastPan = mouseStates.getPosition();
-		m_vStartEye = pCamera->getEyePosition();
-		m_vStartCenter = pCamera->getCenter();
-		m_vStartUpVector = pCamera->getUp();
-	}
+        m_bPressed = true;
+        m_StartPan = m_LastPan = mouseStates.getPosition();
+        m_vStartEye = pCamera->getEyePosition();
+        m_vStartCenter = pCamera->getCenter();
+        m_vStartUpVector = pCamera->getUp();
+    }
 }
 
 
 //-----------------------------------------------------------------------------------------
 void TestTransformation::onMouseReleased()
 {
-	m_bPressed = false;
+    m_bPressed = false;
     m_bTouch = false;
 
     if (CCamera* pCamera = m_pView->getCurrentCamera())
@@ -274,60 +274,60 @@ void TestTransformation::onMouseMoved()
         return;
 
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
-		if (m_bPressed)
-		{
+    {
+        if (m_bPressed)
+        {
             CMouseStates mouseStates = m_pView->getMouseStates();
 
-			QPoint delta = mouseStates.getPosition() - m_StartPan;
+            QPoint delta = mouseStates.getPosition() - m_StartPan;
 
-			if (mouseStates.isRightButtonPressed())
-			{
-				pCamera->setEyePosition(m_vStartEye);
-				pCamera->setCenter(m_vStartCenter);
-				pCamera->setUp(m_vStartUpVector);
-			}
-			else
-			{
-				m_StartPan = m_LastPan;
-				delta = mouseStates.getPosition() - m_StartPan;
-				m_vStartEye = pCamera->getEyePosition();
-				m_vStartCenter = pCamera->getCenter();
-				m_vStartUpVector = pCamera->getUp();
-			}
+            if (mouseStates.isRightButtonPressed())
+            {
+                pCamera->setEyePosition(m_vStartEye);
+                pCamera->setCenter(m_vStartCenter);
+                pCamera->setUp(m_vStartUpVector);
+            }
+            else
+            {
+                m_StartPan = m_LastPan;
+                delta = mouseStates.getPosition() - m_StartPan;
+                m_vStartEye = pCamera->getEyePosition();
+                m_vStartCenter = pCamera->getCenter();
+                m_vStartUpVector = pCamera->getUp();
+            }
 
-			m_LastPan = mouseStates.getPosition();
+            m_LastPan = mouseStates.getPosition();
 
-			if (mouseStates.isRightButtonPressed())
-			{
-				wheel(-delta.y());
-			}
-			else
-			{
-				rotate(delta.x(), delta.y());
-			}
-		}
-	}
+            if (mouseStates.isRightButtonPressed())
+            {
+                wheel(-delta.y());
+            }
+            else
+            {
+                rotate(delta.x(), delta.y());
+            }
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void TestTransformation::wheel(int delta)
 {
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
-		QVector3D viewVector = pCamera->getEyePosition() - pCamera->getCenter();
-		real zoomMag = viewVector.length();
-		real zoomIncrement = -real(delta) / 100.;
-		if (!qFuzzyIsNull(zoomIncrement))
-		{
-			zoomMag += zoomIncrement;
-			if (zoomMag < 1.)
-				zoomMag = 1.;
+    {
+        QVector3D viewVector = pCamera->getEyePosition() - pCamera->getCenter();
+        real zoomMag = viewVector.length();
+        real zoomIncrement = -real(delta) / 100.;
+        if (!qFuzzyIsNull(zoomIncrement))
+        {
+            zoomMag += zoomIncrement;
+            if (zoomMag < 1.)
+                zoomMag = 1.;
 
-			CRay viewLine(pCamera->getCenter(), viewVector.normalized());
-			pCamera->setEyePosition(viewLine.point(zoomMag));
-		}
-	}
+            CRay viewLine(pCamera->getCenter(), viewVector.normalized());
+            pCamera->setEyePosition(viewLine.point(zoomMag));
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -337,16 +337,16 @@ void TestTransformation::rotate(int deltax, int deltay)
         return;
 
     if (CCamera* pCamera = m_pView->getCurrentCamera())
-	{
+    {
         real angleX = deltax * 90. / m_pView->width();
         real angleY = deltay * 90. / m_pView->height();
 
-		QQuaternion q = pCamera->pan(-angleX);
-		q *= pCamera->tilt(-angleY);
-		pCamera->rotateCenter(q);
+        QQuaternion q = pCamera->pan(-angleX);
+        q *= pCamera->tilt(-angleY);
+        pCamera->rotateCenter(q);
 
-		pCamera->setUp(QVector3D(0., 1., 0.));
-	}
+        pCamera->setUp(QVector3D(0., 1., 0.));
+    }
 }
 
 //-----------------------------------------------------------------------------------------

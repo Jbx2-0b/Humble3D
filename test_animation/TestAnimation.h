@@ -7,30 +7,30 @@
 
 class TestAnimation : public QObject, public Humble3DApp
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Constructeur
+    //! Constructeur
     TestAnimation();
 
-	//! Destructeur
-	virtual ~TestAnimation();
+    //! Destructeur
+    virtual ~TestAnimation();
 
 protected:
 
 #ifdef SOFTWARE_RENDERING
     CSoftwareView3D* m_pView;
 #else
-     CWidget3D* m_pView;
+    CWidget3D* m_pView;
 #endif
 
-	bool m_bKeyUpPressed;
-	bool m_bKeyDownPressed;
-	bool m_bKeyRightPressed;
-	bool m_bKeyLeftPressed;
+    bool m_bKeyUpPressed;
+    bool m_bKeyDownPressed;
+    bool m_bKeyRightPressed;
+    bool m_bKeyLeftPressed;
 
-	CCamera* m_pCamera;
+    CCamera* m_pCamera;
 
 };
 

@@ -25,7 +25,7 @@ public:
         m_pSceneManager->registerScriptable<Scriptable>(typeName);
     }
 
-	//! Charge une scene
+    //! Charge une scene
     bool loadScript(const QString& fileName, CSceneNode* pNode);
 
     //! Sauvegarde une scene

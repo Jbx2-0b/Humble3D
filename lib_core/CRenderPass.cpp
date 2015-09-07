@@ -3,25 +3,25 @@
 
 
 // Qt
- #include <QCoreApplication>
+#include <QCoreApplication>
 
 //-----------------------------------------------------------------------------------------
 CRenderPass::CRenderPass(
-	CMaterial* pMaterial,
-	EnumTarget eTarget /*= eScreen*/,
-	const QSize& size /*= QSize()*/,
-	const CRenderStates& states /*= CRenderStates()*/)
-: AEntity("RenderingPass")
-, m_uiClearBufferFlags(0)
-, m_pMaterial(pMaterial)
-, m_RenderingStates(states)
-, m_ShaderName(DefaultShaderName)
-, m_eTarget(eTarget)
-, m_Size(size)
-, m_pFrameBuffer(0)
-, m_pCamera(0)
-, m_bSaveBitmapEnabled(false)
-, m_SaveBitmapFilePathName(QCoreApplication::applicationDirPath())
+        CMaterial* pMaterial,
+        EnumTarget eTarget /*= eScreen*/,
+        const QSize& size /*= QSize()*/,
+        const CRenderStates& states /*= CRenderStates()*/)
+    : AEntity("RenderingPass")
+    , m_uiClearBufferFlags(0)
+    , m_pMaterial(pMaterial)
+    , m_RenderingStates(states)
+    , m_ShaderName(DefaultShaderName)
+    , m_eTarget(eTarget)
+    , m_Size(size)
+    , m_pFrameBuffer(0)
+    , m_pCamera(0)
+    , m_bSaveBitmapEnabled(false)
+    , m_SaveBitmapFilePathName(QCoreApplication::applicationDirPath())
 {
     if (m_eTarget == eTargetTexture)
     {
@@ -38,29 +38,29 @@ CRenderPass::~CRenderPass()
 //-----------------------------------------------------------------------------------------
 int CRenderPass::getIndex() const 
 {
-	int iCount = 0;
+    int iCount = 0;
 
-	foreach (CRenderPass* pPass, m_pMaterial->renderingPassList())
-	{
-		if (pPass == this)
-			return iCount;
+    foreach (CRenderPass* pPass, m_pMaterial->renderingPassList())
+    {
+        if (pPass == this)
+            return iCount;
 
-		iCount++;
-	}
+        iCount++;
+    }
 
-	return -1;
+    return -1;
 }
 
 //-----------------------------------------------------------------------------------------
 const CRenderStates& CRenderPass::getRenderStates() const
 { 
-	return m_RenderingStates;
+    return m_RenderingStates;
 }
 
 //-----------------------------------------------------------------------------------------
 CRenderStates& CRenderPass::renderStates()
 { 
-	return m_RenderingStates; 
+    return m_RenderingStates;
 }
 
 //--------------------------------------------------------------------------
@@ -97,25 +97,25 @@ void CRenderPass::setCamera(CCamera* pCamera)
 //--------------------------------------------------------------------------
 CRenderPass* CRenderPass::previousPass()
 {
-	return m_pMaterial->getRenderPass(getIndex() - 1);
+    return m_pMaterial->getRenderPass(getIndex() - 1);
 }
 
 //--------------------------------------------------------------------------
 CRenderPass* CRenderPass::nextPass()
 {
-	return m_pMaterial->getRenderPass(getIndex() + 1);
+    return m_pMaterial->getRenderPass(getIndex() + 1);
 }
 
 //--------------------------------------------------------------------------
 const CRenderPass* CRenderPass::previousPass() const
 {
-	return m_pMaterial->getRenderPass(getIndex() - 1);
+    return m_pMaterial->getRenderPass(getIndex() - 1);
 }
 
 //--------------------------------------------------------------------------
 const CRenderPass* CRenderPass::nextPass() const
 {
-	return m_pMaterial->getRenderPass(getIndex() + 1);
+    return m_pMaterial->getRenderPass(getIndex() + 1);
 }
 
 //--------------------------------------------------------------------------

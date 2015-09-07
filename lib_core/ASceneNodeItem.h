@@ -21,43 +21,43 @@ class LIB_CORE_SHARED_EXPORT ASceneNodeItem : public AEntity
 
 public:
 
-	//! Constructeur
+    //! Constructeur
     ASceneNodeItem(CSceneManager* pSceneManager, const QString& name);
 
-	//! Destructeur
+    //! Destructeur
     virtual ~ASceneNodeItem();
 
-	//-------------------------------------------------------------------------------------------------
-	// Listeners
-	//-------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
+    // Listeners
+    //-------------------------------------------------------------------------------------------------
 
     class ISceneNodeItemListener
-	{
+    {
         friend class ASceneNodeItem;
 
-	protected:
+    protected:
         virtual void onUpdate(ASceneNodeItem* pNodeItem) = 0;
         virtual void onDelete(ASceneNodeItem* pNodeItem) = 0;
-	};
+    };
 
-	//! Enregistre un listener
+    //! Enregistre un listener
     void registerListener(ISceneNodeItemListener* pListener);
 
-	//! Libére un listener
+    //! Libére un listener
     void unregisterListener(ISceneNodeItemListener* pListener);
 
-	//-------------------------------------------------------------------------------------------------
-	// Setters
-	//-------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
+    // Setters
+    //-------------------------------------------------------------------------------------------------
 
-	//! Définit si l'item est visible
-	virtual void setVisible(bool bVisible);
+    //! Définit si l'item est visible
+    virtual void setVisible(bool bVisible);
 
-	//! Définit si l'item est selectionnable
-	virtual void setSelectable(bool bSelectable);
+    //! Définit si l'item est selectionnable
+    virtual void setSelectable(bool bSelectable);
 
-	//! Définit si l'item est selectionné
-	virtual void setSelected(bool bSelected);
+    //! Définit si l'item est selectionné
+    virtual void setSelected(bool bSelected);
 
     //! Définit le type d'objet pour la simulation physique
     void setPhysicShape(EnumPhysicShape ePhysicShape);
@@ -80,29 +80,29 @@ public:
     //! Définit la vitesse angulaire
     void setAngularVelocity(const QVector3D& angularVelocity);
 
-	//-------------------------------------------------------------------------------------------------
-	// Getters
-	//-------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
+    // Getters
+    //-------------------------------------------------------------------------------------------------
 
-	//! Retourne un pointeur sur le gestionnaire de scénes
+    //! Retourne un pointeur sur le gestionnaire de scénes
     CSceneManager* getSceneManager() const;
 
-	//! Retourne true si l'item est visible
-	virtual bool isVisible() const;
+    //! Retourne true si l'item est visible
+    virtual bool isVisible() const;
 
-	//! Retourne true si l'item est selectionnable
-	virtual bool isSelectable() const;
+    //! Retourne true si l'item est selectionnable
+    virtual bool isSelectable() const;
 
-	//! Retourne true si l'item est selectionné
-	virtual bool isSelected() const;
+    //! Retourne true si l'item est selectionné
+    virtual bool isSelected() const;
 
-	//! Retourne la liste de noeuds auquel l'item est associé
+    //! Retourne la liste de noeuds auquel l'item est associé
     virtual const QSet<CSceneNode*>& getNodes() const;
 
     //! Retourne le nombre de noeuds auquel l'item est associé
     unsigned int getNodeCount() const;
 
-	//! Retourne le premier noeud de la liste, null si non définit
+    //! Retourne le premier noeud de la liste, null si non définit
     CSceneNode* getNode() const;
 
     //! Retourne la forme de l'objet pour la simulation physique
@@ -143,27 +143,27 @@ public:
         }
         return 0.;
     }
-	
+
     //! Calcule l'intersection avec un rayon
     virtual bool intersection(const CRay& ray, real* dDistance, const QMatrix4x4& transformation = QMatrix4x4()) const
     {
         return getBoundingBox().transformed(transformation).intersection(ray, dDistance);
     }
 
-	//! Crée une string contenant les propriétés de l'objet
+    //! Crée une string contenant les propriétés de l'objet
     virtual QString toString() const
-	{
-		QString result;
-		result += "[SceneNodeItem \n";
-		result += AEntity::toString();
-		result += QString("Visible: %1\n").arg(m_bVisible);
-		result += QString("Selectable: %1\n").arg(m_bSelectable);
-		result += QString("Selected: %1\n").arg(m_bSelected);
-		result += QString("Physic Shape: %1\n").arg(CGeometryGlobal::stringFromPhysicShape(m_ePhysicShape));
-		result += QString("Mass: %1\n").arg(m_dMass);
-		result += "]\n";
-		return result;
-	}
+    {
+        QString result;
+        result += "[SceneNodeItem \n";
+        result += AEntity::toString();
+        result += QString("Visible: %1\n").arg(m_bVisible);
+        result += QString("Selectable: %1\n").arg(m_bSelectable);
+        result += QString("Selected: %1\n").arg(m_bSelected);
+        result += QString("Physic Shape: %1\n").arg(CGeometryGlobal::stringFromPhysicShape(m_ePhysicShape));
+        result += QString("Mass: %1\n").arg(m_dMass);
+        result += "]\n";
+        return result;
+    }
 
 protected:
 
@@ -179,14 +179,14 @@ protected:
     //! Pointeur sur le scenemanager conternant l'objet, null sinon
     CSceneManager* m_pSceneManager;
 
-	//! True si est visible
+    //! True si est visible
     bool m_bVisible;
 
-	//! True si est selectionnable
-	bool m_bSelectable;
+    //! True si est selectionnable
+    bool m_bSelectable;
 
-	//! True si l'objet est selectionné
-	bool m_bSelected;
+    //! True si l'objet est selectionné
+    bool m_bSelected;
 
     //! Type d'objet pour la simulation physique
     EnumPhysicShape m_ePhysicShape;
@@ -209,13 +209,13 @@ protected:
     //! Vitesse angulaire
     QVector3D m_AngularVelocity;
 
-	//! Ajoute un noeud
-	void addNode(CSceneNode* pNode);
+    //! Ajoute un noeud
+    void addNode(CSceneNode* pNode);
 
-	//! Supprime un noeud
-	void removeNode(CSceneNode* pNode);
+    //! Supprime un noeud
+    void removeNode(CSceneNode* pNode);
 
-	//! Liste des noeuds auquel l'item est associé
+    //! Liste des noeuds auquel l'item est associé
     QSet<CSceneNode*> m_Nodes;
 };
 

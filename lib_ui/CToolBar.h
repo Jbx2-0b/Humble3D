@@ -22,145 +22,145 @@ static const int iDefaultToolBarMargins = 2;
 
 class LIB_UI_SHARED_EXPORT CToolBar : public QFrame
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	enum EnumToolBarPosition
-	{
-		eToolBarTop,
-		eToolBarBottom,
-		eToolBarRight,
-		eToolBarLeft
-	};
+    enum EnumToolBarPosition
+    {
+        eToolBarTop,
+        eToolBarBottom,
+        eToolBarRight,
+        eToolBarLeft
+    };
 
-	enum EnumWidgetPosition
-	{
-		eWidgetRight,
-		eWidgetLeft
-	};
+    enum EnumWidgetPosition
+    {
+        eWidgetRight,
+        eWidgetLeft
+    };
 
-	enum EnumState
-	{
-		eOpened,
-		eClosed,
-		eOnOpen,
-		eOnClose
-	};
+    enum EnumState
+    {
+        eOpened,
+        eClosed,
+        eOnOpen,
+        eOnClose
+    };
 
-	CToolBar(EnumToolBarPosition ePosition, const QSize& viewSize, CGraphicsWidgetItem* pItem, QWidget* parent = 0);
+    CToolBar(EnumToolBarPosition ePosition, const QSize& viewSize, CGraphicsWidgetItem* pItem, QWidget* parent = 0);
 
-	virtual ~CToolBar();
+    virtual ~CToolBar();
 
-	template <class Widget>
-	Widget* createWidget(EnumWidgetPosition eButtonPosition = eWidgetLeft, int iWidth = 0)
-	{
-		Widget* pWidget = new Widget(m_pLayoutFrame);
-		m_Widgets.append(ToolBarWidget(pWidget, eButtonPosition));
+    template <class Widget>
+    Widget* createWidget(EnumWidgetPosition eButtonPosition = eWidgetLeft, int iWidth = 0)
+    {
+        Widget* pWidget = new Widget(m_pLayoutFrame);
+        m_Widgets.append(ToolBarWidget(pWidget, eButtonPosition));
 
-		switch (m_ePosition)
-		{
-		case eToolBarTop:
-		case eToolBarBottom:
-			pWidget->setFixedWidth(iWidth == 0 ? m_iThickness - (2 * m_iMargins + 2) : iWidth);
-			pWidget->setFixedHeight(m_iThickness - (2 * m_iMargins + 2));
-			break;
+        switch (m_ePosition)
+        {
+        case eToolBarTop:
+        case eToolBarBottom:
+            pWidget->setFixedWidth(iWidth == 0 ? m_iThickness - (2 * m_iMargins + 2) : iWidth);
+            pWidget->setFixedHeight(m_iThickness - (2 * m_iMargins + 2));
+            break;
 
-		case eToolBarRight:
-		case eToolBarLeft:
-			pWidget->setFixedWidth(m_iThickness - (2 * m_iMargins + 2));
-			pWidget->setFixedHeight(iWidth == 0 ? m_iThickness - (2 * m_iMargins + 2) : iWidth);
-			break;
-		}
-		
-		updateWidgetPositions();
+        case eToolBarRight:
+        case eToolBarLeft:
+            pWidget->setFixedWidth(m_iThickness - (2 * m_iMargins + 2));
+            pWidget->setFixedHeight(iWidth == 0 ? m_iThickness - (2 * m_iMargins + 2) : iWidth);
+            break;
+        }
 
-		return pWidget;
-	}
+        updateWidgetPositions();
 
-	void removeWidget(QWidget* pWidget);
+        return pWidget;
+    }
 
-	void setTitle(const QString& title);
+    void removeWidget(QWidget* pWidget);
 
-	void setStyleSheetFile(const QString& styleSheetFileName);
+    void setTitle(const QString& title);
 
-	void setStyleSheet(const QString& styleSheet);
+    void setStyleSheetFile(const QString& styleSheetFileName);
 
-	void setOpacity(real dOpacity);
+    void setStyleSheet(const QString& styleSheet);
 
-	void setThickness(int iThickness);
+    void setOpacity(real dOpacity);
 
-	void setMargins(int iMargins);
+    void setThickness(int iThickness);
 
-	void open();
+    void setMargins(int iMargins);
 
-	void close();
+    void open();
 
-	EnumState getState() const { return m_eCurrentState; }
+    void close();
+
+    EnumState getState() const { return m_eCurrentState; }
 
 protected slots:
 
-	void onViewSizeChanged(const QSize& size);
-	void animateOpen();
-	void animateClose();
+    void onViewSizeChanged(const QSize& size);
+    void animateOpen();
+    void animateClose();
 
 protected:
 
-	void updateWidgetPositions();
+    void updateWidgetPositions();
 
-	CGraphicsWidgetItem* m_pItem;
+    CGraphicsWidgetItem* m_pItem;
 
-	QFrame* m_pLayoutFrame;
+    QFrame* m_pLayoutFrame;
 
-	EnumToolBarPosition m_ePosition;
+    EnumToolBarPosition m_ePosition;
 
-	QLayout* m_pLayout;
+    QLayout* m_pLayout;
 
-	QSpacerItem* m_pLeftSpacer;
-	QSpacerItem* m_pRightSpacer;
+    QSpacerItem* m_pLeftSpacer;
+    QSpacerItem* m_pRightSpacer;
 
-	QSize m_ViewSize;
+    QSize m_ViewSize;
 
-	QLabel m_TitleLabel;
+    QLabel m_TitleLabel;
 
-	class ToolBarWidget
-	{
+    class ToolBarWidget
+    {
 
-	public:
+    public:
 
-		ToolBarWidget(QWidget* pWidget, EnumWidgetPosition eWidgetPosition)
-			: m_pWidget(pWidget), m_ePosition(eWidgetPosition)
-		{}
+        ToolBarWidget(QWidget* pWidget, EnumWidgetPosition eWidgetPosition)
+            : m_pWidget(pWidget), m_ePosition(eWidgetPosition)
+        {}
 
-		QWidget* getQWidget() const { return m_pWidget; }
+        QWidget* getQWidget() const { return m_pWidget; }
 
-		EnumWidgetPosition getPosition() const { return m_ePosition; }
+        EnumWidgetPosition getPosition() const { return m_ePosition; }
 
-		inline bool operator == (const ToolBarWidget& tbWidget) const
-		{
-			return getQWidget() == tbWidget.getQWidget();
-		}
+        inline bool operator == (const ToolBarWidget& tbWidget) const
+        {
+            return getQWidget() == tbWidget.getQWidget();
+        }
 
-	private:
+    private:
 
-		QWidget* m_pWidget;
+        QWidget* m_pWidget;
 
-		EnumWidgetPosition m_ePosition;
-	};
+        EnumWidgetPosition m_ePosition;
+    };
 
-	QList<ToolBarWidget> m_Widgets;
+    QList<ToolBarWidget> m_Widgets;
 
-	int m_iThickness;
+    int m_iThickness;
 
-	int m_iMargins;
+    int m_iMargins;
 
-	EnumState m_eCurrentState;
+    EnumState m_eCurrentState;
 
-	int m_iDelta;
-	int m_iTotalDelta;
-	
-	//! Temps en millisecondes entre deux étapes d'animation
-	static const int StepAnimationDT = 0;
+    int m_iDelta;
+    int m_iTotalDelta;
+
+    //! Temps en millisecondes entre deux étapes d'animation
+    static const int StepAnimationDT = 0;
 };
 
 #endif // CTOOLBAR_H

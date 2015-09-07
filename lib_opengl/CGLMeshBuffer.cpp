@@ -2,11 +2,11 @@
 
 //-------------------------------------------------------------------------------------------------
 CGLMeshBuffer::CGLMeshBuffer()
-: m_eUsagePattern(eStaticDraw)
-, m_ePrimitiveType(ePrimitiveTriangles)
-, m_uiPrimitiveIndex(0)
-, m_iIndicesCount(0)
-, m_bUseVertexArray(false)
+    : m_eUsagePattern(eStaticDraw)
+    , m_ePrimitiveType(ePrimitiveTriangles)
+    , m_uiPrimitiveIndex(0)
+    , m_iIndicesCount(0)
+    , m_bUseVertexArray(false)
 {
     initializeOpenGLFunctions();
 }
@@ -27,9 +27,9 @@ CGLMeshBuffer::~CGLMeshBuffer()
 //-------------------------------------------------------------------------------------------------
 void CGLMeshBuffer::create(CMeshBuffer* pBuffer)
 {
-	m_iIndicesCount = pBuffer->indicesBuffer().size();
-	m_ePrimitiveType = pBuffer->getPrimitiveType();
-	m_eUsagePattern = pBuffer->getUsagePattern();
+    m_iIndicesCount = pBuffer->indicesBuffer().size();
+    m_ePrimitiveType = pBuffer->getPrimitiveType();
+    m_eUsagePattern = pBuffer->getUsagePattern();
 
     if (m_bUseVertexArray)
     {
@@ -37,84 +37,84 @@ void CGLMeshBuffer::create(CMeshBuffer* pBuffer)
         m_VertexArray.bind();
     }
 
-	// Positions
-	copyBuffer<QVector3D>(pBuffer->positionsBuffer(), m_PositionBuffer, CGLBuffer::VertexBuffer);
+    // Positions
+    copyBuffer<QVector3D>(pBuffer->positionsBuffer(), m_PositionBuffer, CGLBuffer::VertexBuffer);
 
     // Normals
     copyBuffer<QVector3D>(pBuffer->normalsBuffer(), m_NormalBuffer, CGLBuffer::VertexBuffer);
 
-	// TexCoord
-	copyBuffer<QVector3D>(pBuffer->texCoordBuffer(0), m_TexCoordBuffer, CGLBuffer::VertexBuffer);
+    // TexCoord
+    copyBuffer<QVector3D>(pBuffer->texCoordBuffer(0), m_TexCoordBuffer, CGLBuffer::VertexBuffer);
 
     // Tangent
     copyBuffer<QVector3D>(pBuffer->tangentsBuffer(), m_TangentBuffer, CGLBuffer::VertexBuffer);
 
-	// Bones IDs
+    // Bones IDs
     copyBuffer<float>(pBuffer->boneIDsBuffer(), m_BoneIDsBuffer, CGLBuffer::VertexBuffer);
 
-	// Bones Weights
+    // Bones Weights
     copyBuffer<float>(pBuffer->boneWeightsBuffer(), m_BoneWeigthsBuffer, CGLBuffer::VertexBuffer);
 
-	// User Buffers
-	QMapIterator<QString, CUserBuffer> it(pBuffer->userBuffers());
-	while (it.hasNext())
-	{
-		it.next();
-		CGLBuffer buffer;
-		m_UserBuffers[it.key()] = buffer;
+    // User Buffers
+    QMapIterator<QString, CUserBuffer> it(pBuffer->userBuffers());
+    while (it.hasNext())
+    {
+        it.next();
+        CGLBuffer buffer;
+        m_UserBuffers[it.key()] = buffer;
 
         copyBuffer<float>(it.value(), buffer, CGLBuffer::VertexBuffer);
-	}
+    }
 
-	// Deselect (bind to 0) the VAO
+    // Deselect (bind to 0) the VAO
     if (m_bUseVertexArray)
     {
         m_VertexArray.release();
     }
 
-	// Create a new VBO for the indices and select it (bind) - INDICES
-	copyBuffer<IndiceType>(pBuffer->indicesBuffer(), m_IndiceBuffer, CGLBuffer::IndexBuffer);
+    // Create a new VBO for the indices and select it (bind) - INDICES
+    copyBuffer<IndiceType>(pBuffer->indicesBuffer(), m_IndiceBuffer, CGLBuffer::IndexBuffer);
 }
 
 //-------------------------------------------------------------------------------------------------
 void CGLMeshBuffer::update(CMeshBuffer* pBuffer)
 {
-	// Positions
-	updateBuffer<QVector3D>(pBuffer->positionsBuffer(), m_PositionBuffer);
+    // Positions
+    updateBuffer<QVector3D>(pBuffer->positionsBuffer(), m_PositionBuffer);
 
     // Normals
     updateBuffer<QVector3D>(pBuffer->normalsBuffer(), m_NormalBuffer);
 
     // TexCoords
-	updateBuffer<QVector3D>(pBuffer->texCoordBuffer(0), m_TexCoordBuffer);
+    updateBuffer<QVector3D>(pBuffer->texCoordBuffer(0), m_TexCoordBuffer);
 
     // Tangents
     updateBuffer<QVector3D>(pBuffer->tangentsBuffer(), m_TexCoordBuffer);
 
-	// Bones IDs
+    // Bones IDs
     updateBuffer<float>(pBuffer->boneIDsBuffer(), m_BoneIDsBuffer);
 
-	// Bones Weights
+    // Bones Weights
     updateBuffer<float>(pBuffer->boneWeightsBuffer(), m_BoneWeigthsBuffer);
 
-	// Indices
-	updateBuffer<IndiceType>(pBuffer->indicesBuffer(), m_IndiceBuffer);
+    // Indices
+    updateBuffer<IndiceType>(pBuffer->indicesBuffer(), m_IndiceBuffer);
 
-	// User buffers
-	QMapIterator<QString, CUserBuffer> it(pBuffer->userBuffers());
-	while (it.hasNext())
-	{
-		it.next();
-		CGLBuffer userGLBuffer = m_UserBuffers[it.key()];
+    // User buffers
+    QMapIterator<QString, CUserBuffer> it(pBuffer->userBuffers());
+    while (it.hasNext())
+    {
+        it.next();
+        CGLBuffer userGLBuffer = m_UserBuffers[it.key()];
 
         updateBuffer<float>(it.value(), userGLBuffer);
-	}
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
 void CGLMeshBuffer::setPrimitiveType(EnumPrimitiveType ePrimitiveType)
 {
-	m_ePrimitiveType = ePrimitiveType;
+    m_ePrimitiveType = ePrimitiveType;
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -45,9 +45,9 @@ enum EnumAxis
 //! Différents modes d'affichage des boîtes englobantes
 enum EnumBBoxPolicy
 {
-	eNeverVisible,
-	eAlwaysVisible,
-	eVisibleIfSelected
+    eNeverVisible,
+    eAlwaysVisible,
+    eVisibleIfSelected
 };
 
 //--------------------------------------------------------------------------------------------
@@ -55,9 +55,9 @@ enum EnumBBoxPolicy
 //--------------------------------------------------------------------------------------------
 enum EnumIntersectionType 
 { 
-	eOutside, 
-	eIntersect, 
-	eInside
+    eOutside,
+    eIntersect,
+    eInside
 };
 
 //--------------------------------------------------------------------------------------------
@@ -92,15 +92,15 @@ enum EnumStencilTestFunction
 //--------------------------------------------------------------------------------------------
 enum EnumCullFace
 {
-	eFront, 
-	eBack, 
-	eFrontAndBack
+    eFront,
+    eBack,
+    eFrontAndBack
 };
 
 enum EnumWindingOrder
 {
-	eClockwise,
-	eCounterclockwise
+    eClockwise,
+    eCounterclockwise
 };
 
 //--------------------------------------------------------------------------------------------
@@ -119,31 +119,31 @@ static const unsigned int StencilBuffer = 4;
 //! Définit les différents types de primitive
 enum EnumPrimitiveType
 {
-	ePrimitivePoint,
-	ePrimitiveLine,
-	ePrimitiveLineLoop,
-	ePrimitiveLineStrip,
-	ePrimitiveTriangles,
-	ePrimitiveTriangleStrip,
-	ePrimitiveTriangleFan,
-	ePrimitiveLinesAdjacency,
-	ePrimitiveLineStripAdjacency,
-	ePrimitiveTrianglesAdjacency,
-	ePrimitiveTrianglesStripAdjacency
+    ePrimitivePoint,
+    ePrimitiveLine,
+    ePrimitiveLineLoop,
+    ePrimitiveLineStrip,
+    ePrimitiveTriangles,
+    ePrimitiveTriangleStrip,
+    ePrimitiveTriangleFan,
+    ePrimitiveLinesAdjacency,
+    ePrimitiveLineStripAdjacency,
+    ePrimitiveTrianglesAdjacency,
+    ePrimitiveTrianglesStripAdjacency
 };
 
 //! Définit le type de pattern à utiliser
 enum EnumUsagePattern
 {
-	eStreamDraw, 
-	eStreamRead, 
-	eStreamCopy, 
-	eStaticDraw, 
-	eStaticRead, 
-	eStaticCopy, 
-	eDynamicDraw, 
-	eDynamicRead, 
-	eDynamicCopy
+    eStreamDraw,
+    eStreamRead,
+    eStreamCopy,
+    eStaticDraw,
+    eStaticRead,
+    eStaticCopy,
+    eDynamicDraw,
+    eDynamicRead,
+    eDynamicCopy
 };
 
 
@@ -185,17 +185,17 @@ public:
 
         switch (m_eColor)
         {
-            case eWhite:	return vWhite;
-            case eRed:		return vRed;
-            case eGreen:	return vGreen;
-            case eBlue:		return vBlue;
-            case eBlack:	return vBlack;
-            case eYellow:	return vYellow;
-            case eCyan:		return vCyan;
-            case eMagenta:	return vMagenta;
-            case eGray:		return vGray;
-            case eEndColor:
-            default:		return vWhite; // avoid warning
+        case eWhite:	return vWhite;
+        case eRed:		return vRed;
+        case eGreen:	return vGreen;
+        case eBlue:		return vBlue;
+        case eBlack:	return vBlack;
+        case eYellow:	return vYellow;
+        case eCyan:		return vCyan;
+        case eMagenta:	return vMagenta;
+        case eGray:		return vGray;
+        case eEndColor:
+        default:		return vWhite; // avoid warning
         }
     }
 
@@ -203,17 +203,17 @@ public:
     {
         switch (m_eColor)
         {
-            case eWhite:	return "white";
-            case eRed:		return "red";
-            case eGreen:	return "green";
-            case eBlue:		return "blue";
-            case eBlack:	return "black";
-            case eYellow:	return "yellow";
-            case eCyan:		return "cyan";
-            case eMagenta:	return "magenta";
-            case eGray:		return "gray";
-            case eEndColor: return "invalid";
-            default:		return "white"; // avoid warning
+        case eWhite:	return "white";
+        case eRed:		return "red";
+        case eGreen:	return "green";
+        case eBlue:		return "blue";
+        case eBlack:	return "black";
+        case eYellow:	return "yellow";
+        case eCyan:		return "cyan";
+        case eMagenta:	return "magenta";
+        case eGray:		return "gray";
+        case eEndColor: return "invalid";
+        default:		return "white"; // avoid warning
         }
     }
 
@@ -260,52 +260,52 @@ enum EnumFilterType
 
 struct Source
 {
-	enum EnumBlendingFactor
-	{
-		eZero,
-		eOne,
-		eSourceAlpha,
-		eOneMinusSourceAlpha,
-		eDestinationAlpha,
-		eOneMinusDestinationAlpha,
-		eDestinationColor,
-		eOneMinusDestinationColor,
-		eSourceAlphaSaturate,
-		eConstantColor,
-		eOneMinusConstantColor,
-		eConstantAlpha,
-		eOneMinusConstantAlpha
-	};
+    enum EnumBlendingFactor
+    {
+        eZero,
+        eOne,
+        eSourceAlpha,
+        eOneMinusSourceAlpha,
+        eDestinationAlpha,
+        eOneMinusDestinationAlpha,
+        eDestinationColor,
+        eOneMinusDestinationColor,
+        eSourceAlphaSaturate,
+        eConstantColor,
+        eOneMinusConstantColor,
+        eConstantAlpha,
+        eOneMinusConstantAlpha
+    };
 };
 
 struct Destination
 {
-	enum EnumBlendingFactor
-	{
-		eZero,
-		eOne,
-		eSourceColor,
-		eOneMinusSourceColor,
-		eSourceAlpha,
-		eOneMinusSourceAlpha,
-		eDestinationAlpha,
-		eOneMinusDestinationAlpha,
-		eDestinationColor,
-		eOneMinusDestinationColor,
-		eConstantColor,
-		eOneMinusConstantColor,
-		eConstantAlpha,
-		eOneMinusConstantAlpha
-	};
+    enum EnumBlendingFactor
+    {
+        eZero,
+        eOne,
+        eSourceColor,
+        eOneMinusSourceColor,
+        eSourceAlpha,
+        eOneMinusSourceAlpha,
+        eDestinationAlpha,
+        eOneMinusDestinationAlpha,
+        eDestinationColor,
+        eOneMinusDestinationColor,
+        eConstantColor,
+        eOneMinusConstantColor,
+        eConstantAlpha,
+        eOneMinusConstantAlpha
+    };
 };
 
 enum EnumBlendEquation
 {
-	eAdd,
-	eMinimum,
-	eMaximum,
-	eSubtract,
-	eReverseSubtract
+    eAdd,
+    eMinimum,
+    eMaximum,
+    eSubtract,
+    eReverseSubtract
 };
 
 //--------------------------------------------------------------------------------------------
@@ -315,12 +315,12 @@ enum EnumBlendEquation
 //! Types de shaders
 enum EnumShaderType
 {
-	eVertexShader,
-	eGeometryShader,
-	eFragmentShader,
-	eTessellationControlShader,
-	eTessellationEvaluationShader,
-	eComputeShader
+    eVertexShader,
+    eGeometryShader,
+    eFragmentShader,
+    eTessellationControlShader,
+    eTessellationEvaluationShader,
+    eComputeShader
 };
 
 //! Nombre de canaux de texture maximum
@@ -329,8 +329,8 @@ static const int DefaultMaxTextureChannelCount	= 4;
 //! Active ou desactive la définition de la taille d'un point dans le shader
 enum EnumProgramPointSize
 {
-	eEnabled,
-	eDisabled
+    eEnabled,
+    eDisabled
 };
 
 
@@ -341,44 +341,44 @@ static const QString DefaultShaderName = "phong";
 //--------------------------------------------------------------------------------------------
 enum EnumTarget
 {
-	eTargetScreen,
-	eTargetTexture,
-	eTargetQuadScreen
+    eTargetScreen,
+    eTargetTexture,
+    eTargetQuadScreen
 };
 
 enum EnumBufferType
 {
-	eBufferTypeTexture,
+    eBufferTypeTexture,
     eBufferTypeRenderBuffer
 };
 
 enum EnumInternalFormat
 {
-	eInternalFormatRGB,
-	eInternalFormatDepthComponent,
-	eInternalFormatStencilIndex
+    eInternalFormatRGB,
+    eInternalFormatDepthComponent,
+    eInternalFormatStencilIndex
 };
 
 enum EnumAttachment
 {
-	eAttachmentDepth,
-	eAttachmentStencil,
-	eAttachmentColor0,
-	eAttachmentColor1,
-	eAttachmentColor2,
-	eAttachmentColor3,
-	eAttachmentColor4,
-	eAttachmentColor5,
-	eAttachmentColor6,
-	eAttachmentColor7,
-	eAttachmentColor8,
-	eAttachmentColor9,
-	eAttachmentColor10,
-	eAttachmentColor11,
-	eAttachmentColor12,
-	eAttachmentColor13,
-	eAttachmentColor14,
-	eAttachmentColor15
+    eAttachmentDepth,
+    eAttachmentStencil,
+    eAttachmentColor0,
+    eAttachmentColor1,
+    eAttachmentColor2,
+    eAttachmentColor3,
+    eAttachmentColor4,
+    eAttachmentColor5,
+    eAttachmentColor6,
+    eAttachmentColor7,
+    eAttachmentColor8,
+    eAttachmentColor9,
+    eAttachmentColor10,
+    eAttachmentColor11,
+    eAttachmentColor12,
+    eAttachmentColor13,
+    eAttachmentColor14,
+    eAttachmentColor15
 };
 
 enum EnumDrawBuffer
@@ -413,7 +413,7 @@ enum EnumDrawBuffer
 //! Type de caméra
 enum EnumProjectionType
 {
-	eProjectionOrtho,
+    eProjectionOrtho,
     eProjectionPerspective,
     eProjectionInfinitePerspective
 };
@@ -421,12 +421,12 @@ enum EnumProjectionType
 //! Ordre des rotations
 enum EnumRotateOrder
 {
-	eTiltPanRoll,
-	eTiltRollPan,
-	ePanTiltRoll,
-	ePanRollTilt,
-	eRollTiltPan,
-	eRollPanTilt
+    eTiltPanRoll,
+    eTiltRollPan,
+    ePanTiltRoll,
+    ePanRollTilt,
+    eRollTiltPan,
+    eRollPanTilt
 };
 
 //--------------------------------------------------------------------------------------------
@@ -436,11 +436,11 @@ enum EnumRotateOrder
 //! Comportement à adopter entre deux clefs d'animation
 enum EnumAnimationBehaviour
 {
-	eAnimationBehaviourDefault,		// The value from the default node transformation is taken
-	eAnimationBehaviourConstant,	// The nearest key value is used without interpolation
-	eAnimationBehaviourLinear,		// The value of the nearest two keys is linearly extrapolated for the current time value
-	eAnimationBehaviourRepeat		// The animation is repeated.If the animation key go from n to m and the current time is t, 
-	// use the value at (t-n) % (|m-n|).
+    eAnimationBehaviourDefault,		// The value from the default node transformation is taken
+    eAnimationBehaviourConstant,	// The nearest key value is used without interpolation
+    eAnimationBehaviourLinear,		// The value of the nearest two keys is linearly extrapolated for the current time value
+    eAnimationBehaviourRepeat		// The animation is repeated.If the animation key go from n to m and the current time is t,
+    // use the value at (t-n) % (|m-n|).
 };
 
 //--------------------------------------------------------------------------------------------
@@ -450,11 +450,11 @@ enum EnumAnimationBehaviour
 //! Types de cible (2D, 3D, Cube...)
 enum EnumTextureType
 {
-	eTextureUndefined,
-	eTexture2D,
-	eTexture3D,
-	eTextureCube,
-	eTextureTarget
+    eTextureUndefined,
+    eTexture2D,
+    eTexture3D,
+    eTextureCube,
+    eTextureTarget
 };
 
 //--------------------------------------------------------------------------------------------
@@ -466,9 +466,9 @@ static const unsigned int MaxLightCount = 8;
 //! Type de source lumineuse
 enum EnumLightSourceType
 {
-	eSourceDirectionnal,
-	eSourcePoint,
-	eSourceSpot
+    eSourceDirectionnal,
+    eSourcePoint,
+    eSourceSpot
 };
 
 //--------------------------------------------------------------------------------------------
@@ -493,18 +493,18 @@ static const real       DefaultMaterialShininessFactor = 50.f;
 //! Types de paramétre de matériau
 enum EnumMaterialParameter
 {
-	eUndefined,
-	eDiffuse,
-	eSpecular,
-	eAmbient,
-	eEmissive,
-	eHeight,
-	eNormals,
-	eShininess,
-	eOpacity,
-	eDisplacement,
-	eLightmap,
-	eReflection
+    eUndefined,
+    eDiffuse,
+    eSpecular,
+    eAmbient,
+    eEmissive,
+    eHeight,
+    eNormals,
+    eShininess,
+    eOpacity,
+    eDisplacement,
+    eLightmap,
+    eReflection
 };
 
 
@@ -526,16 +526,16 @@ enum EnumAlphaMaskFunc
 //--------------------------------------------------------------------------------------------
 enum EnumLightParameter
 {
-	eIsEnabled,
-	ePosition,
-	eDirection,
-	eAmbientColor,
-	eDiffuseColor,
-	eSpecularColor,
-	eConstantAttenuation,
-	eLinearAttenuation,
-	eQuadraticAttenuation,
-	eEndLightParameter
+    eIsEnabled,
+    ePosition,
+    eDirection,
+    eAmbientColor,
+    eDiffuseColor,
+    eSpecularColor,
+    eConstantAttenuation,
+    eLinearAttenuation,
+    eQuadraticAttenuation,
+    eEndLightParameter
 };
 
 
@@ -582,7 +582,7 @@ public:
     inline bool operator()(const QVector3D& left, const QVector3D& right) const
     {
         return left.x() * m_dMVMatrix20 + left.y() * m_dMVMatrix21 + left.z() * m_dMVMatrix22 <
-               right.x() * m_dMVMatrix20 + right.y() * m_dMVMatrix21 + right.z() * m_dMVMatrix22;
+                right.x() * m_dMVMatrix20 + right.y() * m_dMVMatrix21 + right.z() * m_dMVMatrix22;
     }
 
 private:
@@ -599,232 +599,232 @@ class LIB_CORE_SHARED_EXPORT CGeometryGlobal
 {
 public:
 
-	//-----------------------------------------------------------------------------------------
-	// COULEURS
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // COULEURS
+    //-----------------------------------------------------------------------------------------
 
-	static QVector4D QVector4DFromQColor(const QColor& color)
-	{
-		return QVector4D(color.redF(), color.greenF(), color.blueF(), color.alphaF());
-	}
+    static QVector4D QVector4DFromQColor(const QColor& color)
+    {
+        return QVector4D(color.redF(), color.greenF(), color.blueF(), color.alphaF());
+    }
 
-	static QColor QColorFromQVector4D(const QVector4D& vector)
-	{
-		return QColor((int) (255 * vector.x()), (int) (255 * vector.y()), (int) (255 * vector.z()), (int) (255 * vector.w()));
-	}
+    static QColor QColorFromQVector4D(const QVector4D& vector)
+    {
+        return QColor((int) (255 * vector.x()), (int) (255 * vector.y()), (int) (255 * vector.z()), (int) (255 * vector.w()));
+    }
 
     //-----------------------------------------------------------------------------------------
-	// VECTEURS
-	//-----------------------------------------------------------------------------------------
+    // VECTEURS
+    //-----------------------------------------------------------------------------------------
 
     static QString stringFromQVector3D(const QVector3D& vector)
-	{
-		return QString::number(vector.x()) + ", " +
-			QString::number(vector.y()) + ", " +
-			QString::number(vector.z());
-	}
+    {
+        return QString::number(vector.x()) + ", " +
+                QString::number(vector.y()) + ", " +
+                QString::number(vector.z());
+    }
 
     static QString stringFromQVector4D(const QVector4D& vector)
-	{
-		return QString::number(vector.x()) + ", " +
-			QString::number(vector.y()) + ", " +
-			QString::number(vector.z()) + ", " +
-			QString::number(vector.w());
-	}
+    {
+        return QString::number(vector.x()) + ", " +
+                QString::number(vector.y()) + ", " +
+                QString::number(vector.z()) + ", " +
+                QString::number(vector.w());
+    }
 
-	static QVector3D QVector3DFromQString(const QString& string)
-	{
-		QStringList sList = string.split(",", QString::SkipEmptyParts);
+    static QVector3D QVector3DFromQString(const QString& string)
+    {
+        QStringList sList = string.split(",", QString::SkipEmptyParts);
 
-		return QVector3D(sList.size() > 0 ? sList[0].toDouble() : 0.,
-			sList.size() > 1 ? sList[1].toDouble() : 0.,
-			sList.size() > 2 ? sList[2].toDouble() : 0.);
+        return QVector3D(sList.size() > 0 ? sList[0].toDouble() : 0.,
+                         sList.size() > 1 ? sList[1].toDouble() : 0.,
+                         sList.size() > 2 ? sList[2].toDouble() : 0.);
 
-	}
+    }
 
-	static QVector4D QVector4DFromQString(const QString& string)
-	{
-		QStringList sList = string.split(",", QString::SkipEmptyParts);
+    static QVector4D QVector4DFromQString(const QString& string)
+    {
+        QStringList sList = string.split(",", QString::SkipEmptyParts);
 
-		return QVector4D(sList.size() > 0 ? sList[0].toDouble() : 0.,
-			sList.size() > 1 ? sList[1].toDouble() : 0.,
-			sList.size() > 2 ? sList[2].toDouble() : 0.,
-			sList.size() > 3 ? sList[3].toDouble() : 0.);
-	}
+        return QVector4D(sList.size() > 0 ? sList[0].toDouble() : 0.,
+                         sList.size() > 1 ? sList[1].toDouble() : 0.,
+                         sList.size() > 2 ? sList[2].toDouble() : 0.,
+                         sList.size() > 3 ? sList[3].toDouble() : 0.);
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// PRIMITIVES
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // PRIMITIVES
+    //-----------------------------------------------------------------------------------------
 
-	static EnumPrimitiveType fromRasterizationMode(EnumRasterizationMode eMode, EnumPrimitiveType eType)
-	{
-		switch (eMode)
-		{
+    static EnumPrimitiveType fromRasterizationMode(EnumRasterizationMode eMode, EnumPrimitiveType eType)
+    {
+        switch (eMode)
+        {
         case eRasterizationFill:
-			return eType;
+            return eType;
         case eRasterizationLine:
-			if (eType == ePrimitiveTriangles)
-				return ePrimitiveLine;
-			if (eType == ePrimitiveTriangleStrip || eType == ePrimitiveTriangleFan)
-				return ePrimitiveLineStrip;
-			if (eType == ePrimitiveTrianglesAdjacency)
-				return ePrimitiveLinesAdjacency;
-			if (eType == ePrimitiveTrianglesStripAdjacency)
-				return ePrimitiveLineStripAdjacency;
-			else 
-				return eType;
-		default:
+            if (eType == ePrimitiveTriangles)
+                return ePrimitiveLine;
+            if (eType == ePrimitiveTriangleStrip || eType == ePrimitiveTriangleFan)
+                return ePrimitiveLineStrip;
+            if (eType == ePrimitiveTrianglesAdjacency)
+                return ePrimitiveLinesAdjacency;
+            if (eType == ePrimitiveTrianglesStripAdjacency)
+                return ePrimitiveLineStripAdjacency;
+            else
+                return eType;
+        default:
         case eRasterizationPoint:
-			return ePrimitivePoint;
-		}		
-	}
+            return ePrimitivePoint;
+        }
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// TYPE DE BASE
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // TYPE DE BASE
+    //-----------------------------------------------------------------------------------------
 
-	static real scalaireFromQString(const QString& string)
-	{
-		return string.trimmed().toDouble();
-	}
+    static real scalaireFromQString(const QString& string)
+    {
+        return string.trimmed().toDouble();
+    }
 
-	static bool boolFromQString(const QString& string)
-	{
-		return (bool) string.trimmed().toInt();
-	}
+    static bool boolFromQString(const QString& string)
+    {
+        return (bool) string.trimmed().toInt();
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// MODE DE REMPLISSAGE
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // MODE DE REMPLISSAGE
+    //-----------------------------------------------------------------------------------------
 
-	static EnumRasterizationMode rasterizationModeFromString(const QString& string)
-	{
+    static EnumRasterizationMode rasterizationModeFromString(const QString& string)
+    {
         return rasterizationModeMap.key(string, eRasterizationFill);
-	}
+    }
 
     static QString stringFromRasterizationMode(EnumRasterizationMode eRasterizationMode)
-	{
-		return rasterizationModeMap.value(eRasterizationMode, "PolygonModeFill");
-	}
+    {
+        return rasterizationModeMap.value(eRasterizationMode, "PolygonModeFill");
+    }
 
-	static QList<QString> rasterizationModeEntries()
-	{ 
-		return rasterizationModeMap.values();
-	}
+    static QList<QString> rasterizationModeEntries()
+    {
+        return rasterizationModeMap.values();
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// POLITIQUE D'AFFICHAGE DES BOITES ENGLOBANTES
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // POLITIQUE D'AFFICHAGE DES BOITES ENGLOBANTES
+    //-----------------------------------------------------------------------------------------
 
-	static EnumBBoxPolicy bboxPolicyFromString(const QString& string)
-	{
-		return bboxPolicyMap.key(string, eNeverVisible);
-	}
+    static EnumBBoxPolicy bboxPolicyFromString(const QString& string)
+    {
+        return bboxPolicyMap.key(string, eNeverVisible);
+    }
 
     static QString stringFromBBoxPolicy(EnumBBoxPolicy eBBoxPolicy)
-	{
-		return bboxPolicyMap.value(eBBoxPolicy, "NeverVisible");
-	}
+    {
+        return bboxPolicyMap.value(eBBoxPolicy, "NeverVisible");
+    }
 
-	static QList<QString> bboxPolicyEntries()
-	{ 
-		return bboxPolicyMap.values();
-	}
+    static QList<QString> bboxPolicyEntries()
+    {
+        return bboxPolicyMap.values();
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// TYPE DE SOURCE LUMINEUSE
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // TYPE DE SOURCE LUMINEUSE
+    //-----------------------------------------------------------------------------------------
 
     static EnumLightSourceType lightSourceTypeFromString(const QString& string)
-	{
-		return lightSourceTypeMap.key(string, eSourceDirectionnal);
-	}
+    {
+        return lightSourceTypeMap.key(string, eSourceDirectionnal);
+    }
 
     static QString stringFromLightSourceType(EnumLightSourceType eLightSourceType)
-	{
-		return lightSourceTypeMap.value(eLightSourceType, "Directionnal");
-	}
+    {
+        return lightSourceTypeMap.value(eLightSourceType, "Directionnal");
+    }
 
-	static QList<QString> lightSourceTypeEntries()
-	{ 
-		return lightSourceTypeMap.values();
-	}
+    static QList<QString> lightSourceTypeEntries()
+    {
+        return lightSourceTypeMap.values();
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// PARAMETRE DE MATERIAU
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // PARAMETRE DE MATERIAU
+    //-----------------------------------------------------------------------------------------
 
-	static EnumMaterialParameter materialParameterFromString(const QString& string)
-	{
-		return materialParameterMap.key(string, eUndefined);
-	}
+    static EnumMaterialParameter materialParameterFromString(const QString& string)
+    {
+        return materialParameterMap.key(string, eUndefined);
+    }
 
     static QString stringFromMaterialParameter(EnumMaterialParameter eMaterialParameter)
-	{
-		return materialParameterMap.value(eMaterialParameter, "Undefined");
-	}
+    {
+        return materialParameterMap.value(eMaterialParameter, "Undefined");
+    }
 
-	static QList<QString> materialParameterEntries()
-	{ 
-		return materialParameterMap.values();
-	}
+    static QList<QString> materialParameterEntries()
+    {
+        return materialParameterMap.values();
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// FONCTION ALPHA MASK
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // FONCTION ALPHA MASK
+    //-----------------------------------------------------------------------------------------
 
-	static EnumAlphaMaskFunc alphaMaskFuncFromString(const QString& string)
-	{
+    static EnumAlphaMaskFunc alphaMaskFuncFromString(const QString& string)
+    {
         return materialAlphaMaskMap.key(string, eAlphaMaskAlways);
-	}
+    }
 
     static QString stringFromAlphaMaskFunc(EnumAlphaMaskFunc eAlphaMaskFunc)
-	{
-		return materialAlphaMaskMap.value(eAlphaMaskFunc, "Always");
-	}
+    {
+        return materialAlphaMaskMap.value(eAlphaMaskFunc, "Always");
+    }
 
-	static QList<QString> alphaMaskFuncEntries()
-	{ 
-		return materialAlphaMaskMap.values();
-	}
+    static QList<QString> alphaMaskFuncEntries()
+    {
+        return materialAlphaMaskMap.values();
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// TEXTURES
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // TEXTURES
+    //-----------------------------------------------------------------------------------------
 
-	static EnumTextureType textureTypeFromString(const QString& string)
-	{
-		return textureTypeMap.key(string, eTextureUndefined);
-	}
+    static EnumTextureType textureTypeFromString(const QString& string)
+    {
+        return textureTypeMap.key(string, eTextureUndefined);
+    }
 
     static QString stringFromTextureType(EnumTextureType eTextureType)
-	{
-		return textureTypeMap.value(eTextureType, "Undefined");
-	}
+    {
+        return textureTypeMap.value(eTextureType, "Undefined");
+    }
 
-	static QList<QString> textureTypeEntries()
-	{ 
-		return textureTypeMap.values();
-	}
+    static QList<QString> textureTypeEntries()
+    {
+        return textureTypeMap.values();
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// RENDERING TARGET
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // RENDERING TARGET
+    //-----------------------------------------------------------------------------------------
 
-	static EnumTarget targetTypeFromString(const QString& string)
-	{
-		return targetTypeMap.key(string, eTargetScreen);
-	}
+    static EnumTarget targetTypeFromString(const QString& string)
+    {
+        return targetTypeMap.key(string, eTargetScreen);
+    }
 
     static QString stringFromTargetType(EnumTarget eTarget)
-	{
-		return targetTypeMap.value(eTarget, "Screen");
-	}
+    {
+        return targetTypeMap.value(eTarget, "Screen");
+    }
 
-	static QList<QString> targetTypeEntries()
-	{ 
-		return targetTypeMap.values();
-	}
+    static QList<QString> targetTypeEntries()
+    {
+        return targetTypeMap.values();
+    }
 
     //-----------------------------------------------------------------------------------------
     // INTERNAL FORMAT
@@ -845,143 +845,143 @@ public:
         return internalFormatMap.values();
     }
 
-	//-----------------------------------------------------------------------------------------
-	// TYPE DE PROJECTION
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // TYPE DE PROJECTION
+    //-----------------------------------------------------------------------------------------
 
-	static EnumProjectionType projectionTypeFromString(const QString& string)
-	{
-		return projectionTypeMap.key(string, eProjectionOrtho);
-	}
+    static EnumProjectionType projectionTypeFromString(const QString& string)
+    {
+        return projectionTypeMap.key(string, eProjectionOrtho);
+    }
 
     static QString stringFromProjectionType(EnumProjectionType eProjectionType)
-	{
-		return projectionTypeMap.value(eProjectionType, "Ortho");
-	}
+    {
+        return projectionTypeMap.value(eProjectionType, "Ortho");
+    }
 
-	static QList<QString> projectionTypeEntries()
-	{ 
-		return projectionTypeMap.values();
-	}
+    static QList<QString> projectionTypeEntries()
+    {
+        return projectionTypeMap.values();
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// ANIMATIONS
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // ANIMATIONS
+    //-----------------------------------------------------------------------------------------
 
-	static EnumAnimationBehaviour animationBehaviorTypeFromString(const QString& string)
-	{
-		return animationBehaviorTypeMap.key(string, eAnimationBehaviourConstant);
-	}
+    static EnumAnimationBehaviour animationBehaviorTypeFromString(const QString& string)
+    {
+        return animationBehaviorTypeMap.key(string, eAnimationBehaviourConstant);
+    }
 
     static QString stringFromAnimationBehaviorType(EnumAnimationBehaviour eAnimationBehaviorType)
-	{
-		return animationBehaviorTypeMap.value(eAnimationBehaviorType, "Default");
-	}
+    {
+        return animationBehaviorTypeMap.value(eAnimationBehaviorType, "Default");
+    }
 
-	static QList<QString> animationBehaviorTypeEntries()
-	{ 
-		return animationBehaviorTypeMap.values();
-	}
+    static QList<QString> animationBehaviorTypeEntries()
+    {
+        return animationBehaviorTypeMap.values();
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// PRIMITIVES
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // PRIMITIVES
+    //-----------------------------------------------------------------------------------------
 
-	static EnumPrimitiveType primitiveTypeFromString(const QString& string)
-	{
-		return primitiveTypeMap.key(string, ePrimitivePoint);
-	}
+    static EnumPrimitiveType primitiveTypeFromString(const QString& string)
+    {
+        return primitiveTypeMap.key(string, ePrimitivePoint);
+    }
 
     static QString stringFromPrimitiveType(EnumPrimitiveType ePrimitiveType)
-	{
-		return primitiveTypeMap.value(ePrimitiveType, "Point");
-	}
+    {
+        return primitiveTypeMap.value(ePrimitiveType, "Point");
+    }
 
-	static QList<QString> primitiveTypeEntries()
-	{ 
-		return primitiveTypeMap.values();
-	}
+    static QList<QString> primitiveTypeEntries()
+    {
+        return primitiveTypeMap.values();
+    }
 
 
-	static EnumPrimitiveType fromRasterizationMode(EnumPrimitiveType eIn, EnumRasterizationMode eMode)
-	{
-		switch (eMode)
-		{
+    static EnumPrimitiveType fromRasterizationMode(EnumPrimitiveType eIn, EnumRasterizationMode eMode)
+    {
+        switch (eMode)
+        {
         case eRasterizationFill:
-			return eIn;
+            return eIn;
         case eRasterizationLine:
-			if (eIn == ePrimitiveTriangles)
-				return ePrimitiveLine;
-			if (eIn == ePrimitiveTriangleStrip || eIn == ePrimitiveTriangleFan)
-				return ePrimitiveLineStrip;
-			if (eIn == ePrimitiveTrianglesAdjacency)
-				return ePrimitiveLinesAdjacency;
-			if (eIn == ePrimitiveTrianglesStripAdjacency)
-				return ePrimitiveLineStripAdjacency;
-			else 
-				return eIn;
-		default:
+            if (eIn == ePrimitiveTriangles)
+                return ePrimitiveLine;
+            if (eIn == ePrimitiveTriangleStrip || eIn == ePrimitiveTriangleFan)
+                return ePrimitiveLineStrip;
+            if (eIn == ePrimitiveTrianglesAdjacency)
+                return ePrimitiveLinesAdjacency;
+            if (eIn == ePrimitiveTrianglesStripAdjacency)
+                return ePrimitiveLineStripAdjacency;
+            else
+                return eIn;
+        default:
         case eRasterizationPoint:
-			return ePrimitivePoint;
-		}		
-	}
+            return ePrimitivePoint;
+        }
+    }
 
-	//-----------------------------------------------------------------------------------------
-	// PHYSICS SHAPES
-	//-----------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------
+    // PHYSICS SHAPES
+    //-----------------------------------------------------------------------------------------
 
-	static EnumPhysicShape physicShapeFromString(const QString& string)
-	{
-		return physicShapeMap.key(string, eBoxShape);
-	}
+    static EnumPhysicShape physicShapeFromString(const QString& string)
+    {
+        return physicShapeMap.key(string, eBoxShape);
+    }
 
     static QString stringFromPhysicShape(EnumPhysicShape ePhysicShape)
-	{
-		return physicShapeMap.value(ePhysicShape, "BoxShape");
-	}
+    {
+        return physicShapeMap.value(ePhysicShape, "BoxShape");
+    }
 
-	static QList<QString> physicShapeEntries()
-	{ 
-		return physicShapeMap.values();
-	}
+    static QList<QString> physicShapeEntries()
+    {
+        return physicShapeMap.values();
+    }
 
 private:
 
-	static QMap<EnumRasterizationMode, QString> rasterizationModeMap;
-	static QMap<EnumRasterizationMode, QString> initRasterizationModeMap();
+    static QMap<EnumRasterizationMode, QString> rasterizationModeMap;
+    static QMap<EnumRasterizationMode, QString> initRasterizationModeMap();
 
-	static QMap<EnumBBoxPolicy, QString> bboxPolicyMap;
-	static QMap<EnumBBoxPolicy, QString> initBBoxPolicyMap();
+    static QMap<EnumBBoxPolicy, QString> bboxPolicyMap;
+    static QMap<EnumBBoxPolicy, QString> initBBoxPolicyMap();
 
-	static QMap<EnumLightSourceType, QString> lightSourceTypeMap;
-	static QMap<EnumLightSourceType, QString> initLightSourceTypeMap();
+    static QMap<EnumLightSourceType, QString> lightSourceTypeMap;
+    static QMap<EnumLightSourceType, QString> initLightSourceTypeMap();
 
-	static QMap<EnumMaterialParameter, QString> materialParameterMap;
-	static QMap<EnumMaterialParameter, QString> initMaterialParameterMap();
+    static QMap<EnumMaterialParameter, QString> materialParameterMap;
+    static QMap<EnumMaterialParameter, QString> initMaterialParameterMap();
 
-	static QMap<EnumAlphaMaskFunc, QString> materialAlphaMaskMap;
-	static QMap<EnumAlphaMaskFunc, QString> initAlphaMaskFuncMap();
-	
-	static QMap<EnumTextureType, QString> textureTypeMap;
-	static QMap<EnumTextureType, QString> initTextureTypeMap();	
+    static QMap<EnumAlphaMaskFunc, QString> materialAlphaMaskMap;
+    static QMap<EnumAlphaMaskFunc, QString> initAlphaMaskFuncMap();
 
-	static QMap<EnumTarget, QString> targetTypeMap;
-	static QMap<EnumTarget, QString> initTargetTypeMap();	
+    static QMap<EnumTextureType, QString> textureTypeMap;
+    static QMap<EnumTextureType, QString> initTextureTypeMap();
+
+    static QMap<EnumTarget, QString> targetTypeMap;
+    static QMap<EnumTarget, QString> initTargetTypeMap();
 
     static QMap<EnumInternalFormat, QString> internalFormatMap;
     static QMap<EnumInternalFormat, QString> initInternalFormatMap();
 
-	static QMap<EnumProjectionType, QString> projectionTypeMap;
-	static QMap<EnumProjectionType, QString> initProjectionTypeMap();	
+    static QMap<EnumProjectionType, QString> projectionTypeMap;
+    static QMap<EnumProjectionType, QString> initProjectionTypeMap();
 
-	static QMap<EnumAnimationBehaviour, QString> animationBehaviorTypeMap;
-	static QMap<EnumAnimationBehaviour, QString> initAnimationBehaviorTypeMap();
+    static QMap<EnumAnimationBehaviour, QString> animationBehaviorTypeMap;
+    static QMap<EnumAnimationBehaviour, QString> initAnimationBehaviorTypeMap();
 
-	static QMap<EnumPrimitiveType, QString> primitiveTypeMap;
-	static QMap<EnumPrimitiveType, QString> initPrimitiveTypeMap();
+    static QMap<EnumPrimitiveType, QString> primitiveTypeMap;
+    static QMap<EnumPrimitiveType, QString> initPrimitiveTypeMap();
 
-	static QMap<EnumPhysicShape, QString> physicShapeMap;
-	static QMap<EnumPhysicShape, QString> initPhysicShapeMap();
+    static QMap<EnumPhysicShape, QString> physicShapeMap;
+    static QMap<EnumPhysicShape, QString> initPhysicShapeMap();
 };
 
 #endif // CGEOMETRYGLOBAL_H

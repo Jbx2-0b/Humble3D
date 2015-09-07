@@ -3,8 +3,8 @@
 
 //-----------------------------------------------------------------------------------------
 CGeometryInstancer::CGeometryInstancer()
-: QThread()
-, m_Mutex(QMutex::Recursive)
+    : QThread()
+    , m_Mutex(QMutex::Recursive)
 {
     start();
 }
@@ -64,9 +64,9 @@ void CGeometryInstancer::run()
             pMesh->updateGeometry();
             pMesh->setDirty();
 
-//            pLog->addMessage(eDEBUGTHREAD, QString("CGeometryInstancer (Thread: %1) Mesh %2")
-//                             .arg((qlonglong)QThread::currentThreadId())
-//                             .arg(pMesh->getName()));
+            //            pLog->addMessage(eDEBUGTHREAD, QString("CGeometryInstancer (Thread: %1) Mesh %2")
+            //                             .arg((qlonglong)QThread::currentThreadId())
+            //                             .arg(pMesh->getName()));
             pMesh->unlock();
         }
         else

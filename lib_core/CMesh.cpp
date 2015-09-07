@@ -8,15 +8,15 @@
 
 
 #ifdef ENABLE_MULTITHREADING
-    CGeometryInstancer CMesh::s_GeometryInstancer;
+CGeometryInstancer CMesh::s_GeometryInstancer;
 #endif
 
 //-----------------------------------------------------------------------------------------
 CMesh::CMesh(const QString& name)
-: AEntity(name)
-, m_bNeedUpdateBoundingBox(true)
-, m_bNeedUpdateBoundingSphere(true)
-, m_bMultithreadingEnabled(false)
+    : AEntity(name)
+    , m_bNeedUpdateBoundingBox(true)
+    , m_bNeedUpdateBoundingSphere(true)
+    , m_bMultithreadingEnabled(false)
 {
 }
 
@@ -24,9 +24,9 @@ CMesh::CMesh(const QString& name)
 CMesh::~CMesh(void)
 {
     foreach (CSubMesh* pSubMesh, m_SubMeshs)
-	{
-		removeSubMesh(pSubMesh);
-	}
+    {
+        removeSubMesh(pSubMesh);
+    }
 }
 
 //--------------------------------------------------------------------------
@@ -50,7 +50,7 @@ CSubMesh* CMesh::createSubMesh()
     m_SubMeshs.append(pSubMesh);
     setDirty();
     notifyUpdate();
-	return pSubMesh;
+    return pSubMesh;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ void CMesh::removeSubMesh(CSubMesh* pSubMesh)
     m_SubMeshs.removeOne(pSubMesh);
     setDirty();
     notifyUpdate();
-	delete pSubMesh;
+    delete pSubMesh;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -107,7 +107,7 @@ const CBox3D& CMesh::getBoundingBox() const
         m_bNeedUpdateBoundingBox = false;
     }
 
-	return m_BoundingBox;
+    return m_BoundingBox;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -126,12 +126,12 @@ const CSphere& CMesh::getBoundingSphere() const
 bool CMesh::hasSkeleton() const
 {
     foreach (const CSubMesh* pSubMesh, m_SubMeshs)
-	{
+    {
         if (pSubMesh->hasSkeleton())
-			return true;
-	}
+            return true;
+    }
 
-	return false;
+    return false;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -140,9 +140,9 @@ unsigned int CMesh::getPolygonCount() const
     unsigned int iPolygonCount = 0;
 
     foreach (CSubMesh* pSubMesh, m_SubMeshs)
-	{
+    {
         iPolygonCount += pSubMesh->getPolygonCount();
-	}
+    }
 
     return iPolygonCount;
 }
@@ -152,20 +152,20 @@ unsigned int CMesh::getPolygonCount() const
 //-----------------------------------------------------------------------------------------
 QMultiHash<CSceneNode*, CBone> CMesh::getBoneNodes(CSceneManager* pSceneManager) const
 {
-	QMultiHash<CSceneNode*, CBone> nodeMap;
+    QMultiHash<CSceneNode*, CBone> nodeMap;
 
     foreach (const CSubMesh* pSubMesh, m_SubMeshs)
-	{
+    {
         foreach (const CBone& bone, pSubMesh->bonesBuffer())
-		{
+        {
             if (CSceneNode* pNode = pSceneManager->findNode(bone.getNodeName()))
-			{
-				nodeMap.insert(pNode, bone);
-			}
-		}
-	}
+            {
+                nodeMap.insert(pNode, bone);
+            }
+        }
+    }
 
-	return nodeMap;
+    return nodeMap;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -174,54 +174,54 @@ QMultiHash<CSceneNode*, CBone> CMesh::getBoneNodes(CSceneManager* pSceneManager)
 void CMesh::computeNormals()
 {
     foreach (CSubMesh* pSubMesh, m_SubMeshs)
-	{
+    {
         if (pSubMesh->getAutoComputeNormals())
-		{
+        {
             pSubMesh->computeNormals();
-		}
-	}
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CMesh::computeTangents()
 {
-	// TODO
+    // TODO
 }
 
 //-----------------------------------------------------------------------------------------
 bool CMesh::intersection(const CRay& ray, real* dDistance, const QMatrix4x4& transformation /*= QMatrix4x4()*/) const
 {
-	bool bIntersect = false;
+    bool bIntersect = false;
 
     foreach (CSubMesh* pSubMesh, m_SubMeshs)
-	{
-		real dD = std::numeric_limits<real>::infinity();
+    {
+        real dD = std::numeric_limits<real>::infinity();
 
         if (pSubMesh->intersection(ray, &dD, transformation))
-		{
-			if (dD < *dDistance)
-			{
-				*dDistance = dD;
-				bIntersect = true;
-			}
-		}
-	}
+        {
+            if (dD < *dDistance)
+            {
+                *dDistance = dD;
+                bIntersect = true;
+            }
+        }
+    }
 
-	return bIntersect;
+    return bIntersect;
 }
 
 //-----------------------------------------------------------------------------------------
 bool CMesh::intersects(const CRay &ray, const QMatrix4x4& transformation /*= QMatrix4x4()*/) const
 {
     foreach (CSubMesh* pSubMesh, m_SubMeshs)
-	{
+    {
         if (pSubMesh->intersects(ray, transformation))
-		{
-			return true;
-		}
-	}
+        {
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 //-----------------------------------------------------------------------------------------

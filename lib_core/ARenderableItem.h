@@ -19,7 +19,7 @@ class LIB_CORE_SHARED_EXPORT ARenderableItem : public ASceneNodeItem
 {
 public:
 
-	//! Constructeur
+    //! Constructeur
     ARenderableItem(CSceneManager* pSceneManager, const QString& name);
 
     //-------------------------------------------------------------------------------------------------

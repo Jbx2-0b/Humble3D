@@ -9,31 +9,31 @@ typedef quint32 MaxPacketSize;
 
 class ISender : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	friend class CTypeDispatcher;
+    friend class CTypeDispatcher;
 
 public:
 
-	//! Ctor
-	ISender(QObject* parent = 0) 
-		: QObject(parent)
-		, m_iCompressionFactor(0)
-		{}
+    //! Ctor
+    ISender(QObject* parent = 0)
+        : QObject(parent)
+        , m_iCompressionFactor(0)
+    {}
 
-	//! Définit le taux de compression (de 0 -pas de de compression- à 9)
-	void setCompressionFactor(int iFactor)	{ m_iCompressionFactor = iFactor; }
+    //! Définit le taux de compression (de 0 -pas de de compression- à 9)
+    void setCompressionFactor(int iFactor)	{ m_iCompressionFactor = iFactor; }
 
 signals:
 
-	void newMessage(const QVariant& variant);
+    void newMessage(const QVariant& variant);
 
-	void percentReceived(double dPercent);
+    void percentReceived(double dPercent);
 
 protected:
 
-	QString			m_strFilePath;
-	int				m_iCompressionFactor;
+    QString			m_strFilePath;
+    int				m_iCompressionFactor;
 };
 
 #endif // ISENDER_H

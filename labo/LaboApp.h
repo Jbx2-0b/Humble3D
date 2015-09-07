@@ -17,9 +17,9 @@ class CToolBar;
 #include <QSettings>
 
 #ifdef MULTITHREAD
-	#include <QtConcurrentRun>
-	#include <QFuture>
-	#include <QFutureWatcher>
+#include <QtConcurrentRun>
+#include <QFuture>
+#include <QFutureWatcher>
 #endif
 
 static const QString configFileName = "config.ini";
@@ -32,26 +32,26 @@ static const int iDefaultViewPosY = 100;
 
 class LaboApp : public QObject, public Humble3DApp
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Différentes options
-	enum EnumOptions
-	{
-		eOptionZoom,
-		eOptionRotate,
-		eOptionPan,
-		eOptionFOV,
-	};
+    //! Différentes options
+    enum EnumOptions
+    {
+        eOptionZoom,
+        eOptionRotate,
+        eOptionPan,
+        eOptionFOV,
+    };
 
-	//! Constructeur
+    //! Constructeur
     LaboApp();
 
-	//! Destructeur
-	virtual ~LaboApp();
+    //! Destructeur
+    virtual ~LaboApp();
 
-	//! Charge une scene
+    //! Charge une scene
     void loadScene(const QString& fileName);
 
 protected slots:
@@ -77,7 +77,7 @@ protected slots:
     void onFSButtonClicked();
     void onFPSChanged(int iFPS);
 
-	//virtual void keyPressEvent(QKeyEvent* pEvent);
+    //virtual void keyPressEvent(QKeyEvent* pEvent);
 
 protected:
 

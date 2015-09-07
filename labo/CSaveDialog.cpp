@@ -1,9 +1,9 @@
 #include "CSaveDialog.h"
 
 CSaveDialog::CSaveDialog(QWidget *parent /* = 0*/)
-: QDialog(parent)
+    : QDialog(parent)
 {
-	ui.setupUi(this);
+    ui.setupUi(this);
 }
 
 CSaveDialog::~CSaveDialog()

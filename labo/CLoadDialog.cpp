@@ -1,9 +1,9 @@
 #include "CLoadDialog.h"
 
 CLoadDialog::CLoadDialog(QWidget *parent /* = 0*/)
-: QDialog(parent)
+    : QDialog(parent)
 {
-	ui.setupUi(this);
+    ui.setupUi(this);
 }
 
 CLoadDialog::~CLoadDialog()

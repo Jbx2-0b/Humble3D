@@ -9,8 +9,8 @@
 
 //-----------------------------------------------------------------------------------------
 CGrass::CGrass()
-: CMesh("Grass")
-, m_pHeightMap(0)
+    : CMesh("Grass")
+    , m_pHeightMap(0)
 {
     //setMultithreadingEnabled(true);
     /*
@@ -224,15 +224,15 @@ CGrass::~CGrass()
 //-----------------------------------------------------------------------------------------
 void CGrass::setHeightMap(CHeightMap* pHeightMap)
 {
-	m_pHeightMap = pHeightMap;
+    m_pHeightMap = pHeightMap;
     update();
 }
 
 //-----------------------------------------------------------------------------------------
 void CGrass::updateGeometry()
 {
-	if (m_pHeightMap)
-	{
+    if (m_pHeightMap)
+    {
         m_pGrassBuffer = createSubMesh();
         m_pGrassBuffer->setPrimitiveType(ePrimitivePoint);
 
@@ -280,5 +280,5 @@ void CGrass::updateGeometry()
         }
 
         qDebug() << i - 1;
-	}
+    }
 }

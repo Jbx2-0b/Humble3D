@@ -12,7 +12,7 @@ class CTreeWidgetItemBase : public QObject, public QTreeWidgetItem
 {
 public:
 
-	//! Constructeur
+    //! Constructeur
     CTreeWidgetItemBase(CNodeTreeWidget* pTreeWidget, QTreeWidgetItem* pParent = 0)
         : QTreeWidgetItem()
         , m_pTreeWidget(pTreeWidget)
@@ -24,22 +24,22 @@ public:
         m_pTreeWidget->setItemWidget(this, 0, m_pWidget);
     }
 
-	//! Destructeur
-	virtual ~CTreeWidgetItemBase()
-	{
-		// On ne supprime pas m_pWidget, le TreeWidget s'en charge
-	}
+    //! Destructeur
+    virtual ~CTreeWidgetItemBase()
+    {
+        // On ne supprime pas m_pWidget, le TreeWidget s'en charge
+    }
 
-	//! Active ou desactive le widget
-	void setEnabled(bool bEnabled)
-	{
-		m_pWidget->setEnabled(bEnabled);
-	}
+    //! Active ou desactive le widget
+    void setEnabled(bool bEnabled)
+    {
+        m_pWidget->setEnabled(bEnabled);
+    }
 
 protected:
 
-	Widget* m_pWidget;
-	CNodeTreeWidget* m_pTreeWidget;
+    Widget* m_pWidget;
+    CNodeTreeWidget* m_pTreeWidget;
 };
 
 #endif // TREEWIDGETITEMBASE_H

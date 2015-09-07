@@ -3,10 +3,10 @@
 
 //-----------------------------------------------------------------------------------------
 CEditShaderTreeItem::CEditShaderTreeItem(CNodeTreeWidget* pTreeWidget, QTreeWidgetItem* pParent /*= 0*/, bool bWidthEditButton /*= false*/)
-: CTreeWidgetItemBase(pTreeWidget, pParent)
+    : CTreeWidgetItemBase(pTreeWidget, pParent)
 {
-	m_pWidget->setButtonVisible(bWidthEditButton);
-	connect(m_pWidget, SIGNAL(editShader(const QString&)), m_pTreeWidget, SIGNAL(editShader(const QString&)));
+    m_pWidget->setButtonVisible(bWidthEditButton);
+    connect(m_pWidget, SIGNAL(editShader(const QString&)), m_pTreeWidget, SIGNAL(editShader(const QString&)));
 }
 
 //-----------------------------------------------------------------------------------------
@@ -18,11 +18,11 @@ CEditShaderTreeItem::~CEditShaderTreeItem()
 //-----------------------------------------------------------------------------------------
 void CEditShaderTreeItem::setName(const QString& name)
 {
-	m_pWidget->setText(name);
+    m_pWidget->setText(name);
 }
 
 //-----------------------------------------------------------------------------------------
 QString CEditShaderTreeItem::getName() const
 {
-	return m_pWidget->getText();
+    return m_pWidget->getText();
 }

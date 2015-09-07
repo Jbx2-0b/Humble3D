@@ -18,45 +18,45 @@ class CGraphicsWidgetItem : public QGraphicsProxyWidget
 {
 public:
 
-	//! Ctor
-	CGraphicsWidgetItem(QGraphicsItem* parent = 0)
-	: QGraphicsProxyWidget(parent) {}
+    //! Ctor
+    CGraphicsWidgetItem(QGraphicsItem* parent = 0)
+        : QGraphicsProxyWidget(parent) {}
 
-	//! Ctor
-	CGraphicsWidgetItem(QGraphicsScene* pScene)
-	{
-		pScene->addItem(this);
-	}
+    //! Ctor
+    CGraphicsWidgetItem(QGraphicsScene* pScene)
+    {
+        pScene->addItem(this);
+    }
 
-	template <class Widget>
-	Widget* getWidget() const
-	{
-		return dynamic_cast<Widget*>(widget());
-	}
+    template <class Widget>
+    Widget* getWidget() const
+    {
+        return dynamic_cast<Widget*>(widget());
+    }
 
-	//! Largeur
-	int width()		{ return boundingRect().width(); }
+    //! Largeur
+    int width()		{ return boundingRect().width(); }
 
-	//! Hauteur
-	int height()	{ return boundingRect().height(); }
+    //! Hauteur
+    int height()	{ return boundingRect().height(); }
 
-	// Crée un item à partir d'un widget
-	static CGraphicsWidgetItem* createItemFromWidget(QWidget* pWidget, QGraphicsItem* parent = 0)
-	{
-		CGraphicsWidgetItem* pItem = new CGraphicsWidgetItem(parent);
-		pItem->setWidget(pWidget);
-		pWidget->setAttribute(Qt::WA_TranslucentBackground);
-		pItem->setZValue(1e30);
-		return pItem;
-	}
+    // Crée un item à partir d'un widget
+    static CGraphicsWidgetItem* createItemFromWidget(QWidget* pWidget, QGraphicsItem* parent = 0)
+    {
+        CGraphicsWidgetItem* pItem = new CGraphicsWidgetItem(parent);
+        pItem->setWidget(pWidget);
+        pWidget->setAttribute(Qt::WA_TranslucentBackground);
+        pItem->setZValue(1e30);
+        return pItem;
+    }
 
-	void setStyleSheetFile(const QString& styleSheetFileName)
-	{
-		if (widget())
-		{
+    void setStyleSheetFile(const QString& styleSheetFileName)
+    {
+        if (widget())
+        {
             widget()->setStyleSheet(CQtHelper::getStyleSheetFromFileName(styleSheetFileName));
-		}
-	}
+        }
+    }
 };
 
 template <class Form>

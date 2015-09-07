@@ -5,82 +5,82 @@
 
 //--------------------------------------------------------------------------
 CMaterial::CMaterial(const QString& name)
-: AEntity(name)
-, m_AmbientColor(DefaultMaterialAmbientColor)
-, m_DiffuseColor(DefaultMaterialDiffuseColor)
-, m_SpecularColor(DefaultMaterialSpecularColor)
-, m_AlphaMaskColor(DefaultMaterialAlphaMaskColor)
-, m_dShininessFactor(DefaultMaterialShininessFactor)
-, m_dOpacity(1.)
-, m_eAlphaMaskFunc(eAlphaMaskAlways)
+    : AEntity(name)
+    , m_AmbientColor(DefaultMaterialAmbientColor)
+    , m_DiffuseColor(DefaultMaterialDiffuseColor)
+    , m_SpecularColor(DefaultMaterialSpecularColor)
+    , m_AlphaMaskColor(DefaultMaterialAlphaMaskColor)
+    , m_dShininessFactor(DefaultMaterialShininessFactor)
+    , m_dOpacity(1.)
+    , m_eAlphaMaskFunc(eAlphaMaskAlways)
 {
-	m_RenderingPassList << new CRenderPass(this);
+    m_RenderingPassList << new CRenderPass(this);
 }
 
 //--------------------------------------------------------------------------
 CMaterial::~CMaterial()
 {
-	notifyDelete();
+    notifyDelete();
 
-	foreach (CRenderPass* pPass, m_RenderingPassList)
-	{
-		delete pPass;
-	}
+    foreach (CRenderPass* pPass, m_RenderingPassList)
+    {
+        delete pPass;
+    }
 }
 
 //--------------------------------------------------------------------------
 CRenderPass* CMaterial::createRenderPass(
-	EnumTarget eTarget,
-	const QSize& size /*= QSize(1024, 1024)*/,
-	const CRenderStates& states /*= CRenderStates()*/)
+        EnumTarget eTarget,
+        const QSize& size /*= QSize(1024, 1024)*/,
+        const CRenderStates& states /*= CRenderStates()*/)
 {
-	CRenderPass* pPass = new CRenderPass(this, eTarget, size, states);
-	m_RenderingPassList  << pPass;
+    CRenderPass* pPass = new CRenderPass(this, eTarget, size, states);
+    m_RenderingPassList  << pPass;
 
-	return pPass;
+    return pPass;
 }
 
 //--------------------------------------------------------------------------
 void CMaterial::removeRenderingPass(int iIndex)
 {
-	if (m_RenderingPassList.size() > iIndex)
-	{
-		CRenderPass* pPass = m_RenderingPassList[iIndex];
-		m_RenderingPassList.removeAt(iIndex);
-		delete pPass;
-	}
+    if (m_RenderingPassList.size() > iIndex)
+    {
+        CRenderPass* pPass = m_RenderingPassList[iIndex];
+        m_RenderingPassList.removeAt(iIndex);
+        delete pPass;
+    }
 }
 
 //--------------------------------------------------------------------------
 void CMaterial::removeRenderingPass(CRenderPass* pPass)
 {
-	if (m_RenderingPassList.contains(pPass))
-	{
+    if (m_RenderingPassList.contains(pPass))
+    {
         m_RenderingPassList.removeOne(pPass);
-		delete pPass;
-	}
+        delete pPass;
+    }
 }
 
 //--------------------------------------------------------------------------
 CRenderPass* CMaterial::getRenderPass(int iIndex)
 {
-	if (m_RenderingPassList.size() > iIndex && iIndex >= 0) 
-	{
-		return m_RenderingPassList[iIndex];
-	}
+    if (m_RenderingPassList.size() > iIndex && iIndex >= 0)
+    {
+        return m_RenderingPassList[iIndex];
+    }
 
-	return 0;
+    return 0;
 }
 
 //--------------------------------------------------------------------------
 const CRenderPass* CMaterial::getRenderPass(int iIndex) const
 {
-	if (m_RenderingPassList.size() > iIndex)
-	{
-		return m_RenderingPassList[iIndex];
-	}
+    if (m_RenderingPassList.size() > iIndex)
+    {
+        return m_RenderingPassList[iIndex];
+    }
 
-	return 0;
+    return 0;
 }
 
 //--------------------------------------------------------------------------
@@ -105,11 +105,11 @@ void CMaterial::unregisterListener(IMaterialListener* pListener)
 void CMaterial::notifyDelete()
 {
     foreach (IMaterialListener* pListener, m_MaterialListeners)
-	{
-		pListener->onDelete(this);
-	}
+    {
+        pListener->onDelete(this);
+    }
 
-	AEntity::notifyDelete();
+    AEntity::notifyDelete();
 }
 
 //--------------------------------------------------------------------------
@@ -151,12 +151,12 @@ void CMaterial::addTexture(const QString& textureName, EnumMaterialParameter eMa
 void CMaterial::removeTexture(const QString& textureName)
 {
     foreach (const CTextureParam& texture, m_Textures)
-	{
+    {
         if (texture.getTextureName() == textureName)
-		{
+        {
             m_Textures.removeOne(texture);
-		}
-	}
+        }
+    }
 }
 
 //--------------------------------------------------------------------------
@@ -168,7 +168,7 @@ void CMaterial::setAmbientColor(const QVector4D& color)
 //--------------------------------------------------------------------------
 void CMaterial::setAmbientColor(real r, real g, real b, real a /*= 1.0*/)
 {
-	m_AmbientColor = QVector4D(r, g, b, a);
+    m_AmbientColor = QVector4D(r, g, b, a);
 }
 
 //--------------------------------------------------------------------------
@@ -180,7 +180,7 @@ void CMaterial::setDiffuseColor(const QVector4D& color)
 //--------------------------------------------------------------------------
 void CMaterial::setDiffuseColor(real r, real g, real b, real a /*= 1.0*/)
 {
-	m_DiffuseColor = QVector4D(r, g, b, a);
+    m_DiffuseColor = QVector4D(r, g, b, a);
 }
 
 //--------------------------------------------------------------------------
@@ -192,7 +192,7 @@ void CMaterial::setSpecularColor(const QVector4D& color)
 //--------------------------------------------------------------------------
 void CMaterial::setSpecularColor(real r, real g, real b, real a /*= 1.0*/)
 {
-	m_SpecularColor = QVector4D(r, g, b, a);
+    m_SpecularColor = QVector4D(r, g, b, a);
 }
 
 //--------------------------------------------------------------------------
@@ -204,13 +204,13 @@ void CMaterial::setAlphaMaskColor(const QVector4D& color)
 //--------------------------------------------------------------------------
 void CMaterial::setAlphaMaskColor(real r, real g, real b, real a /*= 1.0*/)
 {
-	m_AlphaMaskColor = QVector4D(r, g, b, a);
+    m_AlphaMaskColor = QVector4D(r, g, b, a);
 }
 
 //--------------------------------------------------------------------------
 void CMaterial::setAlphaMaskFunc(EnumAlphaMaskFunc eAlphaMaskFunc)
 {
-	m_eAlphaMaskFunc = eAlphaMaskFunc;
+    m_eAlphaMaskFunc = eAlphaMaskFunc;
 }
 
 //--------------------------------------------------------------------------
@@ -222,7 +222,7 @@ void CMaterial::setShininessFactor(real shininess)
 //--------------------------------------------------------------------------
 void CMaterial::setOpacity(real dOpacity)
 {
-	m_dOpacity = dOpacity;
+    m_dOpacity = dOpacity;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -230,7 +230,7 @@ void CMaterial::setOpacity(real dOpacity)
 //-------------------------------------------------------------------------------------------------
 QVector4D CMaterial::getAmbientColor() const
 {
-	return m_AmbientColor;
+    return m_AmbientColor;
 }
 
 //--------------------------------------------------------------------------
@@ -254,7 +254,7 @@ QVector4D CMaterial::getAlphaMaskColor() const
 //--------------------------------------------------------------------------
 EnumAlphaMaskFunc CMaterial::getAlphaMaskFunc() const
 {
-	return m_eAlphaMaskFunc;
+    return m_eAlphaMaskFunc;
 }
 
 //--------------------------------------------------------------------------
@@ -272,6 +272,6 @@ bool CMaterial::isTextured() const
 //--------------------------------------------------------------------------
 real CMaterial::getOpacity() const
 {
-	return m_dOpacity;
+    return m_dOpacity;
 }
 

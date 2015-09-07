@@ -130,7 +130,7 @@ public:
     {
         unsigned int uiLevel = 0;
 
-		const T* pCurrent = static_cast<const T*>(this);
+        const T* pCurrent = static_cast<const T*>(this);
 
         while (pCurrent != 0)
         {

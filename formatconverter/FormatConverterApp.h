@@ -12,27 +12,27 @@ static const QString configFileName = "config.ini";
 
 class FormatConverterApp : public QMainWindow
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
     FormatConverterApp(QWidget *parent = 0);
 
     virtual ~FormatConverterApp()
-	{
-		CMaterialManager::killInstance();
-	}
-	
+    {
+        CMaterialManager::killInstance();
+    }
+
 protected slots:
 
-	void onBrowseClicked();
-	void onConvertClicked();
+    void onBrowseClicked();
+    void onConvertClicked();
 
 private:
 
-	CSceneManager m_SceneManager;
-	QStringList m_FilePathNameList;
-	Ui::MainWindow ui;
+    CSceneManager m_SceneManager;
+    QStringList m_FilePathNameList;
+    Ui::MainWindow ui;
     QSettings m_Settings;
 
 };

@@ -21,14 +21,14 @@ class LIB_CORE_SHARED_EXPORT CSubMesh : public CMeshBuffer
 {
 public:
 
-	//! Ctor
+    //! Ctor
     CSubMesh(CMesh* pParentMesh);
 
-	//! Dtor
-	virtual ~CSubMesh();
+    //! Dtor
+    virtual ~CSubMesh();
 
-	//! Retourne le parent
-	const CMesh* getParentMesh() const { return m_pParentMesh; }
+    //! Retourne le parent
+    const CMesh* getParentMesh() const { return m_pParentMesh; }
 
     //! Retourne le nom du type
     virtual QString getTypeName() const { return "SubMesh"; }

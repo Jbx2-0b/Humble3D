@@ -68,3 +68,6 @@ else:unix: LIBS += -L$$OUT_PWD/../lib_assimp/ -llib_assimp
 INCLUDEPATH += $$PWD/../lib_assimp
 DEPENDPATH += $$PWD/../lib_assimp
 
+RESOURCES += \
+    resources.qrc
+

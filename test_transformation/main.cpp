@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[])
 {
-	QApplication app(argc, argv);
-	TestTransformation view;
+    QApplication app(argc, argv);
+    TestTransformation view;
     return app.exec();
 }

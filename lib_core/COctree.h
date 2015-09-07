@@ -20,7 +20,7 @@ public:
     //! Constructeur - Construit un octree
     COctree(CSceneManager* pSceneManager, const CBox3D& worldBbox, unsigned int uiPolygonCountThreshold, unsigned int iMaxDepth);
 
-	//! Destructeur
+    //! Destructeur
     virtual ~COctree();
 
     //! Retourne le noeud racine

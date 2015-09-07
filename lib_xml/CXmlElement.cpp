@@ -2,20 +2,20 @@
 
 //-----------------------------------------------------------------------------------------
 CXmlElement::CXmlElement(const QString& name, CXmlElement* parent, bool debugMode /* = false*/)
-: m_Parent(parent)
-, m_bDebugMode(debugMode)
-, m_Name(name)
+    : m_Parent(parent)
+    , m_bDebugMode(debugMode)
+    , m_Name(name)
 {
 }
 
 //-----------------------------------------------------------------------------------------
 CXmlElement::~CXmlElement()
 {
-	// On supprime l'ensemble des enfants
+    // On supprime l'ensemble des enfants
     foreach (CXmlElement* element, m_ChildElements)
-	{
-		delete element;
-	}
+    {
+        delete element;
+    }
 
     m_ChildElements.clear();
 }
@@ -23,7 +23,7 @@ CXmlElement::~CXmlElement()
 //-----------------------------------------------------------------------------------------
 QString CXmlElement::getName() const
 {
-	return m_Name;
+    return m_Name;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -41,17 +41,17 @@ void CXmlElement::setValue(const QString& value)
 //-----------------------------------------------------------------------------------------
 QString CXmlElement::getPath() const
 {
-	QString path = m_Name;
+    QString path = m_Name;
 
     CXmlElement* current = getParent();
 
-	while (current)
-	{
-		path.insert(0, current->getName() + ".");
+    while (current)
+    {
+        path.insert(0, current->getName() + ".");
         current = current->getParent();
-	}
+    }
 
-	return path;
+    return path;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ void CXmlElement::addAttribute(const QString& name, const QVector4D& value)
 //-----------------------------------------------------------------------------------------
 bool CXmlElement::contains(const QString& attributeName) const
 {
-	return m_Attributes.contains(attributeName);
+    return m_Attributes.contains(attributeName);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -124,14 +124,14 @@ const QList<CXmlElement*>& CXmlElement::getChildElements() const
 CXmlElement* CXmlElement::getChildByName(const QString& name) const
 {
     foreach (CXmlElement* element, m_ChildElements)
-	{
+    {
         if (element->getName() == name)
-		{
-			return element;
-		}
-	}
+        {
+            return element;
+        }
+    }
 
-	return 0;
+    return 0;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -139,14 +139,14 @@ QList<CXmlElement*> CXmlElement::getChildElementsByName(const QString& name) con
 {
     QList<CXmlElement*> elements;
     foreach (CXmlElement* element, m_ChildElements)
-	{
-		if (element->getName() == name)
-		{
-			elements << element;
-		}
-	}
+    {
+        if (element->getName() == name)
+        {
+            elements << element;
+        }
+    }
 
-	return elements;
+    return elements;
 }
 
 //-----------------------------------------------------------------------------------------

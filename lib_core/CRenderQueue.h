@@ -12,32 +12,32 @@ class CRenderQueue
 {
 public:
 
-	CRenderQueue() {}
+    CRenderQueue() {}
 
-	QList<int> materialIDs() const
-	{
-		return m_RenderHashMap.uniqueKeys();
-	}
+    QList<int> materialIDs() const
+    {
+        return m_RenderHashMap.uniqueKeys();
+    }
 
-	QList<ARenderableItem*> getItemsByMaterialID(int iMaterialID) const
-	{
-		return m_RenderHashMap.values(iMaterialID);
-	}
+    QList<ARenderableItem*> getItemsByMaterialID(int iMaterialID) const
+    {
+        return m_RenderHashMap.values(iMaterialID);
+    }
 
-	void insert(int iMaterialID, ARenderableItem* pItem)
-	{
-		m_RenderHashMap.insert(iMaterialID, pItem);
-	}
+    void insert(int iMaterialID, ARenderableItem* pItem)
+    {
+        m_RenderHashMap.insert(iMaterialID, pItem);
+    }
 
-	void remove(ARenderableItem* item)
-	{
-		int materialID = m_RenderHashMap.key(item, -1);
+    void remove(ARenderableItem* item)
+    {
+        int materialID = m_RenderHashMap.key(item, -1);
 
-		if (m_RenderHashMap.contains(materialID))
-		{
-			m_RenderHashMap.remove(materialID, item);
-		}
-	}
+        if (m_RenderHashMap.contains(materialID))
+        {
+            m_RenderHashMap.remove(materialID, item);
+        }
+    }
 
     void clear()
     {
@@ -46,7 +46,7 @@ public:
 
 private:
 
-	QMultiHash<int, ARenderableItem*> m_RenderHashMap;
+    QMultiHash<int, ARenderableItem*> m_RenderHashMap;
 };
 
 #endif // CRENDERQUEUE_H

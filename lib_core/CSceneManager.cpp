@@ -10,10 +10,10 @@
 
 //-----------------------------------------------------------------------------------------
 CSceneManager::CSceneManager()
-: AEntity("SceneManager")
-, m_pOctree(0)
-, m_AmbientColor(DefaultSceneAmbientColor)
-, m_RootNode(this, "Root")
+    : AEntity("SceneManager")
+    , m_pOctree(0)
+    , m_AmbientColor(DefaultSceneAmbientColor)
+    , m_RootNode(this, "Root")
 {
     CMeshManager::getInstance()->registerListener(this);
 }
@@ -22,7 +22,7 @@ CSceneManager::CSceneManager()
 CSceneManager::~CSceneManager()
 {
     delete m_pOctree;
-	clearAll();
+    clearAll();
     CMeshManager::getInstance()->unregisterListener(this);
 }
 
@@ -76,7 +76,7 @@ void CSceneManager::clearAll()
     clearLights();
     clearCameras();
     clearBillboards();
-	clearNodeItems();
+    clearNodeItems();
     clearNodes();
 }
 
@@ -84,36 +84,36 @@ void CSceneManager::clearAll()
 void CSceneManager::clearMeshInstances()
 {
     foreach (CMeshInstance* pMeshInstance, m_MeshInstances)
-	{
+    {
         deleteMeshInstance(pMeshInstance);
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneManager::clearLights()
 {
     foreach (CLight* pLight, m_Lights)
-	{
+    {
         deleteLight(pLight);
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneManager::clearCameras()
 {
     foreach (CCamera* pCamera, m_Cameras)
-	{
+    {
         deleteCamera(pCamera);
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneManager::clearAnimations()
 {
     foreach (CAnimation* pAnimation, m_AnimationByID)
-	{
+    {
         deleteAnimation(pAnimation);
-	}
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -134,37 +134,37 @@ void CSceneManager::clearNodeItems()
 //-----------------------------------------------------------------------------------------
 void CSceneManager::clearNodes()
 {
-	QList<CSceneNode*> nodeList = m_RootNode.getChildNodes();
+    QList<CSceneNode*> nodeList = m_RootNode.getChildNodes();
 
     m_RootNode.clearChildNodes();
 
-	foreach (CSceneNode* pNode, nodeList)
-	{
+    foreach (CSceneNode* pNode, nodeList)
+    {
         delete pNode;
-	}
+    }
 
-	m_RootNode.resetTransformation();
+    m_RootNode.resetTransformation();
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneManager::clearEmptyNodes()
 {
-	recursiveClearEmptyNodes(&m_RootNode);
+    recursiveClearEmptyNodes(&m_RootNode);
 }
 
 //-----------------------------------------------------------------------------------------
 bool CSceneManager::recursiveClearEmptyNodes(CSceneNode* pNode)
 {
-	foreach (CSceneNode* pChildNode, pNode->getChildNodes())
-	{
-		if (recursiveClearEmptyNodes(pChildNode))
-		{
-			pNode->removeChild(pChildNode);
-			delete pChildNode;
-		}
-	}
+    foreach (CSceneNode* pChildNode, pNode->getChildNodes())
+    {
+        if (recursiveClearEmptyNodes(pChildNode))
+        {
+            pNode->removeChild(pChildNode);
+            delete pChildNode;
+        }
+    }
 
-	return pNode->getItems().isEmpty() && pNode->getChildNodes().isEmpty();
+    return pNode->getItems().isEmpty() && pNode->getChildNodes().isEmpty();
 }
 
 //-----------------------------------------------------------------------------------------
@@ -182,14 +182,14 @@ void CSceneManager::addSceneNode(CSceneNode* pSceneNode)
 //-----------------------------------------------------------------------------------------
 int CSceneManager::getPolygonCount() const
 {
-	int iCount = 0;
+    int iCount = 0;
 
     foreach (CMeshInstance* pMeshInstance, m_MeshInstances)
-	{
+    {
         iCount += pMeshInstance->getMesh()->getPolygonCount();
-	}
+    }
 
-	return iCount;
+    return iCount;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -246,7 +246,7 @@ CLight* CSceneManager::createLight(const QString& name)
     m_Lights.append(pLight);
     m_NodeItemByID[pLight->getID()] = pLight;
 
-	return pLight;
+    return pLight;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -257,20 +257,20 @@ CCamera* CSceneManager::createCamera(const QString& name)
     m_Cameras.append(pCamera);
     m_NodeItemByID[pCamera->getID()] = pCamera;
 
-	pCamera->registerListener(this);
+    pCamera->registerListener(this);
 
-	return pCamera;
+    return pCamera;
 }
 
 //-----------------------------------------------------------------------------------------
 CAnimation* CSceneManager::createAnimation(const QString& name)
 {
-	CAnimation* pAnimation = new CAnimation(name);
+    CAnimation* pAnimation = new CAnimation(name);
 
     m_AnimationByID[pAnimation->getID()] = pAnimation;
 
-	pAnimation->registerListener(this);
-	return pAnimation;
+    pAnimation->registerListener(this);
+    return pAnimation;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -288,18 +288,18 @@ CBillboard* CSceneManager::createBillboard(const QString& name)
 //-----------------------------------------------------------------------------------------
 void CSceneManager::appendMeshInstance(CMeshInstance* pMeshInstance, const QString& itemName /*= ""*/)
 {
-	if (!itemName.isEmpty())
-	{
+    if (!itemName.isEmpty())
+    {
         pMeshInstance->setName(itemName);
-	}
+    }
 
     m_MeshInstances.append(pMeshInstance);
     m_NodeItemByID[pMeshInstance->getID()] = pMeshInstance;
-	
+
     foreach (CSubMeshInstance* pSubMeshInstance, pMeshInstance->subMeshInstances())
-	{
+    {
         appendRenderableItem(pSubMeshInstance);
-	}
+    }
 
     pMeshInstance->registerListener(this);
 }
@@ -329,7 +329,7 @@ void CSceneManager::deleteMeshInstance(CMeshInstance* pMeshInstance)
         removeRenderableItem(pSubMeshInstance);
     }
 
-    delete pMeshInstance;   
+    delete pMeshInstance;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -368,7 +368,7 @@ void CSceneManager::deleteLight(CLight* pLight)
 {
     m_Lights.removeOne(pLight);
     m_NodeItemByID.remove(pLight->getID());
-	delete pLight;
+    delete pLight;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -376,16 +376,16 @@ void CSceneManager::deleteCamera(CCamera* pCamera)
 {
     m_Cameras.removeOne(pCamera);
     m_NodeItemByID.remove(pCamera->getID());
-	pCamera->unregisterListener(this);
-	delete pCamera;
+    pCamera->unregisterListener(this);
+    delete pCamera;
 }
 
 //-----------------------------------------------------------------------------------------
 void CSceneManager::deleteAnimation(CAnimation* pAnimation)
 {
     m_AnimationByID.remove(pAnimation->getID());
-	pAnimation->unregisterListener(this);
-	delete pAnimation;
+    pAnimation->unregisterListener(this);
+    delete pAnimation;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -407,13 +407,13 @@ CBox3D CSceneManager::getWorldAxisAlignedBoundingBox() const
 //-----------------------------------------------------------------------------------------
 void CSceneManager::setAmbientColor(const QVector4D& ambientColor)
 {
-	m_AmbientColor = ambientColor;
+    m_AmbientColor = ambientColor;
 }
 
 //-----------------------------------------------------------------------------------------
 QVector4D CSceneManager::getAmbientColor() const
 {
-	return m_AmbientColor;
+    return m_AmbientColor;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -428,24 +428,24 @@ ASceneNodeItem* CSceneManager::pick(CCamera* pCamera, const QPoint& position, co
 {
     QVector3D vPick = pCamera->mapPointToWorldCoordinates(position, viewSize);
     QVector3D eyePosition = pCamera->getEyePosition();
-	CRay eyeLine(eyePosition, (vPick - eyePosition).normalized());
-	
-	real dDistance = std::numeric_limits<real>::infinity();
+    CRay eyeLine(eyePosition, (vPick - eyePosition).normalized());
+
+    real dDistance = std::numeric_limits<real>::infinity();
 
     ASceneNodeItem* pSelectedItem = recursiveFindIntersection(eyeLine, &m_RootNode, dDistance);
 
     if (pSelectedItem)
-	{
+    {
         pSelectedItem->setSelected(true);
-	}
+    }
 
     foreach (ASceneNodeItem* pOtherItem, m_NodeItemByID.values())
-	{
+    {
         if (pOtherItem != pSelectedItem)
-		{
+        {
             pOtherItem->setSelected(false);
-		}
-	}
+        }
+    }
 
     return pSelectedItem;
 }
@@ -465,13 +465,13 @@ ASceneNodeItem* CSceneManager::findItemByName(const QString& name)
 //-----------------------------------------------------------------------------------------
 CSceneNode* CSceneManager::findNode(const QString& name)
 {
-	return m_RootNode.findNode(name);
+    return m_RootNode.findNode(name);
 }
 
 //-----------------------------------------------------------------------------------------
 CSceneNode* CSceneManager::findNode(int iNodeID)
 {
-	return m_RootNode.findNode(iNodeID);
+    return m_RootNode.findNode(iNodeID);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -498,7 +498,7 @@ void CSceneManager::onStop(CAnimation* pAnimation)
 void CSceneManager::notifyStart(CAnimation* pAnimation)
 {
     foreach (IAnimationListener* pListener, m_AnimationListeners)
-	{
+    {
         pListener->onStartAnimation(pAnimation);
     }
 
@@ -699,9 +699,9 @@ ASceneNodeItem* CSceneManager::recursiveFindIntersection(const CRay& ray, CScene
 {
     ASceneNodeItem* pSelectedItem = 0;
 
-	// Pour chaque NodeItem attaché au node
+    // Pour chaque NodeItem attaché au node
     foreach (ASceneNodeItem* pItem, pNode->getItems())
-	{
+    {
         if (pItem->isSelectable())
         {
             CBox3D bbox = pItem->getBoundingBox();
@@ -722,15 +722,15 @@ ASceneNodeItem* CSceneManager::recursiveFindIntersection(const CRay& ray, CScene
                 }
             }
         }
-	}
+    }
     // On effectue la recherche de maniére récursive pour les enfants
-	foreach (CSceneNode* pChildNode, pNode->getChildNodes())
-	{
+    foreach (CSceneNode* pChildNode, pNode->getChildNodes())
+    {
         if (ASceneNodeItem* pItem = recursiveFindIntersection(ray, pChildNode, dDistance))
-		{
+        {
             pSelectedItem = pItem;
-		}
-	}
+        }
+    }
 
     return pSelectedItem;
 }

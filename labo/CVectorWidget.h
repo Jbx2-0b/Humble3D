@@ -14,30 +14,30 @@
 //-----------------------------------------------------------------------------------------
 class CVectorWidget : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	enum EnumType
-	{
-		eVectorWidget2D,
-		eVectorWidget3D,
-		eVectorWidget4D
-	};
+    enum EnumType
+    {
+        eVectorWidget2D,
+        eVectorWidget3D,
+        eVectorWidget4D
+    };
 
-	CVectorWidget(QWidget* parent = 0, EnumType eWidgetType = eVectorWidget4D);
+    CVectorWidget(QWidget* parent = 0, EnumType eWidgetType = eVectorWidget4D);
 
-	virtual ~CVectorWidget();
+    virtual ~CVectorWidget();
 
-	void setType(EnumType eWidgetType = eVectorWidget4D);
+    void setType(EnumType eWidgetType = eVectorWidget4D);
 
-	void setVector(const QVector2D& vector);
-	void setVector(const QVector3D& vector);
-	void setVector(const QVector4D& vector);
+    void setVector(const QVector2D& vector);
+    void setVector(const QVector3D& vector);
+    void setVector(const QVector4D& vector);
 
-	QVector2D getVector2D() const;
-	QVector3D getVector3D() const;
-	QVector4D getVector4D() const;
+    QVector2D getVector2D() const;
+    QVector3D getVector3D() const;
+    QVector4D getVector4D() const;
 
     virtual void keyPressEvent(QKeyEvent* /*pEvent*/)
     {
@@ -46,19 +46,19 @@ public:
 
 signals:
 
-	void editingFinished();
+    void editingFinished();
 
 private:
-	
-	QHBoxLayout* m_pHorizontalLayout;
-	QLineEdit* m_pXLineEdit;
-	QLineEdit* m_pYLineEdit;
-	QLineEdit* m_pZLineEdit;
-	QLineEdit* m_pWLineEdit;
-	QDoubleValidator* m_pXValidator;
-	QDoubleValidator* m_pYValidator;
-	QDoubleValidator* m_pZValidator;
-	QDoubleValidator* m_pWValidator;	
+
+    QHBoxLayout* m_pHorizontalLayout;
+    QLineEdit* m_pXLineEdit;
+    QLineEdit* m_pYLineEdit;
+    QLineEdit* m_pZLineEdit;
+    QLineEdit* m_pWLineEdit;
+    QDoubleValidator* m_pXValidator;
+    QDoubleValidator* m_pYValidator;
+    QDoubleValidator* m_pZValidator;
+    QDoubleValidator* m_pWValidator;
 };
 
 

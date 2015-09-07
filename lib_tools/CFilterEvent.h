@@ -13,7 +13,7 @@
 
 class LIB_TOOLSSHARED_EXPORT CFilterEvent : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
@@ -26,21 +26,21 @@ public:
         virtual void onUpdate(CFilterEvent* pFilter) = 0;
     };
 
-	//! Constructeur
+    //! Constructeur
     CFilterEvent(CFilterEvent::IFilterEventListener* pListener, int iUpdateDT);
 
 public slots:
 
-	void filter();
+    void filter();
 
 protected:
 
     //! Listeners
     CFilterEvent::IFilterEventListener* m_pListener;
 
-	int m_iUpdateDT;
-	QTime m_LastUpdateTime;
-	QTimer m_UpdateTimer;
+    int m_iUpdateDT;
+    QTime m_LastUpdateTime;
+    QTimer m_UpdateTimer;
 };
 
 #endif // CFILTEREVENT_H

@@ -6,15 +6,15 @@ bool Math::bRandInitialized = false;
 const QMatrix4x4 Math::ZeroMatrix = QMatrix4x4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 #ifdef ENV_64BITS
-    const real Math::Pi		= 3.141592653589793238462643383279;
-    const real Math::TwoPi	= Pi * 2.;
-    const real Math::HalfPi	= Pi * 0.5;
-    const real Math::Sqrt2	= 1.41421356237309504880;
+const real Math::Pi		= 3.141592653589793238462643383279;
+const real Math::TwoPi	= Pi * 2.;
+const real Math::HalfPi	= Pi * 0.5;
+const real Math::Sqrt2	= 1.41421356237309504880;
 #else // ENV_32BITS
-    const real Math::Pi		= 3.1415926538f;
-    const real Math::TwoPi	= Pi * 2.f;
-    const real Math::HalfPi	= Pi * 0.5f;
-    const real Math::Sqrt2	= 1.4142135624f;
+const real Math::Pi		= 3.1415926538f;
+const real Math::TwoPi	= Pi * 2.f;
+const real Math::HalfPi	= Pi * 0.5f;
+const real Math::Sqrt2	= 1.4142135624f;
 #endif
 
 
@@ -367,8 +367,8 @@ double Math::cubicInterpolation(double y0, double y1, double y2, double y3, doub
 }
 
 double Math::cubicInterpolation2D(double y00, double y01, double y02, double y03,
-    double y10, double y11, double y12, double y13, double y20, double y21, double y22,
-    double y23, double y30, double y31, double y32, double y33, double x, double y)
+                                  double y10, double y11, double y12, double y13, double y20, double y21, double y22,
+                                  double y23, double y30, double y31, double y32, double y33, double x, double y)
 {
     double v0 = cubicInterpolation(y00,y01,y02,y03,x);
     double v1 = cubicInterpolation(y10,y11,y12,y13,x);
@@ -402,17 +402,17 @@ QVector3D Math::rotateAroundAxis(const QVector3D& vect, const QVector3D& axis, d
     double m = qSqrt(ms);
 
     return QVector3D(
-        ((u * (u * vect.x() + v * vect.y() + w * vect.z())) +
-        (((vect.x() * (v * v + w * w)) - (u * (v * vect.y() + w * vect.z()))) * cosTheta) +
-        (m * ((-w * vect.y()) + (v * vect.z())) * sinTheta)) / ms,
+                ((u * (u * vect.x() + v * vect.y() + w * vect.z())) +
+                 (((vect.x() * (v * v + w * w)) - (u * (v * vect.y() + w * vect.z()))) * cosTheta) +
+                 (m * ((-w * vect.y()) + (v * vect.z())) * sinTheta)) / ms,
 
-        ((v * (u * vect.x() + v * vect.y() + w * vect.z())) +
-        (((vect.y() * (u * u + w * w)) - (v * (u * vect.x() + w * vect.z()))) * cosTheta) +
-        (m * ((w * vect.x()) - (u * vect.z())) * sinTheta)) / ms,
+                ((v * (u * vect.x() + v * vect.y() + w * vect.z())) +
+                 (((vect.y() * (u * u + w * w)) - (v * (u * vect.x() + w * vect.z()))) * cosTheta) +
+                 (m * ((w * vect.x()) - (u * vect.z())) * sinTheta)) / ms,
 
-        ((w * (u * vect.x() + v * vect.y() + w * vect.z())) +
-        (((vect.z() * (u * u + v * v)) - (w * (u * vect.x() + v * vect.y()))) * cosTheta) +
-        (m * (-(v * vect.x()) + (u * vect.y())) * sinTheta)) / ms);
+                ((w * (u * vect.x() + v * vect.y() + w * vect.z())) +
+                 (((vect.z() * (u * u + v * v)) - (w * (u * vect.x() + v * vect.y()))) * cosTheta) +
+                 (m * (-(v * vect.x()) + (u * vect.y())) * sinTheta)) / ms);
 }
 
 real Math::computeRadAngle(const QVector3D& v1, const QVector3D& v2)

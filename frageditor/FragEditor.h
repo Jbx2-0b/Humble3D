@@ -18,15 +18,15 @@ static const int iDefaultViewPosY = 100;
 
 class FragEditor : public QObject, public Humble3DApp//, public CGLRenderer::IGLRendererListener
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Constructeur
+    //! Constructeur
     FragEditor();
 
-	//! Destructeur
-	virtual ~FragEditor();
+    //! Destructeur
+    virtual ~FragEditor();
 
 protected:
 
@@ -34,68 +34,68 @@ protected:
 
 protected slots:
 
-	void onMousePressed();
-	void onMouseMoved();
-	void onMouseReleased();
-	void onViewSizeChanged(const QSize& size);
-	void onLoad();
-	void onSave();
-	void onFullScreen();
-	void onEditShaderClicked();
-	void onSelectTextureClicked();
-	void onStopRenderingClicked();
-	void onFPSChanged(int iFPS);
-	void onSleepToolBarTimeout();
+    void onMousePressed();
+    void onMouseMoved();
+    void onMouseReleased();
+    void onViewSizeChanged(const QSize& size);
+    void onLoad();
+    void onSave();
+    void onFullScreen();
+    void onEditShaderClicked();
+    void onSelectTextureClicked();
+    void onStopRenderingClicked();
+    void onFPSChanged(int iFPS);
+    void onSleepToolBarTimeout();
 
 protected:
 
-	static const int iBorderEditItem = 2;
-	static const int iTreeWidgetWidth = 300;
+    static const int iBorderEditItem = 2;
+    static const int iTreeWidgetWidth = 300;
 
     CGraphicsView3D* m_pView;
 
-	//! Item textuel qui permet d'éditer les shaders
-	CEditShaderTextItem* m_pEditShadersTextItem;
+    //! Item textuel qui permet d'éditer les shaders
+    CEditShaderTextItem* m_pEditShadersTextItem;
 
-	//! Item qui permet de selectionner les images
-	CImageSelectorItem* m_pImgSelectorItem;
+    //! Item qui permet de selectionner les images
+    CImageSelectorItem* m_pImgSelectorItem;
 
-	//! Barre d'outils supérieure
-	CToolBar* m_pTopToolBar;
+    //! Barre d'outils supérieure
+    CToolBar* m_pTopToolBar;
 
-	//! Barre d'outils inférieure
-	CToolBar* m_pBottomToolBar;
+    //! Barre d'outils inférieure
+    CToolBar* m_pBottomToolBar;
 
-	//! Bouton plein écran
-	QPushButton* m_pFullScreenButton;
-	QPushButton* m_pLoadButton;
-	QPushButton* m_pSaveButton;
-	QPushButton* m_pEditShadersButton;
-	QPushButton* m_pSelectTextureButton;
-	QPushButton* m_pStopRenderingButton;
+    //! Bouton plein écran
+    QPushButton* m_pFullScreenButton;
+    QPushButton* m_pLoadButton;
+    QPushButton* m_pSaveButton;
+    QPushButton* m_pEditShadersButton;
+    QPushButton* m_pSelectTextureButton;
+    QPushButton* m_pStopRenderingButton;
 
-	QLabel* m_pFPSLabel;
+    QLabel* m_pFPSLabel;
 
-	//! Vrai si plein écran
-	bool m_bFullScreen;
+    //! Vrai si plein écran
+    bool m_bFullScreen;
 
-	// Souris
-	int m_iMouseX;
-	int m_iMouseY;
-	bool m_bMouseLeftPressed;
-	bool m_bMouseRightPressed;
-	
-	// Gestion de la camera
-	QPoint m_LastPan;
-	QPoint m_StartPan;
-	QVector3D m_vStartEye;
-	QVector3D m_vStartCenter;
-	QVector3D m_vStartUpVector;
-	real m_vStartFOV;
+    // Souris
+    int m_iMouseX;
+    int m_iMouseY;
+    bool m_bMouseLeftPressed;
+    bool m_bMouseRightPressed;
 
-	CShader* m_pSDEdited;
+    // Gestion de la camera
+    QPoint m_LastPan;
+    QPoint m_StartPan;
+    QVector3D m_vStartEye;
+    QVector3D m_vStartCenter;
+    QVector3D m_vStartUpVector;
+    real m_vStartFOV;
 
-	QTimer m_SleepToolBarTimer;
+    CShader* m_pSDEdited;
+
+    QTimer m_SleepToolBarTimer;
 };
 
 #endif // FragEditor_H

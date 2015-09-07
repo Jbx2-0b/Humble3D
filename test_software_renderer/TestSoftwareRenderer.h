@@ -5,16 +5,16 @@
 
 class TestSoftwareRenderer : public QObject, public Humble3DApp
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
 
-	//! Constructeur
+    //! Constructeur
     TestSoftwareRenderer();
 
-	//! Destructeur
-	virtual ~TestSoftwareRenderer();
+    //! Destructeur
+    virtual ~TestSoftwareRenderer();
 
 };
-	
+
 #endif // TEST_SOFTWARE_RENDERER_H

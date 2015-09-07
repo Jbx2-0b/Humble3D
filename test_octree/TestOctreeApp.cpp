@@ -24,15 +24,15 @@ TestOctreeApp::TestOctreeApp()
     getSceneManager()->buildOctree(CBox3D(QVector3D(-500, -500, -500), QVector3D(+500, +500, +500)), 1000, 5);
 
     // On crée une camera
-//    CCamera* pCamera2 = getSceneManager()->createCamera();
-//    pCamera2->setEyePosition(QVector3D(0, 0, -50));
-//    pCamera2->setCenter(QVector3D(0., 0., 0.));
-//    pCamera2->setHorizontalFOV(Math::Pi / 2.);
-//    pCamera2->setNear(10.0);
-//    pCamera2->setFar(500.0);
+    //    CCamera* pCamera2 = getSceneManager()->createCamera();
+    //    pCamera2->setEyePosition(QVector3D(0, 0, -50));
+    //    pCamera2->setCenter(QVector3D(0., 0., 0.));
+    //    pCamera2->setHorizontalFOV(Math::Pi / 2.);
+    //    pCamera2->setNear(10.0);
+    //    pCamera2->setFar(500.0);
 
-//    CWidget3D* pAnotherView = createWidget3D(pCamera2);
-//    m_pController2 = new Controller(pAnotherView);
+    //    CWidget3D* pAnotherView = createWidget3D(pCamera2);
+    //    m_pController2 = new Controller(pAnotherView);
 
 
     // On crée une lumiére

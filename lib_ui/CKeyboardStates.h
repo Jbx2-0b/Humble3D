@@ -4,16 +4,16 @@
 class CKeyboardStates
 {
 public:
-	CKeyboardStates()
-		: m_iKey(0)
-	{}
-	
-	void setKey(int iKey) { m_iKey = iKey; }
+    CKeyboardStates()
+        : m_iKey(0)
+    {}
 
-	int getKey() const { return m_iKey; }
+    void setKey(int iKey) { m_iKey = iKey; }
+
+    int getKey() const { return m_iKey; }
 private:
 
-	int m_iKey;	
+    int m_iKey;
 };
 
 #endif // CKEYBOARDSTATES_H

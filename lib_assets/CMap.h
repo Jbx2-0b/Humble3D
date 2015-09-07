@@ -23,52 +23,52 @@ class LIB_ASSETS_SHARED_EXPORT CMap : public AOctreeItem
 {
 public:
 
-	//! Constructeur par défaut
-	CMap();
+    //! Constructeur par défaut
+    CMap();
 
-	//! Constructeur
-	CMap(const CMapKey& key);
+    //! Constructeur
+    CMap(const CMapKey& key);
 
     //! Destructeur
     virtual ~CMap() {}
 
-	
-	//-------------------------------------------------------------------------------------------------
-	// Setters
-	//-------------------------------------------------------------------------------------------------
 
-	//! Définit la bounding box
-	void setBoundingBox(const CBox3D& bbox)			{ m_Bbox = bbox; }
+    //-------------------------------------------------------------------------------------------------
+    // Setters
+    //-------------------------------------------------------------------------------------------------
 
-	//! Définit le nombre de polygones 
-	void setPolygonCount(int iPolygonCount)			{ m_iPolygonCount = iPolygonCount; }
-	
-	//-------------------------------------------------------------------------------------------------
-	// Getters
-	//-------------------------------------------------------------------------------------------------
+    //! Définit la bounding box
+    void setBoundingBox(const CBox3D& bbox)			{ m_Bbox = bbox; }
 
-	//! Retourne la clée associée à la map
-	CMapKey getKey() const							{ return m_Key; }
-	
-	//! Implémentation de AOctreeItem - Retourne la taille en coordonnées moteur de la map
-	virtual const CBox3D& getBoundingBox() const	{ return m_Bbox; }
+    //! Définit le nombre de polygones
+    void setPolygonCount(int iPolygonCount)			{ m_iPolygonCount = iPolygonCount; }
 
-	//! Implémentation de AOctreeItem - Retourne le nombre de polygones
-	virtual int getPolygonCount() const				{ return m_iPolygonCount; }
+    //-------------------------------------------------------------------------------------------------
+    // Getters
+    //-------------------------------------------------------------------------------------------------
 
-	//-------------------------------------------------------------------------------------------------
-	// 
-	//-------------------------------------------------------------------------------------------------
+    //! Retourne la clée associée à la map
+    CMapKey getKey() const							{ return m_Key; }
 
-	static const CMapKey NullKey;
+    //! Implémentation de AOctreeItem - Retourne la taille en coordonnées moteur de la map
+    virtual const CBox3D& getBoundingBox() const	{ return m_Bbox; }
+
+    //! Implémentation de AOctreeItem - Retourne le nombre de polygones
+    virtual int getPolygonCount() const				{ return m_iPolygonCount; }
+
+    //-------------------------------------------------------------------------------------------------
+    //
+    //-------------------------------------------------------------------------------------------------
+
+    static const CMapKey NullKey;
 
 protected:
 
-	CMapKey m_Key;
+    CMapKey m_Key;
 
-	CBox3D m_Bbox;
+    CBox3D m_Bbox;
 
-	int m_iPolygonCount;
+    int m_iPolygonCount;
 };
 
 

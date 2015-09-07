@@ -1,8 +1,8 @@
 #include "CGLContext.h"
 
 CGLContext::CGLContext()
-: m_pContext(0)
-, m_pSurface(0)
+    : m_pContext(0)
+    , m_pSurface(0)
 {
 }
 

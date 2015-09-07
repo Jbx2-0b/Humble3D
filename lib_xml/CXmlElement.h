@@ -17,14 +17,14 @@ class LIB_XML_EXPORT CXmlElement
 {
 public:
 
-	//! Constructeur
+    //! Constructeur
     CXmlElement(const QString& name, CXmlElement* parent = 0, bool bDebugMode = false);
 
-	//! Destructeur
+    //! Destructeur
     ~CXmlElement();
 
-	//! Retourne le nom du tag
-	QString getName() const;
+    //! Retourne le nom du tag
+    QString getName() const;
 
     //! Retourne le texte de l'element
     QString getValue() const;
@@ -33,7 +33,7 @@ public:
     void setValue(const QString& value);
 
     //! Retourne le chemin de l'element
-	QString getPath() const;
+    QString getPath() const;
 
     //! Retourne la profondeur du noeud
     unsigned int getDepth() const;
@@ -41,7 +41,7 @@ public:
     //! Retourne le parent de l'element
     CXmlElement* getParent() const;
 
-	//! Ajoute un attribut au noeud
+    //! Ajoute un attribut au noeud
     void addAttribute(const QString& name, const QString& value);
 
     //! Ajoute un attribut au noeud
@@ -57,16 +57,16 @@ public:
     void addAttribute(const QString& name, const QVector4D& value);
 
 
-	//! Retourne la valeur d'un attribut
+    //! Retourne la valeur d'un attribut
     template<class T> inline T getAttributeValue(
-			const QString& attributeName,
+            const QString& attributeName,
             const T& defaultValue = T()) const;
 
     //! Retourne l'ensemble des attributs
     const QMap<QString, QString>& getAttributes() const { return m_Attributes; }
 
     //! Retourne vrai si l'attribut est present
-	bool contains(const QString& attributeName) const;
+    bool contains(const QString& attributeName) const;
 
     //! Crée un element enfant
     CXmlElement* createChild(const QString& name);
@@ -74,10 +74,10 @@ public:
     //! Retourne les elements enfants
     const QList<CXmlElement*>& getChildElements() const;
 
-	//! Retourne un enfant en fonction de son nom
+    //! Retourne un enfant en fonction de son nom
     CXmlElement* getChildByName(const QString& m_Name) const;
 
-	//! Retourne des enfants en fonction de leur nom
+    //! Retourne des enfants en fonction de leur nom
     QList<CXmlElement*> getChildElementsByName(const QString& m_Name) const;
 
     //! Affiche l'arbre des noeuds sur la console

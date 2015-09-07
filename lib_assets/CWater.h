@@ -19,32 +19,32 @@ class LIB_ASSETS_SHARED_EXPORT CWater : public CMesh
 
 public:
 
-	//! Constructeur
+    //! Constructeur
     CWater(real dLength = DefaultWaterSize,
            real dWidth =  DefaultWaterSize,
            int iLengthQuadCount = DefaultWaterQuadCount,
            int iWidthSquareCount = DefaultWaterQuadCount);
 
-	//! Destructeur
-	virtual ~CWater();
+    //! Destructeur
+    virtual ~CWater();
 
 protected:
 
-	virtual void updateGeometry();
+    virtual void updateGeometry();
 
-	QVector3D getPosition(int l, int w) const;
+    QVector3D getPosition(int l, int w) const;
 
 private:
 
-	CMaterial* m_pMaterial;
+    CMaterial* m_pMaterial;
     CSubMesh* m_pBuffer;
 
     real m_dLength;
-	real m_dWidth;
-	real m_dCenterL;
-	real m_dCenterW;
+    real m_dWidth;
+    real m_dCenterL;
+    real m_dCenterW;
     unsigned int m_iLengthQuadCount;
-	unsigned int m_iWidthQuadCount;
+    unsigned int m_iWidthQuadCount;
 };
 
 #endif // CWATER_H

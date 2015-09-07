@@ -16,15 +16,15 @@ class LIB_ASSETS_SHARED_EXPORT CSkyBox : public CMesh
 
 public:
 
-	//! Constructeur
-	CSkyBox();
+    //! Constructeur
+    CSkyBox();
 
-	//! Destructeur
-	virtual ~CSkyBox();
+    //! Destructeur
+    virtual ~CSkyBox();
 
 protected:
 
-	virtual void updateGeometry();
+    virtual void updateGeometry();
 };
 
 #endif // CSKYBOX_H

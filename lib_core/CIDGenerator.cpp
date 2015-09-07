@@ -5,7 +5,7 @@
 
 //-----------------------------------------------------------------------------------------
 CIDGenerator::CIDGenerator()
-: m_Mutex(QMutex::Recursive), m_iCurrentID(0)
+    : m_Mutex(QMutex::Recursive), m_iCurrentID(0)
 {
 }
 
@@ -35,7 +35,7 @@ unsigned int CIDGenerator::generateID(AEntity* pEntity)
 {
     QMutexLocker locker(&m_Mutex);
     m_Entities.insert(m_iCurrentID, pEntity);
-	return m_iCurrentID++;
+    return m_iCurrentID++;
 }
 
 //-----------------------------------------------------------------------------------------

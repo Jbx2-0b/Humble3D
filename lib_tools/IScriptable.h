@@ -17,7 +17,7 @@ class IScriptable
 {
 public:
 
-	virtual void init(const TParameters& parameters) = 0;
+    virtual void init(const TParameters& parameters) = 0;
 
 protected:
 
@@ -44,7 +44,7 @@ inline QVector2D IScriptable::get<QVector2D>(const TParameters& parameters, cons
         if (dataSplit.size() == 2)
         {
             result = QVector2D(
-                    dataSplit[0].toFloat(),
+                        dataSplit[0].toFloat(),
                     dataSplit[1].toFloat());
         }
         else
@@ -68,7 +68,7 @@ inline QVector3D IScriptable::get<QVector3D>(const TParameters& parameters, cons
         if (dataSplit.size() == 3)
         {
             result = QVector3D(
-                    dataSplit[0].toFloat(),
+                        dataSplit[0].toFloat(),
                     dataSplit[1].toFloat(),
                     dataSplit[2].toFloat());
         }
@@ -92,7 +92,7 @@ inline QVector4D IScriptable::get<QVector4D>(const TParameters& parameters, cons
         if (dataSplit.size() == 4)
         {
             result = QVector4D(
-                    dataSplit[0].toFloat(),
+                        dataSplit[0].toFloat(),
                     dataSplit[1].toFloat(),
                     dataSplit[2].toFloat(),
                     dataSplit[3].toFloat());
@@ -100,7 +100,7 @@ inline QVector4D IScriptable::get<QVector4D>(const TParameters& parameters, cons
         else if (dataSplit.size() == 3)
         {
             result = QVector4D(
-                    dataSplit[0].toFloat(),
+                        dataSplit[0].toFloat(),
                     dataSplit[1].toFloat(),
                     dataSplit[2].toFloat(),
                     1.0);

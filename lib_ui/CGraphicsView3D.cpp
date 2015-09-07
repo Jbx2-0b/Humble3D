@@ -21,15 +21,15 @@
 
 //-----------------------------------------------------------------------------------------
 CGraphicsView3D::CGraphicsView3D(CSceneManager* pSceneManager, CCamera* pCamera, QWidget* pParent /*= 0*/)
-: QGraphicsView(pParent)
-, AView(pSceneManager)
+    : QGraphicsView(pParent)
+    , AView(pSceneManager)
 {
     m_pGLRenderer = new CGLRenderer(m_pSceneManager);
     m_pRenderer = m_pGLRenderer;
     m_pRenderer->setCurrentCamera(pCamera);
     m_pGLWidget = new CGLWidget(this);
 
-	setFrameShape(QFrame::NoFrame);
+    setFrameShape(QFrame::NoFrame);
     setViewport(m_pGLWidget);
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
@@ -70,14 +70,14 @@ void CGraphicsView3D::mouseMoveEvent(QMouseEvent* pEvent)
     m_MouseStates = CQtHelper::fromMouseEvent(pEvent);
     m_MouseMoveFilter.filter();
 
-	// on remonte les evenements
-	QGraphicsView::mouseMoveEvent(pEvent);
+    // on remonte les evenements
+    QGraphicsView::mouseMoveEvent(pEvent);
 }
 
 //-----------------------------------------------------------------------------------------
 void CGraphicsView3D::onUpdate(CFilterEvent* /*pFilter*/)
 {
-	emit mouseMoved();
+    emit mouseMoved();
 }
 
 //-----------------------------------------------------------------------------------------
@@ -85,13 +85,13 @@ void CGraphicsView3D::mousePressEvent(QMouseEvent* pEvent)
 {
     m_MouseStates = CQtHelper::fromMouseEvent(pEvent);
 
-	if (!isOnWidget(pEvent->pos()))
-	{
-		emit mousePressed();
-	}
+    if (!isOnWidget(pEvent->pos()))
+    {
+        emit mousePressed();
+    }
 
-	// on remonte les evenements
-	QGraphicsView::mousePressEvent(pEvent);
+    // on remonte les evenements
+    QGraphicsView::mousePressEvent(pEvent);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -99,10 +99,10 @@ void CGraphicsView3D::mouseReleaseEvent(QMouseEvent* pEvent)
 {
     m_MouseStates = CQtHelper::fromMouseEvent(pEvent);
 
-	emit mouseReleased();
+    emit mouseReleased();
 
-	// on remonte les evenements
-	QGraphicsView::mouseReleaseEvent(pEvent);
+    // on remonte les evenements
+    QGraphicsView::mouseReleaseEvent(pEvent);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -110,13 +110,13 @@ void CGraphicsView3D::mouseDoubleClickEvent(QMouseEvent* pEvent)
 {
     m_MouseStates = CQtHelper::fromMouseEvent(pEvent);
 
-	if (!isOnWidget(pEvent->pos()))
-	{
-		emit mouseDoubleClicked();
-	}
+    if (!isOnWidget(pEvent->pos()))
+    {
+        emit mouseDoubleClicked();
+    }
 
-	// on remonte les evenements
-	QGraphicsView::mousePressEvent(pEvent);
+    // on remonte les evenements
+    QGraphicsView::mousePressEvent(pEvent);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -178,10 +178,10 @@ void CGraphicsView3D::mouseDoubleClickEvent(QMouseEvent* pEvent)
 //-----------------------------------------------------------------------------------------
 void CGraphicsView3D::wheelEvent(QWheelEvent* pEvent)
 {
-	if (!isOnWidget(pEvent->pos()))
-	{
-		emit mouseWheelMoved();
-	}
+    if (!isOnWidget(pEvent->pos()))
+    {
+        emit mouseWheelMoved();
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -207,10 +207,10 @@ void CGraphicsView3D::keyPressEvent(QKeyEvent* pEvent)
 {
     m_KeyboardStates = CQtHelper::fromQKeyEvent(pEvent);
 
-	emit keyPressed();
+    emit keyPressed();
 
-	// on remonte les evenements
-	QGraphicsView::keyPressEvent(pEvent);
+    // on remonte les evenements
+    QGraphicsView::keyPressEvent(pEvent);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -218,55 +218,55 @@ void CGraphicsView3D::keyReleaseEvent(QKeyEvent* pEvent)
 {
     m_KeyboardStates = CQtHelper::fromQKeyEvent(pEvent);
 
-	emit keyReleased();
+    emit keyReleased();
 
-	// on remonte les evenements
-	QGraphicsView::keyReleaseEvent(pEvent);
+    // on remonte les evenements
+    QGraphicsView::keyReleaseEvent(pEvent);
 }
 
 //-----------------------------------------------------------------------------------------
 bool CGraphicsView3D::isOnWidget(const QPoint& point)
 {
-	// on recupere l'ensemble des objets sous le pointeur souris
-	QList<QGraphicsItem *> itemsList = scene()->items(point);
+    // on recupere l'ensemble des objets sous le pointeur souris
+    QList<QGraphicsItem *> itemsList = scene()->items(point);
 
-	// on prend seulement le premier element de la liste , c'est celui qui a la plus grande valeur Z
-	QList<QGraphicsItem *>::const_iterator i = itemsList.constBegin();
+    // on prend seulement le premier element de la liste , c'est celui qui a la plus grande valeur Z
+    QList<QGraphicsItem *>::const_iterator i = itemsList.constBegin();
 
-	//! Selection d'un objet existant
-	if (i != itemsList.constEnd())
-	{
-		if (dynamic_cast<QGraphicsProxyWidget*>(*i))
-		{
-			return true;
-		}
-	}
+    //! Selection d'un objet existant
+    if (i != itemsList.constEnd())
+    {
+        if (dynamic_cast<QGraphicsProxyWidget*>(*i))
+        {
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 //-----------------------------------------------------------------------------------------
 CToolBar* CGraphicsView3D::createToolBar(CToolBar::EnumToolBarPosition eToolBarPosition)
 {
-	CGraphicsWidgetItem* pItem = new CGraphicsWidgetItem();
+    CGraphicsWidgetItem* pItem = new CGraphicsWidgetItem();
     CToolBar* pToolBar = new CToolBar(eToolBarPosition, size(), pItem);
-	pItem->setWidget(pToolBar);
-	pToolBar->setAttribute(Qt::WA_TranslucentBackground);
-	m_GraphicsWidgetItems[pToolBar] = pItem;
-	m_pGraphicsScene->addItem(pItem);
+    pItem->setWidget(pToolBar);
+    pToolBar->setAttribute(Qt::WA_TranslucentBackground);
+    m_GraphicsWidgetItems[pToolBar] = pItem;
+    m_pGraphicsScene->addItem(pItem);
     connect(this, SIGNAL(sizeChanged(QSize)), pToolBar, SLOT(onViewSizeChanged(QSize)));
-	return pToolBar;
+    return pToolBar;
 }
 
 //-----------------------------------------------------------------------------------------
 void CGraphicsView3D::removeWidget(QWidget* pWidget)
 {
-	if (m_GraphicsWidgetItems.contains(pWidget))
-	{
-		CGraphicsWidgetItem* pItem = m_GraphicsWidgetItems[pWidget];
-		m_GraphicsWidgetItems.remove(pWidget);
-		m_pGraphicsScene->removeItem(pItem);
-		delete pItem; // Supprimer l'item supprime également l'objet embarqué
-	}
+    if (m_GraphicsWidgetItems.contains(pWidget))
+    {
+        CGraphicsWidgetItem* pItem = m_GraphicsWidgetItems[pWidget];
+        m_GraphicsWidgetItems.remove(pWidget);
+        m_pGraphicsScene->removeItem(pItem);
+        delete pItem; // Supprimer l'item supprime également l'objet embarqué
+    }
 }
 
