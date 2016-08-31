@@ -1,4 +1,4 @@
-// App
+﻿// App
 #include "CXmlReader.h"
 
 // Qt

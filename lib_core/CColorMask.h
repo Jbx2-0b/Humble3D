@@ -1,4 +1,4 @@
-#ifndef CCOLORMASK_H
+﻿#ifndef CCOLORMASK_H
 #define CCOLORMASK_H
 
 class CColorMask

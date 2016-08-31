@@ -1,4 +1,4 @@
-#ifndef CGEOMETRYTOOL_H
+﻿#ifndef CGEOMETRYTOOL_H
 #define CGEOMETRYTOOL_H
 
 #include "CMath.h"

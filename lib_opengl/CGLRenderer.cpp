@@ -1,4 +1,4 @@
-// App
+﻿// App
 #include "CGLRenderer.h"
 #include "CLogManager.h"
 #include "CGLTexture2D.h"

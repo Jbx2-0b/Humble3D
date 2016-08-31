@@ -1,4 +1,4 @@
-#ifndef MATH_H
+ï»¿#ifndef MATH_H
 #define MATH_H
 
 // Lib
@@ -55,28 +55,28 @@ public:
 
     static const QMatrix4x4 ZeroMatrix;
 
-    //! Initialise une graine pour les nombres aléatoires
+    //! Initialise une graine pour les nombres alÃ©atoires
     static void initRand();
 
-    //! Retourne un nombre aléatoire entre 0. et 1.
+    //! Retourne un nombre alÃ©atoire entre 0. et 1.
     static real randNorm();
 
-    //! Retourne un nombre aléatoire décimal entre min et max
+    //! Retourne un nombre alÃ©atoire dÃ©cimal entre min et max
     static real randDouble(real min, real max);
 
-    //! Retourne un nombre aléatoire entier entre min et max
+    //! Retourne un nombre alÃ©atoire entier entre min et max
     static int randInt(int min, int max);
 
-    //! Retourne un vecteur aléatoire entre min et max
+    //! Retourne un vecteur alÃ©atoire entre min et max
     static QVector2D randVector(const QVector2D& vectMin, const QVector2D& vectMax);
 
-    //! Retourne un vecteur aléatoire entre [-Pi; Pi]
+    //! Retourne un vecteur alÃ©atoire entre [-Pi; Pi]
     static real randRadianAngle();
 
-    //! Retourne un vecteur aléatoire entre [0; 360]
+    //! Retourne un vecteur alÃ©atoire entre [0; 360]
     static real randDegreeAngle();
 
-    //! Retourne un nombre aléatoire entre 0. et 1.
+    //! Retourne un nombre alÃ©atoire entre 0. et 1.
     static real rand(const QVector2D& co);
 
     //! Limite dValue entre [dMin; dMax[
@@ -85,7 +85,7 @@ public:
     //! Limite dAngle entre [0; 360[
     static real clipAngleDegree(real dAngle);
 
-    //! Différence entre deux angles
+    //! DiffÃ©rence entre deux angles
     static real angleDifferenceDegree(real dAngle1, real dAngle2);
 
     //! retourne un angle compris dans [ 0;2PI [
@@ -100,10 +100,10 @@ public:
     //! transforme un angle radians en degree
     static real radToDeg(const real angleRad);
 
-    //! transforme un angle radians en millièmes sens horraire
+    //! transforme un angle radians en milliÃ¨mes sens horraire
     static real radToMil(const real angleRad);
 
-    //! transforme un angle millièmes en radians sens horraire
+    //! transforme un angle milliÃ¨mes en radians sens horraire
     static real milToRad(const real angleMil);
 
     //! Radians to Gradians
@@ -118,7 +118,7 @@ public:
     //! Borne un nombre entre [0; pMax]
     static int clamp(int pX, int pMax);
 
-    //! Interpolation linéaire entre deux éléments
+    //! Interpolation linÃ©aire entre deux Ã©lÃ©ments
     static real interpolate(real dStart, real dEnd, real dValue);
 
     //! Return power of 2
@@ -148,19 +148,19 @@ public:
     //! Teste si un nombre est fini
     static bool isFinite(real x);
 
-    //! Transforme une position en pixel dans l'image en déplacement en degré
+    //! Transforme une position en pixel dans l'image en dÃ©placement en degrÃ©
     static QPointF computePixToDeg(QSize videoSize, real dCameraFOV, QPointF screen2DPoint, bool bNormalized = false);
 
-    //! Transforme un déplacement en dégré en position en pixel dans l'image - Attention le résultat n'est pas normalisé
+    //! Transforme un dÃ©placement en dÃ©grÃ© en position en pixel dans l'image - Attention le rÃ©sultat n'est pas normalisÃ©
     static QPoint computeDegToPix(QSize videoSize, real dCameraFOV, QPointF angles);
 
-    //! Divise v1 par v2 et retourne le résultat
+    //! Divise v1 par v2 et retourne le rÃ©sultat
     static QVector3D divide(const QVector3D& v1, const QVector3D& v2);
 
-    //! Recupére les composants minimum de deux vecteurs
+    //! RecupÃ©re les composants minimum de deux vecteurs
     static QVector3D makeFloor(const QVector3D& v1, const QVector3D& v2);
 
-    //! Recupére les composants maximum de deux vecteurs
+    //! RecupÃ©re les composants maximum de deux vecteurs
     static QVector3D makeCeil(const QVector3D& v1, const QVector3D& v2);
 
     //! returns a value equal to the nearest integer that is less than or equal to x.
@@ -169,22 +169,22 @@ public:
     //! Retourne la partie fractionnelle de x
     //static QVector2D fract(const QVector2D& v);
 
-    //! Interpolation linéaire : relie deux points par un segment, x E [0; 1]
+    //! Interpolation linÃ©aire : relie deux points par un segment, x E [0; 1]
     static double linearInterpolation(double a, double b, double x);
 
-    //! Interpolation linéaire : relie deux points par un segment, x E [0; 1], y E [0; 1]
+    //! Interpolation linÃ©aire : relie deux points par un segment, x E [0; 1], y E [0; 1]
     static double linearInterpolation2D(double a, double b, double c, double d, double x, double y);
 
-    //! Interpolation cosinus : basée sur la fonction (1-cos(Pi.x)) / 2., x E [0; 1]
+    //! Interpolation cosinus : basÃ©e sur la fonction (1-cos(Pi.x)) / 2., x E [0; 1]
     static double cosInterpolation(double a, double b, double x);
 
-    //! Interpolation cosinus : basée sur la fonction (1-cos(Pi.x)) / 2., x E [0; 1], y E [0; 1]
+    //! Interpolation cosinus : basÃ©e sur la fonction (1-cos(Pi.x)) / 2., x E [0; 1], y E [0; 1]
     static double cosInterpolation2D(double a, double b, double c, double d, double x, double y);
 
-    //! Interpolation cubique basée sur le polynôme f(x)=ax3+bx2+cx+d
+    //! Interpolation cubique basÃ©e sur le polynÃ´me f(x)=ax3+bx2+cx+d
     static double cubicInterpolation(double y0, double y1, double y2, double y3, double x);
 
-    //! Interpolation cubique basée sur le polynôme f(x)=ax3+bx2+cx+d
+    //! Interpolation cubique basÃ©e sur le polynÃ´me f(x)=ax3+bx2+cx+d
     static double cubicInterpolation2D(double y00, double y01, double y02, double y03,
                                        double y10, double y11, double y12, double y13, double y20, double y21, double y22,
                                        double y23, double y30, double y31, double y32, double y33, double x, double y);
@@ -212,10 +212,10 @@ public:
 
     static real absDotProduct(const QVector3D& vec1, const QVector3D& vec2);
 
-    //! Retourne une matrice décrivant une projection infinie
+    //! Retourne une matrice dÃ©crivant une projection infinie
     static QMatrix4x4 infinitePerspective(real dFOVY, real dAspect, real dZNear);
 
-    //! Réalise l'interpolation entre deux quaternions
+    //! RÃ©alise l'interpolation entre deux quaternions
     void interpolate(QQuaternion& pOut, const QQuaternion& pStart, const QQuaternion& pEnd, real pFactor);
 
 

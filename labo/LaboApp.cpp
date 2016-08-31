@@ -1,4 +1,4 @@
-#include "LaboApp.h"
+ï»¿#include "LaboApp.h"
 
 #include <QStringList>
 #include <QFileDialog>
@@ -51,7 +51,7 @@ LaboApp::LaboApp()
     , m_bIsEditingShaders(false)
     , m_pSDEdited(0)
 {
-    // Enregistre quelques shaders par défaut...
+    // Enregistre quelques shaders par dÃ©faut...
     CShaderManager::getInstance()->createShader("fresnel",		"://Resources/fresnel.vertex.glsl",	"", "://Resources/fresnel.fragment.glsl");
     CShaderManager::getInstance()->createShader("bump",			"://Resources/bump.vertex.glsl",	"", "://Resources/bump.fragment.glsl");
 
@@ -64,13 +64,13 @@ LaboApp::LaboApp()
 
     m_pView = createGraphicsView3D(pCamera);
 
-    // On crée un noeud afin d'y placer une lumiére
+    // On crÃ©e un noeud afin d'y placer une lumiÃ©re
     m_pCenterNode = m_pSceneManager->getRootNode()->createChild("CenterNode", QVector3D(0, 0, 0));
 
     CSceneNode* pLightNode = m_pCenterNode->createChild("LightNode_1", QVector3D(2., 0., 0.));
     m_AutoCreatedEntities.insert(pLightNode);
 
-    // On crée une lumiére diffuse blanche
+    // On crÃ©e une lumiÃ©re diffuse blanche
     CLight* pLight = m_pSceneManager->createLight("Light_1");
     pLight->setDiffuseColor(0.8f, 0.8f, 0.8f);
     pLight->setAmbientColor(0.4f, 0.4f, 0.4f);
@@ -83,7 +83,7 @@ LaboApp::LaboApp()
     CSceneNode* pLightNode2 = m_pCenterNode->createChild("LightNode_2", QVector3D(-2., 0., 0.));
     m_AutoCreatedEntities.insert(pLightNode2);
 
-    // On crée une lumiére diffuse blanche
+    // On crÃ©e une lumiÃ©re diffuse blanche
     CLight* pLight2 = m_pSceneManager->createLight("Light_2");
     pLight2->setDiffuseColor(0.8f, 0.8f, 0.8f);
     pLight2->setAmbientColor(0.4f, 0.4f, 0.4f);
@@ -96,7 +96,7 @@ LaboApp::LaboApp()
     CSceneNode* pLightNode3 = m_pCenterNode->createChild("LightNode_3", QVector3D(0., 2., 0.));
     m_AutoCreatedEntities.insert(pLightNode3);
 
-    // On crée une lumiére diffuse blanche
+    // On crÃ©e une lumiÃ©re diffuse blanche
     CLight* pLight3 = m_pSceneManager->createLight("Light_3");
     pLight3->setDiffuseColor(0.8f, 0.8f, 0.8f);
     pLight3->setAmbientColor(0.4f, 0.4f, 0.4f);
@@ -106,7 +106,7 @@ LaboApp::LaboApp()
     // On l'associe au noeud
     pLightNode3->addItem(pLight3);
 
-    // On crée un timer pour l'animer
+    // On crÃ©e un timer pour l'animer
     QTimer* pTimer = new QTimer(this);
     connect(pTimer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     pTimer->start(25);
@@ -732,7 +732,7 @@ void LaboApp::loadScene(const QString& fileName)
 
             if (m_bRescaleMeshs)
             {
-                // On récupére la bounding box
+                // On rÃ©cupÃ©re la bounding box
                 CBox3D bbox = pNode->getGlobalAxisAlignedBoundingBox();
 
                 real sizeX = bbox.getMaximum().x() - bbox.getMinimum().x();
@@ -753,7 +753,7 @@ void LaboApp::loadScene(const QString& fileName)
 
             if (m_bInvertXZ)
             {
-                // On effectue une rotation du modèle
+                // On effectue une rotation du modÃ¨le
                 pNode->rotate(QVector3D(1.0, 0.0, 0.0), -90.);
             }
         }
@@ -777,7 +777,7 @@ void LaboApp::onLoadFinished()
     m_pLoadButton->setEnabled(true);
     m_pSaveButton->setEnabled(true);
 
-    // On crée une camera
+    // On crÃ©e une camera
     if (!m_pView->getCurrentCamera())
     {
         CCamera* pCamera = getSceneManager()->createCamera();
@@ -785,7 +785,7 @@ void LaboApp::onLoadFinished()
         pCamera->setCenter(QVector3D(0., 0., 0.));
         pCamera->setAspectRatio((real)m_pView->width() / (real)m_pView->height());
 
-        // On la définie comme caméra courante
+        // On la dÃ©finie comme camÃ©ra courante
         m_pView->setCurrentCamera(pCamera);
     }
 }

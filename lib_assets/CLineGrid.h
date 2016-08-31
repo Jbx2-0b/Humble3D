@@ -1,4 +1,4 @@
-#ifndef CLINEGRID_H
+﻿#ifndef CLINEGRID_H
 #define CLINEGRID_H
 
 // Lib

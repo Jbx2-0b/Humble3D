@@ -1,4 +1,4 @@
-#ifndef CTEXTURE2D_H
+ï»¿#ifndef CTEXTURE2D_H
 #define CTEXTURE2D_H
 
 // Lib
@@ -70,7 +70,7 @@ public:
     //! Retourne le nom de fichier image
     QString getFileName() const							{ return m_ImageRects.size() ? m_ImageRects[0].first : ""; }
 
-        //! Affiche les propriétés sur la console
+        //! Affiche les propriÃ©tÃ©s sur la console
         virtual QString toString() const
         {
         QString result;

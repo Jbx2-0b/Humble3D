@@ -1,4 +1,4 @@
-#include "CImageSelector.h"
+﻿#include "CImageSelector.h"
 #include "CTextureManager.h"
 
 #include <QMouseEvent>

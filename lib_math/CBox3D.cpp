@@ -1,4 +1,4 @@
-#include "CBox3D.h"
+﻿#include "CBox3D.h"
 #include "CMath.h"
 
 const CBox3D CBox3D::NullBox(QVector3D(0., 0., 0.), QVector3D(0., 0., 0.));

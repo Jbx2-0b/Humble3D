@@ -1,4 +1,4 @@
-#ifndef CVECTORWIDGETITEM_H
+﻿#ifndef CVECTORWIDGETITEM_H
 #define CVECTORWIDGETITEM_H
 
 // Foundations

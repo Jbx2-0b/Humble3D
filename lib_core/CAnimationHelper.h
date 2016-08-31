@@ -1,4 +1,4 @@
-#ifndef CANIMATIONHELPER_H
+ï»¿#ifndef CANIMATIONHELPER_H
 #define CANIMATIONHELPER_H
 
 // Qt
@@ -15,9 +15,9 @@ namespace CAnimationHelper
 {
 
 //-------------------------------------------------------------------------------------------------
-// Classe utilitaires permettant de réaliser des interpolations
-// Les quaternions sont interpolés via la fonctions nlerp()
-// Les autres types par une simple interpolation linéaire
+// Classe utilitaires permettant de rÃ©aliser des interpolations
+// Les quaternions sont interpolÃ©s via la fonctions nlerp()
+// Les autres types par une simple interpolation linÃ©aire
 //-------------------------------------------------------------------------------------------------
 
 template <typename T>

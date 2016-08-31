@@ -1,4 +1,4 @@
-#ifndef CNOISEHEIGHTMAP_H
+﻿#ifndef CNOISEHEIGHTMAP_H
 #define CNOISEHEIGHTMAP_H
 
 // Lib

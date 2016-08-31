@@ -1,4 +1,4 @@
-#include "CMaterial.h"
+﻿#include "CMaterial.h"
 #include "CLogManager.h"
 #include "CGeometryGlobal.h"
 

@@ -1,4 +1,4 @@
-#ifndef CTERRAINMANAGER_H
+﻿#ifndef CTERRAINMANAGER_H
 #define CTERRAINMANAGER_H
 
 // Lib
@@ -68,7 +68,7 @@ public:
 
 protected:
 
-	//! Impl�mentation de CSceneManager::ICameraListener
+	//! Implémentation de CSceneManager::ICameraListener
 	virtual void onUpdateCamera(CCamera* pCamera);
 
 private:

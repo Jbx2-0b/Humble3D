@@ -1,4 +1,4 @@
-#ifndef CTERRAIN_H
+ï»¿#ifndef CTERRAIN_H
 #define CTERRAIN_H
 
 // Lib
@@ -24,7 +24,7 @@ public:
 	//! Initialise le terrain
 	void update(unsigned int iResolution, unsigned int iTextureResolution, const QVector3D& size, bool bComputeNormals = true);
 
-	//! Définit les altitudes. Les valeurs doivent être normalisées entre [0; 1]
+	//! DÃ©finit les altitudes. Les valeurs doivent Ãªtre normalisÃ©es entre [0; 1]
 	void setHeights(const CMapKey& key, CMapDictionary* pMapDictionary);
 
 	//! Retourne la taille du terrain

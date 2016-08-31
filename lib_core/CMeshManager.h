@@ -1,4 +1,4 @@
-#ifndef CMESHMANAGER_H
+ï»¿#ifndef CMESHMANAGER_H
 #define CMESHMANAGER_H
 
 // Lib
@@ -56,17 +56,17 @@ public:
     {
     public:
 
-        //! Prévient de l'ajout ou de la mise à jour d'un mesh
+        //! PrÃ©vient de l'ajout ou de la mise Ã  jour d'un mesh
         virtual void onUpdate(CMesh* pMesh) = 0;
 
-        //! Prévient de la suppression d'un mesh
+        //! PrÃ©vient de la suppression d'un mesh
         virtual void onDelete(CMesh* pMesh) = 0;
     };
 
     //! Enregistre un listener
     void registerListener(IMeshManagerListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IMeshManagerListener* pListener);
 
     class IMeshBufferListener
@@ -74,14 +74,14 @@ public:
         friend class CMeshManager;
 
     protected:
-        //! Prévient de la suppression d'un VB
+        //! PrÃ©vient de la suppression d'un VB
         virtual void onDeleteMeshBuffer(CMeshBuffer* pBuffer) = 0;
     };
 
     //! Enregistre un listener
     void registerMeshBufferListener(IMeshBufferListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterMeshBufferListener(IMeshBufferListener* pListener);
 
     //! Retourne le nombre de meshs
@@ -105,7 +105,7 @@ public:
     //! Retourne true si le mesh existe
     bool isMeshExist(int iID) const;
 
-    //! Crée un nouveau mesh
+    //! CrÃ©e un nouveau mesh
     CMesh* createMesh(const QString& name = "Mesh");
 
     //! Charge un mesh
@@ -123,37 +123,37 @@ public:
     //! Supprime un mesh
     void removeMesh(CMesh* pMesh);
 
-    //! Libére l'ensemble des meshs du manager
+    //! LibÃ©re l'ensemble des meshs du manager
     void clearMeshs();
 
     //-------------------------------------------------------------------------------------------------
-    // Gestion des types personnalisés
+    // Gestion des types personnalisÃ©s
     //-------------------------------------------------------------------------------------------------
 
-    //! Enregistre un type de mesh personnalisé
+    //! Enregistre un type de mesh personnalisÃ©
     template<typename CustomMesh> void registerCustomMesh(const QString& typeName);
 
-    //! Crée un type de mesh personnalisé
+    //! CrÃ©e un type de mesh personnalisÃ©
     template<typename CustomMesh> CustomMesh* createCustomMesh(const QString& typeName, const QString& itemName = "");
 
 protected:
 
-    //! Fabrique pour les objets personnalisés
+    //! Fabrique pour les objets personnalisÃ©s
     CRegisterFactory<CMesh> m_CustomMeshFactory;
 
-    //! Crée un type de mesh personnalisé
+    //! CrÃ©e un type de mesh personnalisÃ©
     CMesh* createCustomMesh(const QString& typeName, const QString& itemName = "");
 
     //! Ajoute un mesh
     void appendMesh(CMesh* pMesh);
 
-    //! Implémentation de CMesh::IMeshListener
+    //! ImplÃ©mentation de CMesh::IMeshListener
     virtual void onUpdate(CMesh* pMesh);
 
-    //! Implémentation de CMesh::IMeshListener
+    //! ImplÃ©mentation de CMesh::IMeshListener
     virtual void onDelete(CMesh* pMesh);
 
-    //! Implémentation de CMeshBuffer::IMeshListener
+    //! ImplÃ©mentation de CMeshBuffer::IMeshListener
     virtual void onDelete(CMeshBuffer* pBuffer);
 
 
@@ -164,16 +164,16 @@ protected:
     //! Liste des listeners
     QSet<IMeshManagerListener*> m_MeshManagerListeners;
 
-    //! Notifie les listeners qu'un mesh a été ajouté
+    //! Notifie les listeners qu'un mesh a Ã©tÃ© ajoutÃ©
     void notifyUpdate(CMesh* pMesh);
 
-    //! Notifie les listeners qu'un mesh a été supprimé
+    //! Notifie les listeners qu'un mesh a Ã©tÃ© supprimÃ©
     void notifyDelete(CMesh* pMesh);
 
     //! Liste des listeners
     QSet<IMeshBufferListener*> m_MeshBufferListeners;
 
-    //! Notifie les listeners qu'un buffer a été supprimé
+    //! Notifie les listeners qu'un buffer a Ã©tÃ© supprimÃ©
     void notifyDelete(CMeshBuffer* pBuffer);
 
 

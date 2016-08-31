@@ -1,4 +1,4 @@
-#ifndef CGLMESHBUFFER_H
+ï»¿#ifndef CGLMESHBUFFER_H
 #define CGLMESHBUFFER_H
 
 #include "lib_opengl_global.h"
@@ -53,13 +53,13 @@ public:
     //! COnstruit en fonction d'un MeshBuffer
     void create(CMeshBuffer* pBuffer);
 
-    //! Met à jour le buffer
+    //! Met Ã  jour le buffer
     void update(CMeshBuffer* pBuffer);
 
-    //! Définit le type de primitive
+    //! DÃ©finit le type de primitive
     void setPrimitiveType(EnumPrimitiveType ePrimitiveType);
 
-    //! Définit le nombre de côté par face
+    //! DÃ©finit le nombre de cÃ´tÃ© par face
     void setPrimitiveIndex(unsigned int uiPrimitiveIndex);
 
     //! Effectue le rendu du buffer

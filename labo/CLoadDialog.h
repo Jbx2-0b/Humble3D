@@ -1,4 +1,4 @@
-#ifndef CLOADDIALOG_H
+﻿#ifndef CLOADDIALOG_H
 #define CLOADDIALOG_H
 
 #include <QDialog>

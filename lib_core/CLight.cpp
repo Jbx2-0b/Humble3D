@@ -1,4 +1,4 @@
-#include "CLight.h"
+﻿#include "CLight.h"
 #include "CGeometryGlobal.h"
 #include "ARenderer.h"
 

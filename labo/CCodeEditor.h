@@ -1,4 +1,4 @@
-#ifndef CCODEEDITOR_H
+﻿#ifndef CCODEEDITOR_H
 #define CCODEEDITOR_H
 
 #include <QObject>

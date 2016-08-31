@@ -1,4 +1,4 @@
-#ifndef CEDGE_H
+﻿#ifndef CEDGE_H
 #define CEDGE_H
 
 // Qt

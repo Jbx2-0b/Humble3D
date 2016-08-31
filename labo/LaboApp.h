@@ -1,4 +1,4 @@
-#ifndef LABOAPP_H
+ï»¿#ifndef LABOAPP_H
 #define LABOAPP_H
 
 #include "Humble3DApp.h"
@@ -36,7 +36,7 @@ class LaboApp : public QObject, public Humble3DApp
 
 public:
 
-    //! Différentes options
+    //! DiffÃ©rentes options
     enum EnumOptions
     {
         eOptionZoom,
@@ -93,19 +93,19 @@ protected:
 
     QSettings m_Settings;
 
-    //! Item textuel qui permet d'éditer les shaders
+    //! Item textuel qui permet d'Ã©diter les shaders
     CEditShaderTextItem* m_pEditShadersTextItem;
 
-    //! Arbre des noeuds et paramétres de scéne
+    //! Arbre des noeuds et paramÃ©tres de scÃ©ne
     CNodeTreeWidget* m_pTreeWidget;
 
     //! Decorateur de l'arbre
     CAnimatedPanelDecorator* m_pTreeWidgetDecorator;
 
-    //! Barre d'outils supérieure
+    //! Barre d'outils supÃ©rieure
     CToolBar* m_pTopToolBar;
 
-    //! Barre d'outils inférieure
+    //! Barre d'outils infÃ©rieure
     CToolBar* m_pBottomToolBar;
 
 #ifdef MULTITHREAD
@@ -113,7 +113,7 @@ protected:
     QFutureWatcher<void> m_FutureWatcher;
 #endif // MULTITHREAD
 
-    //! Bouton plein écran
+    //! Bouton plein Ã©cran
     QPushButton* m_pRunButton;
     QPushButton* m_pTreeButton;
     QPushButton* m_pFullScreenButton;
@@ -140,13 +140,13 @@ protected:
     //! Option en cours
     EnumOptions m_eCurrentOption;
 
-    //! Gére l'exclusivité entre les boutons d'option
+    //! GÃ©re l'exclusivitÃ© entre les boutons d'option
     CExclusiveButton m_ExclusiveOptionButton;
 
-    //! Gére l'exclusivité entre les boutons d'édition des shaders
+    //! GÃ©re l'exclusivitÃ© entre les boutons d'Ã©dition des shaders
     CExclusiveButton m_ExclusiveEditShadersButton;
 
-    //! Vrai si plein écran
+    //! Vrai si plein Ã©cran
     bool m_bFullScreen;
 
     //! Vrai si en mode edition

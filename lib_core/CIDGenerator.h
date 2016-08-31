@@ -1,4 +1,4 @@
-#ifndef CIDGENERATOR_H
+﻿#ifndef CIDGENERATOR_H
 #define CIDGENERATOR_H
 
 // Qt

@@ -1,4 +1,4 @@
-#include "CDebugManager.h"
+﻿#include "CDebugManager.h"
 #include "Shapes/CLineBox.h"
 #include "Shapes/CSphereMesh.h"
 #include "Shapes/CCylinderMesh.h"

@@ -1,4 +1,4 @@
-#ifndef CMESH_H
+ï»¿#ifndef CMESH_H
 #define CMESH_H
 
 // Lib
@@ -27,7 +27,7 @@ typedef QList<CMesh*> CMeshGroup;
 
 //-----------------------------------------------------------------------------------------
 /// \class CMesh
-/// \brief Classe représentant un maillage 3D
+/// \brief Classe reprÃ©sentant un maillage 3D
 //-----------------------------------------------------------------------------------------
 class LIB_CORE_SHARED_EXPORT CMesh : public AEntity, public AWashable
 {
@@ -62,7 +62,7 @@ public:
     //! Enregistre un listener
     void registerListener(IMeshListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IMeshListener* pListener);
 
 
@@ -70,7 +70,7 @@ public:
     // Gestion des sous-objets
     //-------------------------------------------------------------------------------------------------
 
-    //! Crée un sous-objet
+    //! CrÃ©e un sous-objet
     CSubMesh* createSubMesh();
 
     //! Supprime un sous-objet
@@ -86,10 +86,10 @@ public:
     // Setters
     //--------------------------------------------------------------------------------------------
 
-    //! Définit le materiau
+    //! DÃ©finit le materiau
     void setMaterialName(const QString& materialName);
 
-    //! Définit le multithreading est activé
+    //! DÃ©finit le multithreading est activÃ©
     void setMultithreadingEnabled(bool bEnabled);
 
     //--------------------------------------------------------------------------------------------
@@ -99,7 +99,7 @@ public:
     //! Retourne le nom du type
     virtual QString getTypeName() const { return "Mesh"; }
 
-    //! Retourne la boîte englobant l'objet
+    //! Retourne la boÃ®te englobant l'objet
     const CBox3D& getBoundingBox() const;
 
     //! Retourne la sphere englobant l'objet
@@ -111,12 +111,12 @@ public:
     //! Retourne le nombre de face du mesh
     unsigned int getPolygonCount() const;
 
-    //! Retourne la liste de noeuds associés aux bones
+    //! Retourne la liste de noeuds associÃ©s aux bones
     QMultiHash<CSceneNode*, CBone> getBoneNodes(CSceneManager* pSceneManager) const;
 
 
     //--------------------------------------------------------------------------------------------
-    // Fonctions mathématiques
+    // Fonctions mathÃ©matiques
     //--------------------------------------------------------------------------------------------
 
     //! Calcule les normales
@@ -131,7 +131,7 @@ public:
     //! Calcule l'intersection avec un rayon
     bool intersects(const CRay &ray, const QMatrix4x4& transformation = QMatrix4x4()) const;
 
-    //! Crée une string contenant les propriétés de l'objet
+    //! CrÃ©e une string contenant les propriÃ©tÃ©s de l'objet
     virtual QString toString() const
     {
         QString result;
@@ -143,19 +143,19 @@ public:
         return result;
     }
 
-    //! Met à jour le mesh (appelle updateGeometry)
+    //! Met Ã  jour le mesh (appelle updateGeometry)
     void update();
 
     //--------------------------------------------------------------------------------------------
-    // Implémentation AWashable
+    // ImplÃ©mentation AWashable
     //--------------------------------------------------------------------------------------------
 
-    //! Passe l'entitée à sale = nécessite une mise à jour
+    //! Passe l'entitÃ©e Ã  sale = nÃ©cessite une mise Ã  jour
     virtual void setDirty();
 
 protected:
 
-    //! Transmet le message de mise à jour
+    //! Transmet le message de mise Ã  jour
     virtual void notifyUpdate();
 
     //! Transmet le message de suppression
@@ -164,25 +164,25 @@ protected:
     //! Liste des listeners
     QSet<IMeshListener*> m_MeshListeners;
 
-    //! Boîte englobante
+    //! BoÃ®te englobante
     mutable CBox3D m_BoundingBox;
 
-    //! Sphère englobante
+    //! SphÃ¨re englobante
     mutable CSphere m_BoundingSphere;
 
-    //! Si vrai la boite englobante doit etre mise à jour
+    //! Si vrai la boite englobante doit etre mise Ã  jour
     mutable bool m_bNeedUpdateBoundingBox;
 
-    //! Si vrai la sphere englobante doit etre mise à jour
+    //! Si vrai la sphere englobante doit etre mise Ã  jour
     mutable bool m_bNeedUpdateBoundingSphere;
 
     //! Conteneur des submeshs
     QList<CSubMesh*> m_SubMeshs;
 
-    //! Vrai si le multithreading est activé
+    //! Vrai si le multithreading est activÃ©
     bool m_bMultithreadingEnabled;
 
-    //! Fonction appelée à l'initialisation de l'objet
+    //! Fonction appelÃ©e Ã  l'initialisation de l'objet
     virtual void updateGeometry() {}
 
 private:

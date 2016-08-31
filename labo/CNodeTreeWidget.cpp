@@ -1,4 +1,4 @@
-#include "CNodeTreeWidget.h"
+ï»¿#include "CNodeTreeWidget.h"
 #include "CQtHelper.h"
 #include "CShader.h"
 #include "CLogManager.h"
@@ -142,7 +142,7 @@ void CNodeTreeWidget::updateData()
 
     clearData();
 
-    // On bloque les signaux pour éviter de boucler sur les événements Listener
+    // On bloque les signaux pour Ã©viter de boucler sur les Ã©vÃ©nements Listener
     blockSignals(true);
     createTreeSceneManager();
     createTreeRenderer();

@@ -1,4 +1,4 @@
-#ifndef CQUADTREENODE_H
+ï»¿#ifndef CQUADTREENODE_H
 #define CQUADTREENODE_H
 
 // Foundations
@@ -21,7 +21,7 @@ public:
 	//! Destructeur
 	virtual ~CQuadtreeNode();
 
-	// Définit le noeud parent
+	// DÃ©finit le noeud parent
 	void setParent(CQuadtreeNode* pParent);
 
 	//! Retourne le neoud parent
@@ -33,13 +33,13 @@ public:
 	//! Retourne la liste des enfants
 	QList<CQuadtreeNode*>& getChildren();
 
-	//! Définit la bounding box associées
+	//! DÃ©finit la bounding box associÃ©es
 	void setBoudingBox(const CBox3D& bbox);
 
-	//! Retourne la bounding box associées
+	//! Retourne la bounding box associÃ©es
 	const CBox3D& getBoundingBox() const;
 
-	//! Retourne vrai si les deux noeuds sont liés
+	//! Retourne vrai si les deux noeuds sont liÃ©s
 	bool isLinked(CQuadtreeNode* pNode);
 
 	//! Retourne la profondeur du noeud
@@ -48,22 +48,22 @@ public:
 	//! Retourne un pointeur sur le mutex
 	QMutex* getMutex() { return &m_Mutex; }
 
-	//! Crée un noeud enfant
+	//! CrÃ©e un noeud enfant
 	CQuadtreeNode* createChild(const CBox3D& bbox);
 
-	//! Détache un noeud enfant. Ne détruit pas le noeud
+	//! DÃ©tache un noeud enfant. Ne dÃ©truit pas le noeud
 	void removeChild(CQuadtreeNode* pNode);
 
 	//! Ajoute une carte
 	void addItem(AQuadtreeItem* pQuadtreeItem);
 
-	//! Retourne la liste des items associés
+	//! Retourne la liste des items associÃ©s
 	inline const QList<AQuadtreeItem*>& getItems() const { return m_Items; }
 
-	//! Retourne la liste des items associés
+	//! Retourne la liste des items associÃ©s
 	inline QList<AQuadtreeItem*>& getItems() { return m_Items; }
 
-	//! Vide la liste des items associées
+	//! Vide la liste des items associÃ©es
 	void clearItems();
 
 	//! Affiche l'arbre des noeuds sur la console

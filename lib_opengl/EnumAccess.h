@@ -1,4 +1,4 @@
-#ifndef ENUMACCESS_H
+﻿#ifndef ENUMACCESS_H
 #define ENUMACCESS_H
 
 enum EnumAccess {

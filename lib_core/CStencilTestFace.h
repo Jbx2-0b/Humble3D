@@ -1,4 +1,4 @@
-#ifndef CSTENCILTESTFACE_H
+﻿#ifndef CSTENCILTESTFACE_H
 #define CSTENCILTESTFACE_H
 
 class CStencilTestFace

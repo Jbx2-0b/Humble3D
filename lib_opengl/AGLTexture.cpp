@@ -1,4 +1,4 @@
-#include "AGLTexture.h"
+﻿#include "AGLTexture.h"
 #include "CLogManager.h"
 
 #include <QMatrix4x4>

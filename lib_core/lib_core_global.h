@@ -1,4 +1,4 @@
-#ifndef LIB_CORE_GLOBAL_H
+﻿#ifndef LIB_CORE_GLOBAL_H
 #define LIB_CORE_GLOBAL_H
 
 #include <QtCore/qglobal.h>

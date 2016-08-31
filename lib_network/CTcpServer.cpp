@@ -1,4 +1,4 @@
-
+﻿
 // Qt
 #include <QFile>
 #include <QCoreApplication>

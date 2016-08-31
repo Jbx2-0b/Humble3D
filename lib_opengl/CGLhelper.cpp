@@ -1,4 +1,4 @@
-#include "CGLHelper.h"
+﻿#include "CGLHelper.h"
 
 CGLHelper* CGLHelper::s_pInstance = 0;
 QMutex CGLHelper::s_Mutex(QMutex::Recursive);

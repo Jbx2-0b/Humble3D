@@ -1,4 +1,4 @@
-#include "CGLContext.h"
+﻿#include "CGLContext.h"
 
 CGLContext::CGLContext()
     : m_pContext(0)

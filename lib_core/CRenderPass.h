@@ -1,4 +1,4 @@
-#ifndef CRENDERPASS_H
+ï»¿#ifndef CRENDERPASS_H
 #define CRENDERPASS_H
 
 
@@ -40,10 +40,10 @@ public:
     //! Retourne vrai si doit effacer le buffer de stencil
     bool maskStencilBuffer() const { return m_uiMaskFlags & StencilBuffer; }
 
-    //! Retourne les flags descrivant les buffers qui doivent être copié
+    //! Retourne les flags descrivant les buffers qui doivent Ãªtre copiÃ©
     unsigned int maskFlags() const { return m_uiMaskFlags; }
 
-    //! Retourne les flags descrivant les buffers qui doivent être copié
+    //! Retourne les flags descrivant les buffers qui doivent Ãªtre copiÃ©
     unsigned int& maskFlags() { return m_uiMaskFlags; }
 
     //! Retourne le type de filtrage
@@ -78,37 +78,37 @@ public:
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit le mode shading utilisateur
+    //! DÃ©finit le mode shading utilisateur
     void setShaderName(const QString& shaderName);
 
-    //! Définit le flag d'effacement des buffers
+    //! DÃ©finit le flag d'effacement des buffers
     void setClearBufferFlags(unsigned int uiClearBufferFlags) { m_uiClearBufferFlags = uiClearBufferFlags; }
 
-    //! Définit la couleur pour effacer le buffer
+    //! DÃ©finit la couleur pour effacer le buffer
     void setClearColor(const QVector4D& color) { m_ClearColor = color; }
 
-    //! Définit la caméra depuis laquelle le rendu est effectué
+    //! DÃ©finit la camÃ©ra depuis laquelle le rendu est effectuÃ©
     void setCamera(CCamera* pCamera);
 
-    //! Accesseur sur la pass précédente
+    //! Accesseur sur la pass prÃ©cÃ©dente
     CRenderPass* previousPass();
 
     //! Accesseur sur la pass suivante
     CRenderPass* nextPass();
 
-    //! Accesseur sur la pass précédente
+    //! Accesseur sur la pass prÃ©cÃ©dente
     const CRenderPass* previousPass() const;
 
     //! Accesseur sur la pass suivante
     const CRenderPass* nextPass() const;
 
-    //! Définit la résolution du rendu
+    //! DÃ©finit la rÃ©solution du rendu
     void setSize(const QSize& size);
 
-    //! Retourne la résolution du rendu
+    //! Retourne la rÃ©solution du rendu
     QSize getSize() const {	return m_Size; }
 
-    //! Définit le type de cible
+    //! DÃ©finit le type de cible
     void setTargetType(EnumTarget eTarget);
 
     //! Retourne le type de cible
@@ -117,10 +117,10 @@ public:
     //! Retourne le buffer d'image
     CFrameBuffer* getFrameBuffer() { return m_pFrameBuffer; }
 
-    //! Définit si doit être sauvegardé sous forme de bitmap
+    //! DÃ©finit si doit Ãªtre sauvegardÃ© sous forme de bitmap
     void setSaveBitmapEnabled(bool bEnabled);
 
-    //! Définit le repertoire de sauvegarde
+    //! DÃ©finit le repertoire de sauvegarde
     void setSaveBitmapFilePathName(const QString& filePathName);
 
     //-------------------------------------------------------------------------------------------------
@@ -133,10 +133,10 @@ public:
     //! Retourne l'index de la pass
     int getIndex() const;
 
-    //! Retourne les états de rendu
+    //! Retourne les Ã©tats de rendu
     const CRenderStates& getRenderStates() const;
 
-    //! Retourne les états de rendu
+    //! Retourne les Ã©tats de rendu
     CRenderStates& renderStates();
 
     //! Retourne le mode de shading utilisateur
@@ -157,26 +157,26 @@ public:
     //! Retourne la couleur pour effacer le buffer
     QVector4D getClearColor() const { return m_ClearColor; }
 
-    //! Retourne les flags descrivant quels buffers doivent être éffacés
+    //! Retourne les flags descrivant quels buffers doivent Ãªtre Ã©ffacÃ©s
     unsigned int clearBufferFlags() const { return m_uiClearBufferFlags; }
 
-    //! Retourne les flags descrivant quels buffers doivent être éffacés
+    //! Retourne les flags descrivant quels buffers doivent Ãªtre Ã©ffacÃ©s
     unsigned int& clearBufferFlags() { return m_uiClearBufferFlags; }
 
-    //! Retourne la caméra depuis laquelle le rendu est effectué
+    //! Retourne la camÃ©ra depuis laquelle le rendu est effectuÃ©
     const CCamera* getCamera() const { return m_pCamera; }
 
     const QList<CRenderOperation>& getPreOperations() const { return m_PreOperations; }
 
     const QList<CRenderOperation>& getPostOperations() const { return m_PostOperations; }
 
-    //! Retourne vrai si doit être sauvegardé sous forme de bitmap
+    //! Retourne vrai si doit Ãªtre sauvegardÃ© sous forme de bitmap
     bool isSaveBitmapEnabled() const;
 
     //! Retourne le repertoire de sauvegarde
     QString getSaveBitmapFilePathName() const;
 
-    //! Affiche les propriétés sur la console
+    //! Affiche les propriÃ©tÃ©s sur la console
     virtual QString toString() const
     {
         QString result;
@@ -210,7 +210,7 @@ private:
     //! Type de cible
     EnumTarget m_eTarget;
 
-    //! Résolution de la cible
+    //! RÃ©solution de la cible
     QSize m_Size;
 
     // FBO

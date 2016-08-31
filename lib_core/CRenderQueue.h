@@ -1,4 +1,4 @@
-#ifndef CRENDERQUEUE_H
+﻿#ifndef CRENDERQUEUE_H
 #define CRENDERQUEUE_H
 
 // Qt

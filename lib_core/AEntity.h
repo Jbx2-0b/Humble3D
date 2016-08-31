@@ -1,4 +1,4 @@
-#ifndef CENTITY_H
+ï»¿#ifndef CENTITY_H
 #define CENTITY_H
 
 // Lib
@@ -19,7 +19,7 @@
 
 //-----------------------------------------------------------------------------------------
 // \class AEntity
-// \brief Méta-classe permettant de manipuler des entitées - Sert de meta-objet pour les éléments 3D
+// \brief MÃ©ta-classe permettant de manipuler des entitÃ©es - Sert de meta-objet pour les Ã©lÃ©ments 3D
 //-----------------------------------------------------------------------------------------
 class LIB_CORE_SHARED_EXPORT AEntity : public ALockable
 {
@@ -38,10 +38,10 @@ public:
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit le nom
+    //! DÃ©finit le nom
     void setName(const QString& name);
 
-    //! Définit si les notifications sont activées
+    //! DÃ©finit si les notifications sont activÃ©es
     void setNotificationsEnabled(bool bEnabled) { m_bNotificationsEnabled = bEnabled; }
 
     //-------------------------------------------------------------------------------------------------
@@ -57,10 +57,10 @@ public:
     //! Retourne l'ID
     int getID() const { return m_iID; }
 
-    //! Retourne vrai si les notifications sont activées
+    //! Retourne vrai si les notifications sont activÃ©es
     bool isNotificationsEnabled() const { return m_bNotificationsEnabled; }
 
-    //! Crée une string contenant les propriétés de l'objet
+    //! CrÃ©e une string contenant les propriÃ©tÃ©s de l'objet
     virtual QString toString() const
     {
         QString result;
@@ -92,7 +92,7 @@ public:
         m_EntityListeners.insert(pListener);
     }
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IEntityListener* pListener)
     {
         m_EntityListeners.remove(pListener);
@@ -100,7 +100,7 @@ public:
 
 protected:
 
-    //! Notifie d'une mise à jour
+    //! Notifie d'une mise Ã  jour
     virtual void notifyUpdate()
     {
         if (m_bNotificationsEnabled)
@@ -130,7 +130,7 @@ protected:
     //! Nom
     QString m_Name;
 
-    //! Vrai si les notifications sont activées
+    //! Vrai si les notifications sont activÃ©es
     bool m_bNotificationsEnabled;
 
 private:

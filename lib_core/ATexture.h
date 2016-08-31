@@ -1,4 +1,4 @@
-#ifndef ATEXTURE_H
+ï»¿#ifndef ATEXTURE_H
 #define ATEXTURE_H
 
 #include "AEntity.h"
@@ -24,7 +24,7 @@ public:
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit le type de cible (2D, 3D, Cube...)
+    //! DÃ©finit le type de cible (2D, 3D, Cube...)
     void setType(EnumTextureType eType)					{ m_eType = eType; notifyUpdate(); }
 
     //-------------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ public:
     //! Retourne le type de cible (2D, 3D, Cube...)
     EnumTextureType getType() const						{ return m_eType; }
 
-    //! Retourne le numéro d'unité de texture
+    //! Retourne le numÃ©ro d'unitÃ© de texture
     int getTextureUnit() const							{ return m_iTextureUnit; }
 
     //! Retourne vrai si la texture est valide
@@ -60,7 +60,7 @@ public:
         m_TextureListeners.insert(pListener);
     }
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(ITextureListener* pListener)
     {
         m_TextureListeners.remove(pListener);
@@ -68,7 +68,7 @@ public:
 
 protected:
 
-    //! Transmet le message de mise à jour
+    //! Transmet le message de mise Ã  jour
     virtual void notifyUpdate()
     {
         if (m_bNotificationsEnabled)
@@ -102,7 +102,7 @@ protected:
     //! Type de cible (2D, 3D, Cube...)
     EnumTextureType m_eType;
 
-    //! Numéro d'unité de texture
+    //! NumÃ©ro d'unitÃ© de texture
     int m_iTextureUnit;
 
     //! Vrai si la texture est valide

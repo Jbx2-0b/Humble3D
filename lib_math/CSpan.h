@@ -1,4 +1,4 @@
-#ifndef CSPAN_H
+﻿#ifndef CSPAN_H
 #define CSPAN_H
 
 // Qt

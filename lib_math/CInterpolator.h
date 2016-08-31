@@ -1,4 +1,4 @@
-#ifndef CINTERPOLATOR_H
+﻿#ifndef CINTERPOLATOR_H
 #define CINTERPOLATOR_H
 
 class Interpolator

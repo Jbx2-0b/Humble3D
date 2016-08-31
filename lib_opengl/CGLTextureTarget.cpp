@@ -1,4 +1,4 @@
-#include "CGLTextureTarget.h"
+﻿#include "CGLTextureTarget.h"
 #include "CLogManager.h"
 #include "CGLHelper.h"
 

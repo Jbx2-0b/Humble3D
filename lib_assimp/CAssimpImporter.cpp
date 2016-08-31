@@ -1,4 +1,4 @@
-#include "CAssimpImporter.h"
+﻿#include "CAssimpImporter.h"
 #include "CMaterialManager.h"
 #include "CTextureManager.h"
 

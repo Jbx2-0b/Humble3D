@@ -1,4 +1,4 @@
-// Math
+ï»¿// Math
 #include "Math.h"
 
 // Core
@@ -34,7 +34,7 @@ TestPhysics::TestPhysics()
 {
     //CShaderManager::getInstance()->createShader("bump", "://resources/NBT.vertex.glsl", "", "://resources/NBT.fragment.glsl");
 
-    // On crée une camera
+    // On crÃ©e une camera
     CCamera* pCamera = getSceneManager()->createCamera();
 
     m_vNewEyePosition = QVector3D(60., 60., 60.);
@@ -46,12 +46,12 @@ TestPhysics::TestPhysics()
     m_pView->setGeometry(2000, 100, 800, 800);
     m_pView->setBackgroundColor(QVector4D(0.2, 0.2, 0.6, 1.0));
 
-    // On crée un noeud afin d'y placer une lumiére
+    // On crÃ©e un noeud afin d'y placer une lumiÃ©re
     CSceneNode* pRootNode = getSceneManager()->getRootNode();
 
     CSceneNode* pLightNode = pRootNode->createChild("LightNode", QVector3D(40., 40., 0.));
 
-    // On crée une lumiére diffuse blanche
+    // On crÃ©e une lumiÃ©re diffuse blanche
     CLight* pLight = getSceneManager()->createLight();
     pLight->setDiffuseColor(1.0, 1.0, 1.0);
     pLight->setAmbientColor(1.0, 1.0, 1.0);
@@ -63,7 +63,7 @@ TestPhysics::TestPhysics()
 
     CSceneNode* pLightNode2 = pRootNode->createChild("LightNode2", QVector3D(0., 40., 30.));
 
-    // On crée une lumiére diffuse bleue
+    // On crÃ©e une lumiÃ©re diffuse bleue
     CLight* pLight2 = getSceneManager()->createLight();
     pLight2->setDiffuseColor(0.3, 0.3, 0.8);
     pLight2->setAmbientColor(0.4, 0.3, 0.8);

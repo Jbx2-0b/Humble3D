@@ -1,4 +1,4 @@
-#ifndef CNOISEGENERATOR_H
+﻿#ifndef CNOISEGENERATOR_H
 #define CNOISEGENERATOR_H
 
 // Lib

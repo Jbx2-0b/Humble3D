@@ -1,4 +1,4 @@
-#ifndef CNAMEGENERATOR_H
+﻿#ifndef CNAMEGENERATOR_H
 #define CNAMEGENERATOR_H
 
 // Tools

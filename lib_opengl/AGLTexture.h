@@ -1,4 +1,4 @@
-#ifndef AGLTEXTURE_H
+﻿#ifndef AGLTEXTURE_H
 #define AGLTEXTURE_H
 
 #include "CGLGlobal.h"

@@ -1,4 +1,4 @@
-#ifndef CSUBMESHINSTANCE_H
+ï»¿#ifndef CSUBMESHINSTANCE_H
 #define CSUBMESHINSTANCE_H
 
 #include "ARenderableItem.h"
@@ -20,25 +20,25 @@ public:
     //! Retourne l'instance du mesh parent
     CMeshInstance* getParentInstance() { return m_pParentInstance; }
 
-    //! Retourne le submesh associé
+    //! Retourne le submesh associÃ©
     CSubMesh* getSubMesh() { return m_pSubMesh; }
 
     //! Retourne le nom du type
     virtual QString getTypeName() const { return "SubMeshInstance"; }
 
-    //! Retourne la liste de noeuds auquel l'item est associé
+    //! Retourne la liste de noeuds auquel l'item est associÃ©
     virtual const QSet<CSceneNode*>& getNodes() const;
 
-    //! Définit si l'item est visible
+    //! DÃ©finit si l'item est visible
     virtual bool isVisible() const;
 
-    //! Définit si le sous-objet hérite des paramétres de vibilité de son mesh parent
+    //! DÃ©finit si le sous-objet hÃ©rite des paramÃ©tres de vibilitÃ© de son mesh parent
     void setInheritVisibility(bool bInherit) { m_bInheritVisibility = bInherit; }
 
-    //! Retourne vrai si peut être rendu
+    //! Retourne vrai si peut Ãªtre rendu
     virtual bool isRenderable() const { return m_pSubMesh->isRenderable(); }
 
-    //! Retourne vrai si possède un squelette d'animation
+    //! Retourne vrai si possÃ¨de un squelette d'animation
     virtual bool hasSkeleton() const { return m_pSubMesh->hasSkeleton(); }
 
     //! Retourne un conteneur contenant l'ensemble des matrices d'offset des bones
@@ -53,7 +53,7 @@ public:
 protected:
 
     //-------------------------------------------------------------------------------------------------
-    // Implémentation ARenderableItem
+    // ImplÃ©mentation ARenderableItem
     //-------------------------------------------------------------------------------------------------
 
     //! Effectue le rendu
@@ -63,7 +63,7 @@ protected:
     }
 
     //-------------------------------------------------------------------------------------------------
-    // Implémentation CSubMesh::ISubMeshListener
+    // ImplÃ©mentation CSubMesh::ISubMeshListener
     //-------------------------------------------------------------------------------------------------
 
     void onMaterialChanged(CSubMesh* pSubMesh);
@@ -73,10 +73,10 @@ protected:
     //! L'instance du mesh parent
     CMeshInstance* m_pParentInstance;
 
-    //! Submesh associé
+    //! Submesh associÃ©
     CSubMesh* m_pSubMesh;
 
-    //! Vrai si hérite des paramétres de vibilité de son mesh parent
+    //! Vrai si hÃ©rite des paramÃ©tres de vibilitÃ© de son mesh parent
     bool m_bInheritVisibility;
 
 };

@@ -1,4 +1,4 @@
-#ifndef CDEPTHRANGE_H
+﻿#ifndef CDEPTHRANGE_H
 #define CDEPTHRANGE_H
 
 class CDepthRange

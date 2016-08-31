@@ -1,4 +1,4 @@
-#include <QApplication>
+﻿#include <QApplication>
 #include "TestTransformation.h"
 
 //#include <vld.h>

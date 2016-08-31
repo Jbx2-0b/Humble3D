@@ -1,4 +1,4 @@
-#ifndef CSPHERE_H
+ï»¿#ifndef CSPHERE_H
 #define CSPHERE_H
 
 // Lib
@@ -42,10 +42,10 @@ public:
     //! Teste l'intersection avec une sphere
     bool intersects(const CBox3D& box) const;
 
-    //! Définit une sphére de taille nulle
+    //! DÃ©finit une sphÃ©re de taille nulle
     void setNull() { m_dRadius = 0.; }
 
-    //! Retourne vrai si le rayon de la sphère est nul
+    //! Retourne vrai si le rayon de la sphÃ¨re est nul
     bool isNull() { return Math::isZero(m_dRadius); }
 
 private:

@@ -1,4 +1,4 @@
-#ifndef ARENDERER_H_
+ï»¿#ifndef ARENDERER_H_
 #define ARENDERER_H_
 
 // Lib
@@ -63,10 +63,10 @@ public:
     //! Effectue le rendu d'une liste de vertex buffer
     virtual void renderMeshBuffer(const QList<CMeshBuffer*>& buffers) = 0;
 
-    //! Définit la résolution
+    //! DÃ©finit la rÃ©solution
     virtual void setResolution(int iWidth, int iHeight)                 { m_iWidth = iWidth; m_iHeight = iHeight; setDirty(); }
 
-    //! Définit la couleur du fond
+    //! DÃ©finit la couleur du fond
     void setBackgroundColor(const QVector4D& color)                     { m_BackgroundColor = color; }
 
     //! Retourne la largeur
@@ -75,19 +75,19 @@ public:
     //! Retourne la hauteur
     int getHeight() const                                               { return m_iHeight; }
 
-    //! Démarre le renderer
+    //! DÃ©marre le renderer
     void run()                                                          { m_bEnabled = true; }
 
-    //! Arrête le renderer
+    //! ArrÃªte le renderer
     void stop()                                                         { m_bEnabled = false; }
 
-    //! Définit l'état du renderer
+    //! DÃ©finit l'Ã©tat du renderer
     void setEnabled(bool bEnabled)                                      { m_bEnabled = bEnabled; }
 
-    //! Retourne true si est démarré
+    //! Retourne true si est dÃ©marrÃ©
     bool isEnabled() const												{ return m_bEnabled; }
     
-    //! Retourne true si le renderer est initialisé
+    //! Retourne true si le renderer est initialisÃ©
     virtual bool isInit() const											{ return m_isInitialized; }
 
     //! Accesseur sur le gestionnaire de scene
@@ -96,13 +96,13 @@ public:
     //! Invalide le gestionnaire de scene
     virtual void invalidSceneManager()									{ m_pSceneManager = 0; }
 
-    //! Accesseur sur les états
+    //! Accesseur sur les Ã©tats
     CRenderStates& renderStates()										{ return m_RequestRenderStates; }
 
-    //! Accesseur sur les états
+    //! Accesseur sur les Ã©tats
     void setRenderStates(const CRenderStates& states)					{ m_RequestRenderStates = states; onUpdateRenderStates(); }
 
-    //! Définit le mode de rasterization
+    //! DÃ©finit le mode de rasterization
     void setRasterizationMode(EnumRasterizationMode eRasterizationMode)	{ m_eRasterizationMode = eRasterizationMode; }
 
     //! Retourne le mode de rasterization
@@ -114,21 +114,21 @@ public:
     //! Active ou desactive le frustum culling.
     bool isFrustumCullingEnabled() const                                { return m_bFrustumCullingEnabled; }
 
-    //! Met à jour les états de rendu
+    //! Met Ã  jour les Ã©tats de rendu
     virtual void onUpdateRenderStates() = 0;
 
-    //! Définit la caméra utilisée
+    //! DÃ©finit la camÃ©ra utilisÃ©e
     void setCurrentCamera(CCamera* pCamera)                             { m_pCurrentCamera = pCamera; }
 
-    //! Retourne la caméra utilisée
+    //! Retourne la camÃ©ra utilisÃ©e
     CCamera* getCurrentCamera()                                         { return m_pCurrentCamera; }
 
-    //! Retourne la caméra utilisée
+    //! Retourne la camÃ©ra utilisÃ©e
     const CCamera* getCurrentCamera() const                             { return m_pCurrentCamera; }
 
 protected:   
 
-    //! True si initialisé
+    //! True si initialisÃ©
     bool m_isInitialized;
 
     //! Pointeur sur le gestionnaire de scene
@@ -143,7 +143,7 @@ protected:
     //! Etat en cours
     CRenderStates m_CurrentRenderStates;
 
-    //! Etat désiré
+    //! Etat dÃ©sirÃ©
     CRenderStates m_RequestRenderStates;
 
     //! Mode de rasterization
@@ -158,7 +158,7 @@ protected:
     //! Si vrai, effectue le frustum culling
     bool m_bFrustumCullingEnabled;
 
-    //! Caméra utilisée
+    //! CamÃ©ra utilisÃ©e
     CCamera* m_pCurrentCamera;
 };
 

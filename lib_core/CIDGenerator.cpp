@@ -1,4 +1,4 @@
-#include "CIDGenerator.h"
+﻿#include "CIDGenerator.h"
 #include "CLogManager.h"
 #include "AEntity.h"
 #include <QDebug>

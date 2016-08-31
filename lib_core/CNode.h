@@ -1,4 +1,4 @@
-#ifndef CNODE_H
+ï»¿#ifndef CNODE_H
 #define CNODE_H
 
 #include "AEntity.h"
@@ -21,7 +21,7 @@ public:
     {
         notifyDelete();
 
-        // On prévient le parent
+        // On prÃ©vient le parent
         if (m_pParent)
         {
             m_pParent->removeChild(static_cast<T*>(this));
@@ -48,13 +48,13 @@ public:
         m_NodeListeners.insert(pListener);
     }
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(INodeListener* pListener)
     {
         m_NodeListeners.remove(pListener);
     }
 
-    //! Définit le noeud parent
+    //! DÃ©finit le noeud parent
     void setParent(T* pParent)
     {
         m_pParent = pParent;
@@ -75,7 +75,7 @@ public:
     //! Retourne la liste des enfants
     const QList<T*>& getChildNodes() const { return m_ChildNodes; }
 
-    //! Retourne vrai si les deux noeuds sont liés
+    //! Retourne vrai si les deux noeuds sont liÃ©s
     bool isLinked(T* pNode) const
     {
         bool bLinked = false;
@@ -101,7 +101,7 @@ public:
         return bLinked;
     }
 
-    //! Retourne vrai si les deux noeuds sont liés
+    //! Retourne vrai si les deux noeuds sont liÃ©s
     bool isLinked(const QString& nodeName) const
     {
         if (m_pParent)
@@ -150,7 +150,7 @@ public:
         notifyUpdate();
     }
 
-    //! Détache un noeud enfant. Ne détruit pas le noeud
+    //! DÃ©tache un noeud enfant. Ne dÃ©truit pas le noeud
     T* removeChild(T* pNode)
     {
         m_ChildNodes.removeOne(pNode);
@@ -159,7 +159,7 @@ public:
         return pNode;
     }
 
-    //! Détache un noeud enfant. Ne détruit pas le noeud
+    //! DÃ©tache un noeud enfant. Ne dÃ©truit pas le noeud
     void deleteChild(T* pNode)
     {
         m_ChildNodes.removeOne(pNode);
@@ -167,7 +167,7 @@ public:
         notifyUpdate();
     }
 
-    //! Détache un noeud enfant. Ne détruit pas le noeud
+    //! DÃ©tache un noeud enfant. Ne dÃ©truit pas le noeud
     T* removeChild(const QString& name)
     {
         if (T* pNode = findNode(name))
@@ -178,7 +178,7 @@ public:
     }
 
 
-    //! Détache l'ensemble des noeuds enfants. Ne détruit pas les noeuds
+    //! DÃ©tache l'ensemble des noeuds enfants. Ne dÃ©truit pas les noeuds
     virtual void clearChildNodes()
     {
         foreach (T* pNode, m_ChildNodes)
@@ -190,7 +190,7 @@ public:
         notifyUpdate();
     }
 
-    //! Détache l'ensemble des noeuds enfants. Ne détruit pas les noeuds
+    //! DÃ©tache l'ensemble des noeuds enfants. Ne dÃ©truit pas les noeuds
     virtual void deleteChildNodes()
     {
         foreach (T* pNode, m_ChildNodes)
@@ -245,7 +245,7 @@ protected:
 
     virtual void onParentUpdate(T*) {}
 
-    //! Notifie d'une mise à jour
+    //! Notifie d'une mise Ã  jour
     virtual void notifyUpdate()
     {
         if (m_bNotificationsEnabled)

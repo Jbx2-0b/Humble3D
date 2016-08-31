@@ -1,4 +1,4 @@
-#ifndef CTCPCLIENTTEST_H
+﻿#ifndef CTCPCLIENTTEST_H
 #define CTCPCLIENTTEST_H
 
 #include <QObject>

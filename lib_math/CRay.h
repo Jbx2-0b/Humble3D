@@ -1,4 +1,4 @@
-#ifndef CRAY_H
+﻿#ifndef CRAY_H
 #define CRAY_H
 
 // Foundations

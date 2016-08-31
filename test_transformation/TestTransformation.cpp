@@ -1,4 +1,4 @@
-#include "TestTransformation.h"
+ï»¿#include "TestTransformation.h"
 #include "CCamera.h"
 #include "CSceneManager.h"
 #include "Shapes/CSphereMesh.h"
@@ -19,7 +19,7 @@ TestTransformation::TestTransformation()
     , m_StartPan(-1, -1)
     , m_LastPan(-1, -1)
 {
-    // On crée une camera
+    // On crÃ©e une camera
     CCamera* pCamera = m_pSceneManager->createCamera();
 
     m_vNewEyePosition = QVector3D(8., 8., 4.);
@@ -31,10 +31,10 @@ TestTransformation::TestTransformation()
     m_pView->setAttribute(Qt::WA_AcceptTouchEvents);
     qDebug() << "End create View";
 
-    // On crée un noeud afin d'y placer une lumiére
+    // On crÃ©e un noeud afin d'y placer une lumiÃ©re
     CSceneNode* pRootNode = getSceneManager()->getRootNode();
 
-    // On crée une lumiére diffuse bleue
+    // On crÃ©e une lumiÃ©re diffuse bleue
     CLight* pLight = getSceneManager()->createLight();
     pLight->setDiffuseColor(1.0, 1.0, 1.0);
     pLight->setAmbientColor(1.0, 1.0, 1.0);

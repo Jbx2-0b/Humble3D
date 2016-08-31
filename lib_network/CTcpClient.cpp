@@ -1,4 +1,4 @@
-
+ï»¿
 // Qt
 #include <QtNetwork>
 
@@ -51,7 +51,7 @@ QAbstractSocket::SocketState CTcpClient::getState() const
 //-------------------------------------------------------------------------------------------------
 void CTcpClient::connectToHost(const QString& strHostIPAdress)
 {
-    // L'adresse IP différe, on se deconnecte de l'éventuel précédent serveur
+    // L'adresse IP diffÃ©re, on se deconnecte de l'Ã©ventuel prÃ©cÃ©dent serveur
     if (!m_strHostIPAdress.isEmpty() && m_strHostIPAdress != strHostIPAdress)
     {
         disconnectFromHost();

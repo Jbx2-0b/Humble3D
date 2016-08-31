@@ -1,4 +1,4 @@
-#ifndef CPARAMSHADERITEM_H
+﻿#ifndef CPARAMSHADERITEM_H
 #define CPARAMSHADERITEM_H
 
 // Foundations

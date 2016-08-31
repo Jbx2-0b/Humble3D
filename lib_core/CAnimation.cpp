@@ -1,4 +1,4 @@
-#include "CAnimation.h"
+﻿#include "CAnimation.h"
 
 //--------------------------------------------------------------------------
 CAnimation::CAnimation(const QString& name)

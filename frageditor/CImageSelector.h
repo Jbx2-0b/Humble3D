@@ -1,4 +1,4 @@
-#ifndef CIMAGESELECTOR_H
+﻿#ifndef CIMAGESELECTOR_H
 #define CIMAGESELECTOR_H
 
 // Qt

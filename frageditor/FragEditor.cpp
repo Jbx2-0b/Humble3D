@@ -1,4 +1,4 @@
-#include "FragEditor.h"
+﻿#include "FragEditor.h"
 
 #include <QStringList>
 #include <QFileDialog>
@@ -30,7 +30,7 @@ FragEditor::FragEditor()
     , m_vStartFOV(Math::Pi / 4.)
     , m_pSDEdited(0)
 {
-    // On cr�e une camera
+    // On crée une camera
     CCamera* pCamera = getSceneManager()->createCamera();
     pCamera->setProjectionType(eProjectionOrtho);
     pCamera->setOrtho(-0.5f, 0.5f, -0.5f, 0.5f, 0.1f, 2.f);

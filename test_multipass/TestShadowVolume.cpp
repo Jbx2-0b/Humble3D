@@ -1,4 +1,4 @@
-#include "TestShadowVolume.h"
+ï»¿#include "TestShadowVolume.h"
 #include "CMaterialManager.h"
 #include "Shapes/CPlaneMesh.h"
 #include "CRenderPass.h"
@@ -33,7 +33,7 @@ TestShadowVolume::TestShadowVolume()
                 "",
                 "://shadowvolume-comp.fragment.glsl");
 
-    // On charge le modéle
+    // On charge le modÃ©le
     CSceneNode* pRootNode = m_pSceneManager->getRootNode();
 
     CSceneNode* pModelNode = pRootNode->createChild("CowNode");
@@ -43,7 +43,7 @@ TestShadowVolume::TestShadowVolume()
         m_pCenterNode = pRootNode->createChild("CenterNode");
         CSceneNode* pLightNode = m_pCenterNode->createChild("LightNode", QVector3D(5.0, 5.0, 0));
 
-        // On crée une lumiére diffuse blanche
+        // On crÃ©e une lumiÃ©re diffuse blanche
         CLight* pLight = m_pSceneManager->createLight("Light");
         pLight->setDiffuseColor(0.8f, 0.8f, 0.8f);
         pLight->setAmbientColor(0.6f, 0.6f, 0.6f);
@@ -77,7 +77,7 @@ TestShadowVolume::TestShadowVolume()
         CSceneNode* pWall3Node = pRootNode->createChild("Wall3Node", QVector3D(0, -2.5, 0), QQuaternion::fromAxisAndAngle(1, 0, 0, 90));
         pWall3Node->addItem(pWall3);
 
-        // On crée une camera
+        // On crÃ©e une camera
         CCamera* pCamera = getSceneManager()->createCamera();
         pCamera->setEyePosition(QVector3D(-6., 3., -6.));
         pCamera->setCenter(QVector3D(0., 0., 0.));
@@ -162,7 +162,7 @@ TestShadowVolume::TestShadowVolume()
         CSceneNode* pFullScreenQuadNode = pRootNode->createChild("FullScreenQuadNode");
         pFullScreenQuadNode ->addItem(pFullScreenQuad);
 
-        // On crée une camera
+        // On crÃ©e une camera
         m_pSceneCamera = getSceneManager()->createCamera();
         m_pSceneCamera->setProjectionType(eProjectionOrtho);
         m_pSceneCamera->setOrtho(-0.5f, 0.5f, -0.5f, 0.5f, 0.1f, 2.f);

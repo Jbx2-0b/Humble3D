@@ -1,4 +1,4 @@
-#ifndef CTEXTURE3D_H
+ï»¿#ifndef CTEXTURE3D_H
 #define CTEXTURE3D_H
 
 // Lib
@@ -18,7 +18,7 @@ public:
     //! Retourne le nom du type
     virtual QString getTypeName() const					{ return "Texture3D"; }
 
-    //! Affiche les propriétés sur la console
+    //! Affiche les propriÃ©tÃ©s sur la console
     virtual QString toString() const
     {
         QString result;

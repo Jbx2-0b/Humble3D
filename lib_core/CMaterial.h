@@ -1,4 +1,4 @@
-#ifndef CMATERIAL_H
+ï»¿#ifndef CMATERIAL_H
 #define CMATERIAL_H
 
 // Lib
@@ -77,7 +77,7 @@ public:
     //! Enregistre un listener
     void registerListener(IMaterialListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IMaterialListener* pListener);
 
     //-------------------------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ public:
     //! Retourne la liste des passes dans le cas d'un rendu multi-pass
     const QList<CRenderPass*>& renderingPassList() const { return m_RenderingPassList; }
 
-    //! Crée une passe de rendu
+    //! CrÃ©e une passe de rendu
     CRenderPass* createRenderPass(
             EnumTarget eTarget,
             const QSize& size = QSize(1024, 1024),
@@ -121,37 +121,37 @@ public:
     //! Supprime une texture
     void removeTexture(const QString& textureName);
 
-    //! Définit la couleur ambiante
+    //! DÃ©finit la couleur ambiante
     void setAmbientColor(const QVector4D& color);
 
-    //! Définit la couleur ambiante
+    //! DÃ©finit la couleur ambiante
     void setAmbientColor(real r, real g, real b, real a = 1.0);
 
-    //! Définit la couleur diffuse
+    //! DÃ©finit la couleur diffuse
     void setDiffuseColor(const QVector4D& color);
 
-    //! Définit la couleur diffuse
+    //! DÃ©finit la couleur diffuse
     void setDiffuseColor(real r, real g, real b, real a = 1.0);
 
-    //! Définit la couleur spéculaire
+    //! DÃ©finit la couleur spÃ©culaire
     void setSpecularColor(const QVector4D& color);
 
-    //! Définit la couleur spéculaire
+    //! DÃ©finit la couleur spÃ©culaire
     void setSpecularColor(real r, real g, real b, real a = 1.0);
 
-    //! Définit la couleur du masque alpha
+    //! DÃ©finit la couleur du masque alpha
     void setAlphaMaskColor(const QVector4D& color);
 
-    //! Définit la couleur du masque alpha
+    //! DÃ©finit la couleur du masque alpha
     void setAlphaMaskColor(real r, real g, real b, real a = 1.0);
 
-    //! Définit la fonction de comparaison alpha
+    //! DÃ©finit la fonction de comparaison alpha
     void setAlphaMaskFunc(EnumAlphaMaskFunc eAlphaMaskFunc);
 
-    //! Définit le facteur de brillance
+    //! DÃ©finit le facteur de brillance
     void setShininessFactor(real shininess);
 
-    //! Définit l'opacité du matériau
+    //! DÃ©finit l'opacitÃ© du matÃ©riau
     void setOpacity(real dOpacity);
 
     //-------------------------------------------------------------------------------------------------
@@ -173,7 +173,7 @@ public:
     //! Retourne la couleur diffuse
     QVector4D getDiffuseColor() const;
 
-    //! Retourne la couleur spéculaire
+    //! Retourne la couleur spÃ©culaire
     QVector4D getSpecularColor() const;
 
     //! Retourne la couleur du masque alpha
@@ -185,13 +185,13 @@ public:
     //! Retourne le facteur de brillance
     real getShininessFactor() const;
 
-    //! Retourne vrai si le matériau est texturé
+    //! Retourne vrai si le matÃ©riau est texturÃ©
     bool isTextured() const;
 
-    //! Retourne l'opacité du materiau
+    //! Retourne l'opacitÃ© du materiau
     real getOpacity() const;
 
-    //! Crée une string contenant les propriétés de l'objet
+    //! CrÃ©e une string contenant les propriÃ©tÃ©s de l'objet
     virtual QString toString() const
     {
         QString result;
@@ -228,7 +228,7 @@ public:
 
 protected:
 
-    //! Transmet le message de mise à jour
+    //! Transmet le message de mise Ã  jour
     virtual void notifyUpdate();
 
     //! Transmet le message de suppression
@@ -248,7 +248,7 @@ private:
     //! Couleur diffuse
     QVector4D m_DiffuseColor;
 
-    //! Couleur spéculaire
+    //! Couleur spÃ©culaire
     QVector4D m_SpecularColor;
 
     //! Couleur du masque alpha
@@ -257,7 +257,7 @@ private:
     //! Facteur de brillance
     real m_dShininessFactor;
 
-    //! Opacité du materiau
+    //! OpacitÃ© du materiau
     real m_dOpacity;
 
     //! Fonction de comparaison alpha

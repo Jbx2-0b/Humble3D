@@ -1,4 +1,4 @@
-#include "COctree.h"
+ï»¿#include "COctree.h"
 #include "CSceneManager.h"
 #include "CTreeExplorer.h"
 
@@ -74,14 +74,14 @@ void COctree::recursiveAddSceneNode(COctreeNode* pOctreeNode, CSceneNode* pScene
         if (!pOctreeNode->hasChildNodes())
         {
             QVector3D octreeNodeBBoxSize = octreeNodeBBox.getSize();
-            // Si le noeud est saturé, et qu'on a pas atteint les limites de l'arbre, on lui crée des enfants
+            // Si le noeud est saturÃ©, et qu'on a pas atteint les limites de l'arbre, on lui crÃ©e des enfants
             if ((octreeNodeBBoxSize.x() > 1 || octreeNodeBBoxSize.y() > 1 || octreeNodeBBoxSize.z() > 1) &&
                     pOctreeNode->getPolygonCount() > m_uiPolygonCountThreshold &&
                     uiDepth < m_uiMaxDepth)
             {
                 pOctreeNode->createChilds();
 
-                // On reporte les précédents noeuds sur les noeuds enfants
+                // On reporte les prÃ©cÃ©dents noeuds sur les noeuds enfants
                 foreach (CSceneNode* pPrevSceneNode, sceneNodes)
                 {
                     foreach (COctreeNode* pChildNode, pOctreeNode->getChildNodes())

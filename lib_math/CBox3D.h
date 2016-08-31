@@ -1,4 +1,4 @@
-#ifndef CBOX3D_H
+ï»¿#ifndef CBOX3D_H
 #define CBOX3D_H
 
 // Lib
@@ -35,25 +35,25 @@ public:
         , m_bNeedUpdateCenter(true)
     {}
 
-    //! Retourne la coordonnée minimum
+    //! Retourne la coordonnÃ©e minimum
     QVector3D& getMinimum()					{ return m_vMinimumCorner; }
 
-    //! Retourne la coordonnée maximum
+    //! Retourne la coordonnÃ©e maximum
     QVector3D& getMaximum()					{ return m_vMaximumCorner; }
 
-    //! Retourne la coordonnée minimum
+    //! Retourne la coordonnÃ©e minimum
     const QVector3D& getMinimum() const		{ return m_vMinimumCorner; }
 
-    //! Retourne la coordonnée maximum
+    //! Retourne la coordonnÃ©e maximum
     const QVector3D& getMaximum() const		{ return m_vMaximumCorner; }
 
-    //! Définit la coordonnée minimum
+    //! DÃ©finit la coordonnÃ©e minimum
     void setMinimum(const QVector3D& min)	{ m_vMinimumCorner = min; m_bNeedUpdateCorners = true; m_bNeedUpdateCenter = true; }
 
-    //! Définit la coordonnée maximum
+    //! DÃ©finit la coordonnÃ©e maximum
     void setMaximum(const QVector3D& max)	{ m_vMaximumCorner = max; m_bNeedUpdateCorners = true; m_bNeedUpdateCenter = true; }
 
-    //! Définit la box à partir de deux points
+    //! DÃ©finit la box Ã  partir de deux points
     void setExtents(const QVector3D& corner1, const QVector3D& corner2);
 
     //! Retourne le aliste de l'ensemble des coins
@@ -65,7 +65,7 @@ public:
     //! Retourne la taille
     QVector3D getSize() const;
 
-    //! Retourne la moitié de la taille
+    //! Retourne la moitiÃ© de la taille
     QVector3D getHalfSize() const;
 
     //! Teste l'intersection avec une autre boite
@@ -74,22 +74,22 @@ public:
     //! Teste si un vertex est dans la boite
     bool contains(const QVector3D& vector) const;
 
-    //! Teste si una boite est dans à l'intérieur d'une autre
+    //! Teste si una boite est dans Ã  l'intÃ©rieur d'une autre
     bool contains(const CBox3D& bbox) const;
 
     //! Realise l'union avec un point
     void unite(const QVector3D& point);
 
-    //! Retourne l'union avec une autre boîte
+    //! Retourne l'union avec une autre boÃ®te
     CBox3D united(const CBox3D& bbox) const;
 
-    //! Applique la matrice de transformation à  la boite
+    //! Applique la matrice de transformation Ã   la boite
     void transform(const QMatrix4x4& transformation);
 
-    //! Applique la matrice de transformation à la boite
+    //! Applique la matrice de transformation Ã  la boite
     CBox3D transformed(const QMatrix4x4& transformation) const;
 
-    //! Ajoute un point à la boîte
+    //! Ajoute un point Ã  la boÃ®te
     inline void merge(const QVector3D& point)
     {
         m_vMinimumCorner = Math::makeFloor(m_vMinimumCorner, point);
@@ -113,22 +113,22 @@ public:
     //! Retourne la distance minimum entre la boite et un point
     real distance(const QVector3D& v) const;
 
-    //! Range les boîtes en fonction de leur Z Value
+    //! Range les boÃ®tes en fonction de leur Z Value
     static bool sortByLessZValue(const CBox3D& pBbox1, const CBox3D& pBbox2);
 
-    //! Retourne true si les deux boîtes sont égales
+    //! Retourne true si les deux boÃ®tes sont Ã©gales
     inline bool operator == (const CBox3D& bbox) const
     {
         return m_vMinimumCorner == bbox.getMinimum() && m_vMaximumCorner == bbox.getMaximum();
     }
 
-    //! Retourne true si les deux boîtes sont égales
+    //! Retourne true si les deux boÃ®tes sont Ã©gales
     inline bool operator != (const CBox3D& bbox) const
     {
         return ! operator == (bbox);
     }
 
-    //! Affiche les propriétés de la boite de dialogue
+    //! Affiche les propriÃ©tÃ©s de la boite de dialogue
     QString toString() const
     {
         QString result;
@@ -144,10 +144,10 @@ public:
 
 private:
 
-    //! coordonnée du coin minimum
+    //! coordonnÃ©e du coin minimum
     QVector3D m_vMinimumCorner;
 
-    //! coordonnée du coin maximum
+    //! coordonnÃ©e du coin maximum
     QVector3D m_vMaximumCorner;
 
     mutable QList<QVector3D> m_Corners;

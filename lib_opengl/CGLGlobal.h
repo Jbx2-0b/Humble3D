@@ -1,4 +1,4 @@
-#ifndef CGLGLOBAL_H
+﻿#ifndef CGLGLOBAL_H
 #define CGLGLOBAL_H
 
 #ifdef EMBEDDED_TARGET

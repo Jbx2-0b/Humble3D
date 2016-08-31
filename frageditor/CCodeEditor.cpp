@@ -1,4 +1,4 @@
-#include "CCodeEditor.h"
+﻿#include "CCodeEditor.h"
 
 // Qt
 #include <QPainter>

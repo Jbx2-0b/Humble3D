@@ -1,4 +1,4 @@
-#include "CQuadtree.h"
+﻿#include "CQuadtree.h"
 
 //-----------------------------------------------------------------------------------------
 CQuadtree::CQuadtree(CMapDictionary* pMapDictionary, int iTerrainSize, int iLevel, int iLODCount)

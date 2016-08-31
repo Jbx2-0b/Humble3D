@@ -1,4 +1,4 @@
-
+ï»¿
 
 #ifndef CCOMBOBOXITEM_H
 #define CCOMBOBOXITEM_H
@@ -21,19 +21,19 @@ public:
     //! Destructeur
     virtual ~CComboBoxItem();
 
-    //! Ajoute une liste d'entrée dans la comboBox
+    //! Ajoute une liste d'entrÃ©e dans la comboBox
     void addEntries(const QList<QString>& entries);
 
-    //! Ajoute une entrée dans la comboBox
+    //! Ajoute une entrÃ©e dans la comboBox
     void addEntry(const QString& entry);
 
-    //! Supprime une entrée dans la comboBox
+    //! Supprime une entrÃ©e dans la comboBox
     void removeEntry(const QString& entry);
 
-    //! Retourne l'entrée courante de la comboBox
+    //! Retourne l'entrÃ©e courante de la comboBox
     QString getCurrentEntry() const;
 
-    //! Définit l'entrée courante de la comboBox
+    //! DÃ©finit l'entrÃ©e courante de la comboBox
     void setCurrentEntry(const QString& entry);
 
 private slots:

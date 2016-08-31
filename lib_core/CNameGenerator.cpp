@@ -1,4 +1,4 @@
-#include "CNameGenerator.h"
+﻿#include "CNameGenerator.h"
 #include "CLogManager.h"
 #include <QDebug>
 

@@ -1,4 +1,4 @@
-#include "CAnimationTreeWidget.h"
+﻿#include "CAnimationTreeWidget.h"
 
 //-----------------------------------------------------------------------------------------
 CAnimationTreeWidget::CAnimationTreeWidget(QWidget *parent /*= 0*/)

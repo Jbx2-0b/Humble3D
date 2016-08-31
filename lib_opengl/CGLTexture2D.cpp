@@ -1,4 +1,4 @@
-#include "CGLTexture2D.h"
+﻿#include "CGLTexture2D.h"
 #include "CLogManager.h"
 
 // Qt

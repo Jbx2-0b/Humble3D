@@ -1,4 +1,4 @@
-#ifndef GLBUFFER_H
+﻿#ifndef GLBUFFER_H
 #define GLBUFFER_H
 
 class GLBuffer

@@ -1,4 +1,4 @@
-#include "FormatConverterApp.h"
+ï»¿#include "FormatConverterApp.h"
 #include "CAssimpImporter.h"
 #include "CMeshManager.h"
 
@@ -90,7 +90,7 @@ void FormatConverterApp::onConvertClicked()
 
             if (ui.resizeModelsCheckBox->isChecked())
             {
-                // On récupére la bounding box
+                // On rÃ©cupÃ©re la bounding box
                 CBox3D bbox = pNode->getGlobalAxisAlignedBoundingBox();
 
                 real sizeX = bbox.getMaximum().x() - bbox.getMinimum().x();

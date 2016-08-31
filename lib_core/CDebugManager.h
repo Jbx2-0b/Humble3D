@@ -1,4 +1,4 @@
-#ifndef CDEBUGMANAGER_H
+﻿#ifndef CDEBUGMANAGER_H
 #define CDEBUGMANAGER_H
 
 // Lib
@@ -24,7 +24,7 @@ public:
         return s_pInstance;
     }
 
-    //! Cr�e l'instance de la classe.
+    //! Crée l'instance de la classe.
     static void createInstance(CSceneManager* pSceneManager)
     {
         if (s_pInstance == 0)

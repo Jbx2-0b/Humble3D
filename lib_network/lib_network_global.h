@@ -1,4 +1,4 @@
-#ifndef LIB_NETWORK_GLOBAL_H
+﻿#ifndef LIB_NETWORK_GLOBAL_H
 #define LIB_NETWORK_GLOBAL_H
 
 #include <QtCore/qglobal.h>

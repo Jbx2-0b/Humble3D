@@ -1,4 +1,4 @@
-#ifndef CGLHELPER_H
+﻿#ifndef CGLHELPER_H
 #define CGLHELPER_H
 
 // Lib

@@ -1,4 +1,4 @@
-#include "CPrivateXmlData.h"
+ï»¿#include "CPrivateXmlData.h"
 
 //------------------------------------------------------------------------------
 CPrivateXmlData::CPrivateXmlData(const QString& tagName /*= ""*/)
@@ -66,7 +66,7 @@ void CPrivateXmlData::addValue(const QString& key, const CPrivateXmlData& xValue
 //------------------------------------------------------------------------------
 void CPrivateXmlData::write(QXmlPut* pXmlPut)
 {
-	// On écrit l'ensemble des types de base comme attribut
+	// On Ã©crit l'ensemble des types de base comme attribut
 	QMapIterator<QString, QVariant> it(m_XmlDatas);
 
 	while (it.hasNext())
@@ -128,7 +128,7 @@ void CPrivateXmlData::write(QXmlPut* pXmlPut)
 		}
 	}
 
-	// On écrit l'ensemble des user type dans des tags propres
+	// On Ã©crit l'ensemble des user type dans des tags propres
 	QMapIterator<QString, QVariant> itUT(m_XmlDatas);
 
 	while (itUT.hasNext())
@@ -185,7 +185,7 @@ void CPrivateXmlData::read(QXmlGet* pXmlGet)
 		}
 	}
 
-	// On écrit l'ensemble des user type dans des tags propres
+	// On Ã©crit l'ensemble des user type dans des tags propres
 	QMapIterator<QString, QVariant> itUT(m_XmlDatas);
 
 	while (itUT.hasNext())

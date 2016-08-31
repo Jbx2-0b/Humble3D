@@ -1,4 +1,4 @@
-#ifndef CGLFRAMEBUFFER_H
+﻿#ifndef CGLFRAMEBUFFER_H
 #define CGLFRAMEBUFFER_H
 
 // Fundations

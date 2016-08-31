@@ -1,4 +1,4 @@
-#include "CMaterialManager.h"
+﻿#include "CMaterialManager.h"
 
 CMaterialManager* CMaterialManager::s_pInstance = 0;
 QMutex CMaterialManager::s_Mutex(QMutex::Recursive);

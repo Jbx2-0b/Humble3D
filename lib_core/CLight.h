@@ -1,4 +1,4 @@
-#ifndef CLIGHT_H
+ï»¿#ifndef CLIGHT_H
 #define CLIGHT_H
 
 // Lib
@@ -36,53 +36,53 @@ public:
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit si la lumiere est activee
+    //! DÃ©finit si la lumiere est activee
     void setEnabled(bool bEnabled);
 
-    //! Définit le type de source lumineuse
+    //! DÃ©finit le type de source lumineuse
     void setSourceType(EnumLightSourceType eSourceType);
 
-    //! Définit la direction de la lumiere (par rapport a son noeud)
+    //! DÃ©finit la direction de la lumiere (par rapport a son noeud)
     void setDirection(const QVector3D& vDirection);
 
-    //! Définit l'attenuation constante
+    //! DÃ©finit l'attenuation constante
     void setConstantAttenuation(real dAttenuation);
 
-    //! Définit l'attenuation lineaire
+    //! DÃ©finit l'attenuation lineaire
     void setLinearAttenuation(real dAttenuation);
 
-    //! Définit l'attenuation quadratique
+    //! DÃ©finit l'attenuation quadratique
     void setQuadraticAttenuation(real dAttenuation);
 
-    //! Définit la couleur ambiante
+    //! DÃ©finit la couleur ambiante
     void setAmbientColor(const QVector4D& color);
 
-    //! Définit la couleur ambiante
+    //! DÃ©finit la couleur ambiante
     void setAmbientColor(real r, real g, real b, real a = 1.0);
 
-    //! Définit la couleur diffuse
+    //! DÃ©finit la couleur diffuse
     void setDiffuseColor(const QVector4D& color);
 
-    //! Définit la couleur diffuse
+    //! DÃ©finit la couleur diffuse
     void setDiffuseColor(real r, real g, real b, real a = 1.0);
 
-    //! Définit la couleur speculaire
+    //! DÃ©finit la couleur speculaire
     void setSpecularColor(const QVector4D& color);
 
-    //! Définit la couleur speculaire
+    //! DÃ©finit la couleur speculaire
     void setSpecularColor(real r, real g, real b, real a = 1.0);
 
-    //! Définit le cone interieur
+    //! DÃ©finit le cone interieur
     void setInnerConeAngle(real dAngle);
 
-    //! Définit le cone exterieur
+    //! DÃ©finit le cone exterieur
     void setOuterConeAngle(real dAngle);
     
     //-------------------------------------------------------------------------------------------------
     // Getters
     //-------------------------------------------------------------------------------------------------
 
-    //! Retourne vrai si peut être rendu
+    //! Retourne vrai si peut Ãªtre rendu
     virtual bool isRenderable() const { return false; }
 
     //! Retourne le nom du type
@@ -133,7 +133,7 @@ public:
     //! Retourne le nombre de polygones
     virtual unsigned int getPolygonCount() const { return 0; }
 
-    //! Crée une string contenant les propriétés de l'objet
+    //! CrÃ©e une string contenant les propriÃ©tÃ©s de l'objet
     virtual QString toString() const
     {
         QString result;

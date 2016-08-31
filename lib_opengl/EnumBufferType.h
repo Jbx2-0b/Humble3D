@@ -1,4 +1,4 @@
-#ifndef ENUMBUFFERTYPE_H
+﻿#ifndef ENUMBUFFERTYPE_H
 #define ENUMBUFFERTYPE_H
 
 enum EnumBufferType {

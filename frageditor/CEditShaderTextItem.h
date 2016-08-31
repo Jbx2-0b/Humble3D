@@ -1,4 +1,4 @@
-#ifndef CEDITSHADERTEXTITEM_H
+﻿#ifndef CEDITSHADERTEXTITEM_H
 #define CEDITSHADERTEXTITEM_H
 
 
@@ -49,7 +49,7 @@ public:
     //! Met a jour le texte
     void updateText();
 
-    //! D�finit un nouveau message
+    //! Définit un nouveau message
     void setMessage(bool bIsError, const QString& message);
 
 protected:

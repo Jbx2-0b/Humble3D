@@ -1,4 +1,4 @@
-#ifndef CVECTORKEY_H
+﻿#ifndef CVECTORKEY_H
 #define CVECTORKEY_H
 
 // Qt

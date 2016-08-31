@@ -1,4 +1,4 @@
-#ifndef FragEditor_H
+ï»¿#ifndef FragEditor_H
 #define FragEditor_H
 #include "Humble3DApp.h"
 #include "CGLRenderer.h"
@@ -54,19 +54,19 @@ protected:
 
     CGraphicsView3D* m_pView;
 
-    //! Item textuel qui permet d'éditer les shaders
+    //! Item textuel qui permet d'Ã©diter les shaders
     CEditShaderTextItem* m_pEditShadersTextItem;
 
     //! Item qui permet de selectionner les images
     CImageSelectorItem* m_pImgSelectorItem;
 
-    //! Barre d'outils supérieure
+    //! Barre d'outils supÃ©rieure
     CToolBar* m_pTopToolBar;
 
-    //! Barre d'outils inférieure
+    //! Barre d'outils infÃ©rieure
     CToolBar* m_pBottomToolBar;
 
-    //! Bouton plein écran
+    //! Bouton plein Ã©cran
     QPushButton* m_pFullScreenButton;
     QPushButton* m_pLoadButton;
     QPushButton* m_pSaveButton;
@@ -76,7 +76,7 @@ protected:
 
     QLabel* m_pFPSLabel;
 
-    //! Vrai si plein écran
+    //! Vrai si plein Ã©cran
     bool m_bFullScreen;
 
     // Souris

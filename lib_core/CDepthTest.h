@@ -1,4 +1,4 @@
-#ifndef CDEPTHTEST_H
+﻿#ifndef CDEPTHTEST_H
 #define CDEPTHTEST_H
 
 class CDepthTest

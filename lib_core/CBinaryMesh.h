@@ -1,4 +1,4 @@
-#ifndef CBINARYMESH_H
+ï»¿#ifndef CBINARYMESH_H
 #define CBINARYMESH_H
 
 class CBinaryMesh : public CMesh
@@ -13,7 +13,7 @@ public:
     }
 private:
 
-    //! Fonction appelée à l'initialisation de l'objet
+    //! Fonction appelÃ©e Ã  l'initialisation de l'objet
     virtual void updateGeometry()
     {
         QFile file(m_FileName);

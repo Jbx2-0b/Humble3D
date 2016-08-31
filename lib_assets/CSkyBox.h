@@ -1,4 +1,4 @@
-#ifndef CSKYBOX_H
+﻿#ifndef CSKYBOX_H
 #define CSKYBOX_H
 
 // Lib

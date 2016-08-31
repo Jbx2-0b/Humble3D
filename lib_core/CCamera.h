@@ -1,4 +1,4 @@
-#ifndef CCAMERA_H
+ï»¿#ifndef CCAMERA_H
 #define CCAMERA_H
 
 // Lib
@@ -52,7 +52,7 @@ public:
     //! Enregistre un listener
     void registerListener(ICameraListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(ICameraListener* pListener);
 
     //-------------------------------------------------------------------------------------------------
@@ -62,91 +62,91 @@ public:
     //! Retourne le type de projection
     void setProjectionType(EnumProjectionType eProjectionType);
 
-    //! Définit la position de la caméra
+    //! DÃ©finit la position de la camÃ©ra
     void setEyePosition(const QVector3D& vEyePosition);
 
-    //! Définit l'axe haut de la caméra
+    //! DÃ©finit l'axe haut de la camÃ©ra
     void setUp(const QVector3D& vUp);
 
-    //! Définit le point regardé par la caméra
+    //! DÃ©finit le point regardÃ© par la camÃ©ra
     void setCenter(const QVector3D& vCenter);
 
-    //! Définit la position et orientation de la caméra
+    //! DÃ©finit la position et orientation de la camÃ©ra
     void setLookAt(const QVector3D& vEyePosition, const QVector3D& vCenter, const QVector3D& vUp);
 
-    //! Définit le champ de vision horizontal de la caméra
+    //! DÃ©finit le champ de vision horizontal de la camÃ©ra
     void setHorizontalFOV(real dHorizontalFOV);
 
-    //! Définit le plan minimum de visibilité
+    //! DÃ©finit le plan minimum de visibilitÃ©
     void setNear(real dClipPlaneNear);
 
-    //! Définit le plan maximum de visibilité
+    //! DÃ©finit le plan maximum de visibilitÃ©
     void setFar(real dClipPlaneFar);
 
-    //! Définit le ratio largeur / hauteur
+    //! DÃ©finit le ratio largeur / hauteur
     void setAspectRatio(real dAspect);
 
-    //! Définit une projection perspective
+    //! DÃ©finit une projection perspective
     void setPerspective(real dHorizontalFOV, real dAspect, real dClipPlaneNear, real dClipPlaneFar);
 
-    //! Définit une projection perspective avec un z infini
+    //! DÃ©finit une projection perspective avec un z infini
     void setInfinitePerspective(real dHorizontalFOV, real dAspect, real dClipPlaneNear);
 
-    //! Définit une projection orthographique
+    //! DÃ©finit une projection orthographique
     void setOrtho(real dLeft, real dRight, real dBottom, real dTop, real dClipPlaneNear, real dClipPlaneFar);
 
     //-------------------------------------------------------------------------------------------------
     // Fonction de transformation
     //-------------------------------------------------------------------------------------------------
 
-    //! Effectue une translation de la position de l'oeil de la caméra
+    //! Effectue une translation de la position de l'oeil de la camÃ©ra
     void translateEyePosition(const QVector3D& vTranslation);
 
-    //! Effectue une translation de la position du centre de la caméra
+    //! Effectue une translation de la position du centre de la camÃ©ra
     void translateCenter(const QVector3D& vTranslation);
 
     /*!
-    Retourne le Quaternion correspondant à la rotation de la vue autour de l'axe X.
-    Le quaternion peut être appliqué à la position de l'oeil via la méthode rotateEye()
+    Retourne le Quaternion correspondant Ã  la rotation de la vue autour de l'axe X.
+    Le quaternion peut Ãªtre appliquÃ© Ã  la position de l'oeil via la mÃ©thode rotateEye()
     */
     QQuaternion pan(real dAngle);
 
     /*!
-    Retourne le Quaternion correspondant à la rotation de la vue autour de l'axe Y.
-    Le quaternion peut être appliqué à la position de l'oeil via la méthode rotateEye()
+    Retourne le Quaternion correspondant Ã  la rotation de la vue autour de l'axe Y.
+    Le quaternion peut Ãªtre appliquÃ© Ã  la position de l'oeil via la mÃ©thode rotateEye()
     */
     QQuaternion tilt(real dAngle);
 
     /*!
-    Retourne le Quaternion correspondant à la rotation de la vue autour de l'axe Z.
-    Le quaternion peut être appliqué à la position de l'oeil via la méthode rotateEye()
+    Retourne le Quaternion correspondant Ã  la rotation de la vue autour de l'axe Z.
+    Le quaternion peut Ãªtre appliquÃ© Ã  la position de l'oeil via la mÃ©thode rotateEye()
     */
     QQuaternion roll(real dAngle);
 
-    //! Effectue une rotation de l'oeil de la caméra
+    //! Effectue une rotation de l'oeil de la camÃ©ra
     void rotateEye(const QQuaternion& q);
 
-    //! Effectue une rotation du centre de la caméra
+    //! Effectue une rotation du centre de la camÃ©ra
     void rotateCenter(const QQuaternion& q);
 
-    //! Effectue une translation de la caméra
+    //! Effectue une translation de la camÃ©ra
     QVector3D translation(const QVector3D& vTranslation) const;
 
-    //! Effectue une rotation du centre de la caméra
+    //! Effectue une rotation du centre de la camÃ©ra
     void tiltPanRollCenter(real dTilt, real dPan, real dRoll, EnumRotateOrder eOrder = eTiltPanRoll);
 
-    //! Effectue une rotation du l'oeil de la caméra
+    //! Effectue une rotation du l'oeil de la camÃ©ra
     void tiltPanRollEye(real dTilt, real dPan, real dRoll, EnumRotateOrder eOrder = eTiltPanRoll);
 
     /*!
-        Transforme un point dans la vue 2D en point dans la repére de l'oeil de la caméra
-        x et y sont les coordonnées sur le plan ClipNear, et z = -m_dClipNearPlane
+        Transforme un point dans la vue 2D en point dans la repÃ©re de l'oeil de la camÃ©ra
+        x et y sont les coordonnÃ©es sur le plan ClipNear, et z = -m_dClipNearPlane
     */
     QVector3D mapPointToEyeCoordinates(const QPoint& point, const QSize& viewportSize) const;
 
     /*!
-        Transforme un point dans la vue 2D en point dans le repére global
-        x et y sont les coordonnées sur le plan ClipNear, et z = -m_dClipNearPlane
+        Transforme un point dans la vue 2D en point dans le repÃ©re global
+        x et y sont les coordonnÃ©es sur le plan ClipNear, et z = -m_dClipNearPlane
     */
     QVector3D mapPointToWorldCoordinates(const QPoint& point, const QSize& viewportSize) const;
 
@@ -160,31 +160,31 @@ public:
     //! Retourne le type de projection
     EnumProjectionType getProjectionType() const { return m_eProjectionType; }
 
-    //! Retourne la position de la caméra
+    //! Retourne la position de la camÃ©ra
     QVector3D getEyePosition() const;
 
-    //! Retourne le point observé par la caméra
+    //! Retourne le point observÃ© par la camÃ©ra
     QVector3D getCenter() const;
 
-    //! Retourne la direction de la caméra
+    //! Retourne la direction de la camÃ©ra
     QVector3D getForward() const;
 
-    //! Retourne l'axe supérieur de la caméra
+    //! Retourne l'axe supÃ©rieur de la camÃ©ra
     QVector3D getUp() const;
 
-    //! Retourne l'axe droite de la caméra
+    //! Retourne l'axe droite de la camÃ©ra
     QVector3D getRight() const;
 
-    //! Retourne l'axe gauche de la caméra
+    //! Retourne l'axe gauche de la camÃ©ra
     QVector3D getLeft() const;
 
-    //! Retourne le plan minimum de la caméra
+    //! Retourne le plan minimum de la camÃ©ra
     real getNear() const;
 
-    //! Retourne le plan maximum de la caméra
+    //! Retourne le plan maximum de la camÃ©ra
     real getFar() const;
 
-    //! Retourne la pyramide de vision de la caméra
+    //! Retourne la pyramide de vision de la camÃ©ra
     const CFrustum& getFrustum() const;
 
     //! Retourne le champ horizontal
@@ -193,7 +193,7 @@ public:
     //! Retourne le champ vertical
     real getVerticalFOV() const;
 
-    //! Retourne le rapport largeur / hauteur de la caméra
+    //! Retourne le rapport largeur / hauteur de la camÃ©ra
     real getAspectRatio() const;
 
     //! Construit et retourne la matrice concatenant la matrice de vue et de projection
@@ -220,7 +220,7 @@ public:
     //! Retourne le nombre de polygones
     virtual unsigned int getPolygonCount() const { return 0; }
 
-    //! Crée une string contenant les propriétés de l'objet
+    //! CrÃ©e une string contenant les propriÃ©tÃ©s de l'objet
     virtual QString toString() const
     {
         QString result;
@@ -249,7 +249,7 @@ public:
 
 protected:
 
-    //! Notifie les listeners qu'une les propriétés de la caméra ont changées
+    //! Notifie les listeners qu'une les propriÃ©tÃ©s de la camÃ©ra ont changÃ©es
     virtual void notifyUpdate();
 
     //! Liste des listeners
@@ -267,31 +267,31 @@ protected:
     //! Direction de la vue
     QVector3D m_vForward;
 
-    //! Point observé par la caméra
+    //! Point observÃ© par la camÃ©ra
     QVector3D m_vCenter;
 
-    // Paramétres caméra perspective
+    // ParamÃ©tres camÃ©ra perspective
     real m_dHorizontalFOV;
 
-    //! Le plan minimum de la caméra
+    //! Le plan minimum de la camÃ©ra
     real m_dClipPlaneNear;
 
-    //! Le plan maximum de la caméra
+    //! Le plan maximum de la camÃ©ra
     real m_dClipPlaneFar;
 
-    //! Rapport largeur / hauteur de la caméra
+    //! Rapport largeur / hauteur de la camÃ©ra
     real m_dAspect;
 
-    //! Paramétre gauche caméra orthographique
+    //! ParamÃ©tre gauche camÃ©ra orthographique
     real m_dLeft;
 
-    //! Paramétre droite caméra orthographique
+    //! ParamÃ©tre droite camÃ©ra orthographique
     real m_dRight;
 
-    //! Paramétre bas caméra orthographique
+    //! ParamÃ©tre bas camÃ©ra orthographique
     real m_dBottom;
 
-    //! Paramétre haut caméra orthographique
+    //! ParamÃ©tre haut camÃ©ra orthographique
     real m_dTop;
 
     CBox3D m_ViewingCube;

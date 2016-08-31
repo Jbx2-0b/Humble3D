@@ -1,4 +1,4 @@
-#ifndef NODETREEWIDGET_H
+ï»¿#ifndef NODETREEWIDGET_H
 #define NODETREEWIDGET_H
 
 // Foundations
@@ -98,10 +98,10 @@ private:
     //! Cree l'arbre des proprietes des meshs
     void createTreeMeshs(const QList<CMesh*>& meshs);
 
-    //! Cree l'arbre des proprietes des lumières
+    //! Cree l'arbre des proprietes des lumiÃ¨res
     void createTreeLights(const QList<CLight*>& lights);
 
-    //! Cree l'arbre des proprietes des caméras
+    //! Cree l'arbre des proprietes des camÃ©ras
     void createTreeCameras(const QList<CCamera*>& cameras);
 
     //! Cree l'arbre des proprietes des animations

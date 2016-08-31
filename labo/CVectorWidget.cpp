@@ -1,4 +1,4 @@
-#include "CVectorWidget.h"
+﻿#include "CVectorWidget.h"
 
 //-----------------------------------------------------------------------------------------
 CVectorWidget::CVectorWidget(QWidget* parent /*= 0*/,CVectorWidget::EnumType eWidgetType /*= eVectorWidget4D*/)

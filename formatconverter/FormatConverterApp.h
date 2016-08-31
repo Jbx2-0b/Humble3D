@@ -1,4 +1,4 @@
-#ifndef FORMATCONVERTERAPP_H
+﻿#ifndef FORMATCONVERTERAPP_H
 #define FORMATCONVERTERAPP_H
 
 #include <QMainWindow>

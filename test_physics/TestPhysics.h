@@ -1,4 +1,4 @@
-#ifndef TESTPHYSICS_H
+﻿#ifndef TESTPHYSICS_H
 #define TESTPHYSICS_H
 
 #include "Humble3DApp.h"

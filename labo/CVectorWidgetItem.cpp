@@ -1,4 +1,4 @@
-#include "CVectorWidgetItem.h"
+﻿#include "CVectorWidgetItem.h"
 #include "CNodeTreeWidget.h"
 
 //-----------------------------------------------------------------------------------------

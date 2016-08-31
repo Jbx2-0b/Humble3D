@@ -1,4 +1,4 @@
-#ifndef OGLRENDERER_H
+ï»¿#ifndef OGLRENDERER_H
 #define OGLRENDERER_H
 
 // Lib
@@ -56,11 +56,11 @@ public:
     //! Enregistre un listener
     void registerListener(IGLRendererListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IGLRendererListener* pListener);
 
     //--------------------------------------------------------------------------------------------
-    // Implémentation ARenderer
+    // ImplÃ©mentation ARenderer
     //--------------------------------------------------------------------------------------------
 
     //! Initialise le renderer
@@ -78,12 +78,12 @@ public:
     //! Retourne le nom du type
     virtual QString getTypeName() const	{ return "GLRenderer"; }
 
-    //! Met à jour les états de rendu
+    //! Met Ã  jour les Ã©tats de rendu
     virtual void onUpdateRenderStates();
 
 
     //--------------------------------------------------------------------------------------------
-    // Fin implémentation ARenderer
+    // Fin implÃ©mentation ARenderer
     //--------------------------------------------------------------------------------------------
 
     //! Retourne le nombre de draw call par frame
@@ -101,13 +101,13 @@ public:
     //! Retourne la version d'OpenGL
     QString getOpenGLVersion();
 
-    //! Retourne vrai si l'extension OpenGL est supportée
+    //! Retourne vrai si l'extension OpenGL est supportÃ©e
     bool isExtensionSupported(const QString& strExtension);
 
 
 protected:
 
-    //! Conteneur associatif qui permet de trouver un buffer GPU décrivant un item
+    //! Conteneur associatif qui permet de trouver un buffer GPU dÃ©crivant un item
     QHash<CMeshBuffer*, CGLMeshBuffer*> m_HardwareBuffers;
 
     //! Shader program
@@ -123,38 +123,38 @@ protected:
     // Listeners
     //--------------------------------------------------------------------------------------------
 
-    //! Implémentation - Interface CTextureManager::ITextureManagerListener
+    //! ImplÃ©mentation - Interface CTextureManager::ITextureManagerListener
     virtual void onUpdateTexture(ATexture* pTexture);
 
-    //! Implémentation - Interface CTextureManager::ITextureManagerListener
+    //! ImplÃ©mentation - Interface CTextureManager::ITextureManagerListener
     virtual void onDeleteTexture(ATexture* pTexture);
 
-    //! Implémentation - Interface CMeshManager::IMeshBufferListener
+    //! ImplÃ©mentation - Interface CMeshManager::IMeshBufferListener
     virtual void onDeleteMeshBuffer(CMeshBuffer* pBuffer);
 
-    //! Implémentation - Interface CShaderManager::IShaderManagerListener
+    //! ImplÃ©mentation - Interface CShaderManager::IShaderManagerListener
     virtual void onUpdateShader(CShader* pShader);
 
-    //! Implémentation - Interface CShaderManager::IShaderManagerListener
+    //! ImplÃ©mentation - Interface CShaderManager::IShaderManagerListener
     virtual void onDeleteShader(CShader* pShader);
 
-    //! Implémentation - Interface CSceneManager::ISceneManagerListener
+    //! ImplÃ©mentation - Interface CSceneManager::ISceneManagerListener
     virtual void onUpdateCamera(CCamera* pCamera);
 
-    //! Implémentation - Interface CSceneManager::ISceneManagerListener
+    //! ImplÃ©mentation - Interface CSceneManager::ISceneManagerListener
     virtual void onUpdateAnimation(CAnimation* pAnimation);
 
-    //! Implémentation - Interface CSceneManager::ISceneManagerListener
+    //! ImplÃ©mentation - Interface CSceneManager::ISceneManagerListener
     virtual void onCreateSceneNode(CSceneNode* pSceneNode);
 
-    //! Implémentation - Interface CSceneManager::ISceneManagerListener
+    //! ImplÃ©mentation - Interface CSceneManager::ISceneManagerListener
     virtual void onUpdateSceneNode(CSceneNode* pSceneNode);
 
-    //! Implémentation - Interface CSceneManager::ISceneManagerListener
+    //! ImplÃ©mentation - Interface CSceneManager::ISceneManagerListener
     virtual void onDeleteSceneNode(CSceneNode* pSceneNode);
 
     //--------------------------------------------------------------------------------------------
-    // Méthodes de rendu
+    // MÃ©thodes de rendu
     //--------------------------------------------------------------------------------------------
 
     //! Rendu des items
@@ -169,16 +169,16 @@ protected:
     //! Efface les buffers de rendu
     void clearBuffers(unsigned int& uiFlags);
 
-    //! Lie les paramétres temporels
+    //! Lie les paramÃ©tres temporels
     inline void bindTime();
 
-    //! Lie les paramétres de camera (modéle, vue, projection, normal...) au shader
+    //! Lie les paramÃ©tres de camera (modÃ©le, vue, projection, normal...) au shader
     inline void bindCamera(const CCamera *pCamera);
 
     //! Lie les matrices du noeud au shader
     inline void bindNode(const CCamera *pCamera, CSceneNode* pNode);
 
-    //! Lie les attributs des lumiéres au shader
+    //! Lie les attributs des lumiÃ©res au shader
     inline void bindLights(const CCamera* pCamera);
 
     //! Lie l'attribut d'un materiau au shader
@@ -187,10 +187,10 @@ protected:
     //! Lie un shader
     inline void bindShader(CShader* pShader);
 
-    //! Crée un VBO en fonction d'un VertexBuffer
+    //! CrÃ©e un VBO en fonction d'un VertexBuffer
     void createVertexBufferObject(CMeshBuffer* pBuffer);
 
-    //! Met à jour un VBO
+    //! Met Ã  jour un VBO
     void updateVertexBufferObject(CMeshBuffer* pBuffer);
 
     //! Retourne une texture
@@ -202,7 +202,7 @@ protected:
     //! Delie un materiau
     inline void releaseMaterial(CMaterial* pMaterial);
 
-    //! Envoie les informations définies par l'utilisateur au GPU
+    //! Envoie les informations dÃ©finies par l'utilisateur au GPU
     inline void bindUserUniformValues(const CRenderPass* pPass);
 
     //! Envoie les informations relatives au squelette d'animation au GPU
@@ -219,7 +219,7 @@ protected:
 
 private:
 
-    //! Notifie les listeners qu'une les propriétés de la caméra ont changées
+    //! Notifie les listeners qu'une les propriÃ©tÃ©s de la camÃ©ra ont changÃ©es
     virtual void notifyNewMessage(bool bIsError, const QString& message);
 
     //! Liste des listeners

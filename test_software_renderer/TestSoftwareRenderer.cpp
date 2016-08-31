@@ -1,4 +1,4 @@
-#include "TestSoftwareRenderer.h"
+ï»¿#include "TestSoftwareRenderer.h"
 #include "CAssimpImporter.h"
 #include "CSoftwareView3D.h"
 #include "CAnimationManager.h"
@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------------------
 TestSoftwareRenderer::TestSoftwareRenderer()
 {
-    // On crée une camera
+    // On crÃ©e une camera
     CCamera* pCamera = getSceneManager()->createCamera();
     pCamera->setEyePosition(QVector3D(1., 1., 1.));
     pCamera->setCenter(QVector3D(0., 0.5, 0.));
@@ -17,7 +17,7 @@ TestSoftwareRenderer::TestSoftwareRenderer()
 
     pCamera->setAspectRatio((real)pView->width() / (real)pView->height());
 
-    // On charge le modéle
+    // On charge le modÃ©le
     CSceneNode* pRootNode = m_pSceneManager->getRootNode();
 
     CSceneNode* pModelNode = pRootNode->createChild("dwarf");
@@ -27,7 +27,7 @@ TestSoftwareRenderer::TestSoftwareRenderer()
     // dwarf.x
     if (!CAssimpImporter::mergeScene("://models/dwarf.x", m_pSceneManager, true, pModelNode).isEmpty())
     {
-        // On récupére la bounding box
+        // On rÃ©cupÃ©re la bounding box
         CBox3D bbox = pRootNode->getGlobalAxisAlignedBoundingBox();
 
         real sizeX = bbox.getMaximum().x() - bbox.getMinimum().x();
@@ -38,7 +38,7 @@ TestSoftwareRenderer::TestSoftwareRenderer()
         if (sizeY > maxSize) maxSize = sizeY;
         if (sizeZ > maxSize) maxSize = sizeZ;
 
-        // On redimensionne la scene de façon à ce qu'elle ait une taille de 1x1x1 max
+        // On redimensionne la scene de faÃ§on Ã  ce qu'elle ait une taille de 1x1x1 max
         pModelNode->scale(1. / maxSize);
 
         CBox3D scaledBbox = pModelNode->getGlobalAxisAlignedBoundingBox();
@@ -48,7 +48,7 @@ TestSoftwareRenderer::TestSoftwareRenderer()
 
         CSceneNode* pLightNode = pRootNode->createChild("LightNode", QVector3D(8.0, 12.0, 0));
 
-        // On crée une lumiére diffuse blanche
+        // On crÃ©e une lumiÃ©re diffuse blanche
         CLight* pLight = m_pSceneManager->createLight("Light");
         pLight->setDiffuseColor(0.8f, 0.8f, 0.8f);
         pLight->setAmbientColor(0.6f, 0.6f, 0.6f);

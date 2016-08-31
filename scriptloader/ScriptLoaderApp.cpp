@@ -1,4 +1,4 @@
-#include "ScriptLoaderApp.h"
+﻿#include "ScriptLoaderApp.h"
 #include "CScriptManager.h"
 
 #include <QFileDialog>
@@ -7,7 +7,7 @@
 
 ScriptLoaderApp::ScriptLoaderApp()
 {
-    // On cr�e une camera
+    // On crée une camera
     CCamera* pCamera = getSceneManager()->createCamera();
 
     pCamera->setEyePosition(QVector3D(-3.26, 2.0, -0.03));

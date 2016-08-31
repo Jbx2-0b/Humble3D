@@ -1,4 +1,4 @@
-#ifndef CBOX2D_H
+﻿#ifndef CBOX2D_H
 #define CBOX2D_H
 
 // Qt

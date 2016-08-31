@@ -1,4 +1,4 @@
-#ifndef CQUADTREE_H
+﻿#ifndef CQUADTREE_H
 #define CQUADTREE_H
 
 // Lib

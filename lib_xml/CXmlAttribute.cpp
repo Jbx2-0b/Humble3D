@@ -1,4 +1,4 @@
-#include "CXmlAttribute.h"
+﻿#include "CXmlAttribute.h"
 
 CXmlAttribute::CXmlAttribute(const QString& name, const QString& value)
     : m_Name(name)

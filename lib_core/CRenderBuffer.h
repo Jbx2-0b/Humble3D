@@ -1,4 +1,4 @@
-#ifndef CRENDERBUFFER_H
+ï»¿#ifndef CRENDERBUFFER_H
 #define CRENDERBUFFER_H
 
 #include "AEntity.h"
@@ -40,7 +40,7 @@ public:
         m_RenderBufferListeners.insert(pListener);
     }
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IRenderBufferListener* pListener)
     {
         m_RenderBufferListeners.remove(pListener);
@@ -50,7 +50,7 @@ protected:
 
     EnumInternalFormat m_eFormat;
 
-    //! Transmet le message de mise à jour
+    //! Transmet le message de mise Ã  jour
     virtual void notifyUpdate()
     {
         if (m_bNotificationsEnabled)

@@ -1,4 +1,4 @@
-#ifndef CGLTEXTURECUBE_H
+﻿#ifndef CGLTEXTURECUBE_H
 #define CGLTEXTURECUBE_H
 
 #include "AGLTexture.h"

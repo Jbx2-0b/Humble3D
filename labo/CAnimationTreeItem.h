@@ -1,4 +1,4 @@
-#ifndef CANIMATIONTREEITEM_H
+﻿#ifndef CANIMATIONTREEITEM_H
 #define CANIMATIONTREEITEM_H
 
 // Foundations

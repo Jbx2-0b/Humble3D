@@ -1,4 +1,4 @@
-#ifndef IMAGEPROCESSING_H
+﻿#ifndef IMAGEPROCESSING_H
 #define IMAGEPROCESSING_H
 
 // Lib

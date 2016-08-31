@@ -1,4 +1,4 @@
-#include "CEditShaderTreeItem.h"
+﻿#include "CEditShaderTreeItem.h"
 #include "CNodeTreeWidget.h"
 
 //-----------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-#ifndef CFRAMEBUFFER_H
+﻿#ifndef CFRAMEBUFFER_H
 #define CFRAMEBUFFER_H
 
 // Foundations

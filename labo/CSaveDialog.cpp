@@ -1,4 +1,4 @@
-#include "CSaveDialog.h"
+﻿#include "CSaveDialog.h"
 
 CSaveDialog::CSaveDialog(QWidget *parent /* = 0*/)
     : QDialog(parent)

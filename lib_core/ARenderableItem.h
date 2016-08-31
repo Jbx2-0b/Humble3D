@@ -1,4 +1,4 @@
-#ifndef ARENDERABLEITEM_H
+ï»¿#ifndef ARENDERABLEITEM_H
 #define ARENDERABLEITEM_H
 
 // Lib
@@ -40,13 +40,13 @@ public:
         m_RenderableItemListeners.insert(pListener);
     }
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IRenderableItemListener* pListener)
     {
         m_RenderableItemListeners.remove(pListener);
     }
 
-    //! Prévient les listeners que le matériau a changé
+    //! PrÃ©vient les listeners que le matÃ©riau a changÃ©
     void notifyMaterialChanged()
     {
         foreach (IRenderableItemListener* pListener, m_RenderableItemListeners)
@@ -59,20 +59,20 @@ public:
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit le materiau
+    //! DÃ©finit le materiau
     void setMaterialName(const QString& materialName);
 
-    //! Définit les paramétres de rendu
+    //! DÃ©finit les paramÃ©tres de rendu
     void setRenderStates(const CRenderStates& renderStates)                     { m_RenderStates = renderStates; }
 
     //-------------------------------------------------------------------------------------------------
     // Getters
     //-------------------------------------------------------------------------------------------------
 
-    //! Retourne vrai si peut être rendu
+    //! Retourne vrai si peut Ãªtre rendu
     virtual bool isRenderable() const = 0;
 
-    //! Retourne vrai si possède un squelette d'animation
+    //! Retourne vrai si possÃ¨de un squelette d'animation
     virtual bool hasSkeleton() const { return false; }
 
     //! Retourne vrai si recoit les ombres
@@ -87,10 +87,10 @@ public:
     //! Retourne l'ID du materiau
     const QString& getMaterialName() const;
 
-    //! Retourne true si a un matériau
+    //! Retourne true si a un matÃ©riau
     bool hasMaterial() const;
 
-    //! Retourne les paramétres de rendu
+    //! Retourne les paramÃ©tres de rendu
     const CRenderStates& getRenderStates() const                                { return m_RenderStates; }
 
     //! Effectue le rendu
@@ -107,7 +107,7 @@ public:
         postRender();
     }
 
-    //! Crée une string contenant les propriétés de l'objet
+    //! CrÃ©e une string contenant les propriÃ©tÃ©s de l'objet
     virtual QString toString() const
     {
         QString result;
@@ -124,22 +124,22 @@ protected:
     //! Liste des listeners
     QSet<IRenderableItemListener*> m_RenderableItemListeners;
 
-    //! Fonction appelée avant le premier appel à render()
+    //! Fonction appelÃ©e avant le premier appel Ã  render()
     virtual void initRendering(ARenderer*) {}
 
-    //! Fonction appelée avant le rendu
+    //! Fonction appelÃ©e avant le rendu
     virtual void preRender() {}
 
-    //! Fonction appelée après le rendu
+    //! Fonction appelÃ©e aprÃ¨s le rendu
     virtual void postRender() {}
 
-    //! Définit le rendu à réaliser
+    //! DÃ©finit le rendu Ã  rÃ©aliser
     virtual void render(ARenderer* pRenderer) = 0;
 
-    //! Paramètres de rendu
+    //! ParamÃ¨tres de rendu
     CRenderStates m_RenderStates;
 
-    //! Vrai si l'initialisation pre-rendu a été effectuée
+    //! Vrai si l'initialisation pre-rendu a Ã©tÃ© effectuÃ©e
     bool m_bIsRenderingInit;
 
     //! Identifiant du materiau

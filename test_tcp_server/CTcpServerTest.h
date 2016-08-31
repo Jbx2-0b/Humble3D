@@ -1,4 +1,4 @@
-#ifndef CTCPSERVERTEST_H
+﻿#ifndef CTCPSERVERTEST_H
 #define CTCPSERVERTEST_H
 
 #include <QObject>

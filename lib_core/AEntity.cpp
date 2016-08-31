@@ -1,6 +1,6 @@
-#include "AEntity.h"
+﻿#include "AEntity.h"
 
-// D�finition des membres statiques
+// Définition des membres statiques
 CIDGenerator AEntity::s_IDGenerator;
 
 CNameGenerator AEntity::s_NameGenerator;

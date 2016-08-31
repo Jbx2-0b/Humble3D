@@ -1,4 +1,4 @@
-#ifndef CBILLBOARD_H
+ï»¿#ifndef CBILLBOARD_H
 #define CBILLBOARD_H
 
 // Lib
@@ -30,7 +30,7 @@ public:
     //! Retourne le nombre de polygones
     virtual unsigned int getPolygonCount() const { return m_MeshBuffer.getPolygonCount(); }
 
-    //! Retourne vrai si peut être rendu
+    //! Retourne vrai si peut Ãªtre rendu
     virtual bool isRenderable() const { return !m_MeshBuffer.positionsBuffer().isEmpty(); }
 
     void addPosition(const QVector3D& position);
@@ -42,7 +42,7 @@ public:
 protected:
 
     //-------------------------------------------------------------------------------------------------
-    // Implémentation ARenderableItem
+    // ImplÃ©mentation ARenderableItem
     //-------------------------------------------------------------------------------------------------
 
     //! Effectue le rendu

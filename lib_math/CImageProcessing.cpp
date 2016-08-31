@@ -1,4 +1,4 @@
-#include "CImageProcessing.h"
+﻿#include "CImageProcessing.h"
 
 
 // value noise, and its analytical derivatives

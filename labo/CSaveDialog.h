@@ -1,4 +1,4 @@
-#ifndef CSAVEDIALOG_H
+﻿#ifndef CSAVEDIALOG_H
 #define CSAVEDIALOG_H
 
 #include <QDialog>

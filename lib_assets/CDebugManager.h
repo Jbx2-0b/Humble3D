@@ -1,4 +1,4 @@
-#ifndef CDEBUGMANAGER_H
+﻿#ifndef CDEBUGMANAGER_H
 #define CDEBUGMANAGER_H
 
 // Lib

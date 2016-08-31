@@ -1,4 +1,4 @@
-#ifndef CTRIANGLE_H
+﻿#ifndef CTRIANGLE_H
 #define CTRIANGLE_H
 
 // Foundations

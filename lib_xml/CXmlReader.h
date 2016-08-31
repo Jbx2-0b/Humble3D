@@ -1,4 +1,4 @@
-#ifndef CXMLREADER_H
+﻿#ifndef CXMLREADER_H
 #define CXMLREADER_H
 
 // Lib
@@ -23,7 +23,7 @@ public:
 	//! Parse un fichier de config xml
     bool loadFile(const QString& fileName);
 
-    //! Retourne l'�lement root
+    //! Retourne l'élement root
     CXmlElement* getRootElement() { return m_pRootElement; }
 
 	//! Retourne la valeur d'un attribut

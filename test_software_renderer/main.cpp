@@ -1,4 +1,4 @@
-#include "TestSoftwareRenderer.h"
+﻿#include "TestSoftwareRenderer.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

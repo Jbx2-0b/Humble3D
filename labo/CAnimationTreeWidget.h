@@ -1,4 +1,4 @@
-#ifndef CANIMATIONTREEWIDGET_H
+﻿#ifndef CANIMATIONTREEWIDGET_H
 #define CANIMATIONTREEWIDGET_H
 
 #include "CButtonTreeWidget.h"

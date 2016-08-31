@@ -1,4 +1,4 @@
-#ifndef QPARAMSHADERWIDGET_H
+﻿#ifndef QPARAMSHADERWIDGET_H
 #define QPARAMSHADERWIDGET_H
 
 // Qt
@@ -22,7 +22,7 @@ public:
     //! Retourne le chemin du fichier
     QString getFilePathName() const { return m_pFilePathNameLineEdit->text(); }
 
-    //! D�finit le chemin du fichier
+    //! Définit le chemin du fichier
     void setFilePathName(const QString& filePathName) { m_pFilePathNameLineEdit->setText(filePathName); }
 
 signals:

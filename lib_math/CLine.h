@@ -1,4 +1,4 @@
-#ifndef CLINE_H
+﻿#ifndef CLINE_H
 #define CLINE_H
 
 // Qt

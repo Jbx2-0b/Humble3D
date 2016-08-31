@@ -1,4 +1,4 @@
-#include "CSceneNode.h"
+ï»¿#include "CSceneNode.h"
 #include "ASceneNodeItem.h"
 #include "CMeshInstance.h"
 #include "CSceneManager.h"
@@ -32,7 +32,7 @@ CSceneNode::~CSceneNode()
 {
     foreach (CSceneNode* pNode, m_ChildNodes)
     {
-        // On prévient les NodeItems qu'on détruit ler noeud
+        // On prÃ©vient les NodeItems qu'on dÃ©truit ler noeud
         foreach (ASceneNodeItem* pNodeItem, m_NodeItems)
         {
             pNodeItem->removeNode(pNode);

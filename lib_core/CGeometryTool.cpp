@@ -1,4 +1,4 @@
-#include "CGeometryTool.h"
+﻿#include "CGeometryTool.h"
 
 
 void CGeometryTool::quad(CMeshBuffer& meshBuffer, real x1, real y1, real x2, real y2, real x3, real y3, real x4, real y4)

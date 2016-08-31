@@ -1,4 +1,4 @@
-#ifndef CMESHINSTANCE_H
+ï»¿#ifndef CMESHINSTANCE_H
 #define CMESHINSTANCE_H
 
 // Lib
@@ -23,7 +23,7 @@ public:
     //! Destructeur
     virtual ~CMeshInstance();
 
-    //! Retourne le mesh associé
+    //! Retourne le mesh associÃ©
     CMesh* getMesh() { return m_pMesh; }
 
     //-------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ public:
     //! Enregistre un listener
     void registerListener(IMeshInstanceListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IMeshInstanceListener* pListener);
 
     //-------------------------------------------------------------------------------------------------
@@ -55,13 +55,13 @@ public:
     // Setters
     //--------------------------------------------------------------------------------------------
 
-    //! Définit le materiau
+    //! DÃ©finit le materiau
     void setMaterialName(const QString& materialName);
 
-    //! Définit les paramétres de rendu
+    //! DÃ©finit les paramÃ©tres de rendu
     void setRenderStates(const CRenderStates& renderStates);
 
-    //! Définit le repère local à partir desquelles sont effectuées les transformations de squelettes
+    //! DÃ©finit le repÃ¨re local Ã  partir desquelles sont effectuÃ©es les transformations de squelettes
     void setLocalRootNode(CSceneNode* pLocalRootNode) { m_pLocalRootNode = pLocalRootNode; }
 
     //-------------------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ public:
     //! Retourne le nom du materiau
     const QString& getMaterialName() const { return m_MaterialName; }
 
-    //! Retourne le repère local à partir desquelles sont effectuées les transformations de squelettes
+    //! Retourne le repÃ¨re local Ã  partir desquelles sont effectuÃ©es les transformations de squelettes
     CSceneNode* getLocalRootNode() const { return m_pLocalRootNode; }
 
     //! Retourne la boite englobante
@@ -87,7 +87,7 @@ public:
     //
     //--------------------------------------------------------------------------------------------
 
-    //! Crée une string contenant les propriétés de l'objet
+    //! CrÃ©e une string contenant les propriÃ©tÃ©s de l'objet
     virtual QString toString() const
     {
         QString result;
@@ -105,7 +105,7 @@ public:
 
 protected:
 
-    //! Transmet le message de mise à jour
+    //! Transmet le message de mise Ã  jour
     virtual void notifyUpdate();
 
     //! Liste des listeners
@@ -113,7 +113,7 @@ protected:
 
 
     //-------------------------------------------------------------------------------------------------
-    // Implémentation de CMesh::IMeshListener
+    // ImplÃ©mentation de CMesh::IMeshListener
     //-------------------------------------------------------------------------------------------------
 
     virtual void onUpdate(CMesh* pMesh);
@@ -121,10 +121,10 @@ protected:
 
     //-------------------------------------------------------------------------------------------------
 
-    //! Mesh associé
+    //! Mesh associÃ©
     CMesh* m_pMesh;
 
-    //! Nom du matériau
+    //! Nom du matÃ©riau
     QString m_MaterialName;
 
     //! Etat pour le rendu
@@ -133,13 +133,13 @@ protected:
     //! Conteneur d'instance de sous objet
     QHash<CSubMesh*, CSubMeshInstance*> m_SubMeshInstanceMap;
 
-    //! Crée une instance de sous objet
+    //! CrÃ©e une instance de sous objet
     CSubMeshInstance* createSubMeshInstance(CSubMesh* pSubMesh);
 
     //! Supprime une instance de sous objet
     void removeSubMeshInstance(CSubMesh* pSubMesh);
 
-    //! Repère local à partir desquelles sont effectuées les transformations de squelettes
+    //! RepÃ¨re local Ã  partir desquelles sont effectuÃ©es les transformations de squelettes
     CSceneNode* m_pLocalRootNode;
 };
 

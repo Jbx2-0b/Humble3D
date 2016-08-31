@@ -1,4 +1,4 @@
-#include "TestMultiPass.h"
+ï»¿#include "TestMultiPass.h"
 #include "CMaterialManager.h"
 #include "Shapes/CPlaneMesh.h"
 #include "CRenderPass.h"
@@ -10,7 +10,7 @@
 //-----------------------------------------------------------------------------------------
 TestMultiPass::TestMultiPass()
 {
-    // On crée une camera
+    // On crÃ©e une camera
     m_pSceneCamera = getSceneManager()->createCamera();
     m_pSceneCamera->setProjectionType(eProjectionOrtho);
     m_pSceneCamera->setOrtho(-0.5f, 0.5f, -0.5f, 0.5f, 0.1f, 2.f);
@@ -26,14 +26,14 @@ TestMultiPass::TestMultiPass()
 
     CShaderManager::getInstance()->createShader("blur", "://blur.vertex.glsl", "", "://blur.fragment.glsl");
 
-    // On charge le modéle
+    // On charge le modÃ©le
     CSceneNode* pRootNode = m_pSceneManager->getRootNode();
 
     CSceneNode* pModelNode = pRootNode->createChild("CowNode");
 
     if (!CAssimpImporter::mergeScene("G:/Humble3D/Deploy/scenes/cow.obj", m_pSceneManager, true, pModelNode).isEmpty())
     {
-        // On récupére la bounding box
+        // On rÃ©cupÃ©re la bounding box
         CBox3D bbox = pRootNode->getGlobalAxisAlignedBoundingBox();
 
         real sizeX = bbox.getMaximum().x() - bbox.getMinimum().x();
@@ -44,7 +44,7 @@ TestMultiPass::TestMultiPass()
         if (sizeY > maxSize) maxSize = sizeY;
         if (sizeZ > maxSize) maxSize = sizeZ;
 
-        // On redimensionne la scene de façon à ce qu'elle ait une taille de 1x1x1 max
+        // On redimensionne la scene de faÃ§on Ã  ce qu'elle ait une taille de 1x1x1 max
         pModelNode->scale(1. / maxSize);
 
         CBox3D scaledBbox = pModelNode->getGlobalAxisAlignedBoundingBox();
@@ -54,7 +54,7 @@ TestMultiPass::TestMultiPass()
 
         CSceneNode* pLightNode = pRootNode->createChild("LightNode", QVector3D(8.0, 12.0, 0));
 
-        // On crée une lumiére diffuse blanche
+        // On crÃ©e une lumiÃ©re diffuse blanche
         CLight* pLight = m_pSceneManager->createLight("Light 1");
         pLight->setDiffuseColor(0.0f, 0.6f, 0.0f);
         pLight->setAmbientColor(0.0f, 0.7f, 0.0f);
@@ -65,7 +65,7 @@ TestMultiPass::TestMultiPass()
 
         CSceneNode* pLightNode2 = pRootNode->createChild("LightNode2", QVector3D(-0.7, 0., -0.7));
 
-        // On crée une lumiére diffuse bleue
+        // On crÃ©e une lumiÃ©re diffuse bleue
         CLight* pLight2 = m_pSceneManager->createLight("Light 2");
         pLight2->setDiffuseColor(0.4f, 0.0f, 0.0f);
         pLight2->setAmbientColor(0.8f, 0.0f, 0.0f);
@@ -76,7 +76,7 @@ TestMultiPass::TestMultiPass()
 
         CSceneNode* pLightNode3 = pRootNode->createChild("LightNode2", QVector3D(-0.7, 0.0, +0.7));
 
-        // On crée une lumiére diffuse bleue
+        // On crÃ©e une lumiÃ©re diffuse bleue
         CLight* pLight3 = m_pSceneManager->createLight("Light 3");
         pLight3->setDiffuseColor(0.0f, 0.0f, 0.4f);
         pLight3->setAmbientColor(0.0f, 0.0f, 0.8f);
@@ -99,7 +99,7 @@ TestMultiPass::TestMultiPass()
         ATexture* pTexture = pFB->createRenderTexture(eAttachmentColor0, eInternalFormatRGB);
         pFB->createRenderBuffer(eAttachmentDepth, eInternalFormatDepthComponent);
 
-        // On crée une camera
+        // On crÃ©e une camera
         CCamera* pCamera = getSceneManager()->createCamera();
         pCamera->setEyePosition(QVector3D(2., 1., 2.));
         pCamera->setCenter(QVector3D(0., 0., 0.));

@@ -1,4 +1,4 @@
-#ifndef CMAPDICTIONARY_H
+ï»¿#ifndef CMAPDICTIONARY_H
 #define CMAPDICTIONARY_H
 
 // Lib
@@ -15,7 +15,7 @@ class LIB_ASSETS_SHARED_EXPORT CMapDictionary
 
 public:
 
-    //! Constructeur par défaut
+    //! Constructeur par dÃ©faut
     CMapDictionary(int iCellColumnCount, int iCellRowCount, int iResolution)
         : m_iCellColumCount(iCellColumnCount)
         , m_iCellRowCount(iCellRowCount)
@@ -28,7 +28,7 @@ public:
     {
     }
 
-    //! Déstructeur
+    //! DÃ©structeur
     ~CMapDictionary()
     {
         foreach (CMap* pMap, m_Maps.get())
@@ -37,7 +37,7 @@ public:
         }
     }
 
-    //! Crée une carte
+    //! CrÃ©e une carte
     CMap* createMap(const CMapKey& key)
     {
         CMap* pMap = new CMap(key);
@@ -57,22 +57,22 @@ public:
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit la taille réelle d'une cellule en métre
+    //! DÃ©finit la taille rÃ©elle d'une cellule en mÃ©tre
     void setCellSize(real fSize)					{ m_fCellSize = fSize; }
 
-    //! Définit la position réelle du coin sur l'axe X
+    //! DÃ©finit la position rÃ©elle du coin sur l'axe X
     void setXCorner(real fXCorner)					{ m_fXllCorner = fXCorner; }
 
-    //! Définit la position réelle du coin sur l'axe Z
+    //! DÃ©finit la position rÃ©elle du coin sur l'axe Z
     void setZCorner(real fZCorner)					{ m_fZllCorner = fZCorner; }
 
-    //! Définit la taille des cartes
+    //! DÃ©finit la taille des cartes
     void setMapSize(real fMapSize)					{ m_fMapSize = fMapSize; }
 
-    //! Définit l'origine des positions des cartes
+    //! DÃ©finit l'origine des positions des cartes
     void setPosition(const QVector3D& position)		{ m_vPosition = position; }
 
-    //! Définit les altitudes
+    //! DÃ©finit les altitudes
     void setHeights(const CSRTMData<int>& heights)
     {
         double dRealWidthPerMap = getRealWidthPerMap();
@@ -89,13 +89,13 @@ public:
     // Getters
     //-------------------------------------------------------------------------------------------------
 
-    //! Retourne une map en fonction de sa clé
+    //! Retourne une map en fonction de sa clÃ©
     CMap* getMap(const CMapKey& key) 				{ return getMap(key.first, key.second); }
 
-    //! Retourne une map en fonction de sa clé
+    //! Retourne une map en fonction de sa clÃ©
     CMap* getMap(int i, int j) 						{ return m_Maps.get(i, j); }
 
-    //! Retourne l'altitude absolue à partir d'une position 3D
+    //! Retourne l'altitude absolue Ã  partir d'une position 3D
     real getAbsoluteHeight(real x, real z) const
     {
         real dAltitude = 0.;
@@ -142,7 +142,7 @@ public:
         return QVector3D((real)iGlobalI * fDistanceInterPoints, getAbsoluteHeight(iGlobalI, iGlobalJ), (real)iGlobalJ * fDistanceInterPoints);
     }
 
-    //! Retourne l'altitude à partir de l'origine d'une carte
+    //! Retourne l'altitude Ã  partir de l'origine d'une carte
     inline real getHeightInMap(const CMapKey& key, int iLocalI, int iLocalJ) const
     {
         int iGlobalI = (m_iMapResolution - 1) * key.first + iLocalI;
@@ -154,7 +154,7 @@ public:
         return 0;
     }
 
-    //! Retourne l'altitude à partir de l'origine d'une carte
+    //! Retourne l'altitude Ã  partir de l'origine d'une carte
     inline real getHeightInMap(const CMapKey& key, real x, real z) const
     {
         real fGlobalX = key.first * m_fMapSize + x;
@@ -163,7 +163,7 @@ public:
         return getAbsoluteHeight(fGlobalX, fGlobalZ);
     }
 
-    //! Retourne la position 3D à partir de l'origine d'une carte
+    //! Retourne la position 3D Ã  partir de l'origine d'une carte
     inline QVector3D getPositionInMap(const CMapKey& key, int iLocalI, int iLocalJ) const
     {
         static real fDistanceInterPoints = m_fMapSize / (m_iMapResolution - 1);
@@ -182,19 +182,19 @@ public:
     //! Retourne le nombre de cellule en longueur
     int getCellRowCount() const						{ return m_iCellRowCount; }
 
-    //! Retourne la taille réelle d'une cellule en métre
+    //! Retourne la taille rÃ©elle d'une cellule en mÃ©tre
     real getCellSize() const						{ return m_fCellSize; }
 
-    //! Définit la taille réelle d'une map en métre
+    //! DÃ©finit la taille rÃ©elle d'une map en mÃ©tre
     real getRealWidthPerMap() const				{ return toMeters(m_fCellSize) * (m_iMapResolution - 1); }
 
-    //! Retourne la position réelle du coin sur l'axe X
+    //! Retourne la position rÃ©elle du coin sur l'axe X
     real getXCorner() const						{ return m_fXllCorner; }
 
-    //! Retourne la position réelle du coin sur l'axe Z
+    //! Retourne la position rÃ©elle du coin sur l'axe Z
     real getZCorner() const						{ return m_fZllCorner; }
 
-    //! Retourne la résolution des cartes
+    //! Retourne la rÃ©solution des cartes
     int getMapResolution() const					{ return m_iMapResolution; }
 
     //! Retourne la taille des cartes

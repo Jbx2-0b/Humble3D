@@ -1,4 +1,4 @@
-#ifndef CSCENEMANAGER_H
+ï»¿#ifndef CSCENEMANAGER_H
 #define CSCENEMANAGER_H
 
 // Lib
@@ -46,31 +46,31 @@ public:
     //! Construit un octree
     void buildOctree(const CBox3D& worldBoundingBox, unsigned int uiPolygonCountThreshold, unsigned int iMaxDepth);
 
-    //! Libére l'ensemble des données du SceneManager
+    //! LibÃ©re l'ensemble des donnÃ©es du SceneManager
     void clearAll();
 
-    //! Libére l'ensemble des meshs du SceneManager
+    //! LibÃ©re l'ensemble des meshs du SceneManager
     void clearMeshInstances();
 
-    //! Libére l'ensemble des sources lumineuses du SceneManager
+    //! LibÃ©re l'ensemble des sources lumineuses du SceneManager
     void clearLights();
 
-    //! Libére l'ensemble des caméras du SceneManager
+    //! LibÃ©re l'ensemble des camÃ©ras du SceneManager
     void clearCameras();
 
-    //! Libére l'ensemble des animations du SceneManager
+    //! LibÃ©re l'ensemble des animations du SceneManager
     void clearAnimations();
 
-    //! Libére l'ensemble des élements 2D
+    //! LibÃ©re l'ensemble des Ã©lements 2D
     void clearBillboards();
 
-    //! Libére l'ensemble des items associés aux noeuds du SceneManager
+    //! LibÃ©re l'ensemble des items associÃ©s aux noeuds du SceneManager
     void clearNodeItems();
 
-    //! Libére l'ensemble des noeuds du SceneManager
+    //! LibÃ©re l'ensemble des noeuds du SceneManager
     void clearNodes();
 
-    //! Libére l'ensemble des noeuds inutilisés
+    //! LibÃ©re l'ensemble des noeuds inutilisÃ©s
     void clearEmptyNodes();
 
     //-------------------------------------------------------------------------------------------------
@@ -82,13 +82,13 @@ public:
         friend class CSceneManager;
 
     protected:
-        //! Prévient du démarrage d'une animation
+        //! PrÃ©vient du dÃ©marrage d'une animation
         virtual void onStartAnimation(CAnimation* pAnimation) = 0;
 
-        //! Prévient de la mise en pause d'une animation
+        //! PrÃ©vient de la mise en pause d'une animation
         virtual void onPauseAnimation(CAnimation* pAnimation) = 0;
 
-        //! Prévient de l'arrêt d'une animation
+        //! PrÃ©vient de l'arrÃªt d'une animation
         virtual void onStopAnimation(CAnimation* pAnimation) = 0;
     };
 
@@ -97,19 +97,19 @@ public:
         friend class CSceneManager;
 
     protected:
-        //! Prévient de la mise à jour d'une caméra
+        //! PrÃ©vient de la mise Ã  jour d'une camÃ©ra
         virtual void onUpdateCamera(CCamera* pCamera) = 0;
 
-        //! Prévient de la mise à jour d'une animation
+        //! PrÃ©vient de la mise Ã  jour d'une animation
         virtual void onUpdateAnimation(CAnimation* pAnimation) = 0;
 
-        //! Prévient de l'ajout d'un noeud
+        //! PrÃ©vient de l'ajout d'un noeud
         virtual void onCreateSceneNode(CSceneNode* pSceneNode) = 0;
 
-        //! Prévient de la mise à jour d'un noeud
+        //! PrÃ©vient de la mise Ã  jour d'un noeud
         virtual void onUpdateSceneNode(CSceneNode* pSceneNode) = 0;
 
-        //! Prévient de la mise à jour d'un noeud
+        //! PrÃ©vient de la mise Ã  jour d'un noeud
         virtual void onDeleteSceneNode(CSceneNode* pSceneNode) = 0;
     };
 
@@ -117,13 +117,13 @@ public:
     //! Enregistre un listener
     void registerAnimationListener(CSceneManager::IAnimationListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterAnimationListener(CSceneManager::IAnimationListener* pListener);
 
     //! Enregistre un listener
     void registerListener(CSceneManager::ISceneManagerListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(CSceneManager::ISceneManagerListener* pListener);
 
 
@@ -143,7 +143,7 @@ public:
     //! Retourne le nombre de mesh
     int getMeshInstanceCount() const													{ return m_MeshInstances.size(); }
 
-    //! Retourne le nombre de lumiéres
+    //! Retourne le nombre de lumiÃ©res
     int getLightCount() const															{ return m_Lights.size(); }
 
     //! Retourne le nombre de cameras
@@ -161,16 +161,16 @@ public:
     //! Retourne la collection d'items
     QList<QString> getItemNames() const;
 
-    //! Retourne la collection d'objets pouvant être rendue
+    //! Retourne la collection d'objets pouvant Ãªtre rendue
     const QSet<ARenderableItem*>& getRenderableItems() const                            { return m_RenderableItems; }
 
     //! Retourne la collection de meshs
     QList<CMeshInstance*>& getMeshInstances()											{ return m_MeshInstances; }
 
-    //! Retourne la collection de lumiéres
+    //! Retourne la collection de lumiÃ©res
     QList<CLight*>& getLights()															{ return m_Lights; }
 
-    //! Retourne la collection de caméras
+    //! Retourne la collection de camÃ©ras
     QList<CCamera*>& getCameras()														{ return m_Cameras; }
 
     //! Retourne la collection d'animations
@@ -179,13 +179,13 @@ public:
     //! Retourne la collection d'instances de meshs
     const QList<CMeshInstance*>& getMeshInstances() const								{ return m_MeshInstances; }
 
-    //! Retourne la collection de lumiéres
+    //! Retourne la collection de lumiÃ©res
     const QList<CLight*>& getLights() const												{ return m_Lights; }
 
-    //! Retourne la collection de caméras
+    //! Retourne la collection de camÃ©ras
     const QList<CCamera*>& getCameras() const											{ return m_Cameras; }
 
-    //! Retourne la collection des eléments 2D
+    //! Retourne la collection des elÃ©ments 2D
     const QList<CBillboard*>& getBillboards() const										{ return m_Billboards; }
 
     //! Retourne une animation en fonction de son nom
@@ -200,70 +200,70 @@ public:
     //! Retourne la boite englobante de la scene
     CBox3D getWorldAxisAlignedBoundingBox() const;
 
-    //! Retourne la couleur ambiante de la scéne
+    //! Retourne la couleur ambiante de la scÃ©ne
     QVector4D getAmbientColor() const;
 
-    //! Retourne les matériaux utilisés dans la scene
+    //! Retourne les matÃ©riaux utilisÃ©s dans la scene
     const QSet<CMaterial*> getUsedMaterials() const;
 
-    //! Retourne les shaders utilisés dans la scene
+    //! Retourne les shaders utilisÃ©s dans la scene
     const QSet<CShader*> getUsedShaders() const;
 
-    //! Retourne les shaders utilisés dans la scene
+    //! Retourne les shaders utilisÃ©s dans la scene
     const QSet<ATexture*> getUsedTextures() const;
 
-    //! Retourne les noeuds visibles pour un frustum particulier. Attention, sans octree, cette méthode peut être lente.
+    //! Retourne les noeuds visibles pour un frustum particulier. Attention, sans octree, cette mÃ©thode peut Ãªtre lente.
     QSet<CSceneNode*> getVisibleSceneNodes(const CFrustum& frustum);
 
     //-------------------------------------------------------------------------------------------------
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit la couleur ambiante de la scéne
+    //! DÃ©finit la couleur ambiante de la scÃ©ne
     void setAmbientColor(const QVector4D& ambientColor);
 
     //-------------------------------------------------------------------------------------------------
     // Creator & Remover
     //-------------------------------------------------------------------------------------------------
 
-    //! Crée une nouvelle instance de mesh et retourne son pointeur
+    //! CrÃ©e une nouvelle instance de mesh et retourne son pointeur
     CMeshInstance* createMeshInstance(const QString& meshName, const QString& name = "MeshInstance");
 
-    //! Crée une nouvelle instance de mesh et retourne son pointeur
+    //! CrÃ©e une nouvelle instance de mesh et retourne son pointeur
     CMeshInstance* createMeshInstance(CMesh* pMesh, const QString& name = "MeshInstance");
 
-    //! Crée une nouvelle lumiére et retourne son pointeur
+    //! CrÃ©e une nouvelle lumiÃ©re et retourne son pointeur
     CLight* createLight(const QString& name = "Light");
 
-    //! Crée une nouvelle caméra et retourne son pointeur
+    //! CrÃ©e une nouvelle camÃ©ra et retourne son pointeur
     CCamera* createCamera(const QString& name = "Camera");
 
-    //! Crée une nouvelle animation et retourne son pointeur
+    //! CrÃ©e une nouvelle animation et retourne son pointeur
     CAnimation* createAnimation(const QString& name = "Animation");
 
-    //! Crée un nouvel élément 2D
+    //! CrÃ©e un nouvel Ã©lÃ©ment 2D
     CBillboard* createBillboard(const QString& name = "Billboard");
 
     //! Supprime une instance de mesh
     void deleteMeshInstance(CMeshInstance* pMeshInstance);
 
-    //! Supprime une lumiére
+    //! Supprime une lumiÃ©re
     void deleteLight(CLight* pLight);
 
-    //! Supprime une caméra
+    //! Supprime une camÃ©ra
     void deleteCamera(CCamera* pCamera);
 
     //! Supprime une animation
     void deleteAnimation(CAnimation* pAnimation);
 
-    //! Supprime un élement 2D
+    //! Supprime un Ã©lement 2D
     void deleteBillboards(CBillboard* pBillboard);
 
     //-------------------------------------------------------------------------------------------------
     //
     //-------------------------------------------------------------------------------------------------
 
-    //! Retourne l'objet placé sous le pointeur de la souris, 0 sinon
+    //! Retourne l'objet placÃ© sous le pointeur de la souris, 0 sinon
     ASceneNodeItem* pick(CCamera* pCamera, const QPoint& position, const QSize& viewSize);
 
     //! Recherche un item en fonction de son nom
@@ -290,62 +290,62 @@ protected:
     //! Conteneur des listeners
     QSet<ISceneManagerListener*> m_SceneManagerListeners;
 
-    //! Notifie les listeners qu'une animation est lancée
+    //! Notifie les listeners qu'une animation est lancÃ©e
     void notifyStart(CAnimation* pAnimation);
 
     //! Notifie les listeners qu'une animation est mit en pause
     void notifyPause(CAnimation* pAnimation);
 
-    //! Notifie les listeners qu'une animation stoppée
+    //! Notifie les listeners qu'une animation stoppÃ©e
     void notifyStop(CAnimation* pAnimation);
 
-    //! Notifie les listeners qu'une caméra a été mise à jour
+    //! Notifie les listeners qu'une camÃ©ra a Ã©tÃ© mise Ã  jour
     void notifyUpdate(CCamera* pCamera);
 
-    //! Implémentation de CMeshInstance::IMeshInstanceListener
+    //! ImplÃ©mentation de CMeshInstance::IMeshInstanceListener
     virtual void onUpdate(CMeshInstance* pMeshInstance);
 
-    //! Implémentation de CCamera::ICameraListener
+    //! ImplÃ©mentation de CCamera::ICameraListener
     virtual void onUpdate(CCamera* pCamera);
 
-    //! Implémentation de ARenderableItem::IRenderableItemListener
+    //! ImplÃ©mentation de ARenderableItem::IRenderableItemListener
     virtual void onMaterialChanged(ARenderableItem* pMesh);
 
-    //! Implémentation de CAnimation::IAnimationListener
+    //! ImplÃ©mentation de CAnimation::IAnimationListener
     virtual void onStart(CAnimation* pAnimation);
 
-    //! Implémentation de CAnimation::IAnimationListener
+    //! ImplÃ©mentation de CAnimation::IAnimationListener
     virtual void onPause(CAnimation* pAnimation);
 
-    //! Implémentation de CAnimation::IAnimationListener
+    //! ImplÃ©mentation de CAnimation::IAnimationListener
     virtual void onStop(CAnimation* pAnimation);
 
-    //! Implémentation de CMeshManager::IMeshManagerListener
+    //! ImplÃ©mentation de CMeshManager::IMeshManagerListener
     virtual void onUpdate(CMesh* pMesh);
 
-    //! Implémentation de CMeshManager::IMeshManagerListener
+    //! ImplÃ©mentation de CMeshManager::IMeshManagerListener
     virtual void onDelete(CMesh* pMesh);
 
-    //! Implémentation de CSceneNode::INodeListener
+    //! ImplÃ©mentation de CSceneNode::INodeListener
     virtual void onUpdate(CSceneNode* pSceneNode);
 
-    //! Implémentation de CSceneNode::INodeListener
+    //! ImplÃ©mentation de CSceneNode::INodeListener
     virtual void onDelete(CSceneNode* pSceneNode);
 
     //-------------------------------------------------------------------------------------------------
     // End listeners
     //-------------------------------------------------------------------------------------------------
 
-    //! Trouve les intersections de maniére récursive en explorant l'arbre des noeuds
+    //! Trouve les intersections de maniÃ©re rÃ©cursive en explorant l'arbre des noeuds
     ASceneNodeItem* recursiveFindIntersection(const CRay& ray, CSceneNode* pNode, real& dDistance);
 
-    //! Libére l'ensemble des noeuds inutilisés de maniére récursive
+    //! LibÃ©re l'ensemble des noeuds inutilisÃ©s de maniÃ©re rÃ©cursive
     bool recursiveClearEmptyNodes(CSceneNode* pNode);
 
     //! Octree
     COctree* m_pOctree;
 
-    //! Couleur ambiante de la scéne
+    //! Couleur ambiante de la scÃ©ne
     QVector4D m_AmbientColor;
 
     //! Conteneur des instances de maillage
@@ -357,16 +357,16 @@ protected:
     //! Conteneur des sources lumineuses
     QList<CLight*> m_Lights;
 
-    //! Conteneur des caméras
+    //! Conteneur des camÃ©ras
     QList<CCamera*> m_Cameras;
 
-    //! Conteneur des éléments 2D
+    //! Conteneur des Ã©lÃ©ments 2D
     QList<CBillboard*> m_Billboards;
 
     //! Conteneur des animations
     QHash<int, CAnimation*> m_AnimationByID;
 
-    //! Conteneur des items associés à un noeud
+    //! Conteneur des items associÃ©s Ã  un noeud
     QHash<int, ASceneNodeItem*> m_NodeItemByID;
 
     //! File d'attente des items dont on doit effectuer le rendu
@@ -375,7 +375,7 @@ protected:
     //! File d'attente des items transparents dont on doit effectuer le rendu
     mutable CRenderQueue m_TransparentRenderQueue;
 
-    //! Ajoute un item à la file d'attente
+    //! Ajoute un item Ã  la file d'attente
     void addToRenderQueue(ARenderableItem* pRenderableItem);
 
     //! Supprime un item de la file d'attente

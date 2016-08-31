@@ -1,4 +1,4 @@
-#include "CMeshBuffer.h"
+ï»¿#include "CMeshBuffer.h"
 
 
 //--------------------------------------------------------------------------
@@ -241,7 +241,7 @@ void CMeshBuffer::computeBones()
 
                 if (iCurrentID > DefaultMaxBonesPerVertex)
                 {
-                    qDebug() << "CMeshBuffer::computeBones() : Bone per vertex > 4, non géré !";
+                    qDebug() << "CMeshBuffer::computeBones() : Bone per vertex > 4, non gÃ©rÃ© !";
                     bTreatBone = false;
                 }
             }

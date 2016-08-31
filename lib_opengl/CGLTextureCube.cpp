@@ -1,4 +1,4 @@
-#include "CGLTextureCube.h"
+﻿#include "CGLTextureCube.h"
 #include "CLogManager.h"
 
 CGLTextureCube::CGLTextureCube(const QStringList& fileNames)

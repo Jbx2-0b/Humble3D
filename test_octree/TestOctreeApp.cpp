@@ -1,4 +1,4 @@
-#include "TestOctreeApp.h"
+ï»¿#include "TestOctreeApp.h"
 #include "Shapes/CSphereMesh.h"
 #include "CMath.h"
 #include "COctree.h"
@@ -7,7 +7,7 @@ TestOctreeApp::TestOctreeApp()
     : m_pController(0)
     , m_pController2(0)
 {
-    // On crée une camera
+    // On crÃ©e une camera
     CCamera* pCamera = getSceneManager()->createCamera();
     pCamera->setEyePosition(QVector3D(0, 0, -50));
     pCamera->setCenter(QVector3D(0., 0., 0.));
@@ -23,7 +23,7 @@ TestOctreeApp::TestOctreeApp()
 
     getSceneManager()->buildOctree(CBox3D(QVector3D(-500, -500, -500), QVector3D(+500, +500, +500)), 1000, 5);
 
-    // On crée une camera
+    // On crÃ©e une camera
     //    CCamera* pCamera2 = getSceneManager()->createCamera();
     //    pCamera2->setEyePosition(QVector3D(0, 0, -50));
     //    pCamera2->setCenter(QVector3D(0., 0., 0.));
@@ -35,7 +35,7 @@ TestOctreeApp::TestOctreeApp()
     //    m_pController2 = new Controller(pAnotherView);
 
 
-    // On crée une lumiére
+    // On crÃ©e une lumiÃ©re
     CLight* pLight = getSceneManager()->createLight();
     pLight->setDiffuseColor(1.0, 1.0, 1.0);
     pLight->setAmbientColor(1.0, 1.0, 1.0);

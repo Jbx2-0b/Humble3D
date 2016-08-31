@@ -1,4 +1,4 @@
-#ifndef CFRUSTUM_H
+﻿#ifndef CFRUSTUM_H
 #define CFRUSTUM_H
 
 // Lib
@@ -25,7 +25,7 @@ public:
     //! Constructeur
     CFrustum(const QMatrix4x4& modelViewProjectionMatrix);
 
-    //! Met � jour le frustum
+    //! Met à jour le frustum
     void update(const QMatrix4x4& mvp);
 
     //! Teste l'intersetion avec un point

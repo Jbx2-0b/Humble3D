@@ -1,4 +1,4 @@
-#ifndef CPLANE_H
+﻿#ifndef CPLANE_H
 #define CPLANE_H
 
 // Foundations

@@ -1,4 +1,4 @@
-#include <QMatrix4x4>
+ï»¿#include <QMatrix4x4>
 #include <QTransform>
 #include <QImage>
 #include <QColor>
@@ -129,7 +129,7 @@ int main(int, char **)
     Q_ASSERT(unitedBBox.getMinimum().x() == -1. && unitedBBox.getMaximum().x() == 2.);
 
     //-----------------------------------------------------------------------------------------
-    // Test translation union avec boîte englobante nulle
+    // Test translation union avec boÃ®te englobante nulle
     //-----------------------------------------------------------------------------------------
     CBox3D bbox3;
 
@@ -138,7 +138,7 @@ int main(int, char **)
     Q_ASSERT(unitedBBox.getMinimum().x() == -1. && unitedBBox.getMaximum().x() == 2.);
 
     //-----------------------------------------------------------------------------------------
-    // Test d'intersection rayon / boîte englobante
+    // Test d'intersection rayon / boÃ®te englobante
     //-----------------------------------------------------------------------------------------
     CRay ray(QVector3D(0., 0., -4.), QVector3D(0., 0., 1.));
 

@@ -1,4 +1,4 @@
-#ifndef CTEXTURETARGET_H
+ï»¿#ifndef CTEXTURETARGET_H
 #define CTEXTURETARGET_H
 
 // Lib
@@ -42,7 +42,7 @@ public:
     //! Retourne le format de la texture
     EnumInternalFormat getFormat() const				{ return m_eFormat; }
 
-    //! Affiche les propriétés sur la console
+    //! Affiche les propriÃ©tÃ©s sur la console
     virtual QString toString() const
     {
         QString result;

@@ -1,4 +1,4 @@
-#ifndef CVERETXWEIGHT_H
+ï»¿#ifndef CVERETXWEIGHT_H
 #define CVERETXWEIGHT_H
 
 // Foundations
@@ -18,13 +18,13 @@ public:
         , m_dWeight(dWeight)
     {}
 
-    //! Définit l'index du vertex influencé par le bone
+    //! DÃ©finit l'index du vertex influencÃ© par le bone
     void setVertexID(unsigned int iVertexID) { m_iVertexID = iVertexID; }
 
-    //! Définit la force de l'influence dans l'intervalle [0; 1]
+    //! DÃ©finit la force de l'influence dans l'intervalle [0; 1]
     void setWeight(real dWeight) { m_dWeight = dWeight; }
 
-    //! Retourne l'index du vertex influencé par le bone
+    //! Retourne l'index du vertex influencÃ© par le bone
     unsigned int getVertexID() const { return m_iVertexID; }
 
     //! Retourne la force de l'influence dans l'intervalle [0; 1]

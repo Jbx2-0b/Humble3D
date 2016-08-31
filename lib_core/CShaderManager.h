@@ -1,4 +1,4 @@
-#ifndef CSHADERMANAGER_H
+ï»¿#ifndef CSHADERMANAGER_H
 #define CSHADERMANAGER_H
 
 // Lib
@@ -51,17 +51,17 @@ public:
     {
     public:
 
-        //! Prévient de l'ajout ou de la mise à jour d'un shader
+        //! PrÃ©vient de l'ajout ou de la mise Ã  jour d'un shader
         virtual void onUpdateShader(CShader* pShader) = 0;
 
-        //! Prévient de la suppression d'un Shader
+        //! PrÃ©vient de la suppression d'un Shader
         virtual void onDeleteShader(CShader* pShader) = 0;
     };
 
     //! Enregistre un listener
     void registerListener(IShaderManagerListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IShaderManagerListener* pListener);
 
     //! Retourne le nombre de shaders
@@ -85,14 +85,14 @@ public:
     //! Retourne true si le shader existe
     bool isShaderExist(int iID) const;
 
-    //! Crée un nouveau shader et retourne son pointeur
+    //! CrÃ©e un nouveau shader et retourne son pointeur
     CShader* createShader(
             const QString& name,
             const QString& vertexShaderFileName = "",
             const QString& geometryShaderFileName = "",
             const QString& fragmentShaderFileName = "");
 
-    //! Crée une nouveau shader et retourne son pointeur
+    //! CrÃ©e une nouveau shader et retourne son pointeur
     CShader* createShaderFromSourceCode(
             const QString& name,
             const QString& vertexShaderFileCode = "",
@@ -102,15 +102,15 @@ public:
     //! Supprime une Shader
     void removeShader(CShader* pShader);
 
-    //! Libére l'ensemble des Shaders du manager
+    //! LibÃ©re l'ensemble des Shaders du manager
     void clearShaders();
 
 protected:
 
-    //! Implémentation de CShader::IShaderListener
+    //! ImplÃ©mentation de CShader::IShaderListener
     virtual void onUpdate(CShader* pShader);
 
-    //! Implémentation de CShader::IShaderListener
+    //! ImplÃ©mentation de CShader::IShaderListener
     virtual void onDelete(CShader* pShader);
 
     //-------------------------------------------------------------------------------------------------
@@ -120,10 +120,10 @@ protected:
     //! Liste des listeners
     QSet<IShaderManagerListener*> m_ShaderManagerListeners;
 
-    //! Notifie les listeners qu'un shader a été ajouté
+    //! Notifie les listeners qu'un shader a Ã©tÃ© ajoutÃ©
     void notifyUpdate(CShader* pShader);
 
-    //! Notifie les listeners qu'un shader a été supprimé
+    //! Notifie les listeners qu'un shader a Ã©tÃ© supprimÃ©
     void notifyDelete(CShader* pShader);
 
 private:

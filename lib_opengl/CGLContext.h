@@ -1,4 +1,4 @@
-#ifndef CGLCONTEXT_H
+﻿#ifndef CGLCONTEXT_H
 #define CGLCONTEXT_H
 
 #include "CGLGlobal.h"

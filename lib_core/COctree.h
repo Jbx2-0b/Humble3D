@@ -1,4 +1,4 @@
-#ifndef COCTREE_H
+ï»¿#ifndef COCTREE_H
 #define COCTREE_H
 
 // Lib
@@ -29,30 +29,30 @@ public:
     //! Ajoute un noeud de scene
     void addSceneNode(CSceneNode* pSceneNode);
 
-    //! Met à jour un noeud de scene
+    //! Met Ã  jour un noeud de scene
     void updateSceneNode(CSceneNode* pSceneNode);
 
     //! Supprime un noeud de scene
     void removeSceneNode(CSceneNode* pSceneNode);
 
-    //! Retourne la liste des noeuds visible pour un frustum donné
+    //! Retourne la liste des noeuds visible pour un frustum donnÃ©
     QSet<CSceneNode*> getVisibleSceneNodes(const CFrustum& frustum) const;
 
 protected:
 
-    //! Prévient de la mise à jour d'une caméra
+    //! PrÃ©vient de la mise Ã  jour d'une camÃ©ra
     virtual void onUpdateCamera(CCamera*) {}
 
-    //! Prévient de la mise à jour d'une animation
+    //! PrÃ©vient de la mise Ã  jour d'une animation
     virtual void onUpdateAnimation(CAnimation*) {}
 
-    //! Prévient de la création d'un noeud
+    //! PrÃ©vient de la crÃ©ation d'un noeud
     virtual void onCreateSceneNode(CSceneNode* pSceneNode);
 
-    //! Prévient de la mise à jour d'un noeud
+    //! PrÃ©vient de la mise Ã  jour d'un noeud
     virtual void onUpdateSceneNode(CSceneNode* pSceneNode);
 
-    //! Prévient de la mise à jour d'un noeud
+    //! PrÃ©vient de la mise Ã  jour d'un noeud
     virtual void onDeleteSceneNode(CSceneNode* pSceneNode);
 
 private:
@@ -61,7 +61,7 @@ private:
 
     void recursiveFindVisibleSceneNodes(const CFrustum& frustum, const COctreeNode* pNode, QSet<CSceneNode*>& visibleSceneNodes) const;
 
-    //! SceneManager associé
+    //! SceneManager associÃ©
     CSceneManager* m_pSceneManager;
 
     //! Noeud racine
@@ -70,7 +70,7 @@ private:
     //! Seuil de polygones pour la subdivision
     unsigned int m_uiPolygonCountThreshold;
 
-    //! Seuil de recursivité
+    //! Seuil de recursivitÃ©
     unsigned int m_uiMaxDepth;
 
     QMultiHash<CSceneNode*, COctreeNode*> m_SceneNodes;

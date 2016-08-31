@@ -1,4 +1,4 @@
-package opengl.renderer;
+Ôªøpackage opengl.renderer;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -95,7 +95,7 @@ class GLRenderer extends ARenderer
 	}
 	
 	//--------------------------------------------------------------------------------------------
-	// ImplÈmentation ARenderer
+	// Impl√©mentation ARenderer
 	//--------------------------------------------------------------------------------------------
 
 	
@@ -128,8 +128,8 @@ class GLRenderer extends ARenderer
 
 	        MultiMap<GLShaderProgram, Integer> shaderQueue = new MultiMap<GLShaderProgram, Integer>(); 
 
-			// La render queue est triÈe par matÈriaux. L'objectif ici est de trier les matÈriaux par shader afin de minimiser au maximum
-			// le chargement / dÈchargement de shader sur la carte graphique en vue d'augmenter les performances
+			// La render queue est tri√©e par mat√©riaux. L'objectif ici est de trier les mat√©riaux par shader afin de minimiser au maximum
+			// le chargement / d√©chargement de shader sur la carte graphique en vue d'augmenter les performances
 			for (int iMaterialID : materialIDs)
 			{
 				Material pMaterial = MaterialManager.getInstance().getMaterialByID(iMaterialID);
@@ -155,8 +155,8 @@ class GLRenderer extends ARenderer
 
 			MultiMap<GLShaderProgram, Integer> transparentShaderQueue = new MultiMap<GLShaderProgram, Integer>();
 
-			// La render queue est triÈe par matÈriaux. L'objectif ici est de trier les matÈriaux par shader afin de minimiser au maximum
-			// le chargement / dÈchargement de shader sur la carte graphique en vue d'augmenter les performances
+			// La render queue est tri√©e par mat√©riaux. L'objectif ici est de trier les mat√©riaux par shader afin de minimiser au maximum
+			// le chargement / d√©chargement de shader sur la carte graphique en vue d'augmenter les performances
 			for (int iMaterialID : transparentMaterialIDs)
 			{
 				Material pMaterial = MaterialManager.getInstance().getMaterialByID(iMaterialID);
@@ -304,13 +304,13 @@ class GLRenderer extends ARenderer
 	}
 
 	//--------------------------------------------------------------------------------------------
-	// Fin implÈmentation ARenderer
+	// Fin impl√©mentation ARenderer
 	//--------------------------------------------------------------------------------------------
 
-	//! Override - DÈfinit le mode de remplissage
+	//! Override - D√©finit le mode de remplissage
 	void setRasterizationMode(EnumRasterizationMode eRasterizationMode)
 	{
-		// Gestion en fonction de l'Ètat prÈcÈdent
+		// Gestion en fonction de l'√©tat pr√©c√©dent
 		switch (m_eRasterizationMode)
 		{
 			case eLine:
@@ -325,7 +325,7 @@ class GLRenderer extends ARenderer
 	            break;
 		}
 
-		// Gestion en fonction de l'Ètat courant
+		// Gestion en fonction de l'√©tat courant
 		switch (eRasterizationMode)
 		{
 			case eLine:
@@ -353,7 +353,7 @@ class GLRenderer extends ARenderer
 	//! Retourne le nombre de polygones par frame
 	int getPolygonCount() { return m_iPolygonsPerFrame; }
 	
-	//! Conteneur associatif qui permet de trouver un buffer GPU dÈcrivant un item
+	//! Conteneur associatif qui permet de trouver un buffer GPU d√©crivant un item
     HashMap<MeshBuffer, GLMeshBuffer> m_HardwareBufferMap = new HashMap<MeshBuffer, GLMeshBuffer>();
 
     //! Shader program
@@ -366,7 +366,7 @@ class GLRenderer extends ARenderer
 	// Listeners
 	//--------------------------------------------------------------------------------------------
 
-	//! ImplÈmentation - Interface CTextureManager::IListener
+	//! Impl√©mentation - Interface CTextureManager::IListener
 	void onUpdate(ATextureDescription pTexture)
 	{
 		if (pTexture.isValid())
@@ -375,7 +375,7 @@ class GLRenderer extends ARenderer
 		}
 	}
 
-	//! ImplÈmentation - Interface CTextureManager::IListener
+	//! Impl√©mentation - Interface CTextureManager::IListener
 	void onDelete(ATextureDescription pTexture)
 	{
 		String textureName = pTexture.getName();
@@ -386,7 +386,7 @@ class GLRenderer extends ARenderer
 		}
 	}
 
-	//! ImplÈmentation - Interface CSceneManager::IListener
+	//! Impl√©mentation - Interface CSceneManager::IListener
 	void onDelete(MeshBuffer pBuffer)
 	{
 		if (m_HardwareBufferMap.containsKey(pBuffer))
@@ -396,11 +396,11 @@ class GLRenderer extends ARenderer
 			LogManager.getInstance().addMessage(EnumLogType.eDEBUGMEMORY, "Suppression GPU Buffer");
 			pGPUBuffer.delete();
 	
-			// La destruction du buffer induit la libÈration de la mÈmoire occupÈ sur le serveur OpenGL
+			// La destruction du buffer induit la lib√©ration de la m√©moire occup√© sur le serveur OpenGL
 		}
 	}
 
-	//! ImplÈmentation - Interface CSceneManager::IListener
+	//! Impl√©mentation - Interface CSceneManager::IListener
 	void onUpdate(Shader pShader)
 	{
 	    if (!isInit())
@@ -408,14 +408,14 @@ class GLRenderer extends ARenderer
 
 		if (m_ShaderPrograms.containsKey(pShader.getName()))
 		{
-			// Le shader existe dÈj‡ ? on remplace le prÈcÈdent
+			// Le shader existe d√©j√† ? on remplace le pr√©c√©dent
 			m_ShaderPrograms.get(pShader.getName()).delete();
 		}
 
 		bindShader(pShader);
 	}
 
-	//! ImplÈmentation - Interface CSceneManager::IListener
+	//! Impl√©mentation - Interface CSceneManager::IListener
 	void onDelete(Shader pShader)
 	{
 	    if (!isInit())
@@ -429,27 +429,27 @@ class GLRenderer extends ARenderer
 
 			m_ShaderPrograms.remove(pShader.getName());
 
-			// Le shader existe dÈj‡ ? on remplace le prÈcÈdent
+			// Le shader existe d√©j√† ? on remplace le pr√©c√©dent
 			pProgram.delete();
 		}
 	}
 
 
-    //! ImplÈmentation - Interface CSceneManager::IListener
+    //! Impl√©mentation - Interface CSceneManager::IListener
     void onUpdate(Camera pC)
     {
         setDirty();
     }
 
 
-	//! ImplÈmentation - Interface CAnimationManager::IListener
+	//! Impl√©mentation - Interface CAnimationManager::IListener
     void onUpdate()
     {
         setDirty();
     }
 
 	//--------------------------------------------------------------------------------------------
-	// MÈthodes de rendu
+	// M√©thodes de rendu
 	//--------------------------------------------------------------------------------------------
 
 	//! Rendu des items
@@ -541,7 +541,7 @@ class GLRenderer extends ARenderer
     	if (!renderParams.getDepthTest().isEnabled()) glEnable(GL_DEPTH_TEST);
     }
 
-	//! Lie les paramÈtres temporels
+	//! Lie les param√©tres temporels
 	void bindTime()
 	{
 		if (m_pSceneManager == null)
@@ -551,13 +551,13 @@ class GLRenderer extends ARenderer
 	}
 
 
-	//! Lie les paramÈtres de camera (modÈle, vue, projection, normal...) au shader
+	//! Lie les param√©tres de camera (mod√©le, vue, projection, normal...) au shader
 	void bindCamera()
 	{
 		if (m_pSceneManager == null)
 			return;
 
-		// On rÈcupÈre la camÈra courante
+		// On r√©cup√©re la cam√©ra courante
 		Camera pCamera = m_pSceneManager.getCurrentCamera();
 		if (pCamera != null)
 		{
@@ -576,12 +576,12 @@ class GLRenderer extends ARenderer
     	if (m_pSceneManager == null)
     		return;
 
-    	// On rÈcupÈre la camÈra courante
+    	// On r√©cup√©re la cam√©ra courante
     	Camera pCamera = m_pSceneManager.getCurrentCamera();
     	if (pCamera != null)
     	{
-    		// On concatÈne les matrices pour obtenir la matrice "Model-Vue-Projection" qui correspond
-    		// au changement de repÈre pour passer du rÈpÈre de l'objet ‡ celui de la camÈra
+    		// On concat√©ne les matrices pour obtenir la matrice "Model-Vue-Projection" qui correspond
+    		// au changement de rep√©re pour passer du r√©p√©re de l'objet √† celui de la cam√©ra
     		QMatrix4x4 modelViewProjectionMatrix = QMatrix4x4.mul(pCamera.getTransformation(), pNode.getGlobalTransformation());
     		m_pCurrentShader.setUniformValue("modelViewProjectionMatrix", modelViewProjectionMatrix);
 
@@ -591,13 +591,13 @@ class GLRenderer extends ARenderer
     		QMatrix4x4 viewInverseMatrix = QMatrix4x4.mul(pCamera.getViewMatrix().inverted(), pNode.getGlobalTransformation());
     		m_pCurrentShader.setUniformValue("viewInverseMatrix", viewInverseMatrix);
 
-    		// La "normal matrix" est dÈfinie comme "la transposÈe de l'inverse de la matrice modÈle-vue"
+    		// La "normal matrix" est d√©finie comme "la transpos√©e de l'inverse de la matrice mod√©le-vue"
     		QMatrix3x3 normalMatrix = modelViewMatrix.normalMatrix();
     		m_pCurrentShader.setUniformValue("normalMatrix", normalMatrix);
     	}
     }
 
-	//! Lie les attributs des lumiÈres au shader
+	//! Lie les attributs des lumi√©res au shader
     void bindLights()
     {
     	if (m_pSceneManager == null)
@@ -624,7 +624,7 @@ class GLRenderer extends ARenderer
     		
     		if (pLightNode != null)
     		{
-    			// On calcul la position de la lumiËre dans le repËre de l'oeil
+    			// On calcul la position de la lumi√®re dans le rep√®re de l'oeil
     			QVector4D lightPosition = QMatrix4x4.mul(QMatrix4x4.mul(pCamera.getViewMatrix(), pLightNode.getGlobalTransformation()), new QVector4D(0.0f, 0.0f, 0.0f, 1.0f));
 
     			m_pCurrentShader.setUniformValue(String.format("lights[%d].enabled", 				iLightID), pLight.isEnabled());
@@ -770,7 +770,7 @@ class GLRenderer extends ARenderer
 		pNewShaderProgram.link();
 	}
 
-	//! CrÈe un VBO en fonction d'un VertexBuffer
+	//! Cr√©e un VBO en fonction d'un VertexBuffer
 	void createVertexBufferObject(MeshBuffer pBuffer)
 	{
 		if (m_pSceneManager == null)
@@ -786,7 +786,7 @@ class GLRenderer extends ARenderer
 		pBuffer.wash();
 	}
 
-	//! Met ‡ jour un VBO
+	//! Met √† jour un VBO
 	void updateVertexBufferObject(MeshBuffer pBuffer)
 	{
 		if (m_pSceneManager == null)
@@ -809,7 +809,7 @@ class GLRenderer extends ARenderer
 
 		if (m_Textures.containsKey(pTexture.getName())) // la texture existe deja ?
 		{
-			LogManager.getInstance().addMessage(EnumLogType.eDEBUG, "CGLRenderer : " + pTexture.getName() + " suppression pour mise ‡ jour.");
+			LogManager.getInstance().addMessage(EnumLogType.eDEBUG, "CGLRenderer : " + pTexture.getName() + " suppression pour mise √† jour.");
 			AGLTexture pGLTexture = m_Textures.get(pTexture.getName());
 			m_Textures.remove(pTexture.getName());
 			pGLTexture.delete();;
@@ -869,7 +869,7 @@ class GLRenderer extends ARenderer
 		}
 		else
 		{
-			LogManager.getInstance().addMessage(EnumLogType.eWARN, "CGLRenderer::addTexture() : Type de texture non supportÈ : " + pTexture.getName());
+			LogManager.getInstance().addMessage(EnumLogType.eWARN, "CGLRenderer::addTexture() : Type de texture non support√© : " + pTexture.getName());
 		}
 	}
 		
@@ -1044,7 +1044,7 @@ class GLRenderer extends ARenderer
 		return pShaderProgram;
 	}
 
-	//! retourne vrai si le matÈriau a au moins une texture valide
+	//! retourne vrai si le mat√©riau a au moins une texture valide
 	bool hasValidTexture(Material pMaterial)
 	{
 		for (MaterialTextureParameter texture : pMaterial.textures())

@@ -1,4 +1,4 @@
-#ifndef AOCTREEITEM_H
+ï»¿#ifndef AOCTREEITEM_H
 #define AOCTREEITEM_H
 
 #include "CBox3D.h"
@@ -9,7 +9,7 @@
 // Qt
 #include <QMutex>
 
-//! Classe abstraite des items pouvant être associé à un noeud du octree
+//! Classe abstraite des items pouvant Ãªtre associÃ© Ã  un noeud du octree
 class AOctreeItem
 {
     friend class COctreeNode;
@@ -34,16 +34,16 @@ public:
 	//! Retourne un pointeur sur le mutex
 	QMutex* getMutex() { return &m_Mutex; }
 
-    //! Retourne l'item associé
+    //! Retourne l'item associÃ©
     ASceneNodeItem* getItem() { return m_pSceneNodeItem; }
 
-    //! Définit le Level of Detail
+    //! DÃ©finit le Level of Detail
 	void setLOD(int iLOD) { m_iLOD = iLOD; }
 
     //! Retourne le Level of Detail
 	int getLOD() const { return m_iLOD; }
 
-    //! Retourne le node dans l'octree associé
+    //! Retourne le node dans l'octree associÃ©
     COctreeNode* getOctreeNode() const { return m_pOctreeNode; }
 
 private:

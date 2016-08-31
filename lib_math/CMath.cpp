@@ -1,4 +1,4 @@
-#include "CMath.h"
+ï»¿#include "CMath.h"
 
 
 bool Math::bRandInitialized = false;
@@ -238,26 +238,18 @@ QPoint Math::intersectPoint(const QPoint &A, const QPoint &B, const QPoint &C, c
 
 bool Math::isZero(real value, real epsilon)
 {
-    if( fabs(value) <= epsilon)
-        return true;
-    return false;
+    return fabs(value) <= epsilon;
 }
 
 bool Math::isEqual(real a, real b, real epsilon)
 {
-    if (fabs(a - b) <= epsilon)
-        return true;
-    return false;
+    return fabs(a - b) <= epsilon;
 }
 
 bool Math::isFinite(real x)
 {
     const real INF = std::numeric_limits<real>::infinity();
-    if (-INF < x && x < INF)
-    {
-        return true;
-    }
-    return false;
+    return -INF < x && x < INF;
 }
 
 QPointF Math::computePixToDeg(QSize videoSize, real dCameraFOV, QPointF screen2DPoint, bool bNormalized)
@@ -268,7 +260,7 @@ QPointF Math::computePixToDeg(QSize videoSize, real dCameraFOV, QPointF screen2D
     real dPixX;
     real dPixY;
 
-    // Dans le cas ou les coordonnées de points ont était normalisées on les dénormalise avant d'effectuer le calcul
+    // Dans le cas ou les coordonnÃ©es de points ont Ã©tait normalisÃ©es on les dÃ©normalise avant d'effectuer le calcul
     if (bNormalized)
     {
         dPixX = (real) (screen2DPoint.x() * videoSize.width()  - videoSize.width() / 2);
@@ -287,7 +279,7 @@ QPointF Math::computePixToDeg(QSize videoSize, real dCameraFOV, QPointF screen2D
     real dDegX = radToDeg(atan(dPixX / dLW));
     real dDegY = radToDeg(atan(dPixY / dLH));
 
-    // L'axe Y est inversé entre le répére écran et le repére angulaire
+    // L'axe Y est inversÃ© entre le rÃ©pÃ©re Ã©cran et le repÃ©re angulaire
     return QPointF(dDegX, -dDegY);
 }
 
@@ -302,7 +294,7 @@ QPoint Math::computeDegToPix(QSize videoSize, real dCameraFOV, QPointF angles)
     int dPixX = (int) (dLW * tan(degToRad(angles.x())));
     int dPixY = (int) (dLH * tan(degToRad(angles.y())));
 
-    // L'axe Y est inversé entre le répére écran et le repére angulaire
+    // L'axe Y est inversÃ© entre le rÃ©pÃ©re Ã©cran et le repÃ©re angulaire
     return QPoint(videoSize.width() / 2 + dPixX, videoSize.height() / 2 - dPixY);
 }
 

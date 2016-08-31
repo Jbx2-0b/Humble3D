@@ -1,10 +1,10 @@
-#ifndef ISENDER_H
+ï»¿#ifndef ISENDER_H
 #define ISENDER_H
 
 // QT
 #include <QObject>
 
-//! Définit la taille maximum d'un paquet
+//! DÃ©finit la taille maximum d'un paquet
 typedef quint32 MaxPacketSize;
 
 class ISender : public QObject
@@ -21,7 +21,7 @@ public:
         , m_iCompressionFactor(0)
     {}
 
-    //! Définit le taux de compression (de 0 -pas de de compression- à 9)
+    //! DÃ©finit le taux de compression (de 0 -pas de de compression- Ã  9)
     void setCompressionFactor(int iFactor)	{ m_iCompressionFactor = iFactor; }
 
 signals:

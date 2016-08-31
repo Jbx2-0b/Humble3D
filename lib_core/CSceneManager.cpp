@@ -1,4 +1,4 @@
-#include "CSceneManager.h"
+ï»¿#include "CSceneManager.h"
 #include "CLogManager.h"
 #include "CRay.h"
 #include "CTriangle.h"
@@ -699,7 +699,7 @@ ASceneNodeItem* CSceneManager::recursiveFindIntersection(const CRay& ray, CScene
 {
     ASceneNodeItem* pSelectedItem = 0;
 
-    // Pour chaque NodeItem attaché au node
+    // Pour chaque NodeItem attachÃ© au node
     foreach (ASceneNodeItem* pItem, pNode->getItems())
     {
         if (pItem->isSelectable())
@@ -723,7 +723,7 @@ ASceneNodeItem* CSceneManager::recursiveFindIntersection(const CRay& ray, CScene
             }
         }
     }
-    // On effectue la recherche de maniére récursive pour les enfants
+    // On effectue la recherche de maniÃ©re rÃ©cursive pour les enfants
     foreach (CSceneNode* pChildNode, pNode->getChildNodes())
     {
         if (ASceneNodeItem* pItem = recursiveFindIntersection(ray, pChildNode, dDistance))

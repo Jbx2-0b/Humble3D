@@ -1,4 +1,4 @@
-#include "CXmlElement.h"
+﻿#include "CXmlElement.h"
 
 //-----------------------------------------------------------------------------------------
 CXmlElement::CXmlElement(const QString& name, CXmlElement* parent, bool debugMode /* = false*/)

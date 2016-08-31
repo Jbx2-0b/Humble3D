@@ -1,4 +1,4 @@
-#ifndef CEDITSHADERTEXTITEM_H
+ï»¿#ifndef CEDITSHADERTEXTITEM_H
 #define CEDITSHADERTEXTITEM_H
 
 
@@ -37,21 +37,21 @@ public:
     //! Destructeur
     virtual ~CEditShaderTextItem();
 
-    //! Définit la feuille de style CSS
+    //! DÃ©finit la feuille de style CSS
     void setStyleSheet(const QString& styleSheet);
 
     //! Retourne le texte
     QString getText() const { return m_pEdit->toPlainText(); }
 
-    //! Définit le type de shader en cours d'édition
+    //! DÃ©finit le type de shader en cours d'Ã©dition
     void setShaderType(EnumShaderType eType);
 
 protected:
 
-    //! Implémentation de CShader::IShaderListener
+    //! ImplÃ©mentation de CShader::IShaderListener
     virtual void onUpdate(CShader* pShader);
 
-    //! Implémentation de CShader::IShaderListener
+    //! ImplÃ©mentation de CShader::IShaderListener
     virtual void onDelete(CShader* pShader);
 
 public slots:

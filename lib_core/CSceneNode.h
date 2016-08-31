@@ -1,4 +1,4 @@
-#ifndef CSCENENODE_H
+ï»¿#ifndef CSCENENODE_H
 #define CSCENENODE_H
 
 // Lib
@@ -44,7 +44,7 @@ public:
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit la matric de transformation appliquée au noeud
+    //! DÃ©finit la matric de transformation appliquÃ©e au noeud
     void setLocalTransformation(const QMatrix4x4& mTransformation);
 
     //-------------------------------------------------------------------------------------------------
@@ -54,16 +54,16 @@ public:
     //! Retourne le nom du type
     virtual QString getTypeName() const	{ return "SceneNode"; }
 
-    //! Retourne les items associés au noeud
+    //! Retourne les items associÃ©s au noeud
     QList<ASceneNodeItem*>& getItems() { return m_NodeItems; }
 
-    //! Retourne les items associés au noeud
+    //! Retourne les items associÃ©s au noeud
     const QList<ASceneNodeItem*>& getItems() const { return m_NodeItems; }
 
-    //! Retourne vrai si a des items attachés
+    //! Retourne vrai si a des items attachÃ©s
     bool hasItems() const { return !m_NodeItems.isEmpty(); }
 
-    //! Retourne les items associés au noeud et à l'ensemble de ses enfants
+    //! Retourne les items associÃ©s au noeud et Ã  l'ensemble de ses enfants
     QList<ASceneNodeItem*> getAllChildItems() const;
 
     //! Retourne la matrice de transformation locale
@@ -84,10 +84,10 @@ public:
     //! Retourne l'emplacement du noeud
     QVector3D getGlobalPosition() const;
 
-    //! Retourne la boîte englobante des items associés à ce noeud
+    //! Retourne la boÃ®te englobante des items associÃ©s Ã  ce noeud
     const CBox3D& getLocalAxisAlignedBoundingBox(bool bTransformed = true) const;
 
-    //! Retourne la boite englobante des items associés et ceux des noeuds enfants (union des AABB)
+    //! Retourne la boite englobante des items associÃ©s et ceux des noeuds enfants (union des AABB)
     const CBox3D& getGlobalAxisAlignedBoundingBox() const;
 
     //! Retourne la masse locale des items du noeud
@@ -96,53 +96,53 @@ public:
     //! Retourne la masse globale des items du noeud
     real getGlobalMass() const;
 
-    //! Retourne le nombre de polygones attachés au noeud
+    //! Retourne le nombre de polygones attachÃ©s au noeud
     unsigned int getLocalPolygonCount() const;
 
-    //! Retourne le nombre de polygones attachés au noeud et à ses enfants
+    //! Retourne le nombre de polygones attachÃ©s au noeud et Ã  ses enfants
     unsigned int getGlobalPolygonCount() const;
 
     //-------------------------------------------------------------------------------------------------
     // Members functions
     //-------------------------------------------------------------------------------------------------
 
-    //! Ajoute un item associé au noeud
+    //! Ajoute un item associÃ© au noeud
     void addItem(ASceneNodeItem* pNodeItem);
 
-    //! Ajoute plusieurs items associés au noeud
+    //! Ajoute plusieurs items associÃ©s au noeud
     void addItems(const QList<ASceneNodeItem*>& nodeItems);
 
-    //! Ajoute un item associé au noeud
+    //! Ajoute un item associÃ© au noeud
     void removeItem(ASceneNodeItem* pNodeItem);
 
-    //! Crée un noeud enfant et retourne son pointeur
+    //! CrÃ©e un noeud enfant et retourne son pointeur
     virtual CSceneNode* createChild(const QVector3D& vTranslation = QVector3D(), const QQuaternion& qRotation = QQuaternion());
 
-    //! Crée un noeud enfant et retourne son pointeur
+    //! CrÃ©e un noeud enfant et retourne son pointeur
     virtual CSceneNode* createChild(const QMatrix4x4& transformation);
 
-    //! Crée un noeud enfant et retourne son pointeur
+    //! CrÃ©e un noeud enfant et retourne son pointeur
     virtual CSceneNode* createChild(const QString& nodeName, const QVector3D& vTranslation = QVector3D(), const QQuaternion& qRotation = QQuaternion());
 
-    //! Crée un noeud enfant et retourne son pointeur
+    //! CrÃ©e un noeud enfant et retourne son pointeur
     virtual CSceneNode* createChild(const QString& nodeName, const QMatrix4x4& transformation);
 
-    //! Réinitialise la matrice de transformation
+    //! RÃ©initialise la matrice de transformation
     void resetTransformation();
 
-    //! Définit la translation
+    //! DÃ©finit la translation
     void translate(const QVector3D &vTranslate);
 
-    //! Définit la translation
+    //! DÃ©finit la translation
     void translate(real dX, real dY, real dZ);
 
-    //! Définit l'échelle
+    //! DÃ©finit l'Ã©chelle
     void scale(const QVector3D &vScale);
 
-    //! Définit l'échelle
+    //! DÃ©finit l'Ã©chelle
     void scale(real dX, real dY, real dZ);
 
-    //! Définit l'échelle
+    //! DÃ©finit l'Ã©chelle
     void scale(real dS);
 
     //! Fait tourner l'objet autour d'un axe particulier
@@ -163,7 +163,7 @@ public:
     //! Affiche l'arbre des noeuds sur la console
     void dumpNodeTree() const;
 
-    //! Crée une string contenant les propriétés de l'objet
+    //! CrÃ©e une string contenant les propriÃ©tÃ©s de l'objet
     virtual QString toString() const
     {
         QString result;
@@ -212,40 +212,40 @@ protected:
     //! Gestionnaire de scene
     CSceneManager* m_pSceneManager;
 
-    //! La matrice de transformation associée au noeud
+    //! La matrice de transformation associÃ©e au noeud
     QMatrix4x4 m_LocalTransformation;
 
-    //! La matrice de transformation inverse associée au noeud
+    //! La matrice de transformation inverse associÃ©e au noeud
     QMatrix4x4 m_LocalInverseTransformation;
 
     //! Taille locale
     QVector3D m_LocalScaling;
 
-    //! La matrice de transformation associée au noeud
+    //! La matrice de transformation associÃ©e au noeud
     mutable QMatrix4x4 m_GlobalTransformation;
 
-    //! La matrice de transformation inverse associée au noeud
+    //! La matrice de transformation inverse associÃ©e au noeud
     mutable QMatrix4x4 m_GlobalInverseTransformation;
 
-    //! Vrai si les matrices de transformation nécessitent une mise à jour
+    //! Vrai si les matrices de transformation nÃ©cessitent une mise Ã  jour
     mutable bool m_bNeedUpdateGlobalTransformation;
 
-    //! La matrice de transformation associée au noeud
+    //! La matrice de transformation associÃ©e au noeud
     mutable CBox3D m_LocalBoundingBox;
 
-    //! La matrice de transformation associée au noeud
+    //! La matrice de transformation associÃ©e au noeud
     mutable CBox3D m_LocalTransformedBoundingBox;
 
-    //! La matrice de transformation associée au noeud
+    //! La matrice de transformation associÃ©e au noeud
     mutable CBox3D m_GlobalBoundingBox;
 
-    //! Vrai si la boite englobante locale nécessite une mise à jour
+    //! Vrai si la boite englobante locale nÃ©cessite une mise Ã  jour
     mutable bool m_bNeedUpdateLocalBoundingBox;
 
-    //! Vrai si la boite englobante globale nécessite une mise à jour
+    //! Vrai si la boite englobante globale nÃ©cessite une mise Ã  jour
     mutable bool m_bNeedUpdateGlobalBoundingBox;
 
-    //! L'item associé à ce noeud
+    //! L'item associÃ© Ã  ce noeud
     QList<ASceneNodeItem*> m_NodeItems;
 
     //! Parcourt et affiche l'arbre des noeuds sur la console

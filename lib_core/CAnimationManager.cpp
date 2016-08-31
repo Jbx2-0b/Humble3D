@@ -1,4 +1,4 @@
-#include "CAnimationManager.h"
+﻿#include "CAnimationManager.h"
 
 //-----------------------------------------------------------------------------------------
 CAnimationManager::CAnimationManager(CSceneManager* pSceneManager)

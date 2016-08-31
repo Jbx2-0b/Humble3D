@@ -1,4 +1,4 @@
-#ifndef CRENDERBUFFERMANAGER_H
+ï»¿#ifndef CRENDERBUFFERMANAGER_H
 #define CRENDERBUFFERMANAGER_H
 
 
@@ -52,17 +52,17 @@ public:
     {
     public:
 
-        //! Prévient de l'ajout ou de la mise à jour d'un render buffer
+        //! PrÃ©vient de l'ajout ou de la mise Ã  jour d'un render buffer
         virtual void onUpdateRenderBuffer(CRenderBuffer* pRenderBuffer) = 0;
 
-        //! Prévient de la suppression d'un render buffer
+        //! PrÃ©vient de la suppression d'un render buffer
         virtual void onDeleteRenderBuffer(CRenderBuffer* pRenderBuffer) = 0;
     };
 
     //! Enregistre un listener
     void registerListener(IRenderBufferManagerListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IRenderBufferManagerListener* pListener);
 
     //! Retourne le nombre de RenderBuffers
@@ -86,22 +86,22 @@ public:
     //! Retourne true si la RenderBuffer existe
     bool isRenderBufferExist(int iID) const;
 
-    //! Crée une nouvelle RenderBuffer et retourne son pointeur
+    //! CrÃ©e une nouvelle RenderBuffer et retourne son pointeur
     CRenderBuffer* createRenderBuffer(const QString& name, EnumInternalFormat eFormat);
 
     //! Supprime une RenderBuffer
     void removeRenderBuffer(CRenderBuffer* pRenderBuffer);
 
-    //! Libére l'ensemble des RenderBuffers du manager
+    //! LibÃ©re l'ensemble des RenderBuffers du manager
     void clearRenderBuffers();
 
 
 protected:
 
-    //! Implémentation de CRenderBuffer::IRenderBufferListener
+    //! ImplÃ©mentation de CRenderBuffer::IRenderBufferListener
     virtual void onUpdate(CRenderBuffer* pRenderBuffer);
 
-    //! Implémentation de CRenderBuffer::IRenderBufferListener
+    //! ImplÃ©mentation de CRenderBuffer::IRenderBufferListener
     virtual void onDelete(CRenderBuffer* pRenderBuffer);
 
     //-------------------------------------------------------------------------------------------------
@@ -111,10 +111,10 @@ protected:
     //! Liste des listeners
     QSet<IRenderBufferManagerListener*> m_RenderBufferManagerListeners;
 
-    //! Notifie les listeners qu'un RenderBuffer a été ajouté
+    //! Notifie les listeners qu'un RenderBuffer a Ã©tÃ© ajoutÃ©
     void notifyUpdate(CRenderBuffer* pRenderBuffer);
 
-    //! Notifie les listeners qu'un RenderBuffer a été supprimé
+    //! Notifie les listeners qu'un RenderBuffer a Ã©tÃ© supprimÃ©
     void notifyDelete(CRenderBuffer* pRenderBuffer);
 
 private:

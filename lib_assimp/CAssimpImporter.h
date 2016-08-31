@@ -1,4 +1,4 @@
-#ifndef CASSIMPTOCSCENE_H
+﻿#ifndef CASSIMPTOCSCENE_H
 #define CASSIMPTOCSCENE_H
 
 // Lib

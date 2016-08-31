@@ -1,4 +1,4 @@
-#ifndef LIB_XML_GLOBAL_H
+﻿#ifndef LIB_XML_GLOBAL_H
 #define LIB_XML_GLOBAL_H
 
 #include <qglobal.h>

@@ -1,4 +1,4 @@
-#ifndef CMESHANIMATION_H
+﻿#ifndef CMESHANIMATION_H
 #define CMESHANIMATION_H
 
 // Lib
@@ -21,7 +21,7 @@ public:
     //! Destructeur
     virtual ~CMeshAnimation() {}
 
-    //! Retourne le nom du mesh associ�
+    //! Retourne le nom du mesh associé
     const QString& getMeshInstanceName() const { return m_MeshInstanceName; }
 
     //! Accesseur sur les clefs d'animation

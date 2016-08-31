@@ -1,4 +1,4 @@
-#include "CSceneNodeAnimation.h"
+﻿#include "CSceneNodeAnimation.h"
 #include <QDebug>
 
 //-----------------------------------------------------------------------------------------

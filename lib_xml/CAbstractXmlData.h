@@ -1,10 +1,10 @@
-#ifndef CABSTRACTXMLDATA_H
+ï»¿#ifndef CABSTRACTXMLDATA_H
 #define CABSTRACTXMLDATA_H
 
 #include "CPrivateXmlData.h"
 
 
-//! @brief Classe de base pour la définition d'une classe sérializable en xml
+//! @brief Classe de base pour la dÃ©finition d'une classe sÃ©rializable en xml
 //! @author Jean-Baptiste Tymen
 class CAbstractXmlData : protected CPrivateXmlData
 {
@@ -25,49 +25,49 @@ public:
 	//! Charge un fichier xml
 	virtual void loadXml(const QString& strFileName) { verifyTagDeclaration(); CPrivateXmlData::loadXml(strFileName); }
 
-	//! Vérifie si une clef existe
+	//! VÃ©rifie si une clef existe
 	virtual bool keyExist(const QString& key) { verifyTagDeclaration(); return CPrivateXmlData::keyExist(key); }
 
-	//! Définit la valeur correspondant à la clé key
+	//! DÃ©finit la valeur correspondant Ã  la clÃ© key
 	virtual void setValue(const QString& key, QVariant value) { verifyTagDeclaration(); CPrivateXmlData::setValue(key, value); }
 
-	//! Définit la valeur correspondant à la clé key
+	//! DÃ©finit la valeur correspondant Ã  la clÃ© key
 	virtual void setUserValue(const QString& key, const CAbstractXmlData& value) { verifyTagDeclaration(); CPrivateXmlData::setUserValue(key, value); }
 
-	//! Définit l'ensemble des valeurs définies par la clef key
+	//! DÃ©finit l'ensemble des valeurs dÃ©finies par la clef key
 	virtual void removeValues(const QString& key) { verifyTagDeclaration(); CPrivateXmlData::removeValues(key); }
 
-	//! Retourne la valeur correspondant à la clef key
+	//! Retourne la valeur correspondant Ã  la clef key
 	template<typename T> T getValue(const QString& key) { verifyTagDeclaration(); return m_XmlDatas[key].value<T>(); }
 
-	//! Retourne la liste de valeur correspondant à la clef key
+	//! Retourne la liste de valeur correspondant Ã  la clef key
 	template<typename T> QList<T> getValues(const QString& key);
 	
-	//! Retourne la valeur sous forme booléene correspondant à la clef key
+	//! Retourne la valeur sous forme boolÃ©ene correspondant Ã  la clef key
 	virtual bool getBoolValue(const QString& key) { verifyTagDeclaration(); return CPrivateXmlData::getBoolValue(key); }
 
-	//! Retourne la valeur sous forme entiére correspondant à la clef key
+	//! Retourne la valeur sous forme entiÃ©re correspondant Ã  la clef key
 	virtual int getIntValue(const QString& key) { verifyTagDeclaration(); return CPrivateXmlData::getIntValue(key); }
 
-	//! Retourne la valeur sous forme réelle correspondant à la clef key
+	//! Retourne la valeur sous forme rÃ©elle correspondant Ã  la clef key
 	virtual double getDoubleValue(const QString& key) { verifyTagDeclaration(); return CPrivateXmlData::getDoubleValue(key); }
 
-	//! Retourne la valeur sous forme chaîne de caractére correspondant à la clef key
+	//! Retourne la valeur sous forme chaÃ®ne de caractÃ©re correspondant Ã  la clef key
 	virtual QString getStringValue(const QString& key) { verifyTagDeclaration(); return CPrivateXmlData::getStringValue(key); }
 
-	//! Retourne la valeur sous forme de temps correspondant à la clef key
+	//! Retourne la valeur sous forme de temps correspondant Ã  la clef key
 	virtual QTime getTimeValue(const QString& key) { verifyTagDeclaration(); return CPrivateXmlData::getTimeValue(key); }
 
-	//! Retourne la valeur sous forme de date correspondant à la clef key
+	//! Retourne la valeur sous forme de date correspondant Ã  la clef key
 	virtual QDateTime getDateTimeValue(const QString& key) { verifyTagDeclaration(); return CPrivateXmlData::getDateTimeValue(key); }
 
-	//! Retourne la valeur sous forme de liste de booleens correspondant à la clef key
+	//! Retourne la valeur sous forme de liste de booleens correspondant Ã  la clef key
 	virtual QList<bool> getListBoolValue(const QString& key) { verifyTagDeclaration(); return CPrivateXmlData::getListBoolValue(key); }
 
-	//! Retourne la valeur sous forme de liste d'entiers correspondant à la clef key
+	//! Retourne la valeur sous forme de liste d'entiers correspondant Ã  la clef key
 	virtual QList<int> getListIntValue(const QString& key) { verifyTagDeclaration(); return CPrivateXmlData::getListIntValue(key); }
 
-	//! Retourne la valeur sous forme de liste de double correspondant à la clef key
+	//! Retourne la valeur sous forme de liste de double correspondant Ã  la clef key
 	virtual QList<double> getListDoubleValue(const QString& key) { verifyTagDeclaration(); return CPrivateXmlData::getListDoubleValue(key); }
 
 
@@ -77,7 +77,7 @@ protected:
 
 private:
 
-	//! S'assure que les tagName ont été déclarés. La fonction étant virtuelle (pure même...), on peut pas simplement la passer dans le constructeur ;)
+	//! S'assure que les tagName ont Ã©tÃ© dÃ©clarÃ©s. La fonction Ã©tant virtuelle (pure mÃªme...), on peut pas simplement la passer dans le constructeur ;)
 	void verifyTagDeclaration()
 	{
 		if (!m_bTagDeclared)

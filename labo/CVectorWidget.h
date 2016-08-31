@@ -1,4 +1,4 @@
-#ifndef QVECTORWIDGET_H
+﻿#ifndef QVECTORWIDGET_H
 #define QVECTORWIDGET_H
 
 // Qt

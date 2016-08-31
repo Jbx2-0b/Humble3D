@@ -1,4 +1,4 @@
-#ifndef CTEXTURECUBE_H
+ï»¿#ifndef CTEXTURECUBE_H
 #define CTEXTURECUBE_H
 
 // Lib
@@ -42,10 +42,10 @@ public:
     //! Retourne les noms de fichier image
     const QStringList& getFileNames() const				{ return m_FileNames; }
 
-    //! Définit les noms de fichier image
+    //! DÃ©finit les noms de fichier image
     void setFileNames(const QStringList& fileNames)		{ m_FileNames = fileNames; }
 
-    //! Affiche les propriétés sur la console
+    //! Affiche les propriÃ©tÃ©s sur la console
     virtual QString toString() const
     {
         QString result;

@@ -1,4 +1,4 @@
-#ifndef CMESHGEOMETRY_H
+ï»¿#ifndef CMESHGEOMETRY_H
 #define CMESHGEOMETRY_H
 
 // Lib
@@ -34,7 +34,7 @@ public:
 	// Gestions des mesh buffers
 	//--------------------------------------------------------------------------------------------
 
-	//! Crée et ajoute un buffer de vertex
+	//! CrÃ©e et ajoute un buffer de vertex
 	CMeshBuffer* createMeshBuffer();
 
 	//! Retire un buffer de vertex
@@ -43,20 +43,20 @@ public:
 	//! Supprime l'ensemble des buffers de vertex
 	void clearMeshBuffers();
 
-	//! Retourne la boîte englobant l'objet
+	//! Retourne la boÃ®te englobant l'objet
 	const CBox3D& getBoundingBox();
 
-	//! Met à jour la géométrie
+	//! Met Ã  jour la gÃ©omÃ©trie
 	void update(bool bMultithread);
 
 protected:
 
 	void computeBoundingBox();
 
-	//! Boîte englobante
+	//! BoÃ®te englobante
 	CBox3D m_BoundingBox;
 
-	//! Vrai si la maj de la boîte englobante nécessaire
+	//! Vrai si la maj de la boÃ®te englobante nÃ©cessaire
 	bool m_bNeedBoundingBoxUpdate;
 
 	//! Buffers de vertex
@@ -65,7 +65,7 @@ protected:
 private:
 
 	/*
-	//! Transmet le message de mise à jour
+	//! Transmet le message de mise Ã  jour
 	virtual void notifyUpdate();
 
 	//! Transmet le message de suppression
@@ -74,10 +74,10 @@ private:
 	//! Liste des listeners
 	QList<CMeshGeometry::IListener*> m_Listeners;*/
 
-	//! Fonction appelée à l'initialisation de l'objet
+	//! Fonction appelÃ©e Ã  l'initialisation de l'objet
 	virtual void updateGeometry() {}
 
-	//! Instancieur de geométrie
+	//! Instancieur de geomÃ©trie
 	class LIB_GEOMETRYSHARED_EXPORT CGeometryInstancer : public QThread
 	{
 	public:

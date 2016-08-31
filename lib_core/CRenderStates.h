@@ -1,4 +1,4 @@
-#ifndef CRENDERSTATES_H
+﻿#ifndef CRENDERSTATES_H
 #define CRENDERSTATES_H
 
 // Qt
@@ -15,7 +15,7 @@
 #include "CStencilState.h"
 
 
-//! Param�tres de rendu
+//! Paramètres de rendu
 class CRenderStates
 {
 public:

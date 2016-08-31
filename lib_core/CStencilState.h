@@ -1,4 +1,4 @@
-#ifndef CSTENCILSTATE_H
+﻿#ifndef CSTENCILSTATE_H
 #define CSTENCILSTATE_H
 
 

@@ -1,4 +1,4 @@
-#ifndef CWATER_H
+﻿#ifndef CWATER_H
 #define CWATER_H
 
 // Lib

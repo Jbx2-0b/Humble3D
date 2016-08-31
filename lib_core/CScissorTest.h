@@ -1,4 +1,4 @@
-#ifndef CSCISSORTEST_H
+﻿#ifndef CSCISSORTEST_H
 #define CSCISSORTEST_H
 
 // Qt

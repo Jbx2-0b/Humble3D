@@ -1,4 +1,4 @@
-#ifndef CSHADER_H
+ï»¿#ifndef CSHADER_H
 #define CSHADER_H
 
 // Lib
@@ -87,47 +87,47 @@ public:
     //! Enregistre un listener
     void registerListener(IShaderListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IShaderListener* pListener);
 
     //-------------------------------------------------------------------------------------------------
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit le nom du fichier contenant le vertex shader
+    //! DÃ©finit le nom du fichier contenant le vertex shader
     void setVertexShaderFileName(const QString& fileName)                               { m_VertexShaderFileName = fileName; load(fileName, m_VertexShaderCode); notifyUpdate(); }
 
-    //! Définit le nom du fichier contenant le geometry shader
+    //! DÃ©finit le nom du fichier contenant le geometry shader
     void setGeometryShaderFileName(const QString& fileName)                             { m_GeometryShaderFileName = fileName; load(fileName, m_GeometryShaderCode); notifyUpdate(); }
 
-    //! Définit le nom du fichier contenant le fragment shader
+    //! DÃ©finit le nom du fichier contenant le fragment shader
     void setFragmentShaderFileName(const QString& fileName)                             { m_FragmentShaderFileName = fileName; load(fileName, m_FragmentShaderCode); notifyUpdate(); }
 
-    //! Définit le nom du fichier contenant le vertex shader
+    //! DÃ©finit le nom du fichier contenant le vertex shader
     void setTessellationControlFileName(const QString& fileName)                        { m_TessellationControlShaderFileName = fileName; load(fileName, m_TessellationControlShaderCode); notifyUpdate(); }
 
-    //! Définit le nom du fichier contenant le geometry shader
+    //! DÃ©finit le nom du fichier contenant le geometry shader
     void setTessellationEvaluationShaderFileName(const QString& fileName)               { m_TessellationEvaluationShaderFileName = fileName; load(fileName, m_TessellationEvaluationShaderCode); notifyUpdate(); }
 
-    //! Définit le nom du fichier contenant le fragment shader
+    //! DÃ©finit le nom du fichier contenant le fragment shader
     void setComputeShaderFileName(const QString& fileName)                              { m_ComputeShaderFileName = fileName; load(fileName, m_ComputeShaderCode); notifyUpdate(); }
 
-    //! Définit le code du vertex shader
+    //! DÃ©finit le code du vertex shader
     void setVertexShaderCode(const QString& code)                                       { m_VertexShaderCode = code; notifyUpdate(); }
 
-    //! Définit le code du geometry shader
+    //! DÃ©finit le code du geometry shader
     void setGeometryShaderCode(const QString& code)                                     { m_GeometryShaderCode = code; notifyUpdate(); }
 
-    //! Définit le code du fragment shader
+    //! DÃ©finit le code du fragment shader
     void setFragmentShaderCode(const QString& code)                                     { m_FragmentShaderCode = code; notifyUpdate(); }
 
-    //! Définit le code du vertex shader
+    //! DÃ©finit le code du vertex shader
     void setTessellationControlCode(const QString& code)                                { m_TessellationControlShaderCode = code; notifyUpdate(); }
 
-    //! Définit le code du geometry shader
+    //! DÃ©finit le code du geometry shader
     void setTessellationEvaluationShaderCode(const QString& code)                       { m_TessellationEvaluationShaderCode = code; notifyUpdate(); }
 
-    //! Définit le code du fragment shader
+    //! DÃ©finit le code du fragment shader
     void setComputeShaderCode(const QString& code)                                      { m_ComputeShaderCode = code; notifyUpdate(); }
 
     // Ajoute une valeur uniforme de type double
@@ -179,7 +179,7 @@ public:
     //! Retourne le nom du type
     virtual QString getTypeName() const { return "Shader"; }
 
-    //! Retourne vrai si le shader est considéré comme valide
+    //! Retourne vrai si le shader est considÃ©rÃ© comme valide
     bool isValid() { return hasVertexShader() && hasFragmentShader(); }
 
     //! Retourne le nom du fichier contenant le vertex shader
@@ -218,22 +218,22 @@ public:
     //! Retourne le code du fragment shader
     const QString& getComputeShaderCode() const                                         { return m_ComputeShaderCode; }
 
-    //! Retourne vrai si a un vertex shader de définit
+    //! Retourne vrai si a un vertex shader de dÃ©finit
     bool hasVertexShader() const														{ return !m_VertexShaderCode.isEmpty(); }
 
-    //! Retourne vrai si a un geometry shader de définit
+    //! Retourne vrai si a un geometry shader de dÃ©finit
     bool hasGeometryShader() const														{ return !m_GeometryShaderCode.isEmpty(); }
 
-    //! Retourne vrai si a un fragment shader de définit
+    //! Retourne vrai si a un fragment shader de dÃ©finit
     bool hasFragmentShader() const														{ return !m_FragmentShaderCode.isEmpty(); }
 
-    //! Retourne vrai si a un vertex shader de définit
+    //! Retourne vrai si a un vertex shader de dÃ©finit
     bool hasTessellationControlShader() const											{ return !m_TessellationControlShaderCode.isEmpty(); }
 
-    //! Retourne vrai si a un geometry shader de définit
+    //! Retourne vrai si a un geometry shader de dÃ©finit
     bool hasTessellationEvaluationShader() const										{ return !m_TessellationEvaluationShaderCode.isEmpty(); }
 
-    //! Retourne vrai si a un fragment shader de définit
+    //! Retourne vrai si a un fragment shader de dÃ©finit
     bool hasComputeShader() const														{ return !m_ComputeShaderCode.isEmpty(); }
 
     //! Retourne l'ensemble des uniform values
@@ -296,7 +296,7 @@ public:
 
 protected:
 
-    //! Transmet le message de mise à jour
+    //! Transmet le message de mise Ã  jour
     virtual void notifyUpdate();
 
     //! Transmet le message de suppression

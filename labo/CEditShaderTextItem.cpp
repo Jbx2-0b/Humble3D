@@ -1,4 +1,4 @@
-#include "CEditShaderTextItem.h"
+﻿#include "CEditShaderTextItem.h"
 
 // Qt
 #include <QTextStream>

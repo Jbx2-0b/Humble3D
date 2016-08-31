@@ -1,4 +1,4 @@
-#include "CTcpClientTest.h"
+﻿#include "CTcpClientTest.h"
 
 #include <QDateTime>
 #include <QVariant>

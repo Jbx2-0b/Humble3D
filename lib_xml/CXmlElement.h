@@ -1,4 +1,4 @@
-#ifndef XMLELEMENT_H
+ï»¿#ifndef XMLELEMENT_H
 #define XMLELEMENT_H
 
 // Lib
@@ -29,7 +29,7 @@ public:
     //! Retourne le texte de l'element
     QString getValue() const;
 
-    //! Définit le texte de l'element
+    //! DÃ©finit le texte de l'element
     void setValue(const QString& value);
 
     //! Retourne le chemin de l'element
@@ -68,7 +68,7 @@ public:
     //! Retourne vrai si l'attribut est present
     bool contains(const QString& attributeName) const;
 
-    //! Crée un element enfant
+    //! CrÃ©e un element enfant
     CXmlElement* createChild(const QString& name);
 
     //! Retourne les elements enfants

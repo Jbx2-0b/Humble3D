@@ -1,4 +1,4 @@
-#ifndef CBLENDING_H
+﻿#ifndef CBLENDING_H
 #define CBLENDING_H
 
 // Qt

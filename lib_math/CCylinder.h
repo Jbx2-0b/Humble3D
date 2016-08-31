@@ -1,4 +1,4 @@
-#ifndef CCYLINDER_H
+﻿#ifndef CCYLINDER_H
 #define CCYLINDER_H
 
 // Lib

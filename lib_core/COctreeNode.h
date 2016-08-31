@@ -1,4 +1,4 @@
-#ifndef COCTREENODE_H
+ï»¿#ifndef COCTREENODE_H
 #define COCTREENODE_H
 
 // Lib
@@ -27,10 +27,10 @@ public:
     //! Retourne le nom du type
     virtual QString getTypeName() const { return "OctreeNode"; }
 
-    //! Retourne la bounding box associée
+    //! Retourne la bounding box associÃ©e
     const CBox3D& getBoundingBox() const;
 
-    //! Crée 8 enfants
+    //! CrÃ©e 8 enfants
     const QList<COctreeNode*>& createChilds();
 
     //! Retourne un pointeur sur le mutex
@@ -45,10 +45,10 @@ public:
     //! Supprime un noeud
     void removeSceneNode(CSceneNode* pSceneNode);
 
-    //! Retourne la liste des noeuds associés
+    //! Retourne la liste des noeuds associÃ©s
     const QSet<CSceneNode*>& getSceneNodes() const;
 
-    //! Retourne la liste des noeuds associés
+    //! Retourne la liste des noeuds associÃ©s
     QSet<CSceneNode*>& getSceneNodes();
 
     //! Vide la liste des noeuds
@@ -62,7 +62,7 @@ public:
 
 protected:
 
-    //! Crée un noeud enfant
+    //! CrÃ©e un noeud enfant
     COctreeNode* createChild(const CBox3D& bbox);
 
     QSet<CSceneNode*> m_SceneNodes;

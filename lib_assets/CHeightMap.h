@@ -1,4 +1,4 @@
-#ifndef CHEIGHTMAP_H
+﻿#ifndef CHEIGHTMAP_H
 #define CHEIGHTMAP_H
 
 // Lib

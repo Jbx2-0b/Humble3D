@@ -1,4 +1,4 @@
-#ifndef CGLTEXTURETARGET_H
+﻿#ifndef CGLTEXTURETARGET_H
 #define CGLTEXTURETARGET_H
 
 #include "AGLTexture.h"

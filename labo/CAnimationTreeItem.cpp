@@ -1,4 +1,4 @@
-#include "CAnimationTreeItem.h"
+﻿#include "CAnimationTreeItem.h"
 #include "CNodeTreeWidget.h"
 
 //-----------------------------------------------------------------------------------------

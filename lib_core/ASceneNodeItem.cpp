@@ -1,4 +1,4 @@
-#include "ASceneNodeItem.h"
+ï»¿#include "ASceneNodeItem.h"
 #include "CSceneManager.h"
 #include "CSceneNode.h"
 
@@ -21,10 +21,10 @@ ASceneNodeItem::ASceneNodeItem(CSceneManager* pSceneManager, const QString& name
 //-----------------------------------------------------------------------------------------
 ASceneNodeItem::~ASceneNodeItem()
 {
-    // Previent les abonnés que l'objet va être détruit
+    // Previent les abonnÃ©s que l'objet va Ãªtre dÃ©truit
     notifyDelete();
 
-    // On prévient les noeuds qu'on supprime l'item
+    // On prÃ©vient les noeuds qu'on supprime l'item
     foreach (CSceneNode* pNode, m_Nodes)
     {
         pNode->removeItem(this);

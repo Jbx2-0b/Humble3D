@@ -1,4 +1,4 @@
-#include "CTcpClientTest.h"
+﻿#include "CTcpClientTest.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * XmlAttribute.h
  *
  *  Created on: Oct 14, 2014

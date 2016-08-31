@@ -1,4 +1,4 @@
-#ifndef CMATERIALMANAGER_H
+ï»¿#ifndef CMATERIALMANAGER_H
 #define CMATERIALMANAGER_H
 
 // Lib
@@ -52,26 +52,26 @@ public:
     {
     public:
 
-        //! Prévient de l'ajout ou de la mise à jour d'un matériau
+        //! PrÃ©vient de l'ajout ou de la mise Ã  jour d'un matÃ©riau
         virtual void onUpdate(CMaterial* pMaterial) = 0;
 
-        //! Prévient de la suppression d'un matériau
+        //! PrÃ©vient de la suppression d'un matÃ©riau
         virtual void onDelete(CMaterial* pMaterial) = 0;
     };
 
     //! Enregistre un listener
     void registerListener(IMaterialManagerListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IMaterialManagerListener* pListener);
 
-    //! Retourne le nombre de matériaux
+    //! Retourne le nombre de matÃ©riaux
     int getMaterialCount() const											{ return m_Materials.size(); }
 
-    //! Retourne la collection de matériaux
+    //! Retourne la collection de matÃ©riaux
     const QList<CMaterial*> getMaterials() const							{ return m_Materials.values(); }
 
-    //! Retourne la collection des noms des matériaux disponibles
+    //! Retourne la collection des noms des matÃ©riaux disponibles
     const QList<QString> getMaterialsNames() const							{ return m_Materials.keys(); }
 
     //! Retourne un materiau en fonction de son nom
@@ -80,33 +80,33 @@ public:
     //! Retourne un materiau en fonction de son nom
     CMaterial* getMaterialByID(int iID) const;
 
-    //! Retourne true si le matériau existe
+    //! Retourne true si le matÃ©riau existe
     bool isMaterialExist(const QString& name) const;
 
-    //! Retourne true si le matériau existe
+    //! Retourne true si le matÃ©riau existe
     bool isMaterialExist(int iID) const;
 
-    //! Crée un nouveau matériau et retourne son pointeur
+    //! CrÃ©e un nouveau matÃ©riau et retourne son pointeur
     CMaterial* createMaterial(const QString& name = "Material");
 
     //! Supprime un materiau
     void removeMaterial(CMaterial* pMaterial);
 
-    //! Libére l'ensemble des matériaux du manager
+    //! LibÃ©re l'ensemble des matÃ©riaux du manager
     void clearMaterials();
 
-    //! Initialise les matéraux de couleurs
+    //! Initialise les matÃ©raux de couleurs
     void initColorMaterials();
 
-    //! Retourne un matériaux en fonction d'une couleur
+    //! Retourne un matÃ©riaux en fonction d'une couleur
     QString getMaterialNameByColor(const Color& color);
 
 protected:
 
-    //! Implémentation de CMaterial::IMaterialListener
+    //! ImplÃ©mentation de CMaterial::IMaterialListener
     virtual void onUpdate(CMaterial* pMaterial);
 
-    //! Implémentation de CMaterial::IMaterialListener
+    //! ImplÃ©mentation de CMaterial::IMaterialListener
     virtual void onDelete(CMaterial* pMaterial);
 
     //-------------------------------------------------------------------------------------------------
@@ -116,10 +116,10 @@ protected:
     //! Liste des listeners
     QSet<IMaterialManagerListener*> m_MaterialManagerListeners;
 
-    //! Notifie les listeners qu'un matériau a été ajouté
+    //! Notifie les listeners qu'un matÃ©riau a Ã©tÃ© ajoutÃ©
     void notifyUpdate(CMaterial* pMaterial);
 
-    //! Notifie les listeners qu'un matériau a été supprimé
+    //! Notifie les listeners qu'un matÃ©riau a Ã©tÃ© supprimÃ©
     void notifyDelete(CMaterial* pMaterial);
 
 private:
@@ -130,10 +130,10 @@ private:
     //! Destructeur
     virtual ~CMaterialManager();
 
-    //! Conteneur des matériaux
+    //! Conteneur des matÃ©riaux
     QMap<QString, CMaterial*> m_Materials;
 
-    //! Conteneur des matériaux
+    //! Conteneur des matÃ©riaux
     QMap<int, CMaterial*> m_MaterialIDs;
 
     static CMaterialManager* s_pInstance;

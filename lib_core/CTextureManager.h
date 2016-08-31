@@ -1,4 +1,4 @@
-#ifndef CTEXTUREMANAGER_H
+ï»¿#ifndef CTEXTUREMANAGER_H
 #define CTEXTUREMANAGER_H
 
 
@@ -55,17 +55,17 @@ public:
     {
     public:
 
-        //! Prévient de l'ajout ou de la mise à jour d'un texture
+        //! PrÃ©vient de l'ajout ou de la mise Ã  jour d'un texture
         virtual void onUpdateTexture(ATexture* pTexture) = 0;
 
-        //! Prévient de la suppression d'un texture
+        //! PrÃ©vient de la suppression d'un texture
         virtual void onDeleteTexture(ATexture* pTexture) = 0;
     };
 
     //! Enregistre un listener
     void registerListener(ITextureManagerListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(ITextureManagerListener* pListener);
 
     //! Retourne le nombre de textures
@@ -89,19 +89,19 @@ public:
     //! Retourne true si la texture existe
     bool isTextureExist(int iID) const;
 
-    //! Crée une texture 2D non initialisée
+    //! CrÃ©e une texture 2D non initialisÃ©e
     CTexture2D* createTexture2D(const QString& name);
 
-    //! Crée une texture 2D vide
+    //! CrÃ©e une texture 2D vide
     CTexture2D* createTexture2D(const QString& name, const QSize& size);
 
-    //! Crée une nouvelle texture et retourne son pointeur
+    //! CrÃ©e une nouvelle texture et retourne son pointeur
     CTexture2D* createTexture2D(const QString& name, const QString& textureFileName);
 
-    //! Crée une texture cube
+    //! CrÃ©e une texture cube
     CTextureCube* createTextureCube(const QString& name, const QStringList& textureFileNames);
 
-    //! Crée une texture cube
+    //! CrÃ©e une texture cube
     CTextureCube* createTextureCube(
             const QString& name,
             const QString& fileNamePosX,
@@ -111,24 +111,24 @@ public:
             const QString& fileNamePosZ,
             const QString& fileNameNegZ);
 
-    //! Crée une nouvelle texture de rendu
+    //! CrÃ©e une nouvelle texture de rendu
     CTextureTarget* createTextureTarget(const QString& name, const QSize& size, EnumInternalFormat eFormat);
 
     //! Supprime une texture
     void removeTexture(ATexture* pTexture);
 
-    //! Libére l'ensemble des textures du manager
+    //! LibÃ©re l'ensemble des textures du manager
     void clearTextures();
 
-    //! Retourne un ID d'unité de texture non utilisé
+    //! Retourne un ID d'unitÃ© de texture non utilisÃ©
     int getUnReservedTextureUnit();
 
 protected:
 
-    //! Implémentation de ATexture::ITextureListener
+    //! ImplÃ©mentation de ATexture::ITextureListener
     virtual void onUpdate(ATexture* pTexture);
 
-    //! Implémentation de ATexture::ITextureListener
+    //! ImplÃ©mentation de ATexture::ITextureListener
     virtual void onDelete(ATexture* pTexture);
 
     //-------------------------------------------------------------------------------------------------
@@ -138,10 +138,10 @@ protected:
     //! Liste des listeners
     QSet<ITextureManagerListener*> m_TextureManagerListeners;
 
-    //! Notifie les listeners qu'un texture a été ajouté
+    //! Notifie les listeners qu'un texture a Ã©tÃ© ajoutÃ©
     void notifyUpdate(ATexture* pTexture);
 
-    //! Notifie les listeners qu'un texture a été supprimé
+    //! Notifie les listeners qu'un texture a Ã©tÃ© supprimÃ©
     void notifyDelete(ATexture* pTexture);
 
 private:

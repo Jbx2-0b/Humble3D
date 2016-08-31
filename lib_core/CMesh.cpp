@@ -1,4 +1,4 @@
-#include "CMesh.h"
+﻿#include "CMesh.h"
 #include "CBox3D.h"
 #include "CLogManager.h"
 #include "CTriangle.h"
@@ -169,7 +169,7 @@ QMultiHash<CSceneNode*, CBone> CMesh::getBoneNodes(CSceneManager* pSceneManager)
 }
 
 //-----------------------------------------------------------------------------------------
-// Fonctions math�matiques
+// Fonctions mathématiques
 //-----------------------------------------------------------------------------------------
 void CMesh::computeNormals()
 {

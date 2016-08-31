@@ -1,4 +1,4 @@
-#ifndef RENDERGLOBAL_H
+﻿#ifndef RENDERGLOBAL_H
 #define RENDERGLOBAL_H
 
 #include <QSize>

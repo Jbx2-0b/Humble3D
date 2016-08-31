@@ -1,4 +1,4 @@
-#include "Controller.h"
+﻿#include "Controller.h"
 
 //-----------------------------------------------------------------------------------------
 Controller::Controller(CWidget3D* pView)

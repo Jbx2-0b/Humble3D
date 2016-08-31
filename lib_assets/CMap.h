@@ -1,4 +1,4 @@
-#ifndef CMAP_H
+ï»¿#ifndef CMAP_H
 #define CMAP_H
 
 // Lib
@@ -18,12 +18,12 @@ class CMap;
 typedef QPair<int, int> CMapKey;
 
 
-//! Classe définissant une carte dépendante d'un dictionnaire de carte
+//! Classe dÃ©finissant une carte dÃ©pendante d'un dictionnaire de carte
 class LIB_ASSETS_SHARED_EXPORT CMap : public AOctreeItem
 {
 public:
 
-    //! Constructeur par défaut
+    //! Constructeur par dÃ©faut
     CMap();
 
     //! Constructeur
@@ -37,23 +37,23 @@ public:
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit la bounding box
+    //! DÃ©finit la bounding box
     void setBoundingBox(const CBox3D& bbox)			{ m_Bbox = bbox; }
 
-    //! Définit le nombre de polygones
+    //! DÃ©finit le nombre de polygones
     void setPolygonCount(int iPolygonCount)			{ m_iPolygonCount = iPolygonCount; }
 
     //-------------------------------------------------------------------------------------------------
     // Getters
     //-------------------------------------------------------------------------------------------------
 
-    //! Retourne la clée associée à la map
+    //! Retourne la clÃ©e associÃ©e Ã  la map
     CMapKey getKey() const							{ return m_Key; }
 
-    //! Implémentation de AOctreeItem - Retourne la taille en coordonnées moteur de la map
+    //! ImplÃ©mentation de AOctreeItem - Retourne la taille en coordonnÃ©es moteur de la map
     virtual const CBox3D& getBoundingBox() const	{ return m_Bbox; }
 
-    //! Implémentation de AOctreeItem - Retourne le nombre de polygones
+    //! ImplÃ©mentation de AOctreeItem - Retourne le nombre de polygones
     virtual int getPolygonCount() const				{ return m_iPolygonCount; }
 
     //-------------------------------------------------------------------------------------------------

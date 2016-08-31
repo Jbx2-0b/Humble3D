@@ -1,4 +1,4 @@
-#ifndef CBONE_H
+ï»¿#ifndef CBONE_H
 #define CBONE_H
 
 // Foundations
@@ -19,28 +19,28 @@ public:
         : m_NodeName(nodeName)
         , m_OffsetMatrix(offsetMatrix) {}
 
-    //! Définit le nom du noeud associé
+    //! DÃ©finit le nom du noeud associÃ©
     void setNodeName(const QString& nodeName) { m_NodeName = nodeName; }
 
-    //! Retourne le nom du noeud associé
+    //! Retourne le nom du noeud associÃ©
     const QString& getNodeName() const { return m_NodeName; }
 
-    //! Retourne la liste des vertex influencés par ce bone
+    //! Retourne la liste des vertex influencÃ©s par ce bone
     QList<CVertexWeight>& vertexWeights() { return m_Weights; }
 
-    //! Retourne la liste des vertex influencés par ce bone
+    //! Retourne la liste des vertex influencÃ©s par ce bone
     const QList<CVertexWeight>& vertexWeights() const { return m_Weights; }
 
     //! Retourne la matrice de transformation donnant l'offset par rapport au repos ( = emplacement des CSceneNode sans animation)
     const QMatrix4x4& getOffsetMatrix() const { return m_OffsetMatrix; }
 
-    //! Définit la matrice de transformation donnant l'offset par rapport au repos ( = emplacement des CSceneNode sans animation)
+    //! DÃ©finit la matrice de transformation donnant l'offset par rapport au repos ( = emplacement des CSceneNode sans animation)
     void setOffsetMatrix(const QMatrix4x4& offsetMatrix) { m_OffsetMatrix = offsetMatrix; }
 
 
 private:
 
-    //! Nom du noeud associé
+    //! Nom du noeud associÃ©
     QString m_NodeName;
 
     //! The vertices affected by this bone

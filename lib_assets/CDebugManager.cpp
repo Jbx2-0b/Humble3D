@@ -1,4 +1,4 @@
-#include "CDebugManager.h"
+﻿#include "CDebugManager.h"
 #include "CLineBox.h"
 #include <QDebug>
 

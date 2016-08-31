@@ -1,4 +1,4 @@
-#include "CNoiseGenerator.h"
+﻿#include "CNoiseGenerator.h"
 #include "CMath.h"
 
 #include <QDebug>

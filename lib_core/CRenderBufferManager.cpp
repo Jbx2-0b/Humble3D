@@ -1,4 +1,4 @@
-#include "CRenderBufferManager.h"
+﻿#include "CRenderBufferManager.h"
 
 
 CRenderBufferManager* CRenderBufferManager::s_pInstance = 0;

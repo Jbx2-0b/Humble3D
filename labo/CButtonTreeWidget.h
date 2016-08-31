@@ -1,4 +1,4 @@
-#ifndef CBUTTONTREEWIDGET_H
+ï»¿#ifndef CBUTTONTREEWIDGET_H
 #define CBUTTONTREEWIDGET_H
 
 #include <QWidget>
@@ -18,16 +18,16 @@ public:
     //! Destructeur
     virtual ~CButtonTreeWidget() {}
 
-    //! Définit si le bouton est visible
+    //! DÃ©finit si le bouton est visible
     void setButtonVisible(bool bVisible)	{ m_pButton->setVisible(bVisible); }
 
     //! Retourne le texte
     QString getText() const					{ return m_pTextLabel->text(); }
 
-    //! Définit le texte
+    //! DÃ©finit le texte
     void setText(const QString& text)		{ m_pTextLabel->setText(text); }
 
-    //! Définit l'îcone
+    //! DÃ©finit l'Ã®cone
     void setIcon(const QIcon& icon)			{ m_pButton->setIcon(icon); }
 
 

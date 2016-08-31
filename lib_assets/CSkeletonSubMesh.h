@@ -1,4 +1,4 @@
-#ifndef CSKELETONSUBMESH_H
+ï»¿#ifndef CSKELETONSUBMESH_H
 #define CSKELETONSUBMESH_H
 
 #include "CSubMesh.h"
@@ -19,15 +19,15 @@ public:
 
 protected:
 
-	//! Implémentation de CSceneNode::IListener
+	//! ImplÃ©mentation de CSceneNode::IListener
 	virtual void onUpdate(CSceneNode* pNode);
 
-	//! Implémentation de CSceneNode::IListener
+	//! ImplÃ©mentation de CSceneNode::IListener
 	virtual void onDelete(CSceneNode* pNode);
 
 private:
 	
-	//! Met à jour la géométrie
+	//! Met Ã  jour la gÃ©omÃ©trie
 	void updateGeometry();
 
 	typedef QPair<CSceneNode*, CSceneNode*> TArm;

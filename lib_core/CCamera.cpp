@@ -1,4 +1,4 @@
-#include "CCamera.h"
+﻿#include "CCamera.h"
 #include "CLogManager.h"
 #include "CGeometryGlobal.h"
 #include "CSceneNode.h"

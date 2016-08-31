@@ -1,4 +1,4 @@
-#ifndef CSUBMESH_H
+ï»¿#ifndef CSUBMESH_H
 #define CSUBMESH_H
 
 // Lib
@@ -33,7 +33,7 @@ public:
     //! Retourne le nom du type
     virtual QString getTypeName() const { return "SubMesh"; }
 
-    //! Retourne vrai si peut être rendu
+    //! Retourne vrai si peut Ãªtre rendu
     bool isRenderable() const { return !m_PositionsBuffer.isEmpty(); }
 
     //! Effectue le rendu
@@ -57,13 +57,13 @@ public:
         m_SubMeshListeners.insert(pListener);
     }
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(ISubMeshListener* pListener)
     {
         m_SubMeshListeners.remove(pListener);
     }
 
-    //! Prévient les listeners que le matériau a changé
+    //! PrÃ©vient les listeners que le matÃ©riau a changÃ©
     void notifyMaterialChanged()
     {
         foreach (ISubMeshListener* pListener, m_SubMeshListeners)
@@ -76,10 +76,10 @@ public:
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit le materiau
+    //! DÃ©finit le materiau
     void setMaterialName(const QString& materialName);
 
-    //! Définit les paramétres de rendu
+    //! DÃ©finit les paramÃ©tres de rendu
     void setRenderParameters(const CRenderStates& renderStates)         { m_RenderStates = renderStates; }
 
     //-------------------------------------------------------------------------------------------------
@@ -89,10 +89,10 @@ public:
     //! Retourne l'ID du materiau
     const QString& getMaterialName() const								{ return m_MaterialName; }
 
-    //! Retourne true si a un matériau
+    //! Retourne true si a un matÃ©riau
     bool hasMaterial() const;
 
-    //! Retourne les paramétres de rendu
+    //! Retourne les paramÃ©tres de rendu
     const CRenderStates& getRenderParameters() const					{ return m_RenderStates; }
 
 protected:
@@ -103,10 +103,10 @@ protected:
     //! Mesh parent
     CMesh* m_pParentMesh;
 
-    //! ID du matériau
+    //! ID du matÃ©riau
     QString m_MaterialName;
 
-    //! Paramètres de rendu
+    //! ParamÃ¨tres de rendu
     CRenderStates m_RenderStates;
 };
 

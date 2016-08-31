@@ -1,4 +1,4 @@
-#ifndef CMESHBUFFER_H
+ï»¿#ifndef CMESHBUFFER_H
 #define CMESHBUFFER_H
 
 // Lib
@@ -55,10 +55,10 @@ public:
     //! Ajoute un buffer
     void append(const CMeshBuffer& buffer);
 
-    //! Efface la géométrie
+    //! Efface la gÃ©omÃ©trie
     void clear();
 
-    //! Crée un buffer utilisateur
+    //! CrÃ©e un buffer utilisateur
     CUserBuffer* createUserBuffer(const QString& name, int iTupleSize);
 
     //--------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ public:
         m_MeshBufferListeners.insert(pListener);
     }
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IMeshBufferListener* pListener)
     {
         m_MeshBufferListeners.remove(pListener);
@@ -89,22 +89,22 @@ public:
     // SETTERS
     //--------------------------------------------------------------------------------------------
 
-    //! Définit le type de primitive
+    //! DÃ©finit le type de primitive
     void setPrimitiveType(EnumPrimitiveType ePrimitiveType)                         { m_ePrimitiveType = ePrimitiveType; }
 
-    //! Définit le type d'utilisation du vertex buffer
+    //! DÃ©finit le type d'utilisation du vertex buffer
     void setUsagePattern(EnumUsagePattern eUsagePattern)							{ m_eUsagePattern = eUsagePattern; }
 
-    //! Définit si le buffer hardware doit être mis à jour
+    //! DÃ©finit si le buffer hardware doit Ãªtre mis Ã  jour
     void setDirty()																	{ m_bDirty = true; m_bNeedBoundingBoxUpdate = true; }
 
-    //! Définit que le buffer hardware est à jour
+    //! DÃ©finit que le buffer hardware est Ã  jour
     void wash() const;
 
-    //! Définit le nombre de côté par face
+    //! DÃ©finit le nombre de cÃ´tÃ© par face
     void setPrimitiveIndex(unsigned int uiPrimitiveIndex)							{ m_uiPrimitiveIndex = uiPrimitiveIndex; }
 
-    //! Définit si on calcule automatiquement les normales
+    //! DÃ©finit si on calcule automatiquement les normales
     void setAutoComputeNormals(bool bEnabled)										{ m_bAutoComputeNormals = bEnabled; }
 
     //--------------------------------------------------------------------------------------------
@@ -123,13 +123,13 @@ public:
     //! Retourne le nombre de face
     unsigned int getPolygonCount() const;
 
-    //! Retourne le nombre de côté par face
+    //! Retourne le nombre de cÃ´tÃ© par face
     inline unsigned int getPrimitiveIndex() const									{ return m_uiPrimitiveIndex; }
 
-    //! Retourne la boîte englobant l'objet
+    //! Retourne la boÃ®te englobant l'objet
     const CBox3D& getBoundingBox() const;
 
-    //! Retourne vrai si le buffer hardware doit être mis à jour
+    //! Retourne vrai si le buffer hardware doit Ãªtre mis Ã  jour
     bool isDirty() const															{ return m_bDirty; }
 
     //! Retourne le nombre de canaux de texture
@@ -225,7 +225,7 @@ public:
     //! Effectue une translation
     void translate(real dX, real dY, real dZ);
 
-    //! Effectue un changement d'échelle
+    //! Effectue un changement d'Ã©chelle
     void scale(real dX, real dY, real dZ);
 
     //! Effectue une rotation
@@ -255,22 +255,22 @@ public:
 
 protected:
 
-    //! True si le buffer a été modifié
+    //! True si le buffer a Ã©tÃ© modifiÃ©
     mutable bool m_bDirty;
 
     //! Type de buffer
     EnumUsagePattern m_eUsagePattern;
 
-    //! Boîte englobante
+    //! BoÃ®te englobante
     mutable CBox3D m_BoundingBox;
 
-    //! Vrai si la maj de la boîte englobante nécessaire
+    //! Vrai si la maj de la boÃ®te englobante nÃ©cessaire
     mutable bool m_bNeedBoundingBoxUpdate;
 
-    //! Calcul la boîte englobante
+    //! Calcul la boÃ®te englobante
     void computeBoundinBox() const;
 
-    //! Nombre de côté par face
+    //! Nombre de cÃ´tÃ© par face
     unsigned int m_uiPrimitiveIndex;
 
     //! Type de vertexbuffer
@@ -291,10 +291,10 @@ protected:
     //! Buffer de bitangeantes
     CBuffer<QVector3D> m_BitangeantsBuffer;
 
-    //! Buffers des coordonnées de texture
+    //! Buffers des coordonnÃ©es de texture
     CBuffer<QVector3D> m_TexCoordsBuffer[DefaultMaxTextureChannelCount];
 
-    //! Buffer des coordonnées de normales de face
+    //! Buffer des coordonnÃ©es de normales de face
     CBuffer<QVector3D> m_FaceNormalsBuffer;
 
     //! Buffer des bones

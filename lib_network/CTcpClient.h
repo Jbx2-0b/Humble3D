@@ -1,4 +1,4 @@
-#ifndef CTCPCLIENT_H
+ï»¿#ifndef CTCPCLIENT_H
 #define CTCPCLIENT_H
 
 // Lib
@@ -23,16 +23,16 @@ public:
     //! Dtor
     virtual ~CTcpClient();
 
-    //! Définit le port pour se connecter au serveur
+    //! DÃ©finit le port pour se connecter au serveur
     void setPort(int iPort);
 
     //! Transmet un objet
     bool sendMessage(const QVariant& message);
 
-    //! Retourne vrai si est connecté
+    //! Retourne vrai si est connectÃ©
     bool isConnected();
 
-    //! Retourne l'état de la connexion
+    //! Retourne l'Ã©tat de la connexion
     QAbstractSocket::SocketState getState() const;
 
 signals:
@@ -46,10 +46,10 @@ public slots:
     //! Connecte au serveur
     void connectToHost(const QString& strHostIPAdress);
 
-    //! reconnecte au serveur si déconnecté
+    //! reconnecte au serveur si dÃ©connectÃ©
     void reconnectToHost();
 
-    //! Déconnecte du serveur
+    //! DÃ©connecte du serveur
     void disconnectFromHost();
 
 protected slots:

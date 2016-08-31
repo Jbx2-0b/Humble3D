@@ -1,4 +1,4 @@
-#ifndef CGRASS_H
+﻿#ifndef CGRASS_H
 #define CGRASS_H
 
 // Lib

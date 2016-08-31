@@ -1,4 +1,4 @@
-#ifndef CQUATERNIONKEY_H
+﻿#ifndef CQUATERNIONKEY_H
 #define CQUATERNIONKEY_H
 
 // Qt

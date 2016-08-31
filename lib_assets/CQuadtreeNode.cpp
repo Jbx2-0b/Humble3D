@@ -1,4 +1,4 @@
-#include "CQuadtreeNode.h"
+﻿#include "CQuadtreeNode.h"
 
 //-----------------------------------------------------------------------------------------
 CQuadtreeNode::CQuadtreeNode(const CBox3D& bbox)
@@ -21,7 +21,7 @@ CQuadtreeNode::~CQuadtreeNode()
 {
 	foreach (CQuadtreeNode* pNode, m_Children)
 	{
-		// Si ce noeud a un parent on le pr�vient de la suppression
+		// Si ce noeud a un parent on le prévient de la suppression
 		if (CQuadtreeNode* pParent = pNode->getParent())
 		{
 			pParent->removeChild(this);

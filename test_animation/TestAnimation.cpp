@@ -1,4 +1,4 @@
-#include "TestAnimation.h"
+ï»¿#include "TestAnimation.h"
 #include "CResourcesPathManager.h"
 #include "CMaterialManager.h"
 #include "CAssimpImporter.h"
@@ -9,7 +9,7 @@
 //-----------------------------------------------------------------------------------------
 TestAnimation::TestAnimation()
 {
-    // On crée une camera
+    // On crÃ©e une camera
     m_pCamera = getSceneManager()->createCamera();
     m_pCamera->setEyePosition(QVector3D(2., 1., 2.));
     m_pCamera->setCenter(QVector3D(0., 0., 0.));
@@ -23,7 +23,7 @@ TestAnimation::TestAnimation()
 
     m_pCamera->setAspectRatio((real)m_pView->width() / (real)m_pView->height());
 
-    // On charge le modéle
+    // On charge le modÃ©le
     CSceneNode* pRootNode = m_pSceneManager->getRootNode();
 
     CSceneNode* pModelNode = pRootNode->createChild("dwarf");
@@ -34,7 +34,7 @@ TestAnimation::TestAnimation()
 
     if (!CAssimpImporter::mergeScene("://dwarf.x", m_pSceneManager, true, pModelNode).isEmpty())
     {
-        // On récupére la bounding box
+        // On rÃ©cupÃ©re la bounding box
         CBox3D bbox = pRootNode->getGlobalAxisAlignedBoundingBox();
 
         real sizeX = bbox.getMaximum().x() - bbox.getMinimum().x();
@@ -45,7 +45,7 @@ TestAnimation::TestAnimation()
         if (sizeY > maxSize) maxSize = sizeY;
         if (sizeZ > maxSize) maxSize = sizeZ;
 
-        // On redimensionne la scene de façon à ce qu'elle tienne dans une boite de 1x1x1
+        // On redimensionne la scene de faÃ§on Ã  ce qu'elle tienne dans une boite de 1x1x1
         pModelNode->scale(1. / maxSize);
 
         CBox3D scaledBbox = pModelNode->getGlobalAxisAlignedBoundingBox();
@@ -55,7 +55,7 @@ TestAnimation::TestAnimation()
 
         CSceneNode* pLightNode = pRootNode->createChild("LightNode", QVector3D(8.0, 12.0, 0));
 
-        // On crée une lumiére diffuse blanche
+        // On crÃ©e une lumiÃ©re diffuse blanche
         CLight* pLight = m_pSceneManager->createLight("Light");
         pLight->setDiffuseColor(0.8f, 0.8f, 0.8f);
         pLight->setAmbientColor(0.6f, 0.6f, 0.6f);

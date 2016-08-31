@@ -1,4 +1,4 @@
-#include "CGeometryGlobal.h"
+﻿#include "CGeometryGlobal.h"
 
 //-----------------------------------------------------------------------------------------
 QList<Color> Color::s_ColorList = QList<Color>()

@@ -1,4 +1,4 @@
-#ifndef LIB_XML_H
+﻿#ifndef LIB_XML_H
 #define LIB_XML_H
 
 #include "lib_xml_global.h"

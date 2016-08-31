@@ -1,4 +1,4 @@
-#ifndef CANIMATIONMANAGER_H
+ï»¿#ifndef CANIMATIONMANAGER_H
 #define CANIMATIONMANAGER_H
 
 // Lib
@@ -29,13 +29,13 @@ public:
     //! Joue les animations
     void run();
 
-    //! Arrête les animations
+    //! ArrÃªte les animations
     void stop();
 
-    //! Définit le temps entre deux mise à jour des animations
+    //! DÃ©finit le temps entre deux mise Ã  jour des animations
     void setDT(unsigned int iDT);
 
-    //! Retourne le temps entre deux mise à jour des animations
+    //! Retourne le temps entre deux mise Ã  jour des animations
     unsigned int getDT() const;
 
     class IAnimationManagerListener
@@ -43,25 +43,25 @@ public:
         friend class CAnimationManager;
 
     protected:
-        //! Prévient du démarrage d'une animation
+        //! PrÃ©vient du dÃ©marrage d'une animation
         virtual void onUpdateAnimation() = 0;
     };
 
     //! Enregistre un listener
     void registerListener(IAnimationManagerListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(IAnimationManagerListener* pListener);
 
 protected:
 
-    //! Implémentation de CSceneManager::IAnimationListener
+    //! ImplÃ©mentation de CSceneManager::IAnimationListener
     virtual void onStartAnimation(CAnimation* pAnimation);
 
-    //! Implémentation de CSceneManager::IAnimationListener
+    //! ImplÃ©mentation de CSceneManager::IAnimationListener
     virtual void onPauseAnimation(CAnimation* pAnimation);
 
-    //! Implémentation de CSceneManager::IAnimationListener
+    //! ImplÃ©mentation de CSceneManager::IAnimationListener
     virtual void onStopAnimation(CAnimation* pAnimation);
 
     //! Liste des listeners
@@ -73,22 +73,22 @@ private slots:
 
 private:
 
-    //! Vrai si est démarré
+    //! Vrai si est dÃ©marrÃ©
     bool m_bRun;
 
-    //! Pointeur sur le gestionnaire de scénes
+    //! Pointeur sur le gestionnaire de scÃ©nes
     CSceneManager* m_pSceneManager;
 
-    //! Timer de mise à jur des animations
+    //! Timer de mise Ã  jur des animations
     QTimer m_Timer;
 
     //! Temps
     QTime m_Time;
 
-    //! Temps entre deux mise à jour des animations
+    //! Temps entre deux mise Ã  jour des animations
     unsigned int m_iDT;
 
-    //! Temps par défaut entre deux mise à jour des animations
+    //! Temps par dÃ©faut entre deux mise Ã  jour des animations
     static const unsigned int s_iDefaultDT = 1000 / 60;
 
     struct SAnimationProperties
@@ -107,7 +107,7 @@ private:
     CAnimationHelper::Interpolator<CQuaternionKey> m_qIpl;
     CAnimationHelper::Interpolator<CMeshKey> m_mIpl;
 
-    //! Notifie les listeners qu'au moins une animation a été mise à jour
+    //! Notifie les listeners qu'au moins une animation a Ã©tÃ© mise Ã  jour
     void notifyUpdate();
 };
 

@@ -1,4 +1,4 @@
-#ifndef CGEOMETRYGLOBAL_H
+ï»¿#ifndef CGEOMETRYGLOBAL_H
 #define CGEOMETRYGLOBAL_H
 
 // Lib
@@ -42,7 +42,7 @@ enum EnumAxis
 // Bounding Box
 //--------------------------------------------------------------------------------------------
 
-//! Différents modes d'affichage des boîtes englobantes
+//! DiffÃ©rents modes d'affichage des boÃ®tes englobantes
 enum EnumBBoxPolicy
 {
     eNeverVisible,
@@ -116,7 +116,7 @@ static const unsigned int StencilBuffer = 4;
 // Vertex buffer
 //--------------------------------------------------------------------------------------------
 
-//! Définit les différents types de primitive
+//! DÃ©finit les diffÃ©rents types de primitive
 enum EnumPrimitiveType
 {
     ePrimitivePoint,
@@ -132,7 +132,7 @@ enum EnumPrimitiveType
     ePrimitiveTrianglesStripAdjacency
 };
 
-//! Définit le type de pattern à utiliser
+//! DÃ©finit le type de pattern Ã  utiliser
 enum EnumUsagePattern
 {
     eStreamDraw,
@@ -234,7 +234,7 @@ private:
 // Renderer
 //--------------------------------------------------------------------------------------------
 
-//! Différents modes de rasterization
+//! DiffÃ©rents modes de rasterization
 enum EnumRasterizationMode
 {
     eRasterizationPoint,
@@ -246,7 +246,7 @@ enum EnumRasterizationMode
 // Renderer
 //--------------------------------------------------------------------------------------------
 
-//! Différents modes de filtrage
+//! DiffÃ©rents modes de filtrage
 enum EnumFilterType
 {
     eNearest,
@@ -326,7 +326,7 @@ enum EnumShaderType
 //! Nombre de canaux de texture maximum
 static const int DefaultMaxTextureChannelCount	= 4;
 
-//! Active ou desactive la définition de la taille d'un point dans le shader
+//! Active ou desactive la dÃ©finition de la taille d'un point dans le shader
 enum EnumProgramPointSize
 {
     eEnabled,
@@ -410,7 +410,7 @@ enum EnumDrawBuffer
 // Camera
 //--------------------------------------------------------------------------------------------
 
-//! Type de caméra
+//! Type de camÃ©ra
 enum EnumProjectionType
 {
     eProjectionOrtho,
@@ -433,7 +433,7 @@ enum EnumRotateOrder
 // Animations
 //--------------------------------------------------------------------------------------------
 
-//! Comportement à adopter entre deux clefs d'animation
+//! Comportement Ã  adopter entre deux clefs d'animation
 enum EnumAnimationBehaviour
 {
     eAnimationBehaviourDefault,		// The value from the default node transformation is taken
@@ -490,7 +490,7 @@ static const QVector4D	DefaultMaterialSpecularColor(0.8f, 0.5f, 0.4f, 1.0f);
 static const QVector4D	DefaultMaterialAlphaMaskColor(1.0f, 1.0f, 1.0f, 1.0f);
 static const real       DefaultMaterialShininessFactor = 50.f;
 
-//! Types de paramétre de matériau
+//! Types de paramÃ©tre de matÃ©riau
 enum EnumMaterialParameter
 {
     eUndefined,

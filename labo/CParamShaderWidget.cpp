@@ -1,4 +1,4 @@
-#include "CParamShaderWidget.h"
+﻿#include "CParamShaderWidget.h"
 #include "CShader.h"
 
 #include <QFileDialog>

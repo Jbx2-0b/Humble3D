@@ -1,4 +1,4 @@
-#ifndef CEDITSHADERTREEITEM_H
+﻿#ifndef CEDITSHADERTREEITEM_H
 #define CEDITSHADERTREEITEM_H
 
 // Foundations
@@ -17,7 +17,7 @@ public:
     //! Destructeur
     virtual ~CEditShaderTreeItem();
 
-    //! D�finit le chemin du fichier
+    //! Définit le chemin du fichier
     void setName(const QString& filePathName);
 
     //! Retourne le chemin du fichier

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * XmlWriter.cc
  *
  *  Created on: Oct 14, 2014

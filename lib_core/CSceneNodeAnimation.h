@@ -1,4 +1,4 @@
-#ifndef CSCENENODEANIMATION_H
+ï»¿#ifndef CSCENENODEANIMATION_H
 #define CSCENENODEANIMATION_H
 
 // Lib
@@ -27,7 +27,7 @@ public:
     //! Destructeur
     virtual ~CSceneNodeAnimation() {}
 
-    //! Retourne le nom du node ou bone concerné par l'animation
+    //! Retourne le nom du node ou bone concernÃ© par l'animation
     const QString& getNodeName() const { return m_NodeName; }
 
     //! Retourne le temps total de l'animation
@@ -39,7 +39,7 @@ public:
     //! Accesseur sur les clefs d'animation de rotation
     QList<CQuaternionKey>& rotationKeys() { return m_RotationKeys; }
 
-    //! Accesseur sur les clefs d'animation de mise à l'échelle
+    //! Accesseur sur les clefs d'animation de mise Ã  l'Ã©chelle
     QList<CVectorKey>& scalingKeys() { return m_ScalingKeys; }
 
     //! Retourne les deux clefs entourant un temps t
@@ -51,7 +51,7 @@ public:
     //! Retourne les deux clefs entourant un temps t
     QPair<CVectorKey, CVectorKey> getScalingKeys(real dT) const;
 
-    //! Définit la transition entre deux clefs d'animations
+    //! DÃ©finit la transition entre deux clefs d'animations
     void setAnimationBehavior(EnumAnimationBehaviour eBehavior) { m_eBehavior = eBehavior; }
 
     //! Retourne la transition entre deux clefs d'animations
@@ -71,7 +71,7 @@ private:
     //! Clefs d'animation de rotation
     QList<CQuaternionKey> m_RotationKeys;
 
-    //! Clefs d'animation de mise à l'échelle
+    //! Clefs d'animation de mise Ã  l'Ã©chelle
     QList<CVectorKey> m_ScalingKeys;
 
     //! Transition entre deux clefs

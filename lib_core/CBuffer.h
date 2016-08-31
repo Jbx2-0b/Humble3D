@@ -1,4 +1,4 @@
-#ifndef CBUFFER_H
+ï»¿#ifndef CBUFFER_H
 #define CBUFFER_H
 
 // Gestionnaire de log
@@ -43,7 +43,7 @@ public:
         return *this;
     }
 
-    //! Retourne la taille en mémoire du buffer
+    //! Retourne la taille en mÃ©moire du buffer
     inline unsigned int getSize() const
     {
         int iCount = QVector<DataType>::count();
@@ -52,13 +52,13 @@ public:
         return iCount * iDataTypeSize;
     }
 
-    //! Retourne l'état du buffer
+    //! Retourne l'Ã©tat du buffer
     bool isDirty() const { return m_bIsDirty; }
 
-    //! Définit l'état du buffer
+    //! DÃ©finit l'Ã©tat du buffer
     void setDirty()		{ m_bIsDirty = true; }
 
-    //! Définit l'état du buffer
+    //! DÃ©finit l'Ã©tat du buffer
     void wash()	const	{ m_bIsDirty = false; }
 
 private:
@@ -79,12 +79,12 @@ public:
     CUserBuffer(int iSize, const real& value)
         : CBuffer<float>(iSize, value), m_iTupleSize(1) {}
 
-    //! Définit la taille d'un tuple
+    //! DÃ©finit la taille d'un tuple
     void setTupleSize(int iTupleSize)
     {
         if (iTupleSize > 4)
         {
-            pLog->addMessage(eERROR, "Impossible de spécifier des tuples > 4");
+            pLog->addMessage(eERROR, "Impossible de spÃ©cifier des tuples > 4");
             return;
         }
 
