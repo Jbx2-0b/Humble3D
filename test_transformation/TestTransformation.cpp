@@ -19,7 +19,7 @@ TestTransformation::TestTransformation()
     , m_StartPan(-1, -1)
     , m_LastPan(-1, -1)
 {
-    // On crée une camera
+    // On cr�e une camera
     CCamera* pCamera = m_pSceneManager->createCamera();
 
     m_vNewEyePosition = QVector3D(8., 8., 4.);
@@ -31,10 +31,10 @@ TestTransformation::TestTransformation()
     m_pView->setAttribute(Qt::WA_AcceptTouchEvents);
     qDebug() << "End create View";
 
-    // On crée un noeud afin d'y placer une lumiére
+    // On cr�e un noeud afin d'y placer une lumi�re
     CSceneNode* pRootNode = getSceneManager()->getRootNode();
 
-    // On crée une lumiére diffuse bleue
+    // On cr�e une lumi�re diffuse bleue
     CLight* pLight = getSceneManager()->createLight();
     pLight->setDiffuseColor(1.0, 1.0, 1.0);
     pLight->setAmbientColor(1.0, 1.0, 1.0);
@@ -45,82 +45,82 @@ TestTransformation::TestTransformation()
     pRootNode->addItem(pLight);
 
     // SkyBox
-    //    CSkyBox* pSkyBoxMesh = CMeshManager::getInstance()->createCustomMesh<CSkyBox>("CSkyBox", "SkyBoxMesh");
+    CSkyBox* pSkyBoxMesh = CMeshManager::getInstance()->createCustomMesh<CSkyBox>("CSkyBox", "SkyBoxMesh");
 
-    //    CMeshInstance* pSkyBox = getSceneManager()->createMeshInstance(pSkyBoxMesh, "SkyBox");
-    //    pSkyBox->setSelectable(false);
-    //    CSceneNode* pSkyBoxNode = pRootNode->createChild("SkyBoxNode");
-    //    pSkyBoxNode->scale(400.);
-    //    pSkyBoxNode->addItem(pSkyBox);
+    CMeshInstance* pSkyBox = getSceneManager()->createMeshInstance(pSkyBoxMesh, "SkyBox");
+    pSkyBox->setSelectable(false);
+    CSceneNode* pSkyBoxNode = pRootNode->createChild("SkyBoxNode");
+    pSkyBoxNode->scale(400.);
+    pSkyBoxNode->addItem(pSkyBox);
 
 
-    //    CMaterial* pSkyBoxMat = CMaterialManager::getInstance()->createMaterial("SkyBoxMaterial");
-    //    pSkyBox->setMaterialName(pSkyBoxMat->getName());
+    CMaterial* pSkyBoxMat = CMaterialManager::getInstance()->createMaterial("SkyBoxMaterial");
+    pSkyBox->setMaterialName(pSkyBoxMat->getName());
 
-    //    QStringList fileNames;
-    //    fileNames << "://Resources/xpos.png" << "://Resources/xneg.png" << "://Resources/ypos.png"
-    //              << "://Resources/yneg.png" << "://Resources/zpos.png" << "://Resources/zneg.png";
+    QStringList fileNames;
+    fileNames << "://Resources/xpos.png" << "://Resources/xneg.png" << "://Resources/ypos.png"
+              << "://Resources/yneg.png" << "://Resources/zpos.png" << "://Resources/zneg.png";
 
-    //    ATexture* pSkyBoxTexture = CTextureManager::getInstance()->createTextureCube("SkyBoxTexCube", fileNames);
-    //    pSkyBoxMat->addTexture(pSkyBoxTexture, eDiffuse);
+    ATexture* pSkyBoxTexture = CTextureManager::getInstance()->createTextureCube("SkyBoxTexCube", fileNames);
+    pSkyBoxMat->addTexture(pSkyBoxTexture, eDiffuse);
 
-    //#ifdef EMBEDDED_TARGET
-    //    CShader* pShader = CShaderManager::getInstance()->createShader(
-    //                "SkyBoxShader",
-    //                "://Resources/skyboxES.vertex.glsl",
-    //                "",
-    //                "://Resources/skyboxES.fragment.glsl");
-    //#else
-    //    CShader* pShader = CShaderManager::getInstance()->createShader(
-    //                "SkyBoxShader",
-    //                "://Resources/skybox.vertex.glsl",
-    //                "",
-    //                "://Resources/skybox.fragment.glsl");
-    //#endif
+#ifdef EMBEDDED_TARGET
+    CShader* pShader = CShaderManager::getInstance()->createShader(
+                "SkyBoxShader",
+                "://Resources/skyboxES.vertex.glsl",
+                "",
+                "://Resources/skyboxES.fragment.glsl");
+#else
+    CShader* pShader = CShaderManager::getInstance()->createShader(
+                "SkyBoxShader",
+                "://Resources/skybox.vertex.glsl",
+                "",
+                "://Resources/skybox.fragment.glsl");
+#endif
 
-    //    pSkyBoxMat->getRenderPass(0)->setShaderName(pShader->getName());
-    //    pSkyBoxMat->getRenderPass(0)->renderStates().setFaceCulling(CFaceCulling(false));
+    pSkyBoxMat->getRenderPass(0)->setShaderName(pShader->getName());
+    pSkyBoxMat->getRenderPass(0)->renderStates().setFaceCulling(CFaceCulling(false));
 
-    //    // Particules
-    //    CBillboard* pBillboard = getSceneManager()->createBillboard();
-    //    QVector<QVector3D> pos;
-    //    for (int i = 0; i < 1000; ++i)
-    //        pos << QVector3D(
-    //                   Math::randDouble(-200., +200.),
-    //                   Math::randDouble(-200., +200.),
-    //                   Math::randDouble(-200., +200.));
-    //    pBillboard->addPositions(pos);
+    // Particules
+    CBillboard* pBillboard = getSceneManager()->createBillboard();
+    QVector<QVector3D> pos;
+    for (int i = 0; i < 1000; ++i)
+        pos << QVector3D(
+                   Math::randDouble(-200., +200.),
+                   Math::randDouble(-200., +200.),
+                   Math::randDouble(-200., +200.));
+    pBillboard->addPositions(pos);
 
-    //    CMaterial* pBillboardMat = CMaterialManager::getInstance()->createMaterial("BillboardMaterial");
-    //    pBillboardMat->getRenderPass(0)->renderStates().setFaceCulling(CFaceCulling(false));
-    //    CBlending blending;
-    //    blending.setEnabled(true);
-    //    blending.setBlendEquation(eAdd, eAdd);
+    CMaterial* pBillboardMat = CMaterialManager::getInstance()->createMaterial("BillboardMaterial");
+    pBillboardMat->getRenderPass(0)->renderStates().setFaceCulling(CFaceCulling(false));
+    CBlending blending;
+    blending.setEnabled(true);
+    blending.setBlendEquation(eAdd, eAdd);
 
-    //    blending.setBlendSeparateFunction(Source::eSourceAlpha, Destination::eOneMinusSourceAlpha, Source::eOne, Destination::eZero);
-    //    pBillboardMat->getRenderPass(0)->renderStates().setBlending(blending);
+    blending.setBlendSeparateFunction(Source::eSourceAlpha, Destination::eOneMinusSourceAlpha, Source::eOne, Destination::eZero);
+    pBillboardMat->getRenderPass(0)->renderStates().setBlending(blending);
 
-    //    ATexture* pBillboardTexture = CTextureManager::getInstance()->createTexture2D("BillBoardTex", "://Resources/particle.png");
-    //    pBillboardMat->addTexture(pBillboardTexture, eDiffuse);
+    ATexture* pBillboardTexture = CTextureManager::getInstance()->createTexture2D("BillBoardTex", "://Resources/particle.png");
+    pBillboardMat->addTexture(pBillboardTexture, eDiffuse);
 
-    //    CShader* pBillboardShader = CShaderManager::getInstance()->createShader("BillboardShader",
-    //        "://Resources/billboard.vertex.glsl",
-    //        "://Resources/billboard.geometry.glsl",
-    //        "://Resources/billboard.fragment.glsl");
+    CShader* pBillboardShader = CShaderManager::getInstance()->createShader("BillboardShader",
+        "://Resources/billboard.vertex.glsl",
+        "://Resources/billboard.geometry.glsl",
+        "://Resources/billboard.fragment.glsl");
 
-    //    pBillboardMat->getRenderPass(0)->setShaderName(pBillboardShader->getName());
-    //    pBillboard->setMaterialName(pBillboardMat->getName());
-    //    pBillboardShader->setUniformValue("halfSize", 1.);
+    pBillboardMat->getRenderPass(0)->setShaderName(pBillboardShader->getName());
+    pBillboard->setMaterialName(pBillboardMat->getName());
+    pBillboardShader->setUniformValue("halfSize", 1.);
 
-    //    CSceneNode* pBillboardNode = pRootNode->createChild("BillboardNode");
-    //    pBillboardNode->addItem(pBillboard);
+    CSceneNode* pBillboardNode = pRootNode->createChild("BillboardNode");
+    pBillboardNode->addItem(pBillboard);
 
     // Orbites
     CPolyLine* pPolyLine = CMeshManager::getInstance()->createCustomMesh<CPolyLine>("CPolyLine", "CPolyLine");
 
     QList<QVector3D> pts;
 
-    for (int i = 0; i < 360; ++i)
+    for (int i = 0; i <= 360; ++i)
     {
         pts << QVector3D(cos(Math::degToRad((real)i)), 0., sin(Math::degToRad((real)i)));
     }
@@ -165,39 +165,41 @@ TestTransformation::TestTransformation()
     CCoordinateSystem* pCoordinateSystemMesh = CMeshManager::getInstance()->createCustomMesh<CCoordinateSystem>("CCoordinateSystem", "CCoordinateSystem");
     CMeshInstance* pCoordinateSystem = getSceneManager()->createMeshInstance(pCoordinateSystemMesh, "CoordinateSystem");
     pRootNode->addItem(pCoordinateSystem);
-    //pRootNode->addItem(pSkyBox);
+    pRootNode->addItem(pSkyBox);
 
-    m_pSunNode = pRootNode->createChild(QVector3D(0., 0., 0.));
+    m_pSolarSystemNode = pRootNode->createChild(QVector3D(0., 0., 0.));
+
+    m_pSunNode = m_pSolarSystemNode->createChild(QVector3D(0., 0., 0.));
     m_pSunNode->scale(4.0);
     m_pSunNode->addItem(pSun);
 
-    m_pSunToEarthNode = m_pSunNode->createChild();
-    m_pSunToJupiterNode = m_pSunNode->createChild();
+    m_pSunToEarthNode = m_pSolarSystemNode->createChild();
+    m_pSunToJupiterNode = m_pSolarSystemNode->createChild();
 
     CMeshInstance* pSunToEarthPLine = getSceneManager()->createMeshInstance(pPolyLine, "SunToEarth");
     pSunToEarthPLine->setMaterialName(CMaterialManager::getInstance()->getMaterialNameByColor(Color::eWhite));
     m_pSunToEarthNode->addItem(pSunToEarthPLine);
-    m_pSunToEarthNode->scale(2.0);
-    m_pEarthNode = m_pSunToEarthNode->createChild(QVector3D(1.0, 0., 0.));
+    m_pSunToEarthNode->scale(10.0);
+    m_pEarthNode = m_pSolarSystemNode->createChild(QVector3D(10.0, 0., 0.));
     m_pEarthNode->scale(1.0);
     m_pEarthNode->addItem(pEarth);
 
-    CMeshInstance* pSunToJupiterPLine = getSceneManager()->createMeshInstance(pPolyLine, "SunToEarth");
+    CMeshInstance* pSunToJupiterPLine = getSceneManager()->createMeshInstance(pPolyLine, "SunToJupiter");
     pSunToJupiterPLine->setMaterialName(CMaterialManager::getInstance()->getMaterialNameByColor(Color::eWhite));
     m_pSunToJupiterNode->addItem(pSunToJupiterPLine);
-    m_pSunToJupiterNode->scale(7.78);
-    m_pJupiterNode = m_pSunToJupiterNode->createChild(QVector3D(1.0, 0., 0.));
-    m_pJupiterNode->scale(1.0);
+    m_pSunToJupiterNode->scale(20);
+    m_pJupiterNode = m_pSolarSystemNode->createChild(QVector3D(20.0, 0., 0.));
+    m_pJupiterNode->scale(4.0);
     m_pJupiterNode->addItem(pJupiter);
 
     m_pEarthToMoonNode = m_pEarthNode->createChild();
-    CMeshInstance* pEarthToMoonPLine = getSceneManager()->createMeshInstance(pPolyLine, "SunToEarth");
+    CMeshInstance* pEarthToMoonPLine = getSceneManager()->createMeshInstance(pPolyLine, "EarthToMoon");
     pEarthToMoonPLine->setMaterialName(CMaterialManager::getInstance()->getMaterialNameByColor(Color::eWhite));
     m_pEarthToMoonNode->addItem(pEarthToMoonPLine);
-    m_pEarthToMoonNode->scale(0.4);
+    m_pEarthToMoonNode->scale(2.0);
     m_pEarthToMoonNode->rotate(QVector3D(1.0, 0.0, 0.0), 30);
     m_pMoonNode = m_pEarthToMoonNode->createChild(QVector3D(1.0, 0.0, 0.));
-    m_pMoonNode->scale(1.0);
+    m_pMoonNode->scale(0.2);
     m_pMoonNode->addItem(pMoon);
 
     QTimer* pTimer = new QTimer(this);
@@ -228,6 +230,7 @@ void TestTransformation::onTimeout()
     float dt = m_GlobalTime.elapsed() / 5.;
     m_GlobalTime.start();
 
+    m_pSolarSystemNode->rotate(QVector3D(0, 1, 0), 0.104 * dt);
     m_pSunToEarthNode->rotate(QVector3D(0, 1, 0), 0.104 * dt);
     m_pSunToJupiterNode->rotate(QVector3D(0, 1, 0), 0.046 * dt);
     m_pEarthNode->rotate(QVector3D(0, 1, 0), 0.104 * dt);

@@ -29,6 +29,8 @@ private:
     void wheel(int delta);
     void rotate(int deltax, int deltay);
 
+    CSceneNode* m_pSolarSystemNode;
+
     CSceneNode* m_pSunNode;
 
     CSceneNode* m_pSunToEarthNode;
