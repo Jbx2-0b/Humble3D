@@ -1,11 +1,15 @@
 ﻿#include "CMaterialManager.h"
 
-CMaterialManager* CMaterialManager::s_pInstance = 0;
-QMutex CMaterialManager::s_Mutex(QMutex::Recursive);
-
 //-----------------------------------------------------------------------------------------
 CMaterialManager::CMaterialManager()
 {
+}
+
+//-----------------------------------------------------------------------------------------
+CMaterialManager &CMaterialManager::getInstance()
+{
+    static CMaterialManager instance;
+    return instance;
 }
 
 //-----------------------------------------------------------------------------------------

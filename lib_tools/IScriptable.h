@@ -1,4 +1,4 @@
-#ifndef ISCRIPTABLE_H
+﻿#ifndef ISCRIPTABLE_H
 #define ISCRIPTABLE_H
 
 // Qt

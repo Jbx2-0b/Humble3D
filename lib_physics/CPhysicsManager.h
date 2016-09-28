@@ -1,4 +1,4 @@
-#ifndef CPHYSICSMANAGER_H
+ï»¿#ifndef CPHYSICSMANAGER_H
 #define CPHYSICSMANAGER_H
 
 // Lib
@@ -44,16 +44,16 @@ public:
     //! Enregistre un item qui participiera a la simulation physique
     void unregisterItem(ASceneNodeItem* pItem);
 
-    //! Définit la gravité
+    //! DÃ©finit la gravitÃ©
     void setGravity(const QVector3D& gravity);
 
-    //! Démarre le moteur physique
+    //! DÃ©marre le moteur physique
     void start();
 
-    //! Arrête le moteur physique
+    //! ArrÃªte le moteur physique
     void stop();
 
-    //! Définit le temps entre deux itérations
+    //! DÃ©finit le temps entre deux itÃ©rations
     void setTimeStep(real dTime);
 
 protected slots:
@@ -62,10 +62,10 @@ protected slots:
 
 protected:  
 
-    //! Implémentation de ASceneNodeItem::ISceneNodeItemListener
+    //! ImplÃ©mentation de ASceneNodeItem::ISceneNodeItemListener
     virtual void onUpdate(ASceneNodeItem* pNodeItem);
 
-    //! Implémentation de ASceneNodeItem::ISceneNodeItemListener
+    //! ImplÃ©mentation de ASceneNodeItem::ISceneNodeItemListener
     virtual void onDelete(ASceneNodeItem* pNodeItem);
 
     void removeShapeInfo(const QPair<ASceneNodeItem*, CSceneNode*>& key);
@@ -73,16 +73,16 @@ protected:
     // Monde physique
     btDiscreteDynamicsWorld* m_pWorld;
 
-    // Interface pour détecter les objets où leurs AABB se chevauchent.
+    // Interface pour dÃ©tecter les objets oÃ¹ leurs AABB se chevauchent.
     btBroadphaseInterface* m_pBroadphase;
 
-    // btCollisionDispatcher supporte des algorithmes qui peuvent gérer des pairs de collisions ConvexConvex et ConvexConcave. Temps de l'impact, le point le plus proche et pénétration de profondeur.
+    // btCollisionDispatcher supporte des algorithmes qui peuvent gÃ©rer des pairs de collisions ConvexConvex et ConvexConcave. Temps de l'impact, le point le plus proche et pÃ©nÃ©tration de profondeur.
     btCollisionDispatcher* m_pDispatcher;
 
-    // btCollisionConfiguration permet de configurer les allocataires de mémoire.
+    // btCollisionConfiguration permet de configurer les allocataires de mÃ©moire.
     btDefaultCollisionConfiguration* m_pCollisionConfiguration;
 
-    // btSequentialImpulseConstraintSolver est une implémentation SIMD rapide de la méthode Projected Gauss Seidel (iterative LCP).
+    // btSequentialImpulseConstraintSolver est une implÃ©mentation SIMD rapide de la mÃ©thode Projected Gauss Seidel (iterative LCP).
     btSequentialImpulseConstraintSolver* m_pSequentialImpulseConstraintSolver;
 
     class CShapeInfo

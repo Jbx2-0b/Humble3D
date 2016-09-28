@@ -135,7 +135,7 @@ void CMaterial::addTexture(ATexture* pTexture, EnumMaterialParameter eMaterialPa
 //--------------------------------------------------------------------------
 void CMaterial::addTexture(const QString& textureName, EnumMaterialParameter eMaterialParameter)
 {
-    pLog->addMessage(eINFO, "Material " + getName() + ": Add " + CGeometryGlobal::stringFromMaterialParameter(eMaterialParameter) + " texture : " + textureName);
+    LogManager.addMessage(eINFO, "Material " + getName() + ": Add " + CGeometryGlobal::stringFromMaterialParameter(eMaterialParameter) + " texture : " + textureName);
     if (m_Textures.size() < (int)DefaultMaxTextureChannelCount)
     {
         m_Textures << CTextureParam(textureName, eMaterialParameter);
@@ -143,7 +143,7 @@ void CMaterial::addTexture(const QString& textureName, EnumMaterialParameter eMa
     }
     else
     {
-        pLog->addMessage(eERROR, "CMaterial::addTexture() : Le maximum de texture par channel est de : " + DefaultMaxTextureChannelCount);
+        LogManager.addMessage(eERROR, "CMaterial::addTexture() : Le maximum de texture par channel est de : " + DefaultMaxTextureChannelCount);
     }
 }
 

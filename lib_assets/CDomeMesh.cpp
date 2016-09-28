@@ -31,18 +31,18 @@ void CDomeMesh::updateGeometry()
     //m_pSceneManager->registerCameraListener(this);
 
     /*
-    m_pMaterial = CMaterialManager::getInstance()->createMaterial("DomeMaterial");
+    m_pMaterial = CMaterialManager::getInstance().createMaterial("DomeMaterial");
     setMaterialName(m_pMaterial->getName());
 
     QStringList fileNames;
     fileNames << "xpos.png" << "xneg.png" << "ypos.png"
               << "yneg.png" << "zpos.png" << "zneg.png";
 
-    ATexture* pTexture = CTextureManager::getInstance()->createTextureCube("DomeTexCube", fileNames);
+    ATexture* pTexture = CTextureManager::getInstance().createTextureCube("DomeTexCube", fileNames);
 
     m_pMaterial->addTexture(pTexture, eDiffuse);
 
-    CShader* pShader = CShaderManager::getInstance()->createShader("dome",
+    CShader* pShader = CShaderManager::getInstance().createShader("dome",
                             "dome.vertex.glsl",
                             "",
                             "dome.fragment.glsl");

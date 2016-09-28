@@ -48,7 +48,8 @@ SOURCES += \
     Shapes/CSolidBox.cpp \
     Shapes/CSphereMesh.cpp \
     CDebugManager.cpp \
-    Shapes/CCylinderMesh.cpp
+    Shapes/CCylinderMesh.cpp \
+    Shapes/CTetrahedron.cpp
 
 HEADERS += \
     AEntity.h \
@@ -119,7 +120,8 @@ HEADERS += \
     Shapes/CSolidBox.h \
     Shapes/CSphereMesh.h \
     CDebugManager.h \
-    Shapes/CCylinderMesh.h
+    Shapes/CCylinderMesh.h \
+    Shapes/CTetrahedron.h
 
 unix {
     target.path = /usr/lib

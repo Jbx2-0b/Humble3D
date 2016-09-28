@@ -1,4 +1,4 @@
-#ifndef CCONFIGFILEMANAGER_H
+ï»¿#ifndef CCONFIGFILEMANAGER_H
 #define CCONFIGFILEMANAGER_H
 
 // Lib
@@ -22,22 +22,22 @@ public:
     //! Dtor
     virtual ~CConfigFileManager();
 
-    //! Retourne une chaine de caractère correspondant à l'ID donné
+    //! Retourne une chaine de caractÃ¨re correspondant Ã  l'ID donnÃ©
     QString getString(const QString& groupId, const QString& stringId, const QString& defaultString);
 
-    //! Retourne un entier correspondant à l'ID donné
+    //! Retourne un entier correspondant Ã  l'ID donnÃ©
     int getInt(const QString& groupId, const QString& stringId, int defaultInt);
 
-    //! Retourne un booléen correspondant à l'ID donné
+    //! Retourne un boolÃ©en correspondant Ã  l'ID donnÃ©
     bool getBoolean(const QString& groupId, const QString& stringId, bool defaultBool);
 
-    //! Retourne un double correspondant à l'ID donné
+    //! Retourne un double correspondant Ã  l'ID donnÃ©
     double getDouble(const QString& groupId, const QString& stringId, double defaultDouble);
 
-    //! Définit la propriété stringId du groupe groupId
+    //! DÃ©finit la propriÃ©tÃ© stringId du groupe groupId
     void setBoolean(const QString& groupId, const QString& stringId, bool bValue);
 
-    //! Définit la propriété stringId du groupe groupId
+    //! DÃ©finit la propriÃ©tÃ© stringId du groupe groupId
     void setDouble(const QString& groupId, const QString& stringId, double dValue);
 
 protected:

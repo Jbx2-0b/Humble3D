@@ -1,4 +1,4 @@
-#ifndef AWASHABLE_H
+ï»¿#ifndef AWASHABLE_H
 #define AWASHABLE_H
 
 // Lib
@@ -13,10 +13,10 @@ public:
 
     AWashable();
 
-    //! Passe l'entitée à sale = nécessite une mise à jour
+    //! Passe l'entitÃ©e Ã  sale = nÃ©cessite une mise Ã  jour
     virtual void setDirty();
 
-    //! Passe l'entitée à propre
+    //! Passe l'entitÃ©e Ã  propre
     virtual void wash();
 
     //! Retourne true si le rendu est sale
@@ -25,7 +25,7 @@ public:
 
 private:
 
-    //! Si vrai, l'entitée est sale
+    //! Si vrai, l'entitÃ©e est sale
     bool m_bIsDirty;
 
 };

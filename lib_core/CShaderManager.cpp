@@ -1,14 +1,18 @@
 ﻿#include "CShaderManager.h"
 
-
-CShaderManager* CShaderManager::s_pInstance = 0;
-QMutex CShaderManager::s_Mutex(QMutex::Recursive);
-
 //-----------------------------------------------------------------------------------------
 CShaderManager::CShaderManager()
 {
 
 }
+
+//-----------------------------------------------------------------------------------------
+CShaderManager &CShaderManager::getInstance()
+{
+    static CShaderManager instance;
+    return instance;
+}
+
 //-----------------------------------------------------------------------------------------
 CShaderManager::~CShaderManager()
 {
@@ -70,7 +74,7 @@ CShader* CShaderManager::createShader(
         const QString& geometryShaderFileName,
         const QString& fragmentShaderFileName)
 {
-    pLog->addMessage(eDEBUG, "ShaderManager: create shader " + name);
+    LogManager.addMessage(eDEBUG, "ShaderManager: create shader " + name);
     CShader* pShader = new CShader(name, vertexShaderFileName, geometryShaderFileName, fragmentShaderFileName);
     m_Shaders[pShader->getName()] = pShader;
     m_ShaderIDs[pShader->getID()] = pShader;
@@ -86,7 +90,7 @@ CShader* CShaderManager::createShaderFromSourceCode(
         const QString& geometryShaderFileCode,
         const QString& fragmentShaderFileCode)
 {
-    pLog->addMessage(eDEBUG, "ShaderManager: create shader " + name);
+    LogManager.addMessage(eDEBUG, "ShaderManager: create shader " + name);
     CShader* pShader = new CShader(name);
     pShader->setVertexShaderCode(vertexShaderFileCode);
     pShader->setGeometryShaderCode(geometryShaderFileCode);

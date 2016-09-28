@@ -53,7 +53,7 @@ CMesh* CGeometryInstancer::getAnAvailableMesh()
 //-----------------------------------------------------------------------------------------
 void CGeometryInstancer::run()
 {
-    pLog->addMessage(eINFO, QString("Geometry Instancer Thread: %1")
+    LogManager.addMessage(eINFO, QString("Geometry Instancer Thread: %1")
                      .arg((qlonglong)QThread::currentThreadId()));
 
     while (true)
@@ -64,7 +64,7 @@ void CGeometryInstancer::run()
             pMesh->updateGeometry();
             pMesh->setDirty();
 
-            //            pLog->addMessage(eDEBUGTHREAD, QString("CGeometryInstancer (Thread: %1) Mesh %2")
+            //            LogManager.addMessage(eDEBUGTHREAD, QString("CGeometryInstancer (Thread: %1) Mesh %2")
             //                             .arg((qlonglong)QThread::currentThreadId())
             //                             .arg(pMesh->getName()));
             pMesh->unlock();

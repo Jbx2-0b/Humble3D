@@ -45,7 +45,7 @@ TestOctreeApp::TestOctreeApp()
     // On l'associe au noeud
     getSceneManager()->getRootNode()->addItem(pLight);
 
-    CMaterial* pGreenMat = CMaterialManager::getInstance()->createMaterial("GreenMat");
+    CMaterial* pGreenMat = CMaterialManager::getInstance().createMaterial("GreenMat");
     pGreenMat->setAmbientColor(0.25, 0.87, 0.21);
     pGreenMat->getRenderPass(0)->setShaderName("toon");
 
@@ -55,7 +55,7 @@ TestOctreeApp::TestOctreeApp()
     int size = 1000;
     for (int i = 0; i < 400; i++)
     {
-        CSphereMesh* pMesh = CMeshManager::getInstance()->createCustomMesh<CSphereMesh>("CSphereMesh", "SphereMesh");
+        CSphereMesh* pMesh = CMeshManager::getInstance().createCustomMesh<CSphereMesh>("CSphereMesh", "SphereMesh");
         pMesh->setRadius(1.0);
 
         CMeshInstance* pMeshInstance = getSceneManager()->createMeshInstance(pMesh, "Sphere");

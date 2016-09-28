@@ -1,4 +1,4 @@
-#ifndef CSCRIPTABLEFACTORY_H
+﻿#ifndef CSCRIPTABLEFACTORY_H
 #define CSCRIPTABLEFACTORY_H
 
 #include "CRegisterFactory.h"

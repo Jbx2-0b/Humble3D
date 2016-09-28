@@ -1,4 +1,4 @@
-#ifndef CLOGMANAGER_H
+ï»¿#ifndef CLOGMANAGER_H
 #define CLOGMANAGER_H
 
 // Lib
@@ -13,7 +13,7 @@
 #include <QMutex>
 #include <QMutexLocker>
 
-#define pLog CLogManager::getInstance()
+#define LogManager CLogManager::getInstance()
 
 const QString defaultLogFileName = "app.log";
 
@@ -45,48 +45,24 @@ class LIB_TOOLSSHARED_EXPORT CLogManager
 public:
 
     //! Accesseur a l'instance de la classe.
-    static CLogManager* getInstance()
-    {
-        if (s_pInstance == 0)
-        {
-            QMutexLocker locker(&s_Mutex);
-
-            if (s_pInstance == 0)
-            {
-                s_pInstance = new CLogManager();
-            }
-        }
-
-        return s_pInstance;
-    }
-
-    //! Destructeur de l'instance de la classe.
-    static void killInstance()
-    {
-        if (s_pInstance)
-        {
-            QMutexLocker locker(&s_Mutex);
-            delete s_pInstance;
-            s_pInstance = 0;
-        }
-    }
+    static CLogManager& getInstance();
 
     //! Enregistre un listener
     void registerListener(ILogManagerListener* pListener);
 
-    //! Libére un listener
+    //! LibÃ©re un listener
     void unregisterListener(ILogManagerListener* pListener);
 
-    //!  Définit le nom du fichier de log
+    //!  DÃ©finit le nom du fichier de log
     void setFileName(const QString& fileName);
 
-    //! Définit si le canal est actif
+    //! DÃ©finit si le canal est actif
     void setActive(EnumLogType eType, bool bVisible);
 
-    //! Récupére la liste des messages
+    //! RÃ©cupÃ©re la liste des messages
     const QStringList& getAllMessages()	const { return m_listMsg; }
 
-    //! Récupére la liste des messages en fonction de leur type
+    //! RÃ©cupÃ©re la liste des messages en fonction de leur type
     QList<QString> getMessagesByType(EnumLogType eType) const { return m_mapMsg.values(eType); }
 
     //! Ajoute un message
@@ -123,9 +99,6 @@ protected:
     QSet<ILogManagerListener*> m_LogManagerListeners;
 
     QString m_FileName;
-
-    static CLogManager* s_pInstance;
-    static QMutex s_Mutex;
 };
 
 #endif // CLOGMANAGER_H

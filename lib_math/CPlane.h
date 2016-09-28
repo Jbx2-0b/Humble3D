@@ -7,7 +7,6 @@
 #include "CBox3D.h"
 
 // Qt
-#include <QtCore>
 #include <QVector3D>
 
 // STL

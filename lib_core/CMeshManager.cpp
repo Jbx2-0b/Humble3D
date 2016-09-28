@@ -3,13 +3,17 @@
 #include "CBinaryMesh.h"
 #include "CBinaryLoader.h"
 
-CMeshManager* CMeshManager::s_pInstance = 0;
-QMutex CMeshManager::s_Mutex(QMutex::Recursive);
-
 //-----------------------------------------------------------------------------------------
 CMeshManager::CMeshManager()
 {
 
+}
+
+//-----------------------------------------------------------------------------------------
+CMeshManager &CMeshManager::getInstance()
+{
+    static CMeshManager instance;
+    return instance;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -82,7 +86,7 @@ CMesh* CMeshManager::createMesh(const QString& name)
 {
     CMesh* pMesh = new CMesh(name);
     appendMesh(pMesh);
-    //pLog->addMessage(eINFO, "CMeshManager: Create mesh " + pMesh->getName());
+    //LogManager.addMessage(eINFO, "CMeshManager: Create mesh " + pMesh->getName());
     return pMesh;
 }
 
@@ -91,14 +95,14 @@ CMesh* CMeshManager::loadMesh(const QString& fileName)
 {
     CMesh* pMesh = new CBinaryMesh(fileName, QFileInfo(fileName).baseName());
     appendMesh(pMesh);
-    //pLog->addMessage(eINFO, "CMeshManager: Load mesh " + fileName);
+    //LogManager.addMessage(eINFO, "CMeshManager: Load mesh " + fileName);
     return pMesh;
 }
 
 //-----------------------------------------------------------------------------------------
 bool CMeshManager::saveMesh(CMesh* pMesh, const QString& fileName, int iCompressionFactor)
 {
-    //pLog->addMessage(eINFO, "CMeshManager::saveMesh() : " + fileName);
+    //LogManager.addMessage(eINFO, "CMeshManager::saveMesh() : " + fileName);
 
     QFile file(fileName);
     if (file.open(QIODevice::WriteOnly))
@@ -134,7 +138,7 @@ CMeshGroup CMeshManager::loadMeshGroup(const QString& fileName)
     {
         appendMesh(pMesh);
     }
-    pLog->addMessage(eINFO, "CMeshManager: Load mesh group " + fileName);
+    LogManager.addMessage(eINFO, "CMeshManager: Load mesh group " + fileName);
     return meshGroup;
 }
 
@@ -143,10 +147,10 @@ bool CMeshManager::saveMeshGroup(const CMeshGroup& meshGroup, const QString& fil
 {
     if (CBinaryLoader::save(fileName, &meshGroup, iCompressionFactor))
     {
-        pLog->addMessage(eINFO, "CMeshManager: Save mesh group " + fileName);
+        LogManager.addMessage(eINFO, "CMeshManager: Save mesh group " + fileName);
         return true;
     }
-    pLog->addMessage(eINFO, "CMeshManager: Error saving mesh group " + fileName);
+    LogManager.addMessage(eINFO, "CMeshManager: Error saving mesh group " + fileName);
     return false;
 }
 
@@ -157,7 +161,7 @@ CMesh* CMeshManager::createCustomMesh(const QString& typeName, const QString& it
     {
         pCustomMesh->setName(itemName);
         appendMesh(pCustomMesh);
-        //pLog->addMessage(eINFO, "CMeshManager: Create mesh " + pCustomMesh->getName());
+        //LogManager.addMessage(eINFO, "CMeshManager: Create mesh " + pCustomMesh->getName());
         return pCustomMesh;
     }
     return 0;
@@ -271,7 +275,7 @@ QDataStream& operator >> (QDataStream& in, CMeshGroup& meshGroup)
 
     for (unsigned int i = 0; i < iMeshCount; ++i)
     {
-        CMesh* pMesh = CMeshManager::getInstance()->createMesh();
+        CMesh* pMesh = CMeshManager::getInstance().createMesh();
         in >> *pMesh;
         meshGroup.append(pMesh);
     }

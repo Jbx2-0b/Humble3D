@@ -18,10 +18,7 @@ public:
 
     FormatConverterApp(QWidget *parent = 0);
 
-    virtual ~FormatConverterApp()
-    {
-        CMaterialManager::killInstance();
-    }
+    virtual ~FormatConverterApp() {}
 
 protected slots:
 

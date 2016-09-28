@@ -31,17 +31,17 @@ void CWater::updateGeometry()
     /*
     setSelectable(false);
 
-    m_pMaterial = CMaterialManager::getInstance()->createMaterial("WaterMaterial");
+    m_pMaterial = CMaterialManager::getInstance().createMaterial("WaterMaterial");
 
     QStringList fileNames;
     fileNames << "xpos.png" << "xneg.png" << "ypos.png"
               << "yneg.png" << "zpos.png" << "zneg.png";
 
-    CTextureCube* pTexture = CTextureManager::getInstance()->createTextureCube("WaterTexCube", fileNames);
+    CTextureCube* pTexture = CTextureManager::getInstance().createTextureCube("WaterTexCube", fileNames);
     m_pMaterial->addTexture(pTexture, eDiffuse);
 
     m_pMaterial->setOpacity(0.5);
-    CShader* pShader = CShaderManager::getInstance()->createShader("WaterShader",
+    CShader* pShader = CShaderManager::getInstance().createShader("WaterShader",
                             "water.vertex.glsl",
                             "",
                             "water.fragment.glsl");

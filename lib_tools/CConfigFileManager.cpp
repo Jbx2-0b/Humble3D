@@ -1,4 +1,4 @@
-#include "CConfigFileManager.h"
+﻿#include "CConfigFileManager.h"
 
 #include <QCoreApplication>
 

@@ -1,4 +1,4 @@
-#ifndef CTOOLBAR_H
+﻿#ifndef CTOOLBAR_H
 #define CTOOLBAR_H
 
 // Lib
@@ -48,7 +48,7 @@ public:
         eOnClose
     };
 
-    CToolBar(EnumToolBarPosition ePosition, const QSize& viewSize, CGraphicsWidgetItem* pItem, QWidget* parent = 0);
+    CToolBar(EnumToolBarPosition ePosition, const QSize& viewSize, QSharedPointer<CGraphicsWidgetItem> pItem, QWidget* parent = 0);
 
     virtual ~CToolBar();
 
@@ -108,7 +108,7 @@ protected:
 
     void updateWidgetPositions();
 
-    CGraphicsWidgetItem* m_pItem;
+    QSharedPointer<CGraphicsWidgetItem> m_pItem;
 
     QFrame* m_pLayoutFrame;
 
@@ -159,7 +159,7 @@ protected:
     int m_iDelta;
     int m_iTotalDelta;
 
-    //! Temps en millisecondes entre deux �tapes d'animation
+    //! Temps en millisecondes entre deux étapes d'animation
     static const int StepAnimationDT = 0;
 };
 

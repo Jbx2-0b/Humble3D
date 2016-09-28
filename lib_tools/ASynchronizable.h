@@ -1,4 +1,4 @@
-#ifndef ASYNCHRONIZABLE_H
+﻿#ifndef ASYNCHRONIZABLE_H
 #define ASYNCHRONIZABLE_H
 
 // Qt
@@ -42,7 +42,7 @@ public:
 #endif
 	}
 
-	//! Lock le buffer en �criture
+	//! Lock le buffer en écriture
 	void lockForWrite()	const						
 	{ 
 		m_Lock.lockForWrite();

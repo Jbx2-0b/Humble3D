@@ -303,7 +303,7 @@ protected:
             branchNode += "-";
             branchItems += " ";
         }
-        pLog->addMessage(eINFO, QString("%1 Node name : %2.").arg(branchNode).arg(getName()));
+        LogManager.addMessage(eINFO, QString("%1 Node name : %2.").arg(branchNode).arg(getName()));
 
         foreach (T* pChild, m_ChildNodes)
         {

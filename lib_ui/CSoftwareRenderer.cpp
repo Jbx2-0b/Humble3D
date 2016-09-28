@@ -1,4 +1,4 @@
-#include "CSoftwareRenderer.h"
+ï»¿#include "CSoftwareRenderer.h"
 #include "CMaterialManager.h"
 
 //-----------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ void CSoftwareRenderer::setResolution(int iWidth, int iHeight)
 }
 
 //-----------------------------------------------------------------------------------------
-// Implémentation ARenderer
+// ImplÃ©mentation ARenderer
 //-----------------------------------------------------------------------------------------
 bool CSoftwareRenderer::init()
 {
@@ -60,7 +60,7 @@ void CSoftwareRenderer::render()
         foreach (int materialID, materialIDs)
         {
 
-            if (CMaterial* pMaterial = CMaterialManager::getInstance()->getMaterialByID(materialID))
+            if (CMaterial* pMaterial = CMaterialManager::getInstance().getMaterialByID(materialID))
             {
                 m_pCurrentMaterial = pMaterial;
 
@@ -72,8 +72,8 @@ void CSoftwareRenderer::render()
                     {
                         foreach (CSceneNode* pNode, pItem->getNodes())
                         {
-                            // On concaténe les matrices pour obtenir la matrice "Model-Vue-Projection" qui correspond
-                            // au changement de repére pour passer du répére de l'objet à celui de la caméra
+                            // On concatÃ©ne les matrices pour obtenir la matrice "Model-Vue-Projection" qui correspond
+                            // au changement de repÃ©re pour passer du rÃ©pÃ©re de l'objet Ã  celui de la camÃ©ra
                             m_ModelViewProjectionMatrix = m_pCurrentCamera->getTransformation() * pNode->getGlobalTransformation();
 
                             pItem->doRender(this);
@@ -116,7 +116,7 @@ void CSoftwareRenderer::renderMeshBuffer(CMeshBuffer* pBuffer)
             for (int i = 0; i < 3; ++i)
             {
                 int iPosID = indiceBuffer.at(iIndex + i);
-                // On convertit la position XYZ dans le repére local du modéle dans le repére caméra via la matrice vue-projection
+                // On convertit la position XYZ dans le repÃ©re local du modÃ©le dans le repÃ©re camÃ©ra via la matrice vue-projection
 
                 // TODO
                 /*
@@ -149,8 +149,8 @@ void CSoftwareRenderer::renderMeshBuffer(CMeshBuffer* pBuffer)
                 // Frustum culling
                 if (pos2D.z() < dZNear || pos2D.z() > dZFar) break;
 
-                // On convertit les données normalisées dans la surface de l'écran [-1; 1]
-                // En coordonnées XY classique exprimé depuis le coin supérieur gauche et tenant compte de la résolution de l'image
+                // On convertit les donnÃ©es normalisÃ©es dans la surface de l'Ã©cran [-1; 1]
+                // En coordonnÃ©es XY classique exprimÃ© depuis le coin supÃ©rieur gauche et tenant compte de la rÃ©solution de l'image
                 pt[i].setX(Math::round(((pos2D.x() + 1.0) / 2.0) * dWidth));
                 pt[i].setY(Math::round(((1.0 - pos2D.y()) / 2.0) * dHeight));
                 pt[i].setZ(pos2D.z());
@@ -187,7 +187,7 @@ void CSoftwareRenderer::onUpdateRenderStates()
 }
 
 //-----------------------------------------------------------------------------------------
-// Implémentation CSceneManager::ISceneManagerListener
+// ImplÃ©mentation CSceneManager::ISceneManagerListener
 //-----------------------------------------------------------------------------------------
 void CSoftwareRenderer::onUpdateCamera(CCamera* /*pCamera*/)
 {

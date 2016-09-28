@@ -1,4 +1,4 @@
-#include "ALockable.h"
+﻿#include "ALockable.h"
 
 ALockable::ALockable()
     : m_Mutex(QMutex::Recursive)

@@ -84,7 +84,7 @@ public:
     {
         if (iTupleSize > 4)
         {
-            pLog->addMessage(eERROR, "Impossible de spécifier des tuples > 4");
+            LogManager.addMessage(eERROR, "Impossible de spécifier des tuples > 4");
             return;
         }
 

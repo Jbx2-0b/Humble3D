@@ -211,7 +211,7 @@ public:
                     .arg(texture.getTextureName())
                     .arg(CGeometryGlobal::stringFromMaterialParameter(texture.getMaterialParameter()));
 
-            if (ATexture* pTexture = CTextureManager::getInstance()->getTextureByName(texture.getTextureName()))
+            if (ATexture* pTexture = CTextureManager::getInstance().getTextureByName(texture.getTextureName()))
             {
                 result += pTexture->toString();
             }

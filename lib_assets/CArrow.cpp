@@ -51,6 +51,6 @@ void CArrow::updateGeometry()
 
     idBuffer << 0 << 1 << 1 << 2 << 1 << 3;
 
-    pArrow->setMaterialName(CMaterialManager::getInstance()->getMaterialNameByColor(Color::eWhite));
+    pArrow->setMaterialName(CMaterialManager::getInstance().getMaterialNameByColor(Color::eWhite));
 }
 

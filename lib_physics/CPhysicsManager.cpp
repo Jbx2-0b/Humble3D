@@ -1,4 +1,4 @@
-#include "CPhysicsManager.h"
+﻿#include "CPhysicsManager.h"
 #include "CSceneNode.h"
 #include "CBulletHelper.h"
 
@@ -91,14 +91,14 @@ void CPhysicsManager::setGravity(const QVector3D& gravity)
 //-----------------------------------------------------------------------
 void CPhysicsManager::registerItem(ASceneNodeItem* pItem)
 {
-    pLog->addMessage(eINFO, QString("PhysicsManager: register item %1").arg(pItem->getName()));
+    LogManager.addMessage(eINFO, QString("PhysicsManager: register item %1").arg(pItem->getName()));
     m_Items.insert(pItem);
 }
 
 //-----------------------------------------------------------------------
 void CPhysicsManager::unregisterItem(ASceneNodeItem* pItem)
 {
-    pLog->addMessage(eINFO, QString("PhysicsManager: unregister item %1").arg(pItem->getName()));
+    LogManager.addMessage(eINFO, QString("PhysicsManager: unregister item %1").arg(pItem->getName()));
     m_Items.remove(pItem);
     pItem->unregisterListener(this);
 
@@ -251,7 +251,7 @@ CPhysicsManager::CShapeInfo::CShapeInfo(btDiscreteDynamicsWorld* pWorld, CSceneN
         }
         else
         {
-            pLog->addMessage(eERROR, "Only mesh can have convex hull shape !");
+            LogManager.addMessage(eERROR, "Only mesh can have convex hull shape !");
         }
     }
         break;

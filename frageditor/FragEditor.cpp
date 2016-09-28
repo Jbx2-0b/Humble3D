@@ -45,27 +45,27 @@ FragEditor::FragEditor()
     //m_pView->getGLRenderer()->registerListener(this);
 
 
-    CPlaneMesh* pPlaneMesh = CMeshManager::getInstance()->createCustomMesh<CPlaneMesh>("CPlaneMesh", "PlaneMesh");
+    CPlaneMesh* pPlaneMesh = CMeshManager::getInstance().createCustomMesh<CPlaneMesh>("CPlaneMesh", "PlaneMesh");
     pPlaneMesh->init(CPlaneMesh::ePlaneXY, 1, 1, 1, 1);
 
     CMeshInstance* pPlane = m_pSceneManager->createMeshInstance(pPlaneMesh, "PlaneMesh");
 
 #ifdef EMBEDDED_TARGET
-    m_pSDEdited = CShaderManager::getInstance()->createShader("Edited", ":/Resources/defaultES.vertex.glsl", "", ":/Resources/defaultES.fragment.glsl");
+    m_pSDEdited = CShaderManager::getInstance().createShader("Edited", ":/Resources/defaultES.vertex.glsl", "", ":/Resources/defaultES.fragment.glsl");
 #else
-    m_pSDEdited = CShaderManager::getInstance()->createShader("Edited", ":/Resources/default.vertex.glsl", "", ":/Resources/default.fragment.glsl");
+    m_pSDEdited = CShaderManager::getInstance().createShader("Edited", ":/Resources/default.vertex.glsl", "", ":/Resources/default.fragment.glsl");
 #endif
 
     m_pSDEdited->setUniformValue("iResolution", QVector3D(iDefaultViewSizeX, iDefaultViewSizeY, 0));
     m_pSDEdited->setUniformValue("iMouse", QVector4D(m_iMouseX, m_iMouseY, m_bMouseLeftPressed, m_bMouseRightPressed));
 
-    CMaterial* pMat = CMaterialManager::getInstance()->createMaterial("GridMat");
+    CMaterial* pMat = CMaterialManager::getInstance().createMaterial("GridMat");
     pMat->getRenderPass(0)->setShaderName(m_pSDEdited->getName());
     pPlane->setMaterialName(pMat->getName());
 
     for (int i = 0; i < 4; ++i)
     {
-        CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D("iChannel" + QString::number(i));
+        CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D("iChannel" + QString::number(i));
         pMat->addTexture(pTexture, eDiffuse);
         m_pSDEdited->setUniformValue("iChannel" + QString::number(i), pTexture->getTextureUnit());
         m_pSDEdited->setUniformValue(QString("iChannelResolution[%1]").arg(i), QVector3D(0., 0., 0.));
@@ -150,9 +150,9 @@ FragEditor::FragEditor()
     connect(&m_SleepToolBarTimer, SIGNAL(timeout()), this, SLOT(onSleepToolBarTimeout()));
 
     //    m_pView->setWindowTitle(QString("FragEditor - %1 - OpenGL %2 - GLSL %3")
-    //                            .arg(CGLHelper::getInstance()->getGPUName())
-    //                            .arg(CGLHelper::getInstance()->getOpenGLVersion())
-    //                            .arg(CGLHelper::getInstance()->getGLSLVersion()));
+    //                            .arg(CGLHelper::getInstance().getGPUName())
+    //                            .arg(CGLHelper::getInstance().getOpenGLVersion())
+    //                            .arg(CGLHelper::getInstance().getGLSLVersion()));
 
     connect(m_pView, SIGNAL(mouseMoved()),			this, SLOT(onMouseMoved()));
     connect(m_pView, SIGNAL(mouseReleased()),		this, SLOT(onMouseReleased()));

@@ -1,13 +1,10 @@
-#include "CLogManager.h"
+﻿#include "CLogManager.h"
 
 #include <QTime>
 #include <QFile>
 #include <QTextStream>
 #include <QCoreApplication>
 #include <QDebug>
-
-CLogManager* CLogManager::s_pInstance = 0;
-QMutex CLogManager::s_Mutex(QMutex::Recursive);
 
 const char* CLogManager::s_LogTypeNames[] = { "FATAL", "ERROR", "WARN", "DEBUG", "DEBUGMEMORY", "DEBUGTHREAD", "INFO" };
 
@@ -18,7 +15,7 @@ CLogManager::CLogManager()
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-        qDebug() << "Impossible de cr�er le fichier de log !";
+        qDebug() << "Impossible de créer le fichier de log !";
     }
 
     m_ActiveLogTypes[eFATAL]		= true;
@@ -33,6 +30,13 @@ CLogManager::CLogManager()
 //-----------------------------------------------------------------------------------------
 CLogManager::~CLogManager()
 {
+}
+
+//-----------------------------------------------------------------------------------------
+CLogManager &CLogManager::getInstance()
+{
+    static CLogManager instance;
+    return instance;
 }
 
 //-----------------------------------------------------------------------------------------

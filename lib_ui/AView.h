@@ -1,4 +1,4 @@
-#ifndef AVIEW_H
+ï»¿#ifndef AVIEW_H
 #define AVIEW_H
 
 
@@ -42,13 +42,13 @@ public:
 	//! Retourne l'etat du clavier
 	CKeyboardStates getKeyboardStates() const { return m_KeyboardStates; }
 
-    //! Définit la caméra utilisée
+    //! DÃ©finit la camÃ©ra utilisÃ©e
     void setCurrentCamera(CCamera* pCamera) { m_pRenderer->setCurrentCamera(pCamera); }
 
-    //! Retourne la caméra utilisée
+    //! Retourne la camÃ©ra utilisÃ©e
     CCamera* getCurrentCamera() { return m_pRenderer->getCurrentCamera(); }
 
-    //! Retourne la caméra utilisée
+    //! Retourne la camÃ©ra utilisÃ©e
     const CCamera* getCurrentCamera() const { return m_pRenderer->getCurrentCamera(); }
 
 protected:

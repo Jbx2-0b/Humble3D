@@ -1,4 +1,4 @@
-#ifndef CGRAPHICSVIEW3D_H
+ï»¿#ifndef CGRAPHICSVIEW3D_H
 #define CGRAPHICSVIEW3D_H
 
 // Lib
@@ -19,6 +19,7 @@ class CSceneManager;
 #include <QGraphicsView>
 #include <QVBoxLayout>
 #include <QTimer>
+#include <QSharedPointer>
 
 // Qt
 #include <QApplication>
@@ -33,7 +34,7 @@ class LIB_UI_SHARED_EXPORT CGraphicsView3D
 
 public:
 
-    //! Ctor - crée une application OpenGL basée sur une QGraphicsView
+    //! Ctor - crÃ©e une application OpenGL basÃ©e sur une QGraphicsView
     CGraphicsView3D(CSceneManager* pSceneManager, CCamera* pCamera, QWidget* pParent = 0);
 
     //! Dtor
@@ -48,7 +49,7 @@ public:
     //! Retourne le format d'affichage
     CGLFormat getFormat() const { return m_pGLWidget->format(); }
 
-    //! Créer une barre d'outils
+    //! CrÃ©er une barre d'outils
     CToolBar* createToolBar(CToolBar::EnumToolBarPosition eToolBarPosition = CToolBar::eToolBarTop);
 
     //! Supprime un objet de la barre d'outils
@@ -100,14 +101,14 @@ protected:
     //! Capture le relachement d'une touche
     virtual void keyReleaseEvent(QKeyEvent* event);
 
-    //! Pointeur sur le widget OpenGL sur lequel est associée la vue
+    //! Pointeur sur le widget OpenGL sur lequel est associÃ©e la vue
     CGLWidget* m_pGLWidget;
 
-    //! Pointeur sur la scéne 2D
+    //! Pointeur sur la scÃ©ne 2D
     CGraphicsScene3D* m_pGraphicsScene;
 
-    //! Items graphiques placés sur la vue
-    QMap<QWidget*, CGraphicsWidgetItem*> m_GraphicsWidgetItems;
+    //! Items graphiques placÃ©s sur la vue
+    QMap<QWidget*, QSharedPointer<CGraphicsWidgetItem> > m_GraphicsWidgetItems;
 
     CGLRenderer* m_pGLRenderer;
 

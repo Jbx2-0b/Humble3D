@@ -48,7 +48,7 @@ void CImageSelector::mousePressEvent(QMouseEvent* pEvent)
                 QPixmap pix = base.scaled(channelLabels[iID]->size());
                 channelLabels[iID]->setPixmap(pix);
 
-                if (CTexture2D* pTexture = dynamic_cast<CTexture2D*>(CTextureManager::getInstance()->getTextureByName(m_pMaterial->getTextureParams()[iID].getTextureName())))
+                if (CTexture2D* pTexture = dynamic_cast<CTexture2D*>(CTextureManager::getInstance().getTextureByName(m_pMaterial->getTextureParams()[iID].getTextureName())))
                 {
                     pTexture->setFileName(fileName);
                     m_pShader->setUniformValue(QString("iChannelResolution[%1]").arg(iID), QVector3D(pTexture->getSize().width(), pTexture->getSize().height(), 0.));

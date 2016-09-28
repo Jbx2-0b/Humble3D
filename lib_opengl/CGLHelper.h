@@ -16,13 +16,11 @@
 
 typedef QPair<int, EnumLightParameter> TLightParam;
 
-#define pGLHelper CGLHelper::getInstance()
-
 class LIB_OPENGLSHARED_EXPORT CGLHelper
 {
 public:
 
-    static CGLHelper* getInstance();
+    static CGLHelper &getInstance();
 
     QByteArray getLightParamStr(const TLightParam& param) const;
 
@@ -70,9 +68,6 @@ protected:
 
     QStringList m_MaterialParameterName;
     QStringList m_MaterialParameterCountName;
-
-    static CGLHelper* s_pInstance;
-    static QMutex s_Mutex;
 };
 
 

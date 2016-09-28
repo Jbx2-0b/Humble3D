@@ -51,7 +51,7 @@ CSceneNode* CSceneNode::clone() const
     }
     else
     {
-        pLog->addMessage(eERROR, "Can't clone root node !");
+        LogManager.addMessage(eERROR, "Can't clone root node !");
     }
 
     pClone->addItems(m_NodeItems);

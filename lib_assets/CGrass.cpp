@@ -16,13 +16,13 @@ CGrass::CGrass()
     /*
     setSelectable(false);
 
-    m_pGrassMaterial = CMaterialManager::getInstance()->createMaterial("Grass");
+    m_pGrassMaterial = CMaterialManager::getInstance().createMaterial("Grass");
     m_pGrassMaterial->setAmbientColor(0.5f, 0.7f, 0.4f);
     m_pGrassMaterial->setDiffuseColor(0.3f, 0.2f, 0.1f);
     m_pGrassMaterial->setSpecularColor(0.3f, 0.2f, 0.2f);
     m_pGrassMaterial->setShininessFactor(128);
 
-    CShader* pShader = CShaderManager::getInstance()->createShader("grass",
+    CShader* pShader = CShaderManager::getInstance().createShader("grass",
         "grass.vertex.glsl",
         "grass.geometry.glsl",
         "grass.fragment.glsl");
@@ -30,10 +30,10 @@ CGrass::CGrass()
 
     //m_pGrassMaterial->getRenderingPass(0)->setShadingModel(eShadingModelColor);
 
-    ATexture* pDiffuseTexture = CTextureManager::getInstance()->createTexture2D("GrassDiffuseTex", DefaultDiffuseGrassTexture);
+    ATexture* pDiffuseTexture = CTextureManager::getInstance().createTexture2D("GrassDiffuseTex", DefaultDiffuseGrassTexture);
     m_pGrassMaterial->addTexture(pDiffuseTexture, eDiffuse);
 
-    ATexture* pNoiseTexture = CTextureManager::getInstance()->createTexture2D("NoiseTex", DefaultNormalsTexture);
+    ATexture* pNoiseTexture = CTextureManager::getInstance().createTexture2D("NoiseTex", DefaultNormalsTexture);
     m_pGrassMaterial->addTexture(pNoiseTexture, eNormals);
 
     m_pGrassMaterial->setTwoSided(true);

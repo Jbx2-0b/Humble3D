@@ -21,31 +21,7 @@ class LIB_CORE_SHARED_EXPORT CTextureManager : public ATexture::ITextureListener
 public:
 
     //! Accesseur a l'instance de la classe.
-    static CTextureManager* getInstance()
-    {
-        if (s_pInstance == 0)
-        {
-            QMutexLocker locker(&s_Mutex);
-
-            if (s_pInstance == 0)
-            {
-                s_pInstance = new CTextureManager();
-            }
-        }
-
-        return s_pInstance;
-    }
-
-    //! Destructeur de l'instance de la classe.
-    static void killInstance()
-    {
-        if (s_pInstance)
-        {
-            QMutexLocker locker(&s_Mutex);
-            delete s_pInstance;
-            s_pInstance = 0;
-        }
-    }
+    static CTextureManager& getInstance();
 
     //-------------------------------------------------------------------------------------------------
     // Listeners
@@ -157,9 +133,6 @@ private:
 
     //! Conteneur des textures
     QMap<int, ATexture*> m_TextureByID;
-
-    static CTextureManager* s_pInstance;
-    static QMutex s_Mutex;
 };
 
 #endif // CTEXTUREMANAGER_H

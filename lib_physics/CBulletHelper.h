@@ -1,4 +1,4 @@
-#ifndef CBULLETHELPER_H
+﻿#ifndef CBULLETHELPER_H
 #define CBULLETHELPER_H
 
 // Qt

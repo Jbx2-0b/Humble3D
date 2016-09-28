@@ -74,7 +74,7 @@ void CGraphicsScene3D::drawBackground(QPainter* painter, const QRectF& rect)
     }
     else
     {
-        pLog->addMessage(eFATAL, "Unable to initialize renderer, OpenGL functions missing...");
+        LogManager.addMessage(eFATAL, "Unable to initialize renderer, OpenGL functions missing...");
         qApp->exit();
     }
 
@@ -82,7 +82,7 @@ void CGraphicsScene3D::drawBackground(QPainter* painter, const QRectF& rect)
 }
 
 //-----------------------------------------------------------------------------------------
-void CGraphicsScene3D::setRenderer(CGLRenderer* pRenderer)
+void CGraphicsScene3D::setRenderer(CGLRenderer *pRenderer)
 {
     m_pRenderer = pRenderer;
 }

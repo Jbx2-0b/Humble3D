@@ -1,4 +1,4 @@
-#ifndef CRESOURCESPATHMANAGER_H
+﻿#ifndef CRESOURCESPATHMANAGER_H
 #define CRESOURCESPATHMANAGER_H
 
 // Lib
@@ -58,7 +58,7 @@ public:
 
     void setApplicationPath(const QString& sAppPath)
     {
-        pLog->addMessage(eINFO, "Application path " + sAppPath);
+        LogManager.addMessage(eINFO, "Application path " + sAppPath);
         m_sAppPath = sAppPath;
         addPath(m_sAppPath, eAbsolute);
 

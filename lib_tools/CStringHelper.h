@@ -1,4 +1,4 @@
-#ifndef STRINGHELPER_H
+﻿#ifndef STRINGHELPER_H
 #define STRINGHELPER_H
 
 #include <string>
@@ -18,7 +18,7 @@ bool isFloat(const string & str);
 template<typename T>
 bool fromString(const string & str, T& dest)
 {
-    // creer un flux �  partir de la chaîne donnee
+    // creer un flux Ã  partir de la chaÃ®ne donnee
     istringstream iss(str);
     // tenter la conversion vers Dest
     return iss >> dest != 0;

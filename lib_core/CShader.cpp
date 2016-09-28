@@ -39,7 +39,7 @@ void CShader::load()
 
     if (!bVertexValid || !bFragmentValid)
     {
-        pLog->addMessage(eWARN, "Shader error loading : " + getName() + " vertex shader or fragment shader missing. ");
+        LogManager.addMessage(eWARN, "Shader error loading : " + getName() + " vertex shader or fragment shader missing. ");
     }
     load(m_GeometryShaderFileName, m_GeometryShaderCode);
     load(m_TessellationControlShaderFileName, m_TessellationControlShaderCode);
@@ -65,7 +65,7 @@ bool CShader::load(const QString& shaderFileName, QString& shaderCode)
         }
         else
         {
-            pLog->addMessage(eERROR, "CShader : " + shaderFileName + " not found");
+            LogManager.addMessage(eERROR, "CShader : " + shaderFileName + " not found");
         }
     }
 

@@ -1,4 +1,4 @@
-#ifndef CREGISTERFACTORY_H
+ï»¿#ifndef CREGISTERFACTORY_H
 #define CREGISTERFACTORY_H
 
 #include <QMap>
@@ -33,8 +33,8 @@ public:
 
     void registerClass(const QString& id, Instanciator<Base>* pInst)
     {
-        // gérer les cas où l'id est déjà enregistré
-        // si la clé n'est pas déjà présente
+        // gÃ©rer les cas oÃ¹ l'id est dÃ©jÃ  enregistrÃ©
+        // si la clÃ© n'est pas dÃ©jÃ  prÃ©sente
         if (!m_registerMap.contains(id))
         {
             //on ajoute l'objet dans la map
@@ -60,7 +60,7 @@ public:
 
     virtual ~CRegisterFactory()
     {
-        //détruire les instanciators
+        //dÃ©truire les instanciators
         foreach (Instanciator<Base>* pInst, m_registerMap)
         {
             delete pInst;

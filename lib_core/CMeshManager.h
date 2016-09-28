@@ -22,31 +22,7 @@ class LIB_CORE_SHARED_EXPORT CMeshManager : public CMesh::IMeshListener
 public:
 
     //! Accesseur de l'instance de la classe.
-    static CMeshManager* getInstance()
-    {
-        if (s_pInstance == 0)
-        {
-            QMutexLocker locker(&s_Mutex);
-
-            if (s_pInstance == 0)
-            {
-                s_pInstance = new CMeshManager();
-            }
-        }
-
-        return s_pInstance;
-    }
-
-    //! Destructeur de l'instance de la classe.
-    static void killInstance()
-    {
-        if (s_pInstance)
-        {
-            QMutexLocker locker(&s_Mutex);
-            delete s_pInstance;
-            s_pInstance = 0;
-        }
-    }
+    static CMeshManager& getInstance();
 
     //-------------------------------------------------------------------------------------------------
     // Listeners
@@ -190,9 +166,6 @@ private:
 
     //! Conteneur des meshs
     QMap<int, CMesh*> m_MeshByID;
-
-    static CMeshManager* s_pInstance;
-    static QMutex s_Mutex;
 
     friend QDataStream& operator << (QDataStream& out,	const CMesh& mesh);
     friend QDataStream& operator >> (QDataStream& in,	CMesh& mesh);

@@ -23,5 +23,5 @@ const QString& ARenderableItem::getMaterialName() const
 //-----------------------------------------------------------------------------------------
 bool ARenderableItem::hasMaterial() const
 {
-    return CMaterialManager::getInstance()->isMaterialExist(m_MaterialName);
+    return CMaterialManager::getInstance().isMaterialExist(m_MaterialName);
 }

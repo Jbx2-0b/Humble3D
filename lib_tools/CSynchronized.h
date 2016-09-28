@@ -1,4 +1,4 @@
-#ifndef CSYNCHRONIZED_H
+﻿#ifndef CSYNCHRONIZED_H
 #define CSYNCHRONIZED_H
 
 #include "ASynchronizable.h"

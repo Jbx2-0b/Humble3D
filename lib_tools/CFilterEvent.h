@@ -1,4 +1,4 @@
-#ifndef CFILTEREVENT_H
+﻿#ifndef CFILTEREVENT_H
 #define CFILTEREVENT_H
 
 // Lib

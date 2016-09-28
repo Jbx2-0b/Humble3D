@@ -36,7 +36,7 @@ CGLTexture2D::CGLTexture2D(const QString& fileName, int iWidth, int iHeight)
     if (!QFile::exists(fileName))
     {
         m_bValid = false;
-        pLog->addMessage(eWARN, "CGLTexture2D::CGLTexture2D() : Texture introuvable: " + fileName);
+        LogManager.addMessage(eWARN, "CGLTexture2D::CGLTexture2D() : Texture introuvable: " + fileName);
         return;
     }
 
@@ -45,7 +45,7 @@ CGLTexture2D::CGLTexture2D(const QString& fileName, int iWidth, int iHeight)
     if (image.isNull())
     {
         m_bValid = false;
-        pLog->addMessage(eWARN, "CGLTexture2D::CGLTexture2D() : Erreur chargement de la texture: " + fileName);
+        LogManager.addMessage(eWARN, "CGLTexture2D::CGLTexture2D() : Erreur chargement de la texture: " + fileName);
         return;
     }
 
@@ -87,7 +87,7 @@ void CGLTexture2D::loadSub(const QString& fileName, const QRect& rect)
 {
     if (!QFile::exists(fileName))
     {
-        pLog->addMessage(eWARN, "CGLTexture2D::loadSub() : Texture introuvable: " + fileName);
+        LogManager.addMessage(eWARN, "CGLTexture2D::loadSub() : Texture introuvable: " + fileName);
         m_bValid = false;
         return;
     }
@@ -96,7 +96,7 @@ void CGLTexture2D::loadSub(const QString& fileName, const QRect& rect)
 
     if (image.isNull())
     {
-        pLog->addMessage(eWARN, "CGLTexture2D::loadSub() : Erreur chargement de la texture: " + fileName);
+        LogManager.addMessage(eWARN, "CGLTexture2D::loadSub() : Erreur chargement de la texture: " + fileName);
         m_bValid = false;
         return;
     }

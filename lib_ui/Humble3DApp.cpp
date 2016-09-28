@@ -15,44 +15,44 @@
 //-----------------------------------------------------------------------------------------
 Humble3DApp::Humble3DApp()
 {
-    pLog->addMessage(eINFO, "GUI Thread ID: " + QString::number((qlonglong)QThread::currentThreadId()));
+    LogManager.addMessage(eINFO, "GUI Thread ID: " + QString::number((qlonglong)QThread::currentThreadId()));
 
     m_pSceneManager = new CSceneManager();
     m_pAnimationManager = new CAnimationManager(m_pSceneManager);
     CDebugManager::createInstance(m_pSceneManager);
 
 #ifdef EMBEDDED_TARGET
-    CShaderManager::getInstance()->createShader(
+    CShaderManager::getInstance().createShader(
                 "phong",
                 "://shaders/phongES.vertex.glsl",
                 "",
                 "://shaders/phongES.fragment.glsl");
 
-    CShaderManager::getInstance()->createShader(
+    CShaderManager::getInstance().createShader(
                 "toon",
                 "://shaders/toonES.vertex.glsl",
                 "",
                 "://shaders/toonES.fragment.glsl");
 
-    CShaderManager::getInstance()->createShader(
+    CShaderManager::getInstance().createShader(
                 "color",
                 "://shaders/colorES.vertex.glsl",
                 "",
                 "://shaders/colorES.fragment.glsl");
 #else // DESKTOP_TARGET
-    CShaderManager::getInstance()->createShader(
+    CShaderManager::getInstance().createShader(
                 "phong",
                 "://shaders/phong.vertex.glsl",
                 "",
                 "://shaders/phong.fragment.glsl");
 
-    CShaderManager::getInstance()->createShader(
+    CShaderManager::getInstance().createShader(
                 "toon",
                 "://shaders/toon.vertex.glsl",
                 "",
                 "://shaders/toon.fragment.glsl");
 
-    CShaderManager::getInstance()->createShader(
+    CShaderManager::getInstance().createShader(
                 "color",
                 "://shaders/color.vertex.glsl",
                 "",
@@ -72,13 +72,6 @@ Humble3DApp::~Humble3DApp()
 
     delete m_pAnimationManager;
     delete m_pSceneManager;
-
-    CMaterialManager::getInstance()->killInstance();
-    CTextureManager::getInstance()->killInstance();
-    CRenderBufferManager::getInstance()->killInstance();
-    CMeshManager::getInstance()->killInstance();
-    CShaderManager::getInstance()->killInstance();
-    pLog->killInstance();
 }
 
 //-----------------------------------------------------------------------------------------

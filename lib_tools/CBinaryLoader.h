@@ -1,4 +1,4 @@
-#ifndef CBINARYLOADER_H
+﻿#ifndef CBINARYLOADER_H
 #define CBINARYLOADER_H
 
 // Lib

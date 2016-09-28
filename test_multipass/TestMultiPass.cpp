@@ -22,9 +22,9 @@ TestMultiPass::TestMultiPass()
 
     m_pSceneCamera->setAspectRatio((real) m_pView->width() / (real) m_pView->height());
 
-    pLog->setActive(eDEBUGMEMORY, true);
+    LogManager.setActive(eDEBUGMEMORY, true);
 
-    CShaderManager::getInstance()->createShader("blur", "://blur.vertex.glsl", "", "://blur.fragment.glsl");
+    CShaderManager::getInstance().createShader("blur", "://blur.vertex.glsl", "", "://blur.fragment.glsl");
 
     // On charge le modéle
     CSceneNode* pRootNode = m_pSceneManager->getRootNode();
@@ -85,7 +85,7 @@ TestMultiPass::TestMultiPass()
         // On l'associe au noeud
         pLightNode3->addItem(pLight3);
 
-        CMaterial* pMat = CMaterialManager::getInstance()->getMaterialByName("cow");
+        CMaterial* pMat = CMaterialManager::getInstance().getMaterialByName("cow");
         qDebug() << pMat->toString();
 
         CRenderPass* pPass = pMat->getRenderPass(0);
@@ -107,15 +107,15 @@ TestMultiPass::TestMultiPass()
 
         pPass->setCamera(pCamera);
 
-        CPlaneMesh* pPlaneMesh = CMeshManager::getInstance()->createCustomMesh<CPlaneMesh>("CPlaneMesh", "PlaneMesh");
+        CPlaneMesh* pPlaneMesh = CMeshManager::getInstance().createCustomMesh<CPlaneMesh>("CPlaneMesh", "PlaneMesh");
         pPlaneMesh->init(CPlaneMesh::ePlaneXY, 1, 1, 1, 1);
         CMeshInstance* pPlane = getSceneManager()->createMeshInstance(pPlaneMesh, "Plane");
 
-        CMaterial* pGridMat = CMaterialManager::getInstance()->createMaterial("GridMat");
+        CMaterial* pGridMat = CMaterialManager::getInstance().createMaterial("GridMat");
         pGridMat->addTexture(pTexture, eDiffuse);
         pGridMat->getRenderPass(0)->setShaderName("blur");
         pPlane->setMaterialName(pGridMat->getName());
-        //pPlaneMesh->setMaterialName(CMaterialManager::getInstance()->getMaterialNameByColor(Color::eBlue));
+        //pPlaneMesh->setMaterialName(CMaterialManager::getInstance().getMaterialNameByColor(Color::eBlue));
 
         CSceneNode* pGridNode = pRootNode->createChild("GridNode");
         pGridNode->addItem(pPlane);

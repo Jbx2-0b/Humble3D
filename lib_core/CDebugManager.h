@@ -51,7 +51,7 @@ public:
 
     CMeshInstance* createBox(const CBox3D& box, const Color& color, real scaleFactor = 1.0);
     CMeshInstance* createSphere(const CSphere& sphere, const Color& color, real scaleFactor = 1.0);
-    CMeshInstance* createCylinder(const CCylinder& Cylinder, const Color& color, real scaleFactor = 1.0);
+    CMeshInstance* createCylinder(const CCylinder& cylinder, const Color& color, real scaleFactor = 1.0);
     CMeshInstance* createNormals(CMeshInstance* pMeshInstance, const Color& color, real fSize = 1.0);
     CMeshInstance* createFrustum(CCamera* pCamera, const Color& color);
     CMeshInstance* createLight(CLight* pLight, const Color& color);

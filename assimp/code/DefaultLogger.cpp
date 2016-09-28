@@ -91,7 +91,7 @@ struct LogStreamInfo
 // ----------------------------------------------------------------------------------
 // Construct a default log stream
 LogStream* LogStream::createDefaultStream(aiDefaultLogStream	streams,
-	const char* name /*= "AssimpLog.txt"*/,
+	const char* name /*= "AssimLogManager.txt"*/,
 	IOSystem* io		    /*= NULL*/)
 {
 	switch (streams)	
@@ -123,7 +123,7 @@ LogStream* LogStream::createDefaultStream(aiDefaultLogStream	streams,
 
 // ----------------------------------------------------------------------------------
 //	Creates the only singleton instance
-Logger *DefaultLogger::create(const char* name /*= "AssimpLog.txt"*/,
+Logger *DefaultLogger::create(const char* name /*= "AssimLogManager.txt"*/,
 	LogSeverity severity                       /*= NORMAL*/,
 	unsigned int defStreams                    /*= aiDefaultLogStream_DEBUGGER | aiDefaultLogStream_FILE*/,
 	IOSystem* io		                       /*= NULL*/)

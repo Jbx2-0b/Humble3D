@@ -1,4 +1,4 @@
-#include "CScriptManager.h"
+ï»¿#include "CScriptManager.h"
 
 // Geometry
 #include "CMaterialManager.h"
@@ -54,13 +54,13 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
             QString fragmentFileName = pChild->getAttributeValue<QString>("fragmentShader");
             QString geometryFileName = pChild->getAttributeValue<QString>("geometryShader");
 
-            /*CShader* pShader = */ CShaderManager::getInstance()->createShader(
+            /*CShader* pShader = */ CShaderManager::getInstance().createShader(
                         name,
                         path(vertexFileName),
                         path(geometryFileName),
                         path(fragmentFileName));
 
-            // TODO : éventuellement setUniformValue
+            // TODO : Ã©ventuellement setUniformValue
         }
         else if (pChild->getName() == "Texture")
         {
@@ -74,14 +74,14 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
                 QString fileName = pChild->getAttributeValue<QString>("fileName");
                 if (!fileName.isEmpty())
                 {
-                    CTextureManager::getInstance()->createTexture2D(name, path(fileName));
+                    CTextureManager::getInstance().createTexture2D(name, path(fileName));
                 }
                 else
                 {
                     QVector2D size = pChild->getAttributeValue<QVector2D>("size");
                     if (!size.isNull())
                     {
-                        CTextureManager::getInstance()->createTexture2D(name, QSize(size.x(), size.y()));
+                        CTextureManager::getInstance().createTexture2D(name, QSize(size.x(), size.y()));
                     }
                 }
             }
@@ -96,7 +96,7 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
                 QString fileNamePosZ = pChild->getAttributeValue<QString>("fileNamePosZ");
                 QString fileNameNegZ = pChild->getAttributeValue<QString>("fileNameNegZ");
 
-                CTextureManager::getInstance()->createTextureCube(
+                CTextureManager::getInstance().createTextureCube(
                             name,
                             path(fileNamePosX),
                             path(fileNameNegX),
@@ -112,7 +112,7 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
                 QVector2D size = pChild->getAttributeValue<QVector2D>("size");
                 EnumInternalFormat eFormat = CGeometryGlobal::internalFormatFromString(pChild->getAttributeValue<QString>("internalFormat"));
 
-                CTextureManager::getInstance()->createTextureTarget(
+                CTextureManager::getInstance().createTextureTarget(
                             name,
                             QSize(size.x(), size.y()),
                             eFormat);
@@ -133,7 +133,7 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
         {
             QString name = pChild->getAttributeValue<QString>("name");
 
-            CMaterial* pMaterial = CMaterialManager::getInstance()->createMaterial(name);
+            CMaterial* pMaterial = CMaterialManager::getInstance().createMaterial(name);
 
             if (CXmlElement* pRenderPassesElement = pChild->getChildByName("RenderPasses"))
             {
@@ -205,13 +205,13 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
 
             QString name = pChild->getAttributeValue<QString>("name");
             //QString typeName = pChild->getAttributeValue<QString>("typeName");
-            //CMeshManager::getInstance()->createCustomMesh(type, name);
+            //CMeshManager::getInstance().createCustomMesh(type, name);
 
         }
         else if (pChild->getName() == "MeshGroup")
         {
             QString fileName = pChild->getAttributeValue<QString>("fileName");
-            CMeshManager::getInstance()->loadMeshGroup(path(fileName));
+            CMeshManager::getInstance().loadMeshGroup(path(fileName));
         }
         else // SceneManager contents
         {
@@ -224,12 +224,12 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
                 CMesh* pMesh = 0;
                 if (!m_MeshNames.contains(meshName))
                 {
-                    pMesh = CMeshManager::getInstance()->loadMesh(path(meshName + ".mesh"));
+                    pMesh = CMeshManager::getInstance().loadMesh(path(meshName + ".mesh"));
                     m_MeshNames[meshName] = pMesh->getName();
                 }
                 else
                 {
-                    pMesh = CMeshManager::getInstance()->getMeshByName(m_MeshNames[meshName]);
+                    pMesh = CMeshManager::getInstance().getMeshByName(m_MeshNames[meshName]);
                 }
 
                 QString name = pChild->getAttributeValue<QString>("name");
@@ -362,7 +362,7 @@ bool CScriptManager::saveScript(const QString& fileName)
     if (m_bSaveData) saveData();
     CXmlElement rootElement("root");
 
-    QSet<CShader*> shaders = m_bSaveOnlyUsed ? m_pSceneManager->getUsedShaders() : CShaderManager::getInstance()->getShaders().toSet();
+    QSet<CShader*> shaders = m_bSaveOnlyUsed ? m_pSceneManager->getUsedShaders() : CShaderManager::getInstance().getShaders().toSet();
     foreach (CShader* pShader, shaders)
     {
         CXmlElement* pChild = rootElement.createChild("Shader");
@@ -372,7 +372,7 @@ bool CScriptManager::saveScript(const QString& fileName)
         pChild->addAttribute("geometryShader", QFileInfo(pShader->getGeometryShaderFileName()).fileName());
     }
 
-    QSet<ATexture*> textures = m_bSaveOnlyUsed ? m_pSceneManager->getUsedTextures() : CTextureManager::getInstance()->getTextures().toSet();
+    QSet<ATexture*> textures = m_bSaveOnlyUsed ? m_pSceneManager->getUsedTextures() : CTextureManager::getInstance().getTextures().toSet();
     foreach (ATexture* pTexture, textures)
     {
         CXmlElement* pChild = rootElement.createChild("Texture");
@@ -404,7 +404,7 @@ bool CScriptManager::saveScript(const QString& fileName)
         }
     }
 
-    QSet<CMaterial*> materials = m_bSaveOnlyUsed ? m_pSceneManager->getUsedMaterials() : CMaterialManager::getInstance()->getMaterials().toSet();
+    QSet<CMaterial*> materials = m_bSaveOnlyUsed ? m_pSceneManager->getUsedMaterials() : CMaterialManager::getInstance().getMaterials().toSet();
     foreach (CMaterial* pMaterial, materials)
     {
         CXmlElement* pChild = rootElement.createChild("Material");
@@ -545,7 +545,7 @@ bool CScriptManager::saveScript(const QString& fileName)
     pRootXmlElement->addAttribute("name", m_pSceneManager->getRootNode()->getName());
     pRootXmlElement->addAttribute("translation", m_pSceneManager->getRootNode()->getGlobalPosition());
 
-    // Caméras libres - On les attaches au noeud principal
+    // CamÃ©ras libres - On les attaches au noeud principal
     foreach (CCamera* pCamera, m_pSceneManager->getCameras())
     {
         if (pCamera->getNodes().isEmpty())
@@ -618,12 +618,12 @@ void CScriptManager::recursiveSave(CXmlElement* pElement, CSceneNode* pCurrentNo
 
 void CScriptManager::saveData()
 {
-    foreach (CMesh* pMesh, CMeshManager::getInstance()->getMeshs())
+    foreach (CMesh* pMesh, CMeshManager::getInstance().getMeshs())
     {
-        CMeshManager::getInstance()->saveMesh(pMesh, m_CurrentPath + pMesh->getName() + ".mesh", 7);
+        CMeshManager::getInstance().saveMesh(pMesh, m_CurrentPath + pMesh->getName() + ".mesh", 7);
     }
 
-    QSet<ATexture*> textures = m_bSaveOnlyUsed ? m_pSceneManager->getUsedTextures() : CTextureManager::getInstance()->getTextures().toSet();
+    QSet<ATexture*> textures = m_bSaveOnlyUsed ? m_pSceneManager->getUsedTextures() : CTextureManager::getInstance().getTextures().toSet();
     foreach (ATexture* pTexture, textures)
     {
         if (CTexture2D* pTexture2D = dynamic_cast<CTexture2D*>(pTexture))
@@ -639,7 +639,7 @@ void CScriptManager::saveData()
         }
     }
 
-    QSet<CShader*> shaders = m_bSaveOnlyUsed ? m_pSceneManager->getUsedShaders() : CShaderManager::getInstance()->getShaders().toSet();
+    QSet<CShader*> shaders = m_bSaveOnlyUsed ? m_pSceneManager->getUsedShaders() : CShaderManager::getInstance().getShaders().toSet();
     foreach (CShader* pShader, shaders)
     {
         if (pShader->hasVertexShader())

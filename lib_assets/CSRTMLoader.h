@@ -30,7 +30,7 @@ public:
 
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            pLog->addMessage(eERROR, "Impossible d'ouvrir " + filePathName);
+            LogManager.addMessage(eERROR, "Impossible d'ouvrir " + filePathName);
             return data;
         }
 
@@ -44,11 +44,11 @@ public:
         data.setCellSize(in.readLine().split(" ", QString::SkipEmptyParts)[1].toDouble());
         int iNoData	= in.readLine().split(" ", QString::SkipEmptyParts)[1].toInt();
 
-        pLog->addMessage(eINFO, "Columns count: "	+ QString::number(iColumnCount));
-        pLog->addMessage(eINFO, "Rows count: "		+ QString::number(iRowCount));
-        pLog->addMessage(eINFO, "XllCorner count: " + QString::number(data.getXCorner()));
-        pLog->addMessage(eINFO, "YllCorner count: " + QString::number(data.getZCorner()));
-        pLog->addMessage(eINFO, "Cell size: "		+ QString::number(data.getCellSize()));
+        LogManager.addMessage(eINFO, "Columns count: "	+ QString::number(iColumnCount));
+        LogManager.addMessage(eINFO, "Rows count: "		+ QString::number(iRowCount));
+        LogManager.addMessage(eINFO, "XllCorner count: " + QString::number(data.getXCorner()));
+        LogManager.addMessage(eINFO, "YllCorner count: " + QString::number(data.getZCorner()));
+        LogManager.addMessage(eINFO, "Cell size: "		+ QString::number(data.getCellSize()));
 
         int iID = 0;
 
@@ -83,7 +83,7 @@ public:
 
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         {
-            pLog->addMessage(eERROR, "Impossible d'ouvrir " + filePathName);
+            LogManager.addMessage(eERROR, "Impossible d'ouvrir " + filePathName);
             return false;
         }
 

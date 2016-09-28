@@ -1,4 +1,4 @@
-#ifndef HUMBLE3DAPP_H
+ï»¿#ifndef HUMBLE3DAPP_H
 #define HUMBLE3DAPP_H
 
 // Lib
@@ -35,13 +35,13 @@ public:
     //! Retourne un pointeur sur le gestionnaire d'animations
     CAnimationManager* getAnimationManager();
 
-    //! Crée une vue 3D simple
+    //! CrÃ©e une vue 3D simple
     CWidget3D* createWidget3D(CCamera* pCamera, QWidget* parent = 0);
 
-    //! Crée une vue 3D basée sur une QGraphicsView
+    //! CrÃ©e une vue 3D basÃ©e sur une QGraphicsView
     CGraphicsView3D* createGraphicsView3D(CCamera* pCamera, QWidget* parent = 0);
 
-    //! Crée une vue 3D avec un rendu software primitif
+    //! CrÃ©e une vue 3D avec un rendu software primitif
     CSoftwareView3D* createSoftwareView3D(CCamera* pCamera, QWidget* parent = 0);
 
     //! Retourne la liste des vues

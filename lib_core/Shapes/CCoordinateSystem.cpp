@@ -62,5 +62,5 @@ void CCoordinateSystem::initArrow(CSubMesh* pArrow, const Color& color, EnumArro
 
     idBuffer << 0 << 1 << 1 << 2 << 1 << 3;
 
-    pArrow->setMaterialName(CMaterialManager::getInstance()->getMaterialNameByColor(color));
+    pArrow->setMaterialName(CMaterialManager::getInstance().getMaterialNameByColor(color));
 }

@@ -1,8 +1,5 @@
 ﻿#include "CGLHelper.h"
 
-CGLHelper* CGLHelper::s_pInstance = 0;
-QMutex CGLHelper::s_Mutex(QMutex::Recursive);
-
 
 //-------------------------------------------------------------------------------------------------
 CGLHelper::CGLHelper()
@@ -45,19 +42,10 @@ CGLHelper::CGLHelper()
 }
 
 //-------------------------------------------------------------------------------------------------
-CGLHelper* CGLHelper::getInstance()
+CGLHelper& CGLHelper::getInstance()
 {
-    if (s_pInstance == 0)
-    {
-        QMutexLocker locker(&s_Mutex);
-
-        if (s_pInstance == 0)
-        {
-            s_pInstance = new CGLHelper();
-        }
-    }
-
-    return s_pInstance;
+    static CGLHelper instance;
+    return instance;
 }
 
 //-------------------------------------------------------------------------------------------------

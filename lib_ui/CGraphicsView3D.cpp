@@ -1,4 +1,4 @@
-#include "CGraphicsView3D.h"
+ï»¿#include "CGraphicsView3D.h"
 
 // Foundations
 #include "CCamera.h"
@@ -27,7 +27,7 @@ CGraphicsView3D::CGraphicsView3D(CSceneManager* pSceneManager, CCamera* pCamera,
     m_pGLRenderer = new CGLRenderer(m_pSceneManager);
     m_pRenderer = m_pGLRenderer;
     m_pRenderer->setCurrentCamera(pCamera);
-    m_pGLWidget = new CGLWidget(this);
+    m_pGLWidget = new CGLWidget();
 
     setFrameShape(QFrame::NoFrame);
     setViewport(m_pGLWidget);
@@ -56,10 +56,7 @@ CGraphicsView3D::~CGraphicsView3D()
     foreach (QWidget* pWidget, m_GraphicsWidgetItems.keys())
     {
         removeWidget(pWidget);
-    }
-
-    delete m_pRenderer;
-    delete m_pGraphicsScene;
+    }   
 }
 
 //-----------------------------------------------------------------------------------------
@@ -248,12 +245,12 @@ bool CGraphicsView3D::isOnWidget(const QPoint& point)
 //-----------------------------------------------------------------------------------------
 CToolBar* CGraphicsView3D::createToolBar(CToolBar::EnumToolBarPosition eToolBarPosition)
 {
-    CGraphicsWidgetItem* pItem = new CGraphicsWidgetItem();
+    QSharedPointer<CGraphicsWidgetItem> pItem = QSharedPointer<CGraphicsWidgetItem>::create();
     CToolBar* pToolBar = new CToolBar(eToolBarPosition, size(), pItem);
     pItem->setWidget(pToolBar);
     pToolBar->setAttribute(Qt::WA_TranslucentBackground);
-    m_GraphicsWidgetItems[pToolBar] = pItem;
-    m_pGraphicsScene->addItem(pItem);
+    m_GraphicsWidgetItems.insert(pToolBar, pItem);
+    m_pGraphicsScene->addItem(pItem.data());
     connect(this, SIGNAL(sizeChanged(QSize)), pToolBar, SLOT(onViewSizeChanged(QSize)));
     return pToolBar;
 }
@@ -263,10 +260,9 @@ void CGraphicsView3D::removeWidget(QWidget* pWidget)
 {
     if (m_GraphicsWidgetItems.contains(pWidget))
     {
-        CGraphicsWidgetItem* pItem = m_GraphicsWidgetItems[pWidget];
+        QSharedPointer<CGraphicsWidgetItem> pItem = m_GraphicsWidgetItems.value(pWidget);
         m_GraphicsWidgetItems.remove(pWidget);
-        m_pGraphicsScene->removeItem(pItem);
-        delete pItem; // Supprimer l'item supprime également l'objet embarqué
+        m_pGraphicsScene->removeItem(pItem.data());
     }
 }
 

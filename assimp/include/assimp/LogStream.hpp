@@ -86,7 +86,7 @@ public:
 	 *   file. Pass NULL for the default implementation.
 	 *  @return New LogStream instance.  */
 	static LogStream* createDefaultStream(aiDefaultLogStream stream,
-		const char* name = "AssimpLog.txt",
+		const char* name = "AssimLogManager.txt",
 		IOSystem* io = NULL);
 
 }; // !class LogStream

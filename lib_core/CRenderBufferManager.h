@@ -18,31 +18,7 @@ class LIB_CORE_SHARED_EXPORT CRenderBufferManager : public CRenderBuffer::IRende
 public:
 
     //! Accesseur a l'instance de la classe.
-    static CRenderBufferManager* getInstance()
-    {
-        if (s_pInstance == 0)
-        {
-            QMutexLocker locker(&s_Mutex);
-
-            if (s_pInstance == 0)
-            {
-                s_pInstance = new CRenderBufferManager();
-            }
-        }
-
-        return s_pInstance;
-    }
-
-    //! Destructeur de l'instance de la classe.
-    static void killInstance()
-    {
-        if (s_pInstance)
-        {
-            QMutexLocker locker(&s_Mutex);
-            delete s_pInstance;
-            s_pInstance = 0;
-        }
-    }
+    static CRenderBufferManager& getInstance();
 
     //-------------------------------------------------------------------------------------------------
     // Listeners
@@ -130,9 +106,6 @@ private:
 
     //! Conteneur des RenderBuffers
     QMap<int, CRenderBuffer*> m_RenderBufferIDs;
-
-    static CRenderBufferManager* s_pInstance;
-    static QMutex s_Mutex;
 };
 
 #endif // CRENDERBUFFERMANAGER_H

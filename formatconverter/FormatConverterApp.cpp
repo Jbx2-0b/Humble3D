@@ -110,15 +110,15 @@ void FormatConverterApp::onConvertClicked()
             }
 
             QString newFilePathName = fileInfo.absolutePath() + "/" + QFileInfo(filePathName).baseName() + ".meshgroup";
-            CMeshManager::getInstance()->saveMeshGroup(CMeshManager::getInstance()->getMeshs(), newFilePathName, ui.compressionSpinBox->value());
+            CMeshManager::getInstance().saveMeshGroup(CMeshManager::getInstance().getMeshs(), newFilePathName, ui.compressionSpinBox->value());
 
 #ifdef TESTLOADER
             // test
             QFileInfo fileInfo1(newFilePathName);
             int iSize1 = fileInfo1.size();
 
-            CMeshGroup meshGroupCopy = CMeshManager::getInstance()->loadMeshGroup(newFilePathName);
-            CMeshManager::getInstance()->saveMeshGroup(meshGroupCopy, newFilePathName, ui.compressionSpinBox->value());
+            CMeshGroup meshGroupCopy = CMeshManager::getInstance().loadMeshGroup(newFilePathName);
+            CMeshManager::getInstance().saveMeshGroup(meshGroupCopy, newFilePathName, ui.compressionSpinBox->value());
             QFileInfo fileInfo2(newFilePathName);
             int iSize2 = fileInfo2.size();
 

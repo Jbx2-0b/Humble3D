@@ -1,4 +1,4 @@
-#ifndef CARRAY_H
+﻿#ifndef CARRAY_H
 #define CARRAY_H
 
 // Qt

@@ -102,17 +102,17 @@ void CNoiseHeightMap::updateGeometry()
 //-----------------------------------------------------------------------------------------
 void CNoiseHeightMap::createHeightMapMeshBuffer()
 {
-    m_pHeightMapMaterial = CMaterialManager::getInstance()->createMaterial("HeightMapMaterial");
+    m_pHeightMapMaterial = CMaterialManager::getInstance().createMaterial("HeightMapMaterial");
     m_pHeightMapMaterial->setAmbientColor(0.2f, 0.3f, 0.2f);
     m_pHeightMapMaterial->setDiffuseColor(0.8f, 0.6f, 0.2f);
     m_pHeightMapMaterial->setSpecularColor(0.1f, 0.1f, 0.1f);
     m_pHeightMapMaterial->setShininessFactor(1000);
     //m_pHeightMapMaterial->setTwoSided(true);
 
-    ATexture* pTexture1 = CTextureManager::getInstance()->createTexture2D("HeightMapTex0", DefaultHeightMapTexture0);
-    ATexture* pTexture2 = CTextureManager::getInstance()->createTexture2D("HeightMapTex1", DefaultHeightMapTexture1);
-    ATexture* pTexture3 = CTextureManager::getInstance()->createTexture2D("HeightMapTex2", DefaultHeightMapTexture2);
-    ATexture* pTexture4 = CTextureManager::getInstance()->createTexture2D("HeightMapTex3", DefaultHeightMapTexture3);
+    ATexture* pTexture1 = CTextureManager::getInstance().createTexture2D("HeightMapTex0", DefaultHeightMapTexture0);
+    ATexture* pTexture2 = CTextureManager::getInstance().createTexture2D("HeightMapTex1", DefaultHeightMapTexture1);
+    ATexture* pTexture3 = CTextureManager::getInstance().createTexture2D("HeightMapTex2", DefaultHeightMapTexture2);
+    ATexture* pTexture4 = CTextureManager::getInstance().createTexture2D("HeightMapTex3", DefaultHeightMapTexture3);
 
 
     m_pHeightMapMaterial->addTexture(pTexture1, eDiffuse);
@@ -120,7 +120,7 @@ void CNoiseHeightMap::createHeightMapMeshBuffer()
     m_pHeightMapMaterial->addTexture(pTexture3, eDiffuse);
     m_pHeightMapMaterial->addTexture(pTexture4, eDiffuse);
 
-    CShader* pShader = CShaderManager::getInstance()->createShader("heightmap",
+    CShader* pShader = CShaderManager::getInstance().createShader("heightmap",
                                                                    "://resources/heightmap.vertex.glsl",
                                                                    "",
                                                                    "://resources/heightmap.fragment.glsl");
@@ -215,7 +215,7 @@ void CNoiseHeightMap::createHeightMapMeshBuffer()
     //QImage hm = ng.toImage(0.45);
     //computeNormalMap(hm);
 
-    //ATexture* pTexture5 = CTextureManager::getInstance()->createTexture2D("HeightMapTex4", "heightmapN.png");
+    //ATexture* pTexture5 = CTextureManager::getInstance().createTexture2D("HeightMapTex4", "heightmapN.png");
     //m_pHeightMapMaterial->addTexture(pTexture5, eNormals);
 
     computeNormals();

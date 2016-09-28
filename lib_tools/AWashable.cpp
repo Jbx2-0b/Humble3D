@@ -1,4 +1,4 @@
-#include "AWashable.h"
+﻿#include "AWashable.h"
 
 AWashable::AWashable()
     : m_bIsDirty(true) {}

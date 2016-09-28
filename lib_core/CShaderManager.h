@@ -17,31 +17,7 @@ class LIB_CORE_SHARED_EXPORT CShaderManager : public CShader::IShaderListener
 public:
 
     //! Accesseur a l'instance de la classe.
-    static CShaderManager* getInstance()
-    {
-        if (s_pInstance == 0)
-        {
-            QMutexLocker locker(&s_Mutex);
-
-            if (s_pInstance == 0)
-            {
-                s_pInstance = new CShaderManager();
-            }
-        }
-
-        return s_pInstance;
-    }
-
-    //! Destructeur de l'instance de la classe.
-    static void killInstance()
-    {
-        if (s_pInstance)
-        {
-            QMutexLocker locker(&s_Mutex);
-            delete s_pInstance;
-            s_pInstance = 0;
-        }
-    }
+    static CShaderManager& getInstance();
 
     //-------------------------------------------------------------------------------------------------
     // Listeners
@@ -139,9 +115,6 @@ private:
 
     //! Conteneur des shaders en fonction de leur IDs
     QMap<int, CShader*> m_ShaderIDs;
-
-    static CShaderManager* s_pInstance;
-    static QMutex s_Mutex;
 };
 
 #endif // CSHADERMANAGER_H

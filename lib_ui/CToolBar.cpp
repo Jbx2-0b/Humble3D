@@ -1,4 +1,4 @@
-#include "CToolBar.h"
+﻿#include "CToolBar.h"
 
 // Qt
 #include <QFile>
@@ -7,7 +7,7 @@
 #include <QTimer>
 
 //-----------------------------------------------------------------------
-CToolBar::CToolBar(CToolBar::EnumToolBarPosition ePosition, const QSize& viewSize, CGraphicsWidgetItem* pItem, QWidget* parent /*= 0*/)
+CToolBar::CToolBar(CToolBar::EnumToolBarPosition ePosition, const QSize& viewSize, QSharedPointer<CGraphicsWidgetItem> pItem, QWidget* parent /*= 0*/)
     : QFrame(parent)
     , m_pItem(pItem)
     , m_ePosition(ePosition)
@@ -43,7 +43,7 @@ CToolBar::CToolBar(CToolBar::EnumToolBarPosition ePosition, const QSize& viewSiz
     m_pLeftSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     m_pRightSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-    // On place le panneau en postion initiale en fonction de son emplacement sur l'�cran
+    // On place le panneau en postion initiale en fonction de son emplacement sur l'écran
     switch (ePosition)
     {
     case eToolBarLeft:

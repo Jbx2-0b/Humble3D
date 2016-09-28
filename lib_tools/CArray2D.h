@@ -1,4 +1,4 @@
-#ifndef CARRAY2D_H
+ï»¿#ifndef CARRAY2D_H
 #define CARRAY2D_H
 
 #include <QVector>
@@ -43,28 +43,28 @@ public:
         m_vData.resize(width * height);
     }
 
-    //! Retourne un élement
+    //! Retourne un Ã©lement
     T get(int i, int j)					{ return m_vData[i + j * m_iWidth]; }
 
-    //! Retourne un élement
+    //! Retourne un Ã©lement
     const T& get(int i, int j) const	{ return m_vData[i + j * m_iWidth]; }
 
-    //! Retourne un élement
+    //! Retourne un Ã©lement
     T get(int i) 						{ return m_vData[i]; }
 
-    //! Retourne un élement
+    //! Retourne un Ã©lement
     const T& get(int i)	const			{ return m_vData[i]; }
 
-    //! Définit un élément
+    //! DÃ©finit un Ã©lÃ©ment
     void set(int i, int j, const T& v)	{ m_vData[i + j * m_iWidth] = v; }
 
-    //! Définit un élément
+    //! DÃ©finit un Ã©lÃ©ment
     void set(int i, const T& v)			{ m_vData[i] = v; }
 
-    //! Retourne l'ensemble des élaments'
+    //! Retourne l'ensemble des Ã©laments'
     const QVector<T>& get() const		{ return m_vData; }
 
-    //! Retourne le nombre total d'éléments
+    //! Retourne le nombre total d'Ã©lÃ©ments
     int size() const					{ return m_vData.size(); }
 
     //! Remplit l'ensemble du tableau
@@ -82,7 +82,7 @@ public:
         return subTab;
     }
 
-    //! Trouve le premier élement égal à value
+    //! Trouve le premier Ã©lement Ã©gal Ã  value
     bool findFirst(SPosition& pos, T value) const
     {
         for (int h = 0; h < m_iHeight; ++h)
@@ -97,7 +97,7 @@ public:
         return false;
     }
 
-    //! Trouve l'ensemble des élements égal à value
+    //! Trouve l'ensemble des Ã©lements Ã©gal Ã  value
     bool findAll(QVector<SPosition>& vecPos, T value) const
     {
         bool fFind = false;
@@ -151,14 +151,14 @@ public:
     //! Retourne la hauteur
     int height() const { return m_iHeight; }
 
-    //! Retourne l'item à la position i, j
+    //! Retourne l'item Ã  la position i, j
     const T& operator()(int i, int j) const { return m_vData[i + j * m_iWidth]; }
 
-    //! Retourne l'item à la position i, j
+    //! Retourne l'item Ã  la position i, j
     T& operator()(int i, int j) { return m_vData[i + j * m_iWidth]; }
 
     //--------------------------------------------------------------------------
-    //! Interpolation linéaire entre deux éléments
+    //! Interpolation linÃ©aire entre deux Ã©lÃ©ments
     real interpolate(int iX1, int iY1, int iX2, int iY2, real dX, real dY)
     {
         if (iX1 == iX2 && iY1 == iY2)
@@ -183,7 +183,7 @@ public:
     }
 
     //--------------------------------------------------------------------------
-    //! Retoiurne une copie du tableau redimensionné
+    //! Retoiurne une copie du tableau redimensionnÃ©
     CArray2D<T> scaled(int iWidth, int iHeight)
     {
         CArray2D<T> result(iWidth, iHeight);

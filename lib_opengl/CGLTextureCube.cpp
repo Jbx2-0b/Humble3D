@@ -14,7 +14,7 @@ CGLTextureCube::CGLTextureCube(const QStringList& fileNames)
         if (img.isNull())
         {
             m_bValid = false;
-            pLog->addMessage(eWARN, "CGLTextureCube::CGLTextureCube() : Texture introuvable...");
+            LogManager.addMessage(eWARN, "CGLTextureCube::CGLTextureCube() : Texture introuvable...");
             return;
         }
 

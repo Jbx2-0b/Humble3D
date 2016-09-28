@@ -13,7 +13,7 @@ AEntity::AEntity()
 {
     m_Name = s_NameGenerator.generateName("Entity");
 
-    pLog->addMessage(eDEBUGMEMORY, "Creation : " + m_Name);
+    LogManager.addMessage(eDEBUGMEMORY, "Creation : " + m_Name);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -23,13 +23,13 @@ AEntity::AEntity(const QString& name)
 {
     m_Name = s_NameGenerator.generateName(name);
 
-    pLog->addMessage(eDEBUGMEMORY, "Creation : " + m_Name);
+    LogManager.addMessage(eDEBUGMEMORY, "Creation : " + m_Name);
 }
 
 //-----------------------------------------------------------------------------------------
 AEntity::~AEntity()
 {
-    pLog->addMessage(eDEBUGMEMORY, "Suppression : " + m_Name);
+    LogManager.addMessage(eDEBUGMEMORY, "Suppression : " + m_Name);
     s_IDGenerator.unregisterID(m_iID);
     notifyDelete();
 }

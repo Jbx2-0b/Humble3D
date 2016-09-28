@@ -22,15 +22,15 @@ CGLRenderer::CGLRenderer(CSceneManager* pSceneManager)
     setName("OpenGL Renderer");
 
 #ifdef EMBEDDED_TARGET
-    pLog->addMessage(eINFO, "Creating OpenGL Renderer - Embedded Version");
+    LogManager.addMessage(eINFO, "Creating OpenGL Renderer - Embedded Version");
 #else
-    pLog->addMessage(eINFO, "Creating OpenGL Renderer - Desktop Version");
+    LogManager.addMessage(eINFO, "Creating OpenGL Renderer - Desktop Version");
 #endif
 
     pSceneManager->registerListener(this);
-    CMeshManager::getInstance()->registerMeshBufferListener(this);
-    CShaderManager::getInstance()->registerListener(this);
-    CTextureManager::getInstance()->registerListener(this);
+    CMeshManager::getInstance().registerMeshBufferListener(this);
+    CShaderManager::getInstance().registerListener(this);
+    CTextureManager::getInstance().registerListener(this);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -41,9 +41,9 @@ CGLRenderer::~CGLRenderer()
 #endif // MULTITHREAD_RENDERING
 
     m_pSceneManager->unregisterListener(this);
-    CMeshManager::getInstance()->unregisterMeshBufferListener(this);
-    CShaderManager::getInstance()->unregisterListener(this);
-    CTextureManager::getInstance()->unregisterListener(this);
+    CMeshManager::getInstance().unregisterMeshBufferListener(this);
+    CShaderManager::getInstance().unregisterListener(this);
+    CTextureManager::getInstance().unregisterListener(this);
 
     // On supprime le stuff OpenGL
     foreach (AGLTexture* pGLTexture, m_Textures)
@@ -446,7 +446,7 @@ void CGLRenderer::onDeleteMeshBuffer(CMeshBuffer* pBuffer)
     {
         CGLMeshBuffer* pGPUBuffer = m_HardwareBuffers[pBuffer];
         m_HardwareBuffers.remove(pBuffer);
-        pLog->addMessage(eDEBUGMEMORY, QString("Removing GPU Buffer (Count: %1)").arg(m_HardwareBuffers.count()));
+        LogManager.addMessage(eDEBUGMEMORY, QString("Removing GPU Buffer (Count: %1)").arg(m_HardwareBuffers.count()));
         delete pGPUBuffer;
 
         // La destruction du buffer induit la liberation de la memoire occupee sur le serveur OpenGL
@@ -500,7 +500,7 @@ void CGLRenderer::onDeleteShader(CShader* pShader)
 
     if (m_ShaderPrograms.contains(pShader->getName()))
     {
-        pLog->addMessage(eINFO, "Removing shader: " + pShader->getName());
+        LogManager.addMessage(eINFO, "Removing shader: " + pShader->getName());
 
         CGLShaderProgram* pProgram = m_ShaderPrograms[pShader->getName()];
 
@@ -549,7 +549,7 @@ void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
 {
     QMap<const CCamera*, QSet<CSceneNode*> > cullingResultCache;
 
-    const QList<CMaterial*> materials = CMaterialManager::getInstance()->getMaterials();
+    const QList<CMaterial*> materials = CMaterialManager::getInstance().getMaterials();
 
     foreach (CMaterial* pMaterial, materials)
     {
@@ -605,7 +605,7 @@ void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
                             }
                             else
                             {
-                                pLog->addMessage(eERROR, "GLRenderer::renderItems() Error : Invalid FrameBuffer !");
+                                LogManager.addMessage(eERROR, "GLRenderer::renderItems() Error : Invalid FrameBuffer !");
                                 continue;
                             }
                         }
@@ -778,15 +778,15 @@ void CGLRenderer::bindLights(const CCamera* pCamera)
             // On calcul la position de la lumiere dans le repere de l'oeil
             QVector4D lightPosition = pCamera->getViewMatrix() * pLightNode->getGlobalTransformation() * QVector4D(0.0, 0.0, 0.0, 1.0);
 
-            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eIsEnabled)).constData(),				pLight->isEnabled());
-            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, ePosition)).constData(),				lightPosition);
-            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eDirection)).constData(),				pLight->getDirection());
-            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eAmbientColor)).constData(),			pLight->getAmbientColor());
-            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eDiffuseColor)).constData(),			pLight->getDiffuseColor());
-            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eSpecularColor)).constData(),			pLight->getSpecularColor());
-            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eConstantAttenuation)).constData(),		(GLfloat)pLight->getConstantAttenuation());
-            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eLinearAttenuation)).constData(),		(GLfloat)pLight->getLinearAttenuation());
-            m_pCurrentShader->setUniformValue(pGLHelper->getLightParamStr(TLightParam(iLightID, eQuadraticAttenuation)).constData(),	(GLfloat)pLight->getQuadraticAttenuation());
+            m_pCurrentShader->setUniformValue(CGLHelper::getInstance().getLightParamStr(TLightParam(iLightID, eIsEnabled)).constData(),				pLight->isEnabled());
+            m_pCurrentShader->setUniformValue(CGLHelper::getInstance().getLightParamStr(TLightParam(iLightID, ePosition)).constData(),				lightPosition);
+            m_pCurrentShader->setUniformValue(CGLHelper::getInstance().getLightParamStr(TLightParam(iLightID, eDirection)).constData(),				pLight->getDirection());
+            m_pCurrentShader->setUniformValue(CGLHelper::getInstance().getLightParamStr(TLightParam(iLightID, eAmbientColor)).constData(),			pLight->getAmbientColor());
+            m_pCurrentShader->setUniformValue(CGLHelper::getInstance().getLightParamStr(TLightParam(iLightID, eDiffuseColor)).constData(),			pLight->getDiffuseColor());
+            m_pCurrentShader->setUniformValue(CGLHelper::getInstance().getLightParamStr(TLightParam(iLightID, eSpecularColor)).constData(),			pLight->getSpecularColor());
+            m_pCurrentShader->setUniformValue(CGLHelper::getInstance().getLightParamStr(TLightParam(iLightID, eConstantAttenuation)).constData(),	(GLfloat)pLight->getConstantAttenuation());
+            m_pCurrentShader->setUniformValue(CGLHelper::getInstance().getLightParamStr(TLightParam(iLightID, eLinearAttenuation)).constData(),		(GLfloat)pLight->getLinearAttenuation());
+            m_pCurrentShader->setUniformValue(CGLHelper::getInstance().getLightParamStr(TLightParam(iLightID, eQuadraticAttenuation)).constData(),	(GLfloat)pLight->getQuadraticAttenuation());
             QMatrix4x4 lightViewMatrix = pLight->getViewMatrix() * pLightNode->getGlobalTransformation();
             m_pCurrentShader->setUniformValue("lightViewMatrix", lightViewMatrix);
 
@@ -822,7 +822,7 @@ void CGLRenderer::bindMaterial(CMaterial* pMaterial)
 
     foreach (const CTextureParam& texture, pMaterial->getTextureParams())
     {
-        if (ATexture* pTexture = CTextureManager::getInstance()->getTextureByName(texture.getTextureName()))
+        if (ATexture* pTexture = CTextureManager::getInstance().getTextureByName(texture.getTextureName()))
         {
             EnumMaterialParameter eType = texture.getMaterialParameter();
             int iUnit = pTexture->getTextureUnit();
@@ -837,7 +837,9 @@ void CGLRenderer::bindMaterial(CMaterial* pMaterial)
                     if (pGLTexture->isValid())
                     {
                         glActiveTexture(GL_TEXTURE0 + iUnit);
-                        m_pCurrentShader->setUniformValue(QString("%1%2").arg(pGLHelper->fromType(eType)).arg(m_MaterialParameterCount[eType]).toLatin1().constData(), iUnit);
+                        m_pCurrentShader->setUniformValue(QString("%1%2")
+                                                          .arg(CGLHelper::getInstance().fromType(eType))
+                                                          .arg(m_MaterialParameterCount.value(eType)).toLatin1().constData(), iUnit);
                         pGLTexture->bind();
                         m_MaterialParameterCount[eType]++;
                     }
@@ -878,7 +880,7 @@ void CGLRenderer::bindMaterial(CMaterial* pMaterial)
     while (it.hasNext())
     {
         it.next();
-        m_pCurrentShader->setUniformValue(pGLHelper->fromTypeCount(it.key()).toLatin1().constData(), it.value());
+        m_pCurrentShader->setUniformValue(CGLHelper::getInstance().fromTypeCount(it.key()).toLatin1().constData(), it.value());
     }
 }
 
@@ -889,7 +891,7 @@ void CGLRenderer::bindShader(CShader* pShader)
     {
         m_iShaderBind++;
 
-        pLog->addMessage(eINFO, QString("GLRenderer: Linking shader %1...").arg(pShader->getName()));
+        LogManager.addMessage(eINFO, QString("GLRenderer: Linking shader %1...").arg(pShader->getName()));
 
         CGLShaderProgram* pNewShaderProgram = new CGLShaderProgram();
 
@@ -997,7 +999,7 @@ void CGLRenderer::createTexture(const ATexture* pTexture)
 
     if (m_Textures.contains(pTexture->getName())) // texture already exist ?
     {
-        pLog->addMessage(eDEBUG, "GLRenderer:  : " + pTexture->getName() + " removed for update.");
+        LogManager.addMessage(eDEBUG, "GLRenderer:  : " + pTexture->getName() + " removed for update.");
         AGLTexture* pGLTexture = m_Textures[pTexture->getName()];
         m_Textures.remove(pTexture->getName());
         delete pGLTexture;
@@ -1042,18 +1044,18 @@ void CGLRenderer::createTexture(const ATexture* pTexture)
 
         if (!pGLTexture->isValid())
         {
-            pLog->addMessage(eWARN, "GLRenderer::addTexture() : Error loading : " + pTexture->getName());
+            LogManager.addMessage(eWARN, "GLRenderer::addTexture() : Error loading : " + pTexture->getName());
         }
         else
         {
-            pLog->addMessage(eDEBUG, "GLRenderer:  : " + pTexture->getName() + " loading succefully.");
-            pLog->addMessage(eDEBUG, "GLRenderer: Add OpenGL texture, id [" + QString::number(pGLTexture->getID()) + "], ("+
+            LogManager.addMessage(eDEBUG, "GLRenderer:  : " + pTexture->getName() + " loading succefully.");
+            LogManager.addMessage(eDEBUG, "GLRenderer: Add OpenGL texture, id [" + QString::number(pGLTexture->getID()) + "], ("+
                              QString::number(pGLTexture->getWidth()) + " * " + QString::number(pGLTexture->getHeight()) + ")");
         }
     }
     else
     {
-        pLog->addMessage(eWARN, "GLRenderer: Texture type not supported" + pTexture->getName());
+        LogManager.addMessage(eWARN, "GLRenderer: Texture type not supported" + pTexture->getName());
     }
 }
 
@@ -1065,7 +1067,7 @@ void CGLRenderer::createFrameBuffer(CFrameBuffer* pFrameBuffer)
 
     if (m_FrameBuffers.contains(pFrameBuffer)) // FrameBuffer already exist ?
     {
-        pLog->addMessage(eDEBUG, "GLRenderer : FrameBuffer - suppression pour mise a jour.");
+        LogManager.addMessage(eDEBUG, "GLRenderer : FrameBuffer - suppression pour mise a jour.");
         CGLFrameBuffer* pGLFrameBuffer = m_FrameBuffers[pFrameBuffer];
         m_FrameBuffers.remove(pFrameBuffer);
         delete pGLFrameBuffer;
@@ -1110,14 +1112,14 @@ void CGLRenderer::createFrameBuffer(CFrameBuffer* pFrameBuffer)
 
     if (pGLFrameBuffer->isValid())
     {
-        pLog->addMessage(eDEBUG, "GLRenderer : FrameBuffer created succefully." );
-        pLog->addMessage(eDEBUG, "GLRenderer : FrameBuffer textures : " + QString::number(iTextureCount));
-        pLog->addMessage(eDEBUG, "GLRenderer : FrameBuffer renderbuffers : "  + QString::number(iRenderBufferCount));
+        LogManager.addMessage(eDEBUG, "GLRenderer : FrameBuffer created succefully." );
+        LogManager.addMessage(eDEBUG, "GLRenderer : FrameBuffer textures : " + QString::number(iTextureCount));
+        LogManager.addMessage(eDEBUG, "GLRenderer : FrameBuffer renderbuffers : "  + QString::number(iRenderBufferCount));
 
     }
     else
     {
-        pLog->addMessage(eDEBUG, "GLRenderer : Failure when creating.");
+        LogManager.addMessage(eDEBUG, "GLRenderer : Failure when creating.");
     }
 
     pGLFrameBuffer->release();
@@ -1157,7 +1159,7 @@ void CGLRenderer::releaseMaterial(CMaterial* pMaterial)
 {
     foreach (const CTextureParam& texture, pMaterial->getTextureParams())
     {
-        if (ATexture* pTexture = CTextureManager::getInstance()->getTextureByName(texture.getTextureName()))
+        if (ATexture* pTexture = CTextureManager::getInstance().getTextureByName(texture.getTextureName()))
         {
             if (AGLTexture* pGLTexture = getTexture(pTexture))
             {
@@ -1173,7 +1175,7 @@ void CGLRenderer::releaseMaterial(CMaterial* pMaterial)
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::bindUserUniformValues(const CRenderPass* pPass)
 {
-    if (CShader* pShader = CShaderManager::getInstance()->getShaderByName(pPass->getShaderName()))
+    if (CShader* pShader = CShaderManager::getInstance().getShaderByName(pPass->getShaderName()))
     {
         foreach (const TUniformValue& uniformValue, pShader->getUniformValues())
         {
@@ -1258,7 +1260,7 @@ CGLShaderProgram* CGLRenderer::getShaderProgram(const CRenderPass* pPass)
 
     CGLShaderProgram* pShaderProgram = 0;
 
-    if (CShader* pShader = CShaderManager::getInstance()->getShaderByName(shaderName))
+    if (CShader* pShader = CShaderManager::getInstance().getShaderByName(shaderName))
     {
         if (!m_ShaderPrograms.contains(pShader->getName()))
         {
@@ -1269,7 +1271,7 @@ CGLShaderProgram* CGLRenderer::getShaderProgram(const CRenderPass* pPass)
     }
     else
     {
-        pLog->addMessage(eWARN, "Shader not found: " + shaderName);
+        LogManager.addMessage(eWARN, "Shader not found: " + shaderName);
     }
 
     return pShaderProgram;
@@ -1383,35 +1385,35 @@ void CGLRenderer::checkError(const QString& message)
         break;
 
     case GL_INVALID_ENUM:
-        pLog->addMessage(eERROR, QString("%1 : Invalid enumerator").arg(message));
+        LogManager.addMessage(eERROR, QString("%1 : Invalid enumerator").arg(message));
         break;
 
     case GL_INVALID_VALUE:
-        pLog->addMessage(eERROR, QString("%1 : Invalid value").arg(message));
+        LogManager.addMessage(eERROR, QString("%1 : Invalid value").arg(message));
         break;
 
     case GL_INVALID_OPERATION:
-        pLog->addMessage(eERROR, QString("%1 : Invalid operation").arg(message));
+        LogManager.addMessage(eERROR, QString("%1 : Invalid operation").arg(message));
         break;
 
     case GL_OUT_OF_MEMORY:
-        pLog->addMessage(eERROR, QString("%1 : Out of memory").arg(message));
+        LogManager.addMessage(eERROR, QString("%1 : Out of memory").arg(message));
         break;
 #ifndef EMBEDDED_TARGET
     case GL_STACK_OVERFLOW:
-        pLog->addMessage(eERROR, QString("%1 : Stack overflow").arg(message));
+        LogManager.addMessage(eERROR, QString("%1 : Stack overflow").arg(message));
         break;
 
     case GL_STACK_UNDERFLOW:
-        pLog->addMessage(eERROR, QString("%1 : Stack underflow").arg(message));
+        LogManager.addMessage(eERROR, QString("%1 : Stack underflow").arg(message));
         break;
 
     case GL_INVALID_FRAMEBUFFER_OPERATION_EXT:
-        pLog->addMessage(eERROR, QString("%1 : Invalid framebuffer operation").arg(message));
+        LogManager.addMessage(eERROR, QString("%1 : Invalid framebuffer operation").arg(message));
         break;
 #endif
     default:
-        pLog->addMessage(eERROR, QString("%1 : Unknow error").arg(message));
+        LogManager.addMessage(eERROR, QString("%1 : Unknow error").arg(message));
         break;
     }
 }
@@ -1515,7 +1517,7 @@ void CGLRenderer::CGLGeometryInstancer::run()
             pMeshBuffer.first->unlock();
             pMeshBuffer.second->unlock();
             m_pRenderer->setDirty();
-            pLog->addMessage(eDEBUGTHREAD, QString("CGLGeometryInstancer (Thread: %1): Push %2")
+            LogManager.addMessage(eDEBUGTHREAD, QString("CGLGeometryInstancer (Thread: %1): Push %2")
                              .arg((qlonglong)QThread::currentThreadId())
                              .arg(pMeshBuffer.second->getName()));
         }

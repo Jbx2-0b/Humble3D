@@ -1,14 +1,19 @@
 ﻿#include "CRenderBufferManager.h"
 
 
-CRenderBufferManager* CRenderBufferManager::s_pInstance = 0;
-QMutex CRenderBufferManager::s_Mutex(QMutex::Recursive);
-
 //-----------------------------------------------------------------------------------------
 CRenderBufferManager::CRenderBufferManager()
 {
 
 }
+
+//-----------------------------------------------------------------------------------------
+CRenderBufferManager &CRenderBufferManager::getInstance()
+{
+    static CRenderBufferManager instance;
+    return instance;
+}
+
 //-----------------------------------------------------------------------------------------
 CRenderBufferManager::~CRenderBufferManager()
 {
@@ -66,7 +71,7 @@ CRenderBuffer* CRenderBufferManager::getRenderBufferByID(int iID) const
 //-----------------------------------------------------------------------------------------
 CRenderBuffer* CRenderBufferManager::createRenderBuffer(const QString& name, EnumInternalFormat eFormat)
 {
-    pLog->addMessage(eDEBUG, "CRenderBufferManager::createRenderBuffer() : " + name);
+    LogManager.addMessage(eDEBUG, "CRenderBufferManager::createRenderBuffer() : " + name);
     CRenderBuffer* pRenderBuffer = new CRenderBuffer(name, eFormat);
     m_RenderBuffers[pRenderBuffer->getName()] = pRenderBuffer;
     m_RenderBufferIDs[pRenderBuffer->getID()] = pRenderBuffer;

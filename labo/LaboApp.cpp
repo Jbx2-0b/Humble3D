@@ -52,8 +52,8 @@ LaboApp::LaboApp()
     , m_pSDEdited(0)
 {
     // Enregistre quelques shaders par défaut...
-    CShaderManager::getInstance()->createShader("fresnel",		"://Resources/fresnel.vertex.glsl",	"", "://Resources/fresnel.fragment.glsl");
-    CShaderManager::getInstance()->createShader("bump",			"://Resources/bump.vertex.glsl",	"", "://Resources/bump.fragment.glsl");
+    CShaderManager::getInstance().createShader("fresnel",		"://Resources/fresnel.vertex.glsl",	"", "://Resources/fresnel.fragment.glsl");
+    CShaderManager::getInstance().createShader("bump",			"://Resources/bump.vertex.glsl",	"", "://Resources/bump.fragment.glsl");
 
     CCamera* pCamera = getSceneManager()->createCamera();
     pCamera->setPerspective(0.7853f, (real) iDefaultViewSizeX / (real) iDefaultViewSizeY, 0.01f, 1000.f);
@@ -115,7 +115,7 @@ LaboApp::LaboApp()
 
     CSceneNode* pRootNode = m_pSceneManager->getRootNode();
 
-    CCoordinateSystem* pCoordinateSystemMesh = CMeshManager::getInstance()->createCustomMesh<CCoordinateSystem>("CoordinateSystemMesh", "CoordinateSystemMesh");
+    CCoordinateSystem* pCoordinateSystemMesh = CMeshManager::getInstance().createCustomMesh<CCoordinateSystem>("CoordinateSystemMesh", "CoordinateSystemMesh");
     m_AutoCreatedEntities.insert(pCoordinateSystemMesh);
 
     CMeshInstance* pCoordinateSystem = m_pSceneManager->createMeshInstance(pCoordinateSystemMesh, "CoordinateSystem");
@@ -126,7 +126,7 @@ LaboApp::LaboApp()
     /*CHeightMap* pHeightMap = m_pSceneManager->createCustomMesh<CHeightMap>("CHeightMap");
     pRootNode->addItem(pHeightMap);*/
 
-    //CMaterial* pHeightMat = CMaterialManager::getInstance()->createMaterial("HeightMat");
+    //CMaterial* pHeightMat = CMaterialManager::getInstance().createMaterial("HeightMat");
     //pMercureMat->setAmbientColor(0.8, 0.8, 0.8);
     //pHeightMat->getRenderPass(0)->setShader(eShadingModelToon);
     //pHeightMap->setMaterial(pHeightMat->getName());
@@ -137,23 +137,23 @@ LaboApp::LaboApp()
 
     /*
 
-    CMaterial* pMat = CMaterialManager::getInstance()->createMaterial("Grass");
+    CMaterial* pMat = CMaterialManager::getInstance().createMaterial("Grass");
     pMat->setAmbientColor(0.f, 0.f, 0.f);
     pMat->setDiffuseColor(0.6f, 0.7f, 0.5f);
     pMat->setSpecularColor(0.1f, 0.1f, 0.1f);
     pMat->setShininessFactor(100);
 
-    CShader* pShader = CShaderManager::getInstance()->createShader("NBT",
+    CShader* pShader = CShaderManager::getInstance().createShader("NBT",
         "NBT.vertex.glsl", "", "NBT.fragment.glsl");
 
     pMat->getRenderingPass(0)->setUserShadingModelName(pShader->getName());
 
     //pMat->getRenderingPass(0)->setShadingModel(eShadingModelColor);
 
-    ATexture* pDiffuseTexture = CTextureManager::getInstance()->createTexture2D("DiffuseTex", "3912-diffuse.jpg");
+    ATexture* pDiffuseTexture = CTextureManager::getInstance().createTexture2D("DiffuseTex", "3912-diffuse.jpg");
     pMat->addTexture(pDiffuseTexture, eDiffuse);
 
-    ATexture* pNormalTexture = CTextureManager::getInstance()->createTexture2D("NormalTex", "3912-normal.jpg");
+    ATexture* pNormalTexture = CTextureManager::getInstance().createTexture2D("NormalTex", "3912-normal.jpg");
     pMat->addTexture(pNormalTexture, eNormals);
 
     pPlaneMesh->setMaterial(pMat->getName());*/
@@ -345,9 +345,9 @@ LaboApp::LaboApp()
 #endif // MULTITHREAD
 
     //    m_pView->setWindowTitle(QString("Labo - %1 - OpenGL %2 - GLSL %3")
-    //                            .arg(CGLHelper::getInstance()->getGPUName())
-    //                            .arg(CGLHelper::getInstance()->getOpenGLVersion())
-    //                            .arg(CGLHelper::getInstance()->getGLSLVersion()));
+    //                            .arg(CGLHelper::getInstance().getGPUName())
+    //                            .arg(CGLHelper::getInstance().getOpenGLVersion())
+    //                            .arg(CGLHelper::getInstance().getGLSLVersion()));
 
     getAnimationManager()->run();
     m_pView->getFPSManager()->setDesiredFPS(1000);
@@ -653,13 +653,13 @@ void LaboApp::onLoad()
 
         if (loadDialog.exec() == QDialog::Accepted)
         {
-            if (loadDialog.clearMeshs())		{ m_pSceneManager->clearMeshInstances(); CMeshManager::getInstance()->clearMeshs(); }
+            if (loadDialog.clearMeshs())		{ m_pSceneManager->clearMeshInstances(); CMeshManager::getInstance().clearMeshs(); }
             if (loadDialog.clearEmptyNodes())	{ m_pSceneManager->clearEmptyNodes(); }
             if (loadDialog.clearLights())		{ m_pSceneManager->clearLights(); }
             if (loadDialog.clearCameras())		{ m_pSceneManager->clearCameras(); }
             if (loadDialog.clearAnimations())	{ m_pSceneManager->clearAnimations(); }
-            if (loadDialog.clearMaterials())	{ CMaterialManager::getInstance()->clearMaterials(); }
-            if (loadDialog.clearShaders())		{ CShaderManager::getInstance()->clearShaders(); }
+            if (loadDialog.clearMaterials())	{ CMaterialManager::getInstance().clearMaterials(); }
+            if (loadDialog.clearShaders())		{ CShaderManager::getInstance().clearShaders(); }
             m_bMergeMaterials = loadDialog.mergeMaterials();
             m_bRescaleMeshs = loadDialog.rescaleMeshs();
             m_bInvertXZ = loadDialog.invertXZ();
@@ -695,14 +695,14 @@ void LaboApp::loadScene(const QString& fileName)
     {
         QTime time;
         time.start();
-        CMeshManager::getInstance()->loadMesh(fileName);
+        CMeshManager::getInstance().loadMesh(fileName);
         qDebug() << "Mesh load time : " << time.elapsed();
     }
     else if (fileInfo.completeSuffix() == "meshgroup")
     {
         QTime time;
         time.start();
-        CMeshManager::getInstance()->loadMeshGroup(fileName);
+        CMeshManager::getInstance().loadMeshGroup(fileName);
         qDebug() << "MeshGroup load time : " << time.elapsed();
     }
     else if (fileInfo.completeSuffix() == "xml")
@@ -926,9 +926,9 @@ void LaboApp::onEditShader(const QString& name)
 
     onEditShadersClicked();
 
-    if(CShaderManager::getInstance()->isShaderExist(name))
+    if(CShaderManager::getInstance().isShaderExist(name))
     {
-        m_pSDEdited = CShaderManager::getInstance()->getShaderByName(name);
+        m_pSDEdited = CShaderManager::getInstance().getShaderByName(name);
         m_pTopToolBar->setTitle(m_pSDEdited->getName() + " Vertex Shader (" + m_pSDEdited->getVertexShaderFileName() + ")");
         m_pEditShadersTextItem->onEditShader(m_pSDEdited);
     }

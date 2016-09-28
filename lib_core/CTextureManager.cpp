@@ -1,14 +1,19 @@
 ﻿#include "CTextureManager.h"
 
 
-CTextureManager* CTextureManager::s_pInstance = 0;
-QMutex CTextureManager::s_Mutex(QMutex::Recursive);
-
 //-----------------------------------------------------------------------------------------
 CTextureManager::CTextureManager()
 {
 
 }
+
+//-----------------------------------------------------------------------------------------
+CTextureManager &CTextureManager::getInstance()
+{
+    static CTextureManager instance;
+    return instance;
+}
+
 //-----------------------------------------------------------------------------------------
 CTextureManager::~CTextureManager()
 {
@@ -66,7 +71,7 @@ ATexture* CTextureManager::getTextureByID(int iID) const
 //-----------------------------------------------------------------------------------------
 CTexture2D* CTextureManager::createTexture2D(const QString& name)
 {
-    pLog->addMessage(eDEBUG, "TextureManager: create texture 2D : " + name);
+    LogManager.addMessage(eDEBUG, "TextureManager: create texture 2D : " + name);
     CTexture2D* pTexture = new CTexture2D(name, getUnReservedTextureUnit());
     m_TextureByName[pTexture->getName()] = pTexture;
     m_TextureByID[pTexture->getID()] = pTexture;
@@ -78,7 +83,7 @@ CTexture2D* CTextureManager::createTexture2D(const QString& name)
 //-----------------------------------------------------------------------------------------
 CTexture2D* CTextureManager::createTexture2D(const QString& name, const QSize& size)
 {
-    pLog->addMessage(eDEBUG, "TextureManager: create texture 2D : " + name);
+    LogManager.addMessage(eDEBUG, "TextureManager: create texture 2D : " + name);
     CTexture2D* pTexture = new CTexture2D(name, getUnReservedTextureUnit(), size);
     m_TextureByName[pTexture->getName()] = pTexture;
     m_TextureByID[pTexture->getID()] = pTexture;
@@ -92,7 +97,7 @@ CTexture2D* CTextureManager::createTexture2D(const QString& name, const QString&
 {
     if (!textureFileName.isEmpty())
     {
-        pLog->addMessage(eDEBUG, "TextureManager create texture2D : " + name);
+        LogManager.addMessage(eDEBUG, "TextureManager create texture2D : " + name);
         CTexture2D* pTexture = new CTexture2D(name, getUnReservedTextureUnit(), textureFileName);
         m_TextureByName[pTexture->getName()] = pTexture;
         m_TextureByID[pTexture->getID()] = pTexture;
@@ -107,7 +112,7 @@ CTexture2D* CTextureManager::createTexture2D(const QString& name, const QString&
 //-----------------------------------------------------------------------------------------
 CTextureTarget* CTextureManager::createTextureTarget(const QString& name, const QSize& size, EnumInternalFormat eFormat)
 {
-    pLog->addMessage(eDEBUG, "TextureManager: create texture target : " + name);
+    LogManager.addMessage(eDEBUG, "TextureManager: create texture target : " + name);
     CTextureTarget* pTexture = new CTextureTarget(name, getUnReservedTextureUnit(), size, eFormat);
     m_TextureByName[pTexture->getName()] = pTexture;
     m_TextureByID[pTexture->getID()] = pTexture;
@@ -121,7 +126,7 @@ CTextureCube* CTextureManager::createTextureCube(const QString& name, const QStr
 {
     if (!name.isEmpty() && textureFileNames.size() > 0)
     {
-        pLog->addMessage(eDEBUG, "TextureManager: create texture cube : " + name);
+        LogManager.addMessage(eDEBUG, "TextureManager: create texture cube : " + name);
         CTextureCube* pTexture = new CTextureCube(name, getUnReservedTextureUnit(), textureFileNames);
         m_TextureByName[pTexture->getName()] = pTexture;
         m_TextureByID[pTexture->getID()] = pTexture;

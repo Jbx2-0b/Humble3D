@@ -138,7 +138,7 @@ void CNodeTreeWidget::clearData()
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::updateData()
 {
-    pLog->addMessage(eDEBUG, "NodeTreeWidget::updateData()");
+    LogManager.addMessage(eDEBUG, "NodeTreeWidget::updateData()");
 
     clearData();
 
@@ -147,12 +147,12 @@ void CNodeTreeWidget::updateData()
     createTreeSceneManager();
     createTreeRenderer();
     recursiveCreateTreeNodes(m_pSceneManager->getRootNode());
-    //createTreeMeshs(CMeshManager::getInstance()->getMeshs());
+    //createTreeMeshs(CMeshManager::getInstance().getMeshs());
     createTreeLights(m_pSceneManager->getLights());
     createTreeCameras(m_pSceneManager->getCameras());
-    createTreeMaterials(CMaterialManager::getInstance()->getMaterials());
+    createTreeMaterials(CMaterialManager::getInstance().getMaterials());
     createTreeAnimations(m_pSceneManager->getAnimations());
-    createTreeShaders(CShaderManager::getInstance()->getShaders());
+    createTreeShaders(CShaderManager::getInstance().getShaders());
     blockSignals(false);
 }
 
@@ -210,7 +210,7 @@ void CNodeTreeWidget::onUpdate(AEntity* pEntity)
 
             foreach (const CTextureParam& texture, pMaterial->getTextureParams())
             {
-                ATexture* pTexture = CTextureManager::getInstance()->getTextureByName(texture.getTextureName());
+                ATexture* pTexture = CTextureManager::getInstance().getTextureByName(texture.getTextureName());
 
                 updateProperty(pTexture, TextureTypeKey,	CGeometryGlobal::stringFromTextureType(pTexture->getType()));
                 updateProperty(pTexture, MatParamKey,		CGeometryGlobal::stringFromMaterialParameter(texture.getMaterialParameter()));
@@ -327,7 +327,7 @@ void CNodeTreeWidget::onUpdate(AEntity* pEntity)
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onDelete(AEntity* pEntity)
 {
-    pLog->addMessage(eDEBUG, "NodeTreeWidget::onDestroy() : " + pEntity->getName());
+    LogManager.addMessage(eDEBUG, "NodeTreeWidget::onDestroy() : " + pEntity->getName());
 
     if (QTreeWidgetItem* pItem = m_Entities.key(pEntity, 0))
     {
@@ -456,7 +456,7 @@ void CNodeTreeWidget::recursiveCreateTreeNodes(CSceneNode* pNode, QTreeWidgetIte
                 pSubMeshInstanceWidgetItem->setText(0, pSubMeshInstance->getName());
                 pSubMeshInstanceWidgetItem->setIcon(0, QIcon(":/Resources/geometry.png"));
 
-                addProperty(pSubMeshInstance, pSubMeshInstanceWidgetItem, MaterialKey, CMaterialManager::getInstance()->getMaterialsNames(), pSubMeshInstance->getMaterialName(), true);
+                addProperty(pSubMeshInstance, pSubMeshInstanceWidgetItem, MaterialKey, CMaterialManager::getInstance().getMaterialsNames(), pSubMeshInstance->getMaterialName(), true);
             }
         }
         else if (CLight* pLight = dynamic_cast<CLight*>(pItem))
@@ -521,7 +521,7 @@ void CNodeTreeWidget::createTreeMeshs(const QList<CMesh*>& meshs)
             pSubMeshWidgetItem->setText(0, pSubMesh->getName());
             pSubMeshWidgetItem->setIcon(0, QIcon(":/Resources/geometry.png"));
 
-            addProperty(pSubMesh, pSubMeshWidgetItem, MaterialKey,          CMaterialManager::getInstance()->getMaterialsNames(), pSubMesh->getMaterialName(), true);
+            addProperty(pSubMesh, pSubMeshWidgetItem, MaterialKey,          CMaterialManager::getInstance().getMaterialsNames(), pSubMesh->getMaterialName(), true);
 
             addProperty(pSubMesh, pSubMeshWidgetItem, PrimitivesKey,		CGeometryGlobal::primitiveTypeEntries(), CGeometryGlobal::stringFromPrimitiveType(pSubMesh->getPrimitiveType()), false);
             addProperty(pSubMesh, pSubMeshWidgetItem, PositionsCountKey,    QString::number(pSubMesh->positionsBuffer().count()), false);
@@ -612,7 +612,7 @@ void CNodeTreeWidget::createTreeMaterials(const QList<CMaterial*>& materials)
 
         foreach (const CTextureParam& texture, pMaterial->getTextureParams())
         {
-            if (ATexture* pTexture = CTextureManager::getInstance()->getTextureByName(texture.getTextureName()))
+            if (ATexture* pTexture = CTextureManager::getInstance().getTextureByName(texture.getTextureName()))
             {
                 QTreeWidgetItem* pTDWidgetItem = new QTreeWidgetItem();
                 pTDWidgetItem->setText(0, pTexture->getName());
@@ -1243,7 +1243,7 @@ void CNodeTreeWidget::onDeleteClicked()
 
         if (CMesh* pMesh = dynamic_cast<CMesh*>(m_pCurrentEntity))
         {
-            CMeshManager::getInstance()->removeMesh(pMesh);
+            CMeshManager::getInstance().removeMesh(pMesh);
         }
         else if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(m_pCurrentEntity))
         {
@@ -1288,7 +1288,7 @@ void CNodeTreeWidget::onSaveClicked()
 
             if (saveDialog.exec() == QDialog::Accepted)
             {
-                CMeshManager::getInstance()->saveMesh(pMesh, fileName, 7);
+                CMeshManager::getInstance().saveMesh(pMesh, fileName, 7);
                 updateData();
             }
         }

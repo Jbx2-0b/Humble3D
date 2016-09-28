@@ -32,7 +32,7 @@ TestPhysics::TestPhysics()
     , m_StartPan(-1, -1)
     , m_LastPan(-1, -1)
 {
-    //CShaderManager::getInstance()->createShader("bump", "://resources/NBT.vertex.glsl", "", "://resources/NBT.fragment.glsl");
+    //CShaderManager::getInstance().createShader("bump", "://resources/NBT.vertex.glsl", "", "://resources/NBT.fragment.glsl");
 
     // On crée une camera
     CCamera* pCamera = getSceneManager()->createCamera();
@@ -76,7 +76,7 @@ TestPhysics::TestPhysics()
     //CSceneNode* pModelNode = pRootNode->createChild("ModelNode", QVector3D(0, 0, 0));
     //    QList<AEntity*> loadedEntities = CAssimpImporter::loadScene("beer.3ds", m_pSceneManager, true);
 
-    //    CMaterial* pModelMat = CMaterialManager::getInstance()->createMaterial("ModelMat");
+    //    CMaterial* pModelMat = CMaterialManager::getInstance().createMaterial("ModelMat");
     //    pModelMat->setDiffuseColor(0.2, 1., 0.2, 1.0);
     //    pModelMat->setOpacity(0.4);
     //    pModelMat->getRenderPass(0)->renderStates().blending().setEnabled(true);
@@ -103,13 +103,13 @@ TestPhysics::TestPhysics()
     //        }
     //    }
 
-    CSphereMesh* pSphereMesh = CMeshManager::getInstance()->createCustomMesh<CSphereMesh>("CSphereMesh", "Cube");
+    CSphereMesh* pSphereMesh = CMeshManager::getInstance().createCustomMesh<CSphereMesh>("CSphereMesh", "Cube");
     pSphereMesh->setRadius(1.);
 
-    ATexture* pBumpTexture = CTextureManager::getInstance()->createTexture2D("Bump", "://resources/3912-diffuse.jpg");
-    //ATexture* pBumpNormalTexture = CTextureManager::getInstance()->createTexture2D("BumpNormals", "://resources/3912-normal.jpg");
+    ATexture* pBumpTexture = CTextureManager::getInstance().createTexture2D("Bump", "://resources/3912-diffuse.jpg");
+    //ATexture* pBumpNormalTexture = CTextureManager::getInstance().createTexture2D("BumpNormals", "://resources/3912-normal.jpg");
 
-    CMaterial* pSphereMat = CMaterialManager::getInstance()->createMaterial("CubeMat");
+    CMaterial* pSphereMat = CMaterialManager::getInstance().createMaterial("CubeMat");
     pSphereMat->addTexture(pBumpTexture, eDiffuse);
     //pSphereMat->addTexture(pBumpNormalTexture, eNormals);
     pSphereMat->getRenderPass(0)->setShaderName("phong");
@@ -137,7 +137,7 @@ TestPhysics::TestPhysics()
         }
     }
 
-    CSolidBox* pCubeMesh = CMeshManager::getInstance()->createCustomMesh<CSolidBox>("CSolidBox", "Cube");
+    CSolidBox* pCubeMesh = CMeshManager::getInstance().createCustomMesh<CSolidBox>("CSolidBox", "Cube");
     pCubeMesh->setSize(QVector3D(1., 1., 1.));
 
     for (int i = 0; i < 4; ++i)
@@ -149,7 +149,7 @@ TestPhysics::TestPhysics()
                 CMeshInstance* pCube = getSceneManager()->createMeshInstance(pCubeMesh, "Cube");
                 pCube->setPhysicShape(eBoxShape);
 
-                CMaterial* pCubeMat = CMaterialManager::getInstance()->createMaterial("CubeMat");
+                CMaterial* pCubeMat = CMaterialManager::getInstance().createMaterial("CubeMat");
                 pCubeMat->getRenderPass(0)->setShaderName("phong");
                 pCubeMat->setAmbientColor(i / 3., j / 3., k / 3.);
 
@@ -168,20 +168,20 @@ TestPhysics::TestPhysics()
         }
     }
 
-    CPlaneMesh* pGroundMesh = CMeshManager::getInstance()->createCustomMesh<CPlaneMesh>("CPlaneMesh", "GroundMesh");
+    CPlaneMesh* pGroundMesh = CMeshManager::getInstance().createCustomMesh<CPlaneMesh>("CPlaneMesh", "GroundMesh");
     pGroundMesh->init(CPlaneMesh::ePlaneXZ, 100., 100., 10, 10, 1.0, 1.0);
 
     //pGroundMesh->setSize(QVector3D(100, 0.2, 100));
     CMeshInstance* pGround = getSceneManager()->createMeshInstance(pGroundMesh, "Ground");
 
-    CMaterial* pGroundMat = CMaterialManager::getInstance()->createMaterial("GroundMat");
+    CMaterial* pGroundMat = CMaterialManager::getInstance().createMaterial("GroundMat");
     pGroundMat->setAmbientColor(0.7, 0.7, 0.7);
 
 
     pGroundMat->getRenderPass(0)->setShaderName("phong");
 
-    //ATexture* pWoodTexture = CTextureManager::getInstance()->createTexture2D("Wood", "://resources/Wood_Boards.jpg");
-    ATexture* pGroundTexture = CTextureManager::getInstance()->createTexture2D("GroundTex", "://resources/ground.jpg");
+    //ATexture* pWoodTexture = CTextureManager::getInstance().createTexture2D("Wood", "://resources/Wood_Boards.jpg");
+    ATexture* pGroundTexture = CTextureManager::getInstance().createTexture2D("GroundTex", "://resources/ground.jpg");
     pGroundMat->addTexture(pGroundTexture, eDiffuse);
 
     pGround->setMaterialName(pGroundMat->getName());

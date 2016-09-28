@@ -1,4 +1,4 @@
-#ifndef CWIDGET3D_H
+﻿#ifndef CWIDGET3D_H
 #define CWIDGET3D_H
 
 // Lib
@@ -31,7 +31,7 @@ public:
     //! Retourne un pointeur sur le renderer OpenGL
     CGLRenderer* getGLRenderer() { return m_pGLRenderer; }
 
-    //! Force la mise � jour du rendu
+    //! Force la mise à jour du rendu
     void setForceUpdate(bool bForceUpdate);
 
 signals:

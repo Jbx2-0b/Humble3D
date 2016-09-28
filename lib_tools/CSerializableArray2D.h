@@ -1,4 +1,4 @@
-#ifndef CSERIALIZABLEARRAY2D_H
+ï»¿#ifndef CSERIALIZABLEARRAY2D_H
 #define CSERIALIZABLEARRAY2D_H
 
 #include "CArray2D.h"
@@ -19,7 +19,7 @@ public:
 		return compressData;
 	}
 
-	//! Définit le tableau à partir d'un champ de bit
+	//! DÃ©finit le tableau Ã  partir d'un champ de bit
 	virtual void fromByteArray(QByteArray* pBA)
 	{
 		QByteArray uncompressData = qUncompress(*pBA);

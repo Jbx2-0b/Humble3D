@@ -15,7 +15,7 @@ CSceneManager::CSceneManager()
     , m_AmbientColor(DefaultSceneAmbientColor)
     , m_RootNode(this, "Root")
 {
-    CMeshManager::getInstance()->registerListener(this);
+    CMeshManager::getInstance().registerListener(this);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ CSceneManager::~CSceneManager()
 {
     delete m_pOctree;
     clearAll();
-    CMeshManager::getInstance()->unregisterListener(this);
+    CMeshManager::getInstance().unregisterListener(this);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -31,13 +31,13 @@ void CSceneManager::buildOctree(const CBox3D& worldBoundingBox, unsigned int uiP
 {
     if (m_pOctree)
     {
-        pLog->addMessage(eINFO, "Deleting previous octree...");
+        LogManager.addMessage(eINFO, "Deleting previous octree...");
         delete m_pOctree;
     }
 
-    pLog->addMessage(eINFO, QString("Creating octree... World bounding box: %1 Max Depth %2").arg(worldBoundingBox.toString()).arg(iMaxDepth));
+    LogManager.addMessage(eINFO, QString("Creating octree... World bounding box: %1 Max Depth %2").arg(worldBoundingBox.toString()).arg(iMaxDepth));
     m_pOctree = new COctree(this, worldBoundingBox, uiPolygonCountThreshold, iMaxDepth);
-    pLog->addMessage(eINFO, "Creating octree... Done.");
+    LogManager.addMessage(eINFO, "Creating octree... Done.");
 }
 
 //-----------------------------------------------------------------------------------------
@@ -221,7 +221,7 @@ CAnimation* CSceneManager::getAnimationByName(const QString& name) const
 //-----------------------------------------------------------------------------------------
 CMeshInstance* CSceneManager::createMeshInstance(const QString& meshName, const QString& name /*= "MeshInstance"*/)
 {
-    return createMeshInstance(CMeshManager::getInstance()->getMeshByName(meshName), name);
+    return createMeshInstance(CMeshManager::getInstance().getMeshByName(meshName), name);
 }
 
 //-----------------------------------------------------------------------------------------
@@ -234,7 +234,7 @@ CMeshInstance* CSceneManager::createMeshInstance(CMesh* pMesh, const QString& na
         return pMeshInstance;
     }
 
-    pLog->addMessage(eERROR, "CSceneManager::createMeshInstance() : CMesh is null ptr !");
+    LogManager.addMessage(eERROR, "CSceneManager::createMeshInstance() : CMesh is null ptr !");
     return 0;
 }
 
@@ -343,7 +343,7 @@ void CSceneManager::removeRenderableItem(ARenderableItem* pRenderableItem)
 //-----------------------------------------------------------------------------------------
 void CSceneManager::addToRenderQueue(ARenderableItem* pRenderableItem)
 {
-    if (CMaterial* pMaterial = CMaterialManager::getInstance()->getMaterialByName(pRenderableItem->getMaterialName()))
+    if (CMaterial* pMaterial = CMaterialManager::getInstance().getMaterialByName(pRenderableItem->getMaterialName()))
     {
         if (pMaterial->getRenderPass(0)->renderStates().blending().isEnabled())
         {
@@ -584,14 +584,14 @@ const QSet<CMaterial*> CSceneManager::getUsedMaterials() const
     QSet<CMaterial*> materials;
     foreach (CMeshInstance* pMeshInstance, m_MeshInstances)
     {
-        if (CMaterial* pMaterial = CMaterialManager::getInstance()->getMaterialByName(pMeshInstance->getMaterialName()))
+        if (CMaterial* pMaterial = CMaterialManager::getInstance().getMaterialByName(pMeshInstance->getMaterialName()))
         {
             materials.insert(pMaterial);
         }
 
         foreach (CSubMeshInstance* pSubMeshInstance, pMeshInstance->subMeshInstances())
         {
-            if (CMaterial* pMaterial = CMaterialManager::getInstance()->getMaterialByName(pSubMeshInstance->getMaterialName()))
+            if (CMaterial* pMaterial = CMaterialManager::getInstance().getMaterialByName(pSubMeshInstance->getMaterialName()))
             {
                 materials.insert(pMaterial);
             }
@@ -608,7 +608,7 @@ const QSet<CShader*> CSceneManager::getUsedShaders() const
     {
         foreach (CRenderPass* pRenderPass, pMaterial->getRenderPasses())
         {
-            if (CShader* pShader = CShaderManager::getInstance()->getShaderByName(pRenderPass->getShaderName()))
+            if (CShader* pShader = CShaderManager::getInstance().getShaderByName(pRenderPass->getShaderName()))
             {
                 shaders.insert(pShader);
             }
@@ -625,7 +625,7 @@ const QSet<ATexture*> CSceneManager::getUsedTextures() const
     {
         foreach (const CTextureParam& textureParam, pMaterial->getTextureParams())
         {
-            if (ATexture* pTexture = CTextureManager::getInstance()->getTextureByName(textureParam.getTextureName()))
+            if (ATexture* pTexture = CTextureManager::getInstance().getTextureByName(textureParam.getTextureName()))
             {
                 textures.insert(pTexture);
             }

@@ -23,7 +23,7 @@ CDebugManager::~CDebugManager()
 
     foreach (CMesh* pMesh, m_Meshs)
     {
-        CMeshManager::getInstance()->removeMesh(pMesh);
+        CMeshManager::getInstance().removeMesh(pMesh);
     }
 }
 
@@ -39,13 +39,13 @@ void CDebugManager::setVisible(bool bVisible)
 //-----------------------------------------------------------------------------------------
 CMeshInstance* CDebugManager::createBox(const CBox3D& box, const Color& color, real scaleFactor /*= 1.0*/)
 {
-    CLineBox* pBox = CMeshManager::getInstance()->createCustomMesh<CLineBox>("CLineBox");
+    CLineBox* pBox = CMeshManager::getInstance().createCustomMesh<CLineBox>("CLineBox");
     m_Meshs << pBox;
     QMatrix4x4 scaleMatrix;
     scaleMatrix.scale(scaleFactor);
     pBox->setBoundingBox(box.transformed(scaleMatrix));
     CMeshInstance* pBoxInstance = m_pSceneManager->createMeshInstance(pBox, "DebugMeshInstance");
-    pBoxInstance->setMaterialName(CMaterialManager::getInstance()->getMaterialNameByColor(color));
+    pBoxInstance->setMaterialName(CMaterialManager::getInstance().getMaterialNameByColor(color));
     m_MeshInstances << pBoxInstance;
     pBoxInstance->setSelectable(false);
     return pBoxInstance;
@@ -59,7 +59,7 @@ CMeshInstance* CDebugManager::createSphere(const CSphere& sphere, const Color& c
 }
 
 //-----------------------------------------------------------------------------------------
-CMeshInstance* CDebugManager::createCylinder(const CCylinder& Cylinder, const Color& color, real scaleFactor /*= 1.0*/)
+CMeshInstance* CDebugManager::createCylinder(const CCylinder& cylinder, const Color& color, real scaleFactor /*= 1.0*/)
 {
     // TODO
     return 0;
@@ -68,7 +68,7 @@ CMeshInstance* CDebugManager::createCylinder(const CCylinder& Cylinder, const Co
 //-----------------------------------------------------------------------------------------
 CMeshInstance* CDebugManager::createNormals(CMeshInstance* pMeshInstance, const Color& color, real fSize /*= 1.0*/)
 {
-    CMesh* pMesh = CMeshManager::getInstance()->createMesh(pMeshInstance->getName() + "NormalMesh");
+    CMesh* pMesh = CMeshManager::getInstance().createMesh(pMeshInstance->getName() + "NormalMesh");
     m_Meshs << pMesh;
 
     CSubMesh* pNormalSubMesh = pMesh->createSubMesh();
@@ -93,7 +93,7 @@ CMeshInstance* CDebugManager::createNormals(CMeshInstance* pMeshInstance, const 
     }
 
     CMeshInstance* pNormalMeshInstance = m_pSceneManager->createMeshInstance(pMesh, pMeshInstance->getName() + "NormalMeshInstance");
-    pNormalMeshInstance->setMaterialName(CMaterialManager::getInstance()->getMaterialNameByColor(color));
+    pNormalMeshInstance->setMaterialName(CMaterialManager::getInstance().getMaterialNameByColor(color));
 
     foreach (CSceneNode* pSceneNode, pMeshInstance->getNodes())
     {
@@ -109,7 +109,7 @@ CMeshInstance* CDebugManager::createNormals(CMeshInstance* pMeshInstance, const 
 //-----------------------------------------------------------------------------------------
 CMeshInstance* CDebugManager::createFrustum(CCamera* pCamera, const Color& color)
 {
-    CMesh* pMesh = CMeshManager::getInstance()->createMesh(pCamera->getName() + "FrustumMesh");
+    CMesh* pMesh = CMeshManager::getInstance().createMesh(pCamera->getName() + "FrustumMesh");
     m_Meshs << pMesh;
 
     CSubMesh* pSubMesh = pMesh->createSubMesh();
@@ -162,7 +162,7 @@ CMeshInstance* CDebugManager::createFrustum(CCamera* pCamera, const Color& color
              << 7 << 4;
 
     CMeshInstance* pMeshInstance = m_pSceneManager->createMeshInstance(pMesh, pCamera->getName() + "FrustumMeshInstance");
-    pMeshInstance->setMaterialName(CMaterialManager::getInstance()->getMaterialNameByColor(color));
+    pMeshInstance->setMaterialName(CMaterialManager::getInstance().getMaterialNameByColor(color));
     pMeshInstance->setSelectable(false);
 
     m_MeshInstances << pMeshInstance;

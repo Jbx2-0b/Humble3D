@@ -1,4 +1,4 @@
-#include "CFilterEvent.h"
+﻿#include "CFilterEvent.h"
 
 //-----------------------------------------------------------------------
 CFilterEvent::CFilterEvent(CFilterEvent::IFilterEventListener* pListener, int iUpdateDT)

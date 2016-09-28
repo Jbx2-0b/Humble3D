@@ -1,4 +1,4 @@
-#ifndef CARRAY3D_H
+ï»¿#ifndef CARRAY3D_H
 #define CARRAY3D_H
 
 #include <QVector>
@@ -47,22 +47,22 @@ public:
         m_vData.resize(iSizeX * iSizeY * iSizeZ);
     }
 
-    //! Retourne un élement
+    //! Retourne un Ã©lement
     T get(int i, int j, int k) const	{ return m_vData[i + j * m_iSizeX + k * m_iSizeX * m_iSizeY]; }
 
-    //! Retourne un élement
+    //! Retourne un Ã©lement
     T get(int i) const					{ return m_vData[i]; }
 
-    //! Définit un élément
+    //! DÃ©finit un Ã©lÃ©ment
     void set(int i, int j, int k, T v)	{ m_vData[i + j * m_iSizeX + k * m_iSizeX * m_iSizeY] = v; }
 
-    //! Définit un élément
+    //! DÃ©finit un Ã©lÃ©ment
     void set(int i, T v)				{ m_vData[i] = v; }
 
-    //! Retourne l'ensemble des éléments
+    //! Retourne l'ensemble des Ã©lÃ©ments
     const QVector<T>& get() const		{ return m_vData; }
 
-    //! Retourne le nombre total d'éléments
+    //! Retourne le nombre total d'Ã©lÃ©ments
     int size() const					{ return m_vData.size(); }
 
     //! Remplit l'ensemble du tableau
@@ -82,7 +82,7 @@ public:
         return compressData;
     }
 
-    //! Définit le tableau à partir d'un champ de bit
+    //! DÃ©finit le tableau Ã  partir d'un champ de bit
     virtual void fromByteArray(QByteArray* pBA)
     {
         QByteArray uncompressData = qUncompress(*pBA);

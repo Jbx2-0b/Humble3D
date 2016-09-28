@@ -13,21 +13,21 @@ static const int AppHeight = 600;
 //-----------------------------------------------------------------------------------------
 TestShadowVolume::TestShadowVolume()
 {
-    CShaderManager::getInstance()->createShader("blur", "://blur.vertex.glsl", "", "://blur.fragment.glsl");
+    CShaderManager::getInstance().createShader("blur", "://blur.vertex.glsl", "", "://blur.fragment.glsl");
 
-    CShaderManager::getInstance()->createShader(
+    CShaderManager::getInstance().createShader(
                 "volume",
                 "://shadowvolume-vol.vertex.glsl",
                 "://shadowvolume-vol.geometry.glsl",
                 "://shadowvolume-vol.fragment.glsl");
 
-    CShader* pRenderShader = CShaderManager::getInstance()->createShader(
+    CShader* pRenderShader = CShaderManager::getInstance().createShader(
                 "render",
                 "://shadowvolume-render.vertex.glsl",
                 "",
                 "://shadowvolume-render.fragment.glsl");
 
-    CShaderManager::getInstance()->createShader(
+    CShaderManager::getInstance().createShader(
                 "composite",
                 "://shadowvolume-comp.vertex.glsl",
                 "",
@@ -53,15 +53,15 @@ TestShadowVolume::TestShadowVolume()
         // On l'associe au noeud
         pLightNode->addItem(pLight);
 
-        CPlaneMesh* pWallMesh = CMeshManager::getInstance()->createCustomMesh<CPlaneMesh>("CPlaneMesh", "WallMesh");
+        CPlaneMesh* pWallMesh = CMeshManager::getInstance().createCustomMesh<CPlaneMesh>("CPlaneMesh", "WallMesh");
         pWallMesh->init(CPlaneMesh::ePlaneXY, 10., 10., 2, 2, 5., 5.);
 
         CMeshInstance* pWall1 = getSceneManager()->createMeshInstance(pWallMesh, "Wall1");
         CMeshInstance* pWall2 = getSceneManager()->createMeshInstance(pWallMesh, "Wall2");
         CMeshInstance* pWall3 = getSceneManager()->createMeshInstance(pWallMesh, "Wall3");
 
-        CMaterial* pWallMat = CMaterialManager::getInstance()->createMaterial("WallMat");
-        ATexture* pWallTexture = CTextureManager::getInstance()->createTexture2D("WallTex", resourcesDir + "brick.png");
+        CMaterial* pWallMat = CMaterialManager::getInstance().createMaterial("WallMat");
+        ATexture* pWallTexture = CTextureManager::getInstance().createTexture2D("WallTex", resourcesDir + "brick.png");
         pWallMat->addTexture(pWallTexture, eDiffuse);
 
         pWall1->setMaterialName(pWallMat->getName());
@@ -83,7 +83,7 @@ TestShadowVolume::TestShadowVolume()
         pCamera->setCenter(QVector3D(0., 0., 0.));
         pCamera->setAspectRatio((real)AppWidth / (real)AppHeight);
 
-        CMaterial* pEffect = CMaterialManager::getInstance()->createMaterial("Effect");
+        CMaterial* pEffect = CMaterialManager::getInstance().createMaterial("Effect");
 
         // PASS 1
         CRenderPass* pFirstPass = pEffect->getRenderPass(0);
@@ -153,7 +153,7 @@ TestShadowVolume::TestShadowVolume()
         CPlaneMesh* pFullScreenQuad = getSceneManager()->createCustomMesh<CPlaneMesh>("CPlaneMesh", "FullScreenQuad");
         pFullScreenQuad->init(CPlaneMesh::ePlaneXY, 1, 1, 1, 1);
 
-        CMaterial* pFullScreenQuadMat = CMaterialManager::getInstance()->createMaterial("FullScreenQuadMat");
+        CMaterial* pFullScreenQuadMat = CMaterialManager::getInstance().createMaterial("FullScreenQuadMat");
         pFullScreenQuadMat->addTexture(tex, eDiffuse);
         pFullScreenQuadMat->getRenderPass(0)->setUserShadingModelName("blur");
         pFullScreenQuadMat->getRenderPass(0)->setShadingModel(eShadingModelUser);

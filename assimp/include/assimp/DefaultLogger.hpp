@@ -54,7 +54,7 @@ class IOStream;
 struct LogStreamInfo;
 
 /** default name of logfile */
-#define ASSIMP_DEFAULT_LOG_NAME "AssimpLog.txt"
+#define ASSIMP_DEFAULT_LOG_NAME "AssimLogManager.txt"
 
 // ------------------------------------------------------------------------------------
 /** @brief CPP-API: Primary logging facility of Assimp. 

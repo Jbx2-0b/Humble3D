@@ -1,4 +1,4 @@
-#ifndef CTREEEXPLORER_H
+ï»¿#ifndef CTREEEXPLORER_H
 #define CTREEEXPLORER_H
 
 #include <vector>
@@ -9,11 +9,11 @@
 using namespace std;
 
 /*! \class TreeExplorer
-   * \brief TreeExplorer permet de parcourir un arbre de façon itérative
+   * \brief TreeExplorer permet de parcourir un arbre de faÃ§on itÃ©rative
    *
    *  Contrat pour le template Node :
-   * - Posséder une methode getChildNodes qui retourne les enfants dans un conteneur
-   * - Le conteneur des enfants doit posséder une méthode size()
+   * - PossÃ©der une methode getChildNodes qui retourne les enfants dans un conteneur
+   * - Le conteneur des enfants doit possÃ©der une mÃ©thode size()
    * Exemple d'utilisation :
    *
    * CTreeExplorer<CSceneNode> te;
@@ -40,7 +40,7 @@ class CTreeExplorer
 {
 public:
 
-    //! Interface à implémenter pour explorer un arbre en largeur
+    //! Interface Ã  implÃ©menter pour explorer un arbre en largeur
     struct IExploreWidthListener
     {
         virtual void onExplore(Node* pNode) = 0;
@@ -68,7 +68,7 @@ public:
 
                 if (bMark)
                 {
-                    // Non marqué ?
+                    // Non marquÃ© ?
                     if (marked.find(pChild) == marked.end())
                     {
                         marked[pChild] = true;
@@ -83,7 +83,7 @@ public:
         }
     }
 
-    //! Interface à implémenter pour explorer un arbre en profondeur
+    //! Interface Ã  implÃ©menter pour explorer un arbre en profondeur
     struct IExploreDepthListener
     {
         virtual void onExplore(Node* pNode) = 0;
@@ -119,7 +119,7 @@ public:
 
                     if (bMark)
                     {
-                        // Non marqué ?
+                        // Non marquÃ© ?
                         if (marked.find(pChild) == marked.end())
                         {
                             st.push_back(pChild);

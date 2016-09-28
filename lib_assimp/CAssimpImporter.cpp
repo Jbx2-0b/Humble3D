@@ -239,27 +239,27 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
             {
                 if (bMergeMaterials)
                 {
-                    if (CMaterialManager::getInstance()->isMaterialExist(name.C_Str()))
+                    if (CMaterialManager::getInstance().isMaterialExist(name.C_Str()))
                     {
-                        pMaterial = CMaterialManager::getInstance()->getMaterialByName(name.C_Str());
+                        pMaterial = CMaterialManager::getInstance().getMaterialByName(name.C_Str());
                         mapMaterialName[m] = pMaterial->getName();
                         continue;
                     }
                     else
                     {
-                        pMaterial = CMaterialManager::getInstance()->createMaterial(name.C_Str());
+                        pMaterial = CMaterialManager::getInstance().createMaterial(name.C_Str());
                         entities.append(pMaterial);
                     }
                 }
                 else
                 {
-                    pMaterial = CMaterialManager::getInstance()->createMaterial(name.C_Str());
+                    pMaterial = CMaterialManager::getInstance().createMaterial(name.C_Str());
                     entities.append(pMaterial);
                 }
             }
             else
             {
-                pMaterial = CMaterialManager::getInstance()->createMaterial("Material");
+                pMaterial = CMaterialManager::getInstance().createMaterial("Material");
                 entities.append(pMaterial);
             }
 
@@ -272,7 +272,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
                 QString fileName = rootDirectory + fileInfo.fileName();
                 QString name = fileInfo.baseName();
 
-                CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D(name, fileName);
+                CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D(name, fileName);
                 pMaterial->addTexture(pTexture, eDiffuse);
                 entities.append(pTexture);
             }
@@ -284,7 +284,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
                 QString fileName = rootDirectory + fileInfo.fileName();
                 QString name = fileInfo.baseName();
 
-                CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D(name, fileName);
+                CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D(name, fileName);
                 pMaterial->addTexture(pTexture, eSpecular);
                 entities.append(pTexture);
             }
@@ -296,7 +296,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
                 QString fileName = rootDirectory + fileInfo.fileName();
                 QString name = fileInfo.baseName();
 
-                CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D(name, fileName);
+                CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D(name, fileName);
                 pMaterial->addTexture(pTexture, eAmbient);
                 entities.append(pTexture);
             }
@@ -308,7 +308,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
                 QString fileName = rootDirectory + fileInfo.fileName();
                 QString name = fileInfo.baseName();
 
-                CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D(name, fileName);
+                CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D(name, fileName);
                 pMaterial->addTexture(pTexture, eEmissive);
                 entities.append(pTexture);
             }
@@ -320,7 +320,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
                 QString fileName = rootDirectory + fileInfo.fileName();
                 QString name = fileInfo.baseName();
 
-                CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D(name, fileName);
+                CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D(name, fileName);
                 pMaterial->addTexture(pTexture, eHeight);
                 entities.append(pTexture);
             }
@@ -332,7 +332,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
                 QString fileName = rootDirectory + fileInfo.fileName();
                 QString name = fileInfo.baseName();
 
-                CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D(name, fileName);
+                CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D(name, fileName);
                 pMaterial->addTexture(pTexture, eNormals);
                 entities.append(pTexture);
             }
@@ -344,7 +344,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
                 QString fileName = rootDirectory + fileInfo.fileName();
                 QString name = fileInfo.baseName();
 
-                CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D(name, fileName);
+                CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D(name, fileName);
                 pMaterial->addTexture(pTexture, eShininess);
                 entities.append(pTexture);
             }
@@ -356,7 +356,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
                 QString fileName = rootDirectory + fileInfo.fileName();
                 QString name = fileInfo.baseName();
 
-                CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D(name, fileName);
+                CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D(name, fileName);
                 pMaterial->addTexture(pTexture, eOpacity);
                 entities.append(pTexture);
             }
@@ -368,7 +368,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
                 QString fileName = rootDirectory + fileInfo.fileName();
                 QString name = fileInfo.baseName();
 
-                CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D(name, fileName);
+                CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D(name, fileName);
                 pMaterial->addTexture(pTexture, eDisplacement);
                 entities.append(pTexture);
             }
@@ -380,7 +380,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
                 QString fileName = rootDirectory + fileInfo.fileName();
                 QString name = fileInfo.baseName();
 
-                CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D(name, fileName);
+                CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D(name, fileName);
                 pMaterial->addTexture(pTexture, eLightmap);
                 entities.append(pTexture);
             }
@@ -392,7 +392,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
                 QString fileName = rootDirectory + fileInfo.fileName();
                 QString name = fileInfo.baseName();
 
-                CTexture2D* pTexture = CTextureManager::getInstance()->createTexture2D(name, fileName);
+                CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D(name, fileName);
                 pMaterial->addTexture(pTexture, eReflection);
                 entities.append(pTexture);
             }
@@ -573,7 +573,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
             for (unsigned int iMesh = 0; iMesh < pAssimpScene->mNumMeshes; ++iMesh)
             {
                 aiMesh* pAssimpMesh = pAssimpScene->mMeshes[iMesh];
-                CAssimpMesh* pMesh = CMeshManager::getInstance()->createCustomMesh<CAssimpMesh>("AssimpMesh", pAssimpMesh->mName.C_Str());
+                CAssimpMesh* pMesh = CMeshManager::getInstance().createCustomMesh<CAssimpMesh>("AssimpMesh", pAssimpMesh->mName.C_Str());
                 entities.append(pMesh);
                 pMesh->setAiMesh(pAssimpMesh);
                 pMesh->setMaterialName(mapMaterialName[pAssimpMesh->mMaterialIndex]);
@@ -598,7 +598,7 @@ QList<AEntity*> CAssimpImporter::load(const QString& rootDirectory, const aiScen
             for (unsigned int iMesh = 0; iMesh < pAssimpScene->mNumMeshes; ++iMesh)
             {
                 aiMesh* pAssimpMesh = pAssimpScene->mMeshes[iMesh];
-                CAssimpMesh* pMesh = CMeshManager::getInstance()->createCustomMesh<CAssimpMesh>("AssimpMesh", pAssimpMesh->mName.C_Str());
+                CAssimpMesh* pMesh = CMeshManager::getInstance().createCustomMesh<CAssimpMesh>("AssimpMesh", pAssimpMesh->mName.C_Str());
                 pMesh->setAiMesh(pAssimpMesh);
                 pMesh->setMaterialName(mapMaterialName[pAssimpMesh->mMaterialIndex]);
                 entities.append(pMesh);
@@ -629,21 +629,21 @@ QList<AEntity*> CAssimpImporter::mergeScene(const QString& fileName, CSceneManag
             if (pAssimpScene)
             {
                 entities = load(QFileInfo(fileName).absolutePath() + "/", pAssimpScene, pSceneManager, bMergeMaterials, true, pNode);
-                pLog->addMessage(eINFO, QString("AssimpImporter: %1 : merging %2 entities.").arg(fileName).arg(entities.size()));
+                LogManager.addMessage(eINFO, QString("AssimpImporter: %1 : merging %2 entities.").arg(fileName).arg(entities.size()));
             }
             else
             {
-                pLog->addMessage(eERROR, QString("AssimpImporter: %1 : error while loading.").arg(fileName));
+                LogManager.addMessage(eERROR, QString("AssimpImporter: %1 : error while loading.").arg(fileName));
             }
         }
         else
         {
-            pLog->addMessage(eERROR, QString("AssimpImporter: Unable to open %1.").arg(fileName));
+            LogManager.addMessage(eERROR, QString("AssimpImporter: Unable to open %1.").arg(fileName));
         }
     }
     else
     {
-        pLog->addMessage(eERROR, QString("AssimpImporter: %1 : file name is empty.").arg(fileName));
+        LogManager.addMessage(eERROR, QString("AssimpImporter: %1 : file name is empty.").arg(fileName));
     }
 
     return entities;
@@ -667,21 +667,21 @@ QList<AEntity*> CAssimpImporter::loadScene(const QString& fileName, CSceneManage
             if (pAssimpScene)
             {
                 entities = load(QFileInfo(fileName).absolutePath() + "/", pAssimpScene, pSceneManager, bMergeMaterials, false, 0);
-                pLog->addMessage(eINFO, QString("AssimpImporter: %1: loading %2 entities.").arg(fileName).arg(entities.size()));
+                LogManager.addMessage(eINFO, QString("AssimpImporter: %1: loading %2 entities.").arg(fileName).arg(entities.size()));
             }
             else
             {
-                pLog->addMessage(eERROR, QString("AssimpImporter: %1 : error while loading.").arg(fileName));
+                LogManager.addMessage(eERROR, QString("AssimpImporter: %1 : error while loading.").arg(fileName));
             }
         }
         else
         {
-            pLog->addMessage(eERROR, QString("AssimpImporter: Unable to open %1.").arg(fileName));
+            LogManager.addMessage(eERROR, QString("AssimpImporter: Unable to open %1.").arg(fileName));
         }
     }
     else
     {
-        pLog->addMessage(eERROR, QString("AssimpImporter: %1 : file name is empty.").arg(fileName));
+        LogManager.addMessage(eERROR, QString("AssimpImporter: %1 : file name is empty.").arg(fileName));
     }
 
     return entities;

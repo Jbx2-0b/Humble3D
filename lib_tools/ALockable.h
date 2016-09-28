@@ -1,4 +1,4 @@
-#ifndef ALOCKABLE_H
+﻿#ifndef ALOCKABLE_H
 #define ALOCKABLE_H
 
 // Lib
@@ -27,7 +27,7 @@ private:
     //! Mutex
     mutable QMutex m_Mutex;
 
-    //! Vrai si est lock�e
+    //! Vrai si est lockée
     bool m_bIsLocked;
 };
 

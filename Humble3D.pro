@@ -1,5 +1,3 @@
-cache()
-
 TEMPLATE = subdirs
 
 unix:!mac: message("Using settings for Unix/Linux.")

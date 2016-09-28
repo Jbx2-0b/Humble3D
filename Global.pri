@@ -5,4 +5,6 @@ android {
     message("Android target. Define EMBEDDED_TARGET.")
 }
 
+CONFIG += c++11
+
 DEFINES+= MULTITHREAD_RENDERING

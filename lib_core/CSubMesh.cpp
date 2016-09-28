@@ -30,6 +30,6 @@ void CSubMesh::setMaterialName(const QString& materialName)
 //-----------------------------------------------------------------------------------------
 bool CSubMesh::hasMaterial() const
 {
-    return CMaterialManager::getInstance()->isMaterialExist(m_MaterialName);
+    return CMaterialManager::getInstance().isMaterialExist(m_MaterialName);
 }
 

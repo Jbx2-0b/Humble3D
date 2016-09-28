@@ -18,31 +18,7 @@ class LIB_CORE_SHARED_EXPORT CMaterialManager : public CMaterial::IMaterialListe
 public:
 
     //! Accesseur de l'instance de la classe.
-    static CMaterialManager* getInstance()
-    {
-        if (s_pInstance == 0)
-        {
-            QMutexLocker locker(&s_Mutex);
-
-            if (s_pInstance == 0)
-            {
-                s_pInstance = new CMaterialManager();
-            }
-        }
-
-        return s_pInstance;
-    }
-
-    //! Destructeur de l'instance de la classe.
-    static void killInstance()
-    {
-        if (s_pInstance)
-        {
-            QMutexLocker locker(&s_Mutex);
-            delete s_pInstance;
-            s_pInstance = 0;
-        }
-    }
+    static CMaterialManager& getInstance();
 
     //-------------------------------------------------------------------------------------------------
     // Listeners
@@ -135,10 +111,6 @@ private:
 
     //! Conteneur des matériaux
     QMap<int, CMaterial*> m_MaterialIDs;
-
-    static CMaterialManager* s_pInstance;
-    static QMutex s_Mutex;
-
 };
 
 #endif // CMATERIALMANAGER_H

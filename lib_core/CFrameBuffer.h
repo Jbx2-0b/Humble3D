@@ -51,15 +51,15 @@ public:
     {
         if (m_TextureTargets.contains(eAttachment))
         {
-            CTextureManager::getInstance()->removeTexture(m_TextureTargets[eAttachment]);
+            CTextureManager::getInstance().removeTexture(m_TextureTargets[eAttachment]);
         }
 
         if (m_RenderBuffers.contains(eAttachment))
         {
-            CRenderBufferManager::getInstance()->removeRenderBuffer(m_RenderBuffers[eAttachment]);
+            CRenderBufferManager::getInstance().removeRenderBuffer(m_RenderBuffers[eAttachment]);
         }
 
-        CTextureTarget* pTexture = CTextureManager::getInstance()->createTextureTarget("RenderTexture", QSize(m_iWidth, m_iHeight), eInternalFormat);
+        CTextureTarget* pTexture = CTextureManager::getInstance().createTextureTarget("RenderTexture", QSize(m_iWidth, m_iHeight), eInternalFormat);
         m_TextureTargets[eAttachment] = pTexture;
 
         return pTexture;
@@ -69,15 +69,15 @@ public:
     {
         if (m_TextureTargets.contains(eAttachment))
         {
-            CTextureManager::getInstance()->removeTexture(m_TextureTargets[eAttachment]);
+            CTextureManager::getInstance().removeTexture(m_TextureTargets[eAttachment]);
         }
 
         if (m_RenderBuffers.contains(eAttachment))
         {
-            CRenderBufferManager::getInstance()->removeRenderBuffer(m_RenderBuffers[eAttachment]);
+            CRenderBufferManager::getInstance().removeRenderBuffer(m_RenderBuffers[eAttachment]);
         }
 
-        CRenderBuffer* pRenderBuffer = CRenderBufferManager::getInstance()->createRenderBuffer("RenderBuffer", eInternalFormat);
+        CRenderBuffer* pRenderBuffer = CRenderBufferManager::getInstance().createRenderBuffer("RenderBuffer", eInternalFormat);
         m_RenderBuffers[eAttachment] = pRenderBuffer;
 
         return pRenderBuffer;
