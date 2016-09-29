@@ -13,5 +13,11 @@
         <file>resources/Detail.jpg</file>
         <file>resources/Detail2.jpg</file>
         <file>resources/elevated.glsl</file>
+        <file>resources/xneg.png</file>
+        <file>resources/xpos.png</file>
+        <file>resources/yneg.png</file>
+        <file>resources/ypos.png</file>
+        <file>resources/zneg.png</file>
+        <file>resources/zpos.png</file>
     </qresource>
 </RCC>

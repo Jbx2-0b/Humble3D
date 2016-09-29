@@ -1,4 +1,5 @@
-﻿#include <QApplication>
+﻿//#include "vld.h"
+#include <QApplication>
 #include "LaboApp.h"
 
 int main(int argc, char *argv[])

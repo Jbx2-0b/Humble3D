@@ -1,8 +1,4 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2013-11-21T15:47:35
-#
-#-------------------------------------------------
+include(../Global.pri)
 
 QT       += core gui opengl concurrent
 

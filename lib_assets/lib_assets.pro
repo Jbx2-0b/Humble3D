@@ -16,7 +16,8 @@ SOURCES += \
     CWater.cpp \
     CMap.cpp \
     CArrow.cpp \
-    CNoiseHeightMap.cpp
+    CNoiseHeightMap.cpp \
+    CSierpinskiTetrahedronFactory.cpp
 
 HEADERS += \
     CCloudsMesh.h \
@@ -31,7 +32,8 @@ HEADERS += \
     CSRTMData.h \
     CSRTMLoader.h \
     CArrow.h \
-    CNoiseHeightMap.h
+    CNoiseHeightMap.h \
+    CSierpinskiTetrahedronFactory.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib_math/release/ -llib_math

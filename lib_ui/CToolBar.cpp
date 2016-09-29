@@ -70,7 +70,6 @@ CToolBar::~CToolBar()
     m_pLayout->removeItem(m_pRightSpacer);
     delete m_pRightSpacer;
 
-
     foreach (const ToolBarWidget& widget, m_Widgets)
     {
         m_pLayout->removeWidget(widget.getQWidget());

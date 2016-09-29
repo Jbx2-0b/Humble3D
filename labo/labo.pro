@@ -1,4 +1,5 @@
 include(../Global.pri)
+include(../AppDeployment.pri)
 
 QT += core gui widgets opengl xml concurrent
 
@@ -126,3 +127,8 @@ else:unix: LIBS += -L$$OUT_PWD/../lib_xml/ -llib_xml
 
 INCLUDEPATH += $$PWD/../lib_xml
 DEPENDPATH += $$PWD/../lib_xml
+
+#LIBS += -L$$PWD/../vld/lib/Win32/ -lvld
+
+#INCLUDEPATH += $$PWD/../vld/include
+#DEPENDPATH += $$PWD/../vld/include

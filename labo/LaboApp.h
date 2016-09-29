@@ -27,7 +27,7 @@ static const QString configFileName = "config.ini";
 
 static const int iDefaultViewSizeX = 800;
 static const int iDefaultViewSizeY = 475;
-static const int iDefaultViewPosX = 100;
+static const int iDefaultViewPosX = 2000;
 static const int iDefaultViewPosY = 100;
 
 class LaboApp : public QObject, public Humble3DApp

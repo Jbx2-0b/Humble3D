@@ -8,7 +8,6 @@
 #include "CLight.h"
 #include "CAssimpImporter.h"
 #include "CSceneManager.h"
-#include "Shapes/CCoordinateSystem.h"
 #include "CLineGrid.h"
 #include "CQtHelper.h"
 #include "CGLHelper.h"
@@ -19,14 +18,21 @@
 #include "CGLGlobal.h"
 #include "CGeometryGlobal.h"
 #include "CAnimationManager.h"
-#include "Shapes/CPlaneMesh.h"
 #include "CScriptManager.h"
 #include "CGraphicsView3D.h"
+
+#include "Shapes/CPlaneMesh.h"
+#include "Shapes/CCoordinateSystem.h"
+#include "Shapes/CSolidBox.h"
+#include "Shapes/CTetrahedron.h"
+
+// Assets
+#include "CSierpinskiTetrahedronFactory.h"
 
 
 static const float dSpeed = 4.0f;
 static const float dMouseSensibility = 0.05f;
-static const bool bActiveTreeWidget = true;
+static const bool bActiveTreeWidget = false;
 
 //-----------------------------------------------------------------------------------------
 LaboApp::LaboApp()
@@ -111,8 +117,6 @@ LaboApp::LaboApp()
     connect(pTimer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     pTimer->start(25);
 
-    m_pSceneManager->getRootNode()->dumpNodeTree();
-
     CSceneNode* pRootNode = m_pSceneManager->getRootNode();
 
     CCoordinateSystem* pCoordinateSystemMesh = CMeshManager::getInstance().createCustomMesh<CCoordinateSystem>("CoordinateSystemMesh", "CoordinateSystemMesh");
@@ -121,6 +125,15 @@ LaboApp::LaboApp()
     CMeshInstance* pCoordinateSystem = m_pSceneManager->createMeshInstance(pCoordinateSystemMesh, "CoordinateSystem");
     pRootNode->addItem(pCoordinateSystem);
     m_AutoCreatedEntities.insert(pCoordinateSystem);
+
+    CMaterial* pMat = CMaterialManager::getInstance().createMaterial("Mat0");
+    pMat->getRenderPass(0)->setShaderName("phong");
+    pMat->setAmbientColor(0.8f, 0.3f, 0.2f);
+
+    CSierpinskiTetrahedronFactory factory(m_pSceneManager);
+    factory.compute(30.0, 7);
+
+    //m_pSceneManager->getRootNode()->dumpNodeTree();
 
 
     /*CHeightMap* pHeightMap = m_pSceneManager->createCustomMesh<CHeightMap>("CHeightMap");
@@ -205,9 +218,9 @@ LaboApp::LaboApp()
     m_ExclusiveEditShadersButton.addButton(m_pEditGSButton);
     m_ExclusiveEditShadersButton.addButton(m_pEditFSButton);
 
-    connect (m_pEditVSButton, SIGNAL(clicked()), this, SLOT(onVSButtonClicked()));
-    connect (m_pEditGSButton, SIGNAL(clicked()), this, SLOT(onGSButtonClicked()));
-    connect (m_pEditFSButton, SIGNAL(clicked()), this, SLOT(onFSButtonClicked()));
+    connect(m_pEditVSButton, SIGNAL(clicked()), this, SLOT(onVSButtonClicked()));
+    connect(m_pEditGSButton, SIGNAL(clicked()), this, SLOT(onGSButtonClicked()));
+    connect(m_pEditFSButton, SIGNAL(clicked()), this, SLOT(onFSButtonClicked()));
 
     m_pEditItemButton = m_pTopToolBar->createWidget<QPushButton>(CToolBar::eWidgetLeft);
     m_pEditItemButton->setIcon(QIcon(":/Resources/Edit.png"));

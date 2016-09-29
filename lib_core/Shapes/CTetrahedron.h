@@ -16,7 +16,7 @@ public:
 
     void setSize(const QVector3D& size);
 
-    QVector3D getSize() const { return m_vMax - m_vMin; }
+    QVector3D getSize() const { return m_Size; }
 
     virtual ~CTetrahedron();
 
@@ -26,7 +26,7 @@ protected:
 
     CSubMesh* m_pBuffer;
 
-    QVector3D m_vMin, m_vMax;
+    QVector3D m_Size;
 };
 
 

@@ -5,8 +5,7 @@
 CTetrahedron::CTetrahedron(const QVector3D& size /*= QVector3D(1.0, 1.0, 1.0)*/)
     : CMesh("SolidBox")
     , m_pBuffer(0)
-    , m_vMin(-size / 2.)
-    , m_vMax(size / 2.)
+    , m_Size(size)
 {
     setMultithreadingEnabled(true);
 }
@@ -20,47 +19,39 @@ CTetrahedron::~CTetrahedron()
 //-----------------------------------------------------------------------------------------
 void CTetrahedron::setSize(const QVector3D& size)
 {
-    m_vMin = -size / 2.;
-    m_vMax = size / 2;
+    m_Size = size;
     update();
 }
 
 //-----------------------------------------------------------------------------------------
 void CTetrahedron::updateGeometry()
 {
-    if (!m_pBuffer)
-    {
-        m_pBuffer = createSubMesh();
-    }
+    clearSubMeshs();
+    CSubMesh* pSubMesh = createSubMesh();
 
-    m_pBuffer->clear();
+    CBuffer<QVector3D>& posBuffer = pSubMesh->positionsBuffer();
 
-    CBuffer<QVector3D>& posBuffer = m_pBuffer->positionsBuffer();
+    real halfWidth = m_Size.x() / 2.;
+    real halfHeight = m_Size.z() / 2.;
 
-    posBuffer << QVector3D(m_vMin.x(), m_vMin.y(),  m_vMax.z())
-              << QVector3D(m_vMax.x(), m_vMin.y(),  m_vMax.z())
-              << QVector3D(m_vMin.x(), m_vMax.y(),  m_vMax.z())
-              << QVector3D(m_vMax.x(), m_vMax.y(),  m_vMax.z())
-              << QVector3D(m_vMin.x(), m_vMin.y(),  m_vMin.z())
-              << QVector3D(m_vMax.x(), m_vMin.y(),  m_vMin.z())
-              << QVector3D(m_vMin.x(), m_vMax.y(),  m_vMin.z())
-              << QVector3D(m_vMax.x(), m_vMax.y(),  m_vMin.z());
+    QVector3D vA(-halfWidth, 0.0,  +halfHeight);
+    QVector3D vB(-halfWidth, 0.0,  -halfHeight);
+    QVector3D vC(+halfWidth, 0.0,  -halfHeight);
+    QVector3D vD(+halfWidth, 0.0,  +halfHeight);
+    QVector3D vE(0.0, 1.0,  0.0);
+
+    posBuffer
+            << vA << vE << vB
+            << vB << vE << vC
+            << vC << vE << vD
+            << vD << vE << vA
+            << vA << vB << vD
+            << vB << vC << vD;
 
 
-    CBuffer<IndiceType>& idBuffer = m_pBuffer->indicesBuffer();
-
-    idBuffer <<	7 << 3 << 5
-             << 5 << 3 << 1
-             << 2 << 6 << 4
-             << 4 << 0 << 2
-             << 0 << 5 << 1
-             << 5 << 0 << 4
-             << 2 << 3 << 7
-             << 7 << 6 << 2
-             << 4 << 7 << 5
-             << 7 << 4 << 6
-             << 0 << 3 << 2
-             << 0 << 1 << 3;
+    CBuffer<IndiceType>& idBuffer = pSubMesh->indicesBuffer();
+    idBuffer.resize(18);
+    std::iota(idBuffer.begin(), idBuffer.end(), 0);
 
     computeNormals();
     computeTangents();

@@ -165,38 +165,38 @@ void CMeshBuffer::computeNormals()
 
     switch (m_ePrimitiveType)
     {
-    case ePrimitiveTriangleStrip:
-    {
-        for (unsigned int i = 0; i < getPolygonCount(); i++)
+        case ePrimitiveTriangleStrip:
         {
-            QVector3D AB = m_PositionsBuffer[m_IndicesBuffer[i + 1]] - m_PositionsBuffer[m_IndicesBuffer[i]];
-            QVector3D AC = m_PositionsBuffer[m_IndicesBuffer[i + 2]] - m_PositionsBuffer[m_IndicesBuffer[i]];
+            for (unsigned int i = 0; i < getPolygonCount(); i++)
+            {
+                QVector3D AB = m_PositionsBuffer[m_IndicesBuffer[i + 1]] - m_PositionsBuffer[m_IndicesBuffer[i]];
+                QVector3D AC = m_PositionsBuffer[m_IndicesBuffer[i + 2]] - m_PositionsBuffer[m_IndicesBuffer[i]];
 
-            m_FaceNormalsBuffer[i] = QVector3D::normal(AB, AC);
+                m_FaceNormalsBuffer[i] = QVector3D::normal(AB, AC);
 
-            m_NormalsBuffer[m_IndicesBuffer[i + 0]] += m_FaceNormalsBuffer[i];
-            m_NormalsBuffer[m_IndicesBuffer[i + 1]] += m_FaceNormalsBuffer[i];
-            m_NormalsBuffer[m_IndicesBuffer[i + 2]] += m_FaceNormalsBuffer[i];
+                m_NormalsBuffer[m_IndicesBuffer[i + 0]] += m_FaceNormalsBuffer[i];
+                m_NormalsBuffer[m_IndicesBuffer[i + 1]] += m_FaceNormalsBuffer[i];
+                m_NormalsBuffer[m_IndicesBuffer[i + 2]] += m_FaceNormalsBuffer[i];
 
-            i == 0 ? i+= 1 : 0;
+                if (i == 0) i++;
+            }
         }
-    }
         break;
 
-    default:
-    {
-        for (unsigned int i = 0; i < getPolygonCount(); i++)
+        default:
         {
-            QVector3D AB = m_PositionsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex + 1]] - m_PositionsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex]];
-            QVector3D AC = m_PositionsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex + 2]] - m_PositionsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex]];
+            for (unsigned int i = 0; i < getPolygonCount(); i++)
+            {
+                QVector3D AB = m_PositionsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex + 1]] - m_PositionsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex]];
+                QVector3D AC = m_PositionsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex + 2]] - m_PositionsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex]];
 
-            m_FaceNormalsBuffer[i] = QVector3D::normal(AB, AC);
+                m_FaceNormalsBuffer[i] = QVector3D::normal(AB, AC);
 
-            m_NormalsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex + 0]] += m_FaceNormalsBuffer[i];
-            m_NormalsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex + 1]] += m_FaceNormalsBuffer[i];
-            m_NormalsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex + 2]] += m_FaceNormalsBuffer[i];
+                m_NormalsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex + 0]] += m_FaceNormalsBuffer[i];
+                m_NormalsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex + 1]] += m_FaceNormalsBuffer[i];
+                m_NormalsBuffer[m_IndicesBuffer[i * m_uiPrimitiveIndex + 2]] += m_FaceNormalsBuffer[i];
+            }
         }
-    }
         break;
     }
 
