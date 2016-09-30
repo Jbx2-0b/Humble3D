@@ -2,10 +2,9 @@
 #include "CSubMesh.h"
 
 //-----------------------------------------------------------------------------------------
-CTetrahedron::CTetrahedron(const QVector3D& size /*= QVector3D(1.0, 1.0, 1.0)*/)
+CTetrahedron::CTetrahedron()
     : CMesh("SolidBox")
     , m_pBuffer(0)
-    , m_Size(size)
 {
     setMultithreadingEnabled(true);
 }
@@ -17,13 +16,6 @@ CTetrahedron::~CTetrahedron()
 
 
 //-----------------------------------------------------------------------------------------
-void CTetrahedron::setSize(const QVector3D& size)
-{
-    m_Size = size;
-    update();
-}
-
-//-----------------------------------------------------------------------------------------
 void CTetrahedron::updateGeometry()
 {
     clearSubMeshs();
@@ -31,29 +23,25 @@ void CTetrahedron::updateGeometry()
 
     CBuffer<QVector3D>& posBuffer = pSubMesh->positionsBuffer();
 
-    real halfWidth = m_Size.x() / 2.;
-    real halfHeight = m_Size.z() / 2.;
-
-    QVector3D vA(-halfWidth, 0.0,  +halfHeight);
-    QVector3D vB(-halfWidth, 0.0,  -halfHeight);
-    QVector3D vC(+halfWidth, 0.0,  -halfHeight);
-    QVector3D vD(+halfWidth, 0.0,  +halfHeight);
-    QVector3D vE(0.0, 1.0,  0.0);
+    QVector3D vA(-0.5, 0.0,  0.0);
+    QVector3D vB(+0.5, 0.0,  0.0);
+    QVector3D vC(0.0, 0.0,  sqrt(0.75));
+    QVector3D vD(0.0, sqrt(1.0 - pow(2.0/3.0 * sqrt(3.0/4.0), 2)),  sqrt(0.75) / 3.);
 
     posBuffer
-            << vA << vE << vB
-            << vB << vE << vC
-            << vC << vE << vD
-            << vD << vE << vA
-            << vA << vB << vD
-            << vB << vC << vD;
+            << vA << vC << vD
+            << vC << vB << vD
+            << vB << vA << vD
+            << vC << vA << vB;
 
 
     CBuffer<IndiceType>& idBuffer = pSubMesh->indicesBuffer();
-    idBuffer.resize(18);
+    idBuffer.resize(posBuffer.size());
     std::iota(idBuffer.begin(), idBuffer.end(), 0);
 
     computeNormals();
     computeTangents();
+
+    qDebug() << getBoundingBox().getSize();
 }
 

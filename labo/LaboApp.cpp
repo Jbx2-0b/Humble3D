@@ -32,7 +32,7 @@
 
 static const float dSpeed = 4.0f;
 static const float dMouseSensibility = 0.05f;
-static const bool bActiveTreeWidget = false;
+static const bool bActiveTreeWidget = true;
 
 //-----------------------------------------------------------------------------------------
 LaboApp::LaboApp()
@@ -131,7 +131,9 @@ LaboApp::LaboApp()
     pMat->setAmbientColor(0.8f, 0.3f, 0.2f);
 
     CSierpinskiTetrahedronFactory factory(m_pSceneManager);
-    factory.compute(30.0, 7);
+    factory.compute(10.0, 2);
+
+    //m_pSceneManager->buildOctree(CBox3D(QVector3D(-100, -100, -100), QVector3D(+100, +100, +100)), 100, 5);
 
     //m_pSceneManager->getRootNode()->dumpNodeTree();
 
@@ -400,6 +402,7 @@ void LaboApp::onMousePressed()
                     {
                         CDebugManager::getInstance()->remove(m_pSelectedBoundingBox);
                     }
+                    qDebug() << "Selected Mesh Instance: " << pMeshInstance->getName();
                     m_pSelectedMeshInstance = pMeshInstance;
                     m_pSelectedBoundingBox = CDebugManager::getInstance()->createBox(pMeshInstance->getNode()->getLocalAxisAlignedBoundingBox(), Color::eGreen);
                     if (m_pTreeWidget) m_pTreeWidget->selectEntity(pMeshInstance);

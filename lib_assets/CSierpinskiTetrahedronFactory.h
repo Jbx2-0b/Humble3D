@@ -17,10 +17,10 @@ public:
     void compute(real size, int rank);
 private:
 
+    CSceneManager* m_pSceneManager;
     int m_Rank;
     int m_Count;
     void recursiveComputation(const QVector3D& center, real size, int currentIteration);
-    CSceneManager* m_pSceneManager;
     CTetrahedron* m_pTetrahedronMesh;
     CMaterial* m_pTetrahedronMaterial;
 };

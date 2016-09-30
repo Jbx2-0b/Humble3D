@@ -10,7 +10,6 @@
 #include "LinearMath/btVector3.h"
 #include "LinearMath/btTransform.h"
 
-
 class CBulletHelper
 {
 public:

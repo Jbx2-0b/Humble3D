@@ -12,11 +12,9 @@ class LIB_CORE_SHARED_EXPORT CTetrahedron : public CMesh
 {
 public:
 
-    CTetrahedron(const QVector3D& size = QVector3D(1.0, 1.0, 1.0));
+    CTetrahedron();
 
-    void setSize(const QVector3D& size);
-
-    QVector3D getSize() const { return m_Size; }
+    QVector3D getSize() const { return getBoundingBox().getSize(); }
 
     virtual ~CTetrahedron();
 
@@ -25,8 +23,6 @@ protected:
     virtual void updateGeometry();
 
     CSubMesh* m_pBuffer;
-
-    QVector3D m_Size;
 };
 
 

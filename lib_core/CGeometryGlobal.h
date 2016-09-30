@@ -555,6 +555,7 @@ enum EnumPhysicShape
     eBoxShape,
     eSphereShape,
     eCapsuleShape,
+    eTetrahedron,
     eCylinderShapeX,
     eCylinderShapeY,
     eCylinderShapeZ,

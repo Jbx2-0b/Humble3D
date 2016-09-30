@@ -95,7 +95,7 @@ void ASceneNodeItem::setSelected(bool bSelected)
     if (m_bSelectable)
     {
         m_bSelected = bSelected;
-        notifyUpdate();
+        //notifyUpdate();
     }
 }
 

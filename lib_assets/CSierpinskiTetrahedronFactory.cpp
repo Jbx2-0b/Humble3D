@@ -10,7 +10,7 @@ CSierpinskiTetrahedronFactory::CSierpinskiTetrahedronFactory(CSceneManager* pSce
     m_pTetrahedronMesh = CMeshManager::getInstance().createCustomMesh<CTetrahedron>("TetrahedronMesh", "TetrahedronMesh");
     m_pTetrahedronMaterial = CMaterialManager::getInstance().createMaterial("Mat0");
     m_pTetrahedronMaterial->getRenderPass(0)->setShaderName("fresnel");
-//    m_pTetrahedronMaterial->setAmbientColor(0.8, 0.3, 0.2);
+    m_pTetrahedronMaterial->setAmbientColor(0.8, 0.3, 0.2);
 
     QStringList fileNames;
     fileNames << ":/resources/xpos.png" << ":/resources/xneg.png" << ":/resources/ypos.png"
@@ -32,11 +32,13 @@ void CSierpinskiTetrahedronFactory::recursiveComputation(const QVector3D& center
 {
     if (currentIteration > 1)
     {
-        real newSize = size / 2.0;
-        recursiveComputation(center + QVector3D(-0.5 * newSize, 0.0 * newSize, +0.5 * newSize), newSize, currentIteration - 1);
-        recursiveComputation(center + QVector3D(-0.5 * newSize, 0.0 * newSize, -0.5 * newSize), newSize, currentIteration - 1);
-        recursiveComputation(center + QVector3D(+0.5 * newSize, 0.0 * newSize, -0.5 * newSize), newSize, currentIteration - 1);
-        recursiveComputation(center + QVector3D(+0.0 * newSize, 1.0 * newSize, -0.0 * newSize), newSize, currentIteration - 1);
+        real iterationSize = size / 2.0;
+        QVector3D newSize = iterationSize * m_pTetrahedronMesh->getSize();
+
+        recursiveComputation(center + QVector3D(+0.0 * newSize.x(), 0.0 * newSize.y(), +0.5 * newSize.z()), iterationSize, currentIteration - 1);
+        recursiveComputation(center + QVector3D(-0.5 * newSize.x(), 0.0 * newSize.y(), -0.5 * newSize.z()), iterationSize, currentIteration - 1);
+        recursiveComputation(center + QVector3D(+0.5 * newSize.x(), 0.0 * newSize.y(), -0.5 * newSize.z()), iterationSize, currentIteration - 1);
+        recursiveComputation(center + QVector3D(+1.0 * newSize.x(), 1.0 * newSize.y(), +0.0 * newSize.z()), iterationSize, currentIteration - 1);
     }
     else
     {

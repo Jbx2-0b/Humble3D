@@ -1,5 +1,4 @@
 include(../Global.pri)
-include(../AppDeployment.pri)
 
 QT += core gui widgets opengl xml concurrent
 

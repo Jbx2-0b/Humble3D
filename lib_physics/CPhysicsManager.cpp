@@ -14,6 +14,7 @@
 
 // Bullet
 #include "BulletCollision/CollisionShapes/btConvexHullShape.h"
+#include "BulletCollision/Gimpact/btGImpactShape.h"
 
 //-----------------------------------------------------------------------
 CPhysicsManager::CPhysicsManager()
@@ -206,62 +207,68 @@ CPhysicsManager::CShapeInfo::CShapeInfo(btDiscreteDynamicsWorld* pWorld, CSceneN
 {
     switch (pItem->getPhysicShape())
     {
-    case eBoxShape:
-    {
-        btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
-        m_pShape = new btBoxShape(halfSize);
-    }
-        break;
-
-    case eCylinderShapeX:
-    {
-        btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
-        m_pShape = new btCylinderShapeX(halfSize);
-    }
-        break;
-
-    case eCylinderShapeY:
-    {
-        btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
-        m_pShape = new btCylinderShape(halfSize);
-    }
-        break;
-
-    case eCylinderShapeZ:
-    {
-        btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
-        m_pShape = new btCylinderShapeZ(halfSize);
-    }
-        break;
-
-    case eConvexHullShape:
-    {
-        m_pShape = new btConvexHullShape();
-        if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(pItem))
+        case eBoxShape:
         {
-            btConvexHullShape* pConvexShape = static_cast<btConvexHullShape*>(m_pShape);
-            foreach (CSubMesh* pSubMesh, pMeshInstance->getMesh()->subMeshs())
+            btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
+            m_pShape = new btBoxShape(halfSize);
+        }
+        break;
+
+//        case eTetrahedron:
+//        {
+//            m_pShape = new btTetrahedronShapeEx();
+//        }
+//        break;
+
+        case eCylinderShapeX:
+        {
+            btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
+            m_pShape = new btCylinderShapeX(halfSize);
+        }
+        break;
+
+        case eCylinderShapeY:
+        {
+            btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
+            m_pShape = new btCylinderShape(halfSize);
+        }
+        break;
+
+        case eCylinderShapeZ:
+        {
+            btVector3 halfSize = CBulletHelper::toBulletVector3D(m_pNode->getLocalAxisAlignedBoundingBox(false).getHalfSize());
+            m_pShape = new btCylinderShapeZ(halfSize);
+        }
+        break;
+
+        case eConvexHullShape:
+        {
+            m_pShape = new btConvexHullShape();
+            if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(pItem))
             {
-                foreach (const QVector3D& pt, pSubMesh->positionsBuffer())
+                btConvexHullShape* pConvexShape = static_cast<btConvexHullShape*>(m_pShape);
+                foreach (CSubMesh* pSubMesh, pMeshInstance->getMesh()->subMeshs())
                 {
-                    pConvexShape->addPoint(CBulletHelper::toBulletVector3D(pt), false);
+                    foreach (const QVector3D& pt, pSubMesh->positionsBuffer())
+                    {
+                        pConvexShape->addPoint(CBulletHelper::toBulletVector3D(pt), false);
+                    }
                 }
+                pConvexShape->recalcLocalAabb();
             }
-            pConvexShape->recalcLocalAabb();
+            else
+            {
+                LogManager.addMessage(eERROR, "Only mesh can have convex hull shape !");
+            }
         }
-        else
-        {
-            LogManager.addMessage(eERROR, "Only mesh can have convex hull shape !");
-        }
-    }
         break;
 
-    default:
-    case eSphereShape:
-    {
-        real radius = CSphere(m_pNode->getLocalAxisAlignedBoundingBox(false), CSphere::eInnerSphere).getRadius();
-        m_pShape = new btSphereShape(radius);
-    }
+        default:
+        case eSphereShape:
+        {
+            real radius = CSphere(m_pNode->getLocalAxisAlignedBoundingBox(false), CSphere::eInnerSphere).getRadius();
+            m_pShape = new btSphereShape(radius);
+        }
         break;
 
         //            TODO
