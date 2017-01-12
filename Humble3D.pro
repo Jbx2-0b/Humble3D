@@ -17,11 +17,12 @@ SUBDIRS += \
     assimp \
     lib_assimp \
     lib_opengl \
-    lib_ui \
+    lib_qt_ui \
     lib_scripting \
     bullet \
     lib_physics \
     test_transformation \
+    test_qml \
     test_animation \
     test_multipass \
     test_physics \
@@ -43,21 +44,22 @@ lib_core.depends = lib_tools lib_math
 lib_math.depends =
 lib_opengl.depends = lib_tools lib_math lib_core
 lib_physics.depends = lib_tools lib_math lib_core lib_assets bullet
-lib_ui.depends = lib_tools lib_math lib_core lib_opengl
+lib_qt_ui.depends = lib_tools lib_math lib_core lib_opengl
 lib_tools.depends =
 lib_scripting.depends = lib_tools lib_math lib_core lib_assimp assimp
 lib_xml.depends =
 
-test_animation.depends = lib_tools lib_math lib_core lib_opengl lib_assimp assimp lib_ui
+test_animation.depends = lib_tools lib_math lib_core lib_opengl lib_assimp assimp lib_qt_ui
 test_lib_math.depends = lib_tools lib_math lib_core lib_xml
-test_multipass.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_ui lib_assimp assimp
-test_octree.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_ui
-test_physics.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_ui lib_assets lib_assimp assimp lib_physics bullet
-test_software_renderer.depends = lib_tools lib_math lib_core lib_opengl lib_ui lib_assimp assimp
-test_transformation.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_ui
+test_multipass.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui lib_assimp assimp
+test_octree.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui
+test_physics.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui lib_assets lib_assimp assimp lib_physics bullet
+test_software_renderer.depends = lib_tools lib_math lib_core lib_opengl lib_qt_ui lib_assimp assimp
+test_transformation.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui
+test_qml.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui
 
-scriptloader.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_ui lib_scripting
-labo.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_ui lib_assimp assimp lib_scripting
+scriptloader.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui lib_scripting
+labo.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui lib_assimp assimp lib_scripting
 formatconverter.depends = lib_tools lib_math lib_core lib_assimp assimp
-frageditor.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_ui
+frageditor.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui
 

@@ -1,16 +1,15 @@
-QT += core gui widgets opengl xml concurrent
+include(../Global.pri)
 
-TARGET = test_octree
+QT       += core gui opengl widgets concurrent quick
+
+TARGET = test_qml
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    TestOctreeApp.cpp \
-    Controller.cpp
+    TestQml.cpp
 
-HEADERS += \
-    TestOctreeApp.h \
-    Controller.h
-
+HEADERS  += \
+    TestQml.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib_math/release/ -llib_math
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../lib_math/debug/ -llib_math
@@ -33,13 +32,6 @@ else:unix: LIBS += -L$$OUT_PWD/../lib_core/ -llib_core
 INCLUDEPATH += $$PWD/../lib_core
 DEPENDPATH += $$PWD/../lib_core
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib_assets/release/ -llib_assets
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../lib_assets/debug/ -llib_assets
-else:unix: LIBS += -L$$OUT_PWD/../lib_assets/ -llib_assets
-
-INCLUDEPATH += $$PWD/../lib_assets
-DEPENDPATH += $$PWD/../lib_assets
-
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib_opengl/release/ -llib_opengl
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../lib_opengl/debug/ -llib_opengl
 else:unix: LIBS += -L$$OUT_PWD/../lib_opengl/ -llib_opengl
@@ -54,5 +46,27 @@ else:unix: LIBS += -L$$OUT_PWD/../lib_qt_ui/ -llib_qt_ui
 INCLUDEPATH += $$PWD/../lib_qt_ui
 DEPENDPATH += $$PWD/../lib_qt_ui
 
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib_assets/release/ -llib_assets
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../lib_assets/debug/ -llib_assets
+else:unix: LIBS += -L$$OUT_PWD/../lib_assets/ -llib_assets
+
+INCLUDEPATH += $$PWD/../lib_assets
+DEPENDPATH += $$PWD/../lib_assets
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
 RESOURCES += \
-    resources.qrc
+    Resources.qrc
+
+# install
+target.path = $$[QT_INSTALL_EXAMPLES]/Humble3D/Test_Qml
+INSTALLS += target
+
+DISTFILES += \
+    main.qml
+
+
+
+
+

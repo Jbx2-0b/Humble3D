@@ -2,7 +2,7 @@
 #define CWIDGET3D_H
 
 // Lib
-#include "lib_ui_global.h"
+#include "lib_qt_ui_global.h"
 
 // Foundations
 #include "CGLGlobal.h"
@@ -16,7 +16,7 @@ class CCamera;
 #include <QBasicTimer>
 
 
-class LIB_UI_SHARED_EXPORT CWidget3D : public CGLWidget, public AView
+class LIB_QT_UI_SHARED_EXPORT CWidget3D : public CGLWidget, public AView
 {
     Q_OBJECT
 
@@ -50,7 +50,7 @@ signals:
 
 protected slots:
 
-    void onTimeOut();
+    void onTimeout();
 
 protected:
 

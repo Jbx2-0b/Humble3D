@@ -1,12 +1,12 @@
 include(../Global.pri)
 
 
-QT       += widgets opengl concurrent
+QT += widgets opengl concurrent quick
 
-TARGET = lib_ui
+TARGET = lib_qt_ui
 TEMPLATE = lib
 
-DEFINES += LIB_UI_LIBRARY
+DEFINES += LIB_QT_UI_LIBRARY
 
 SOURCES += \
     AView.cpp \
@@ -18,7 +18,8 @@ SOURCES += \
     CAnimatedPanelDecorator.cpp \
     CSoftwareView3D.cpp \
     Humble3DApp.cpp \
-    CGraphicsScene3D.cpp
+    CGraphicsScene3D.cpp \
+    CQmlWidget3D.cpp
 
 HEADERS += \
     AView.h \
@@ -31,13 +32,14 @@ HEADERS += \
     CRasterizer.h \
     CSoftwareRenderer.h \
     CToolBar.h \
-    lib_ui_global.h \
     CGraphicsView3D.h \
     CWidget3D.h \
     CAnimatedPanelDecorator.h \
     CSoftwareView3D.h \
     Humble3DApp.h \
-    CGraphicsScene3D.h
+    CGraphicsScene3D.h \
+    lib_qt_ui_global.h \
+    CQmlWidget3D.h
 
 RESOURCES += \
     shaders.qrc

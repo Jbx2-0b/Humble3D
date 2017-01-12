@@ -2,7 +2,7 @@
 #define CTOOLBAR_H
 
 // Lib
-#include "lib_ui_global.h"
+#include "lib_qt_ui_global.h"
 
 // Foundations
 #include "CGLGlobal.h"
@@ -20,7 +20,7 @@
 static const int iDefaultToolBarThickness = 50;
 static const int iDefaultToolBarMargins = 2;
 
-class LIB_UI_SHARED_EXPORT CToolBar : public QFrame
+class LIB_QT_UI_SHARED_EXPORT CToolBar : public QFrame
 {
     Q_OBJECT
 

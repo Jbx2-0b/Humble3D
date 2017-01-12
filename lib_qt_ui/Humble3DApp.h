@@ -2,7 +2,7 @@
 #define HUMBLE3DAPP_H
 
 // Lib
-#include "lib_ui_global.h"
+#include "lib_qt_ui_global.h"
 
 // Core
 class CSceneManager;
@@ -19,7 +19,7 @@ class CSoftwareView3D;
 class QWidget;
 
 
-class LIB_UI_SHARED_EXPORT Humble3DApp
+class LIB_QT_UI_SHARED_EXPORT Humble3DApp
 {
 public:
 
@@ -28,6 +28,9 @@ public:
 
     //! Destructeur
     virtual ~Humble3DApp();
+
+    //! Instance unique de l'application
+    static Humble3DApp* instance();
 
     //! Retourne un pointeur sur le gestionnaire de scene 3D
     CSceneManager* getSceneManager();
@@ -51,6 +54,8 @@ public:
     QList<AView*>& getViews();
 
 protected:
+
+    static Humble3DApp* s_instance;
 
     //! Pointeur sur le gestionnaire de scene 3D
     CSceneManager* m_pSceneManager;

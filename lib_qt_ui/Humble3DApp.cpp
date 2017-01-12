@@ -12,9 +12,15 @@
 #include "CSoftwareView3D.h"
 #include "CDebugManager.h"
 
+
+Humble3DApp* Humble3DApp::s_instance = nullptr;
+
 //-----------------------------------------------------------------------------------------
 Humble3DApp::Humble3DApp()
 {
+    Q_ASSERT(s_instance == nullptr);
+    s_instance = this;
+
     LogManager.addMessage(eINFO, "GUI Thread ID: " + QString::number((qlonglong)QThread::currentThreadId()));
 
     m_pSceneManager = new CSceneManager();
@@ -72,6 +78,14 @@ Humble3DApp::~Humble3DApp()
 
     delete m_pAnimationManager;
     delete m_pSceneManager;
+
+    s_instance = nullptr;
+}
+
+//-----------------------------------------------------------------------------------------
+Humble3DApp* Humble3DApp::instance()
+{
+    return s_instance;
 }
 
 //-----------------------------------------------------------------------------------------

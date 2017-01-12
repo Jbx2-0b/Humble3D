@@ -16,7 +16,7 @@ CWidget3D::CWidget3D(CSceneManager* pSceneManager, CCamera* pCamera, QWidget *pa
     m_pRenderer->setCurrentCamera(pCamera);
 
     setMouseTracking(true);
-    connect(&m_FPSManager, SIGNAL(FPSTimeout()), this, SLOT(onTimeOut()));
+    connect(&m_FPSManager, SIGNAL(FPSTimeout()), this, SLOT(onTimeout()));
 
     m_pGLRenderer->run();
 }
@@ -156,7 +156,7 @@ void CWidget3D::initializeGL()
 }
 
 //-----------------------------------------------------------------------------------------
-void CWidget3D::onTimeOut()
+void CWidget3D::onTimeout()
 {
     if (m_pRenderer->isDirty() || m_bForceUpdate)
     {

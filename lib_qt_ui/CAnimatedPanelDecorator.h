@@ -1,8 +1,8 @@
-#ifndef ANIMATEDPANELDECORATOR_H
+ï»¿#ifndef ANIMATEDPANELDECORATOR_H
 #define ANIMATEDPANELDECORATOR_H
 
 // Lib
-#include "lib_ui_global.h"
+#include "lib_qt_ui_global.h"
 
 // Foundations
 #include "CGraphicsWidgetItem.h"
@@ -14,10 +14,10 @@
 #include <QPushButton>
 
 
-//! Temps en millisecondes entre deux étapes d'animation
+//! Temps en millisecondes entre deux Ã©tapes d'animation
 static const int StepAnimationDT = 0;
 
-//! Différents placements des menus
+//! DiffÃ©rents placements des menus
 enum EnumPlacement
 {
     eTop,
@@ -37,7 +37,7 @@ class PanelAnimator : public QObject
 
 public:
 
-    //! Etat pouvant être prit par le menu
+    //! Etat pouvant Ãªtre prit par le menu
     enum EnumState
     {
         eOpened,
@@ -77,10 +77,10 @@ public:
     //! Anime la fermeture
     void close();
 
-    //! Retourne l'état courant
+    //! Retourne l'Ã©tat courant
     EnumState getCurrentState() const { return m_eCurrentAction; }
 
-    //! Définit l'opacité du panneau
+    //! DÃ©finit l'opacitÃ© du panneau
     void setOpacity(real dOpacity);
 
 public slots:
@@ -98,16 +98,16 @@ protected slots:
 
 signals:
 
-    //! Signal envoyé lorsque le panel est ouvert
+    //! Signal envoyÃ© lorsque le panel est ouvert
     void opened();
 
-    //! Signal envoyé lorsque le panel est fermé
+    //! Signal envoyÃ© lorsque le panel est fermÃ©
     void closed();
 
-    //! Signal envoyé lorsque le panel va s'ouvrir
+    //! Signal envoyÃ© lorsque le panel va s'ouvrir
     void opening();
 
-    //! Signal envoyé lorsque le panel va se fermer
+    //! Signal envoyÃ© lorsque le panel va se fermer
     void closing();
 
 private:
@@ -150,38 +150,38 @@ private:
 //! @brief Permet de decorer un widget afin d'en faire un menu animable
 //! @author Jean-Baptiste Tymen
 //! @date 17/02/2012
-class LIB_UI_SHARED_EXPORT CAnimatedPanelDecorator : public QObject
+class LIB_QT_UI_SHARED_EXPORT CAnimatedPanelDecorator : public QObject
 {
     Q_OBJECT
 
 public:
 
-    //! Ctor (crée son bouton d'ouverture), s'adapte à une scène
-    CAnimatedPanelDecorator(QWidget* pDecoratedWidget,							// Widget à décorer
-                            QGraphicsScene* pScene,								// Scene sur laquelle sera placé l'élément
+    //! Ctor (crÃ©e son bouton d'ouverture), s'adapte Ã  une scÃ¨ne
+    CAnimatedPanelDecorator(QWidget* pDecoratedWidget,							// Widget Ã  dÃ©corer
+                            QGraphicsScene* pScene,								// Scene sur laquelle sera placÃ© l'Ã©lÃ©ment
                             EnumPlacement ePlacement,							// Emplacement du menu
                             int iScreenOffset,									// Offset Horizontal ou Vertical du menu
-                            const QString& openPanelIconFileName,				// Icone à afficher sur le bouton d'ouverture
-                            const QString& openPanelText = "",					// Text à afficher sur le bouton d'ouverture
+                            const QString& openPanelIconFileName,				// Icone Ã  afficher sur le bouton d'ouverture
+                            const QString& openPanelText = "",					// Text Ã  afficher sur le bouton d'ouverture
                             int iButtonOffset = 20,								// Offset Horizontal ou Vertical du bouton par rapport au menu
                             const QString& openIcon = "",						// Icone d'ouverture
                             const QString& closeIcon = "");						// Icone de fermeture
 
-    //! Ctor (crée son bouton d'ouverture), s'adapte à un item
-    CAnimatedPanelDecorator(QWidget* pDecoratedWidget,							// Widget à décorer
-                            QGraphicsItem* pItem,								// Item sur lequelle sera placé l'élément
+    //! Ctor (crÃ©e son bouton d'ouverture), s'adapte Ã  un item
+    CAnimatedPanelDecorator(QWidget* pDecoratedWidget,							// Widget Ã  dÃ©corer
+                            QGraphicsItem* pItem,								// Item sur lequelle sera placÃ© l'Ã©lÃ©ment
                             EnumPlacement ePlacement,							// Emplacement du menu
                             int iScreenOffset,									// Offset Horizontal ou Vertical du menu
-                            const QString& openPanelIconFileName,				// Icone à afficher sur le bouton d'ouverture
-                            const QString& openPanelText = "",					// Text à afficher sur le bouton d'ouverture
+                            const QString& openPanelIconFileName,				// Icone Ã  afficher sur le bouton d'ouverture
+                            const QString& openPanelText = "",					// Text Ã  afficher sur le bouton d'ouverture
                             int iButtonOffset = 20,								// Offset Horizontal ou Vertical du bouton par rapport au menu
                             const QString& openIcon = "",						// Icone d'ouverture
                             const QString& closeIcon = "");						// Icone de fermeture
 
 
-    //! Ctor (On fournit le bouton d'ouverture), s'adapte à une scène
-    CAnimatedPanelDecorator(QWidget* pDecoratedWidget,							// Widget à décorer
-                            QGraphicsScene* pScene,								// Scene sur laquelle sera placé l'élément
+    //! Ctor (On fournit le bouton d'ouverture), s'adapte Ã  une scÃ¨ne
+    CAnimatedPanelDecorator(QWidget* pDecoratedWidget,							// Widget Ã  dÃ©corer
+                            QGraphicsScene* pScene,								// Scene sur laquelle sera placÃ© l'Ã©lÃ©ment
                             EnumPlacement ePlacement,							// Emplacement du menu
                             int iScreenOffset,									// Offset Horizontal ou Vertical du menu
                             QWidget* pOpenPanelButton,							// Pointeur sur le bouton d'ouverture
@@ -189,9 +189,9 @@ public:
                             const QString& openIcon = "",						// Icone d'ouverture
                             const QString& closeIcon = "");						// Icone de fermeture
 
-    //! Ctor (On fournit le bouton d'ouverture), s'adapte à un item
-    CAnimatedPanelDecorator(QWidget* pDecoratedWidget,							// Widget à décorer
-                            QGraphicsItem* pItem,								// Scene sur laquelle sera placé l'élément
+    //! Ctor (On fournit le bouton d'ouverture), s'adapte Ã  un item
+    CAnimatedPanelDecorator(QWidget* pDecoratedWidget,							// Widget Ã  dÃ©corer
+                            QGraphicsItem* pItem,								// Scene sur laquelle sera placÃ© l'Ã©lÃ©ment
                             EnumPlacement ePlacement,							// Emplacement du menu
                             int iScreenOffset,									// Offset Horizontal ou Vertical du menu
                             QWidget* pOpenPanelButton,							// Pointeur sur le bouton d'ouverture
@@ -204,19 +204,19 @@ public:
     //! Dtor
     virtual ~CAnimatedPanelDecorator();
 
-    //! Définit si le panneau est visible
+    //! DÃ©finit si le panneau est visible
     virtual void setVisible(bool bVisible);
 
-    //! Définit l'opacité du panneau
+    //! DÃ©finit l'opacitÃ© du panneau
     virtual void setOpacity(real dOpacity);
 
-    //! Définit la feuille de style appliquée sur le panneau
+    //! DÃ©finit la feuille de style appliquÃ©e sur le panneau
     void setStyleSheet(const QString& styleSheet);
 
     //! Retourne true si est ouvert
     bool isOpen() { return m_pPanelAnimator ? m_pPanelAnimator->getCurrentState() == PanelAnimator::eOpened : false; }
 
-    //! Retourne true si est fermé
+    //! Retourne true si est fermÃ©
     bool isClose() { return m_pPanelAnimator ? m_pPanelAnimator->getCurrentState() == PanelAnimator::eClosed : false; }
 
 public slots:
@@ -229,16 +229,16 @@ public slots:
 
 signals:
 
-    //! Signal envoyé lorsque le panel est ouvert
+    //! Signal envoyÃ© lorsque le panel est ouvert
     void opened();
 
-    //! Signal envoyé lorsque le panel est fermé
+    //! Signal envoyÃ© lorsque le panel est fermÃ©
     void closed();
 
-    //! Signal envoyé lorsque le panel va s'ouvrir
+    //! Signal envoyÃ© lorsque le panel va s'ouvrir
     void opening();
 
-    //! Signal envoyé lorsque le panel va se fermer
+    //! Signal envoyÃ© lorsque le panel va se fermer
     void closing();
 
 private:

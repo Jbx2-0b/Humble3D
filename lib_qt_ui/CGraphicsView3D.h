@@ -2,7 +2,7 @@
 #define CGRAPHICSVIEW3D_H
 
 // Lib
-#include "lib_ui_global.h"
+#include "lib_qt_ui_global.h"
 
 // Foundations
 #include "CMath.h"
@@ -26,7 +26,7 @@ class CSceneManager;
 
 class CGraphicsWidgetItem;
 
-class LIB_UI_SHARED_EXPORT CGraphicsView3D
+class LIB_QT_UI_SHARED_EXPORT CGraphicsView3D
         : public QGraphicsView
         , public AView
 {

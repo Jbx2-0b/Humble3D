@@ -2,14 +2,14 @@
 #define CEXCLUSIVEBUTTON_H
 
 // Lib
-#include "lib_ui_global.h"
+#include "lib_qt_ui_global.h"
 
 // Qt
 #include <QObject>
 #include <QList>
 #include <QPushButton>
 
-class LIB_UI_SHARED_EXPORT CExclusiveButton : public QObject
+class LIB_QT_UI_SHARED_EXPORT CExclusiveButton : public QObject
 {
     Q_OBJECT
 

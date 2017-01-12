@@ -2,7 +2,7 @@
 #define CSOFTWAREVIEW_H
 
 // Lib
-#include "lib_ui_global.h"
+#include "lib_qt_ui_global.h"
 
 // Foundations
 #include "AView.h"
@@ -16,7 +16,7 @@ class CSoftwareRenderer;
 
 
 
-class LIB_UI_SHARED_EXPORT CSoftwareView3D : public QWidget, public AView
+class LIB_QT_UI_SHARED_EXPORT CSoftwareView3D : public QWidget, public AView
 {
     Q_OBJECT
 

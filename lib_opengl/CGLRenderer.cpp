@@ -299,11 +299,17 @@ void CGLRenderer::onUpdateRenderStates()
             Source::EnumBlendingFactor eRequestSrcAlphaFactor = requestBlending.getSourceAlphaFactor();
             Destination::EnumBlendingFactor eRequestDstAlphaFactor = requestBlending.getDestinationAlphaFactor();
 
+
+#ifdef EMBEDDED_TARGET
+            glBlendFunc(CGLHelper::toGLType(eRequestSrcRGBFactor),
+                        CGLHelper::toGLType(eRequestDstRGBFactor));
+#else // DESKTOP_TARGET
             glBlendFuncSeparate(
                         CGLHelper::toGLType(eRequestSrcRGBFactor),
                         CGLHelper::toGLType(eRequestDstRGBFactor),
                         CGLHelper::toGLType(eRequestSrcAlphaFactor),
                         CGLHelper::toGLType(eRequestDstAlphaFactor));
+#endif
 
             currentBlending.setSourceRGBFactor(eRequestSrcRGBFactor);
             currentBlending.setDestinationRGBFactor(eRequestDstRGBFactor);
@@ -313,9 +319,13 @@ void CGLRenderer::onUpdateRenderStates()
             EnumBlendEquation eRequestRGBEquation = requestBlending.getRGBEquation();
             EnumBlendEquation eRequestAlphaEquation = requestBlending.getAlphaEquation();
 
+#ifdef EMBEDDED_TARGET
+            glBlendEquation(CGLHelper::toGLType(eRequestRGBEquation));
+#else // DESKTOP_TARGET
             glBlendEquationSeparate(
                         CGLHelper::toGLType(eRequestRGBEquation),
                         CGLHelper::toGLType(eRequestAlphaEquation));
+#endif
 
             currentBlending.setRGBEquation(eRequestRGBEquation);
             currentBlending.setAlphaEquation(eRequestAlphaEquation);
@@ -1165,6 +1175,7 @@ void CGLRenderer::releaseMaterial(CMaterial* pMaterial)
             {
                 if (pGLTexture->isValid())
                 {
+                    glActiveTexture(GL_TEXTURE0);
                     pGLTexture->release();
                 }
             }

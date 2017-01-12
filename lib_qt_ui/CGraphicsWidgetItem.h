@@ -1,8 +1,8 @@
-#ifndef CGRAPHICSWIDGETITEM_H
+ï»¿#ifndef CGRAPHICSWIDGETITEM_H
 #define CGRAPHICSWIDGETITEM_H
 
 // Lib
-#include "lib_ui_global.h"
+#include "lib_qt_ui_global.h"
 
 
 #include "CQtHelper.h"
@@ -40,7 +40,7 @@ public:
     //! Hauteur
     int height()	{ return boundingRect().height(); }
 
-    // Crée un item à partir d'un widget
+    // CrÃ©e un item Ã  partir d'un widget
     static CGraphicsWidgetItem* createItemFromWidget(QWidget* pWidget, QGraphicsItem* parent = 0)
     {
         CGraphicsWidgetItem* pItem = new CGraphicsWidgetItem(parent);
@@ -74,7 +74,7 @@ public:
         delete m_pForm;
     }
 
-    // Crée un item à partir d'un widget
+    // CrÃ©e un item Ã  partir d'un widget
     static CGraphicsFormItem* createItemFromFormAndWidget(Form* pForm, QWidget* pWidget, QGraphicsItem* parent = 0)
     {
         CGraphicsFormItem* pItem = new CGraphicsFormItem(parent);
