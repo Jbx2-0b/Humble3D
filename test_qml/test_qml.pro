@@ -1,6 +1,6 @@
 include(../Global.pri)
 
-QT       += core gui opengl widgets concurrent quick
+QT       += core gui opengl widgets concurrent quick quickcontrols2
 
 TARGET = test_qml
 TEMPLATE = app

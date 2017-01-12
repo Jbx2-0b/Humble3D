@@ -14,8 +14,8 @@ class LIB_CORE_SHARED_EXPORT CTextureCube : public ATexture
 public:
 
     //! Constructeur [FileNames order : posX, negX, posY, negY, posZ, negZ]
-    CTextureCube(const QString& name, int iTextureUnit, const QStringList& fileNames)
-        : ATexture(name, eTextureCube, iTextureUnit)
+    CTextureCube(const QString& name, const QStringList& fileNames)
+        : ATexture(name, eTextureCube)
         , m_FileNames(fileNames)
     {
         m_bIsValid = true;
@@ -23,14 +23,13 @@ public:
 
     //! Constructeur
     CTextureCube(const QString& name,
-                 int iTextureUnit,
                  const QString& fileNamePosX,
                  const QString& fileNameNegX,
                  const QString& fileNamePosY,
                  const QString& fileNameNegY,
                  const QString& fileNamePosZ,
                  const QString& fileNameNegZ)
-        : ATexture(name, eTextureCube, iTextureUnit)
+        : ATexture(name, eTextureCube)
     {
         m_FileNames << fileNamePosX << fileNameNegX << fileNamePosY << fileNameNegY << fileNamePosZ << fileNameNegZ;
         m_bIsValid = true;

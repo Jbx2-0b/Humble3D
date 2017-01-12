@@ -15,7 +15,6 @@ public:
     {
         m_GLRenderer.init();
         m_GLRenderer.setCurrentCamera(&m_Camera);
-        m_GLRenderer.run();
     }
 
     virtual ~CQmlGLRenderer()
@@ -45,6 +44,9 @@ public:
     void synchronize(QQuickFramebufferObject *item)
     {
         CQmlWidget3D *qmlWidget3D = static_cast<CQmlWidget3D*>(item);
+        m_GLRenderer.setEnabled(qmlWidget3D->enabled());
+        m_GLRenderer.setBackgroundColor(qmlWidget3D->backgroundColor());
+
         m_Camera.setEyePosition(qmlWidget3D->eyePosition());
         m_Camera.setCenter(qmlWidget3D->center());
     }
@@ -58,7 +60,9 @@ static const QVector3D DefaultCameraEyePosition(8., 8., 4.);
 static const QVector3D DefaultCameraCenter(0., 0., 0.);
 
 CQmlWidget3D::CQmlWidget3D()
-    : m_EyePosition(DefaultCameraEyePosition)
+    : m_Enabled(false)
+    , m_BackgroundColor(0.0, 0.0, 0.0, 1.0)
+    , m_EyePosition(DefaultCameraEyePosition)
     , m_Center(DefaultCameraCenter)
 {
 
@@ -67,6 +71,36 @@ CQmlWidget3D::CQmlWidget3D()
 QQuickFramebufferObject::Renderer *CQmlWidget3D::createRenderer() const
 {
     return new CQmlGLRenderer();
+}
+
+bool CQmlWidget3D::enabled() const
+{
+    return m_Enabled;
+}
+
+void CQmlWidget3D::setEnabled(bool enabled)
+{
+    if (m_Enabled != enabled)
+    {
+        m_Enabled = enabled;
+        emit enabledChanged();
+        update();
+    }
+}
+
+QVector4D CQmlWidget3D::backgroundColor() const
+{
+    return m_BackgroundColor;
+}
+
+void CQmlWidget3D::setBackgroundColor(const QVector4D& color)
+{
+    if (m_BackgroundColor != color)
+    {
+        m_BackgroundColor = color;
+        emit backgroundColorChanged();
+        update();
+    }
 }
 
 QVector3D CQmlWidget3D::eyePosition() const
@@ -80,6 +114,7 @@ void CQmlWidget3D::setEyePosition(const QVector3D& position)
     {
         m_EyePosition = position;
         emit eyePositionChanged();
+        update();
     }
 }
 
@@ -94,6 +129,7 @@ void CQmlWidget3D::setCenter(const QVector3D& center)
     {
         m_Center = center;
         emit centerChanged();
+        update();
     }
 }
 

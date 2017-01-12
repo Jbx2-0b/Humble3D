@@ -130,8 +130,8 @@ LaboApp::LaboApp()
     pMat->getRenderPass(0)->setShaderName("phong");
     pMat->setAmbientColor(0.8f, 0.3f, 0.2f);
 
-    CSierpinskiTetrahedronFactory factory(m_pSceneManager);
-    factory.compute(10.0, 2);
+//    CSierpinskiTetrahedronFactory factory(m_pSceneManager);
+//    factory.compute(10.0, 2);
 
     //m_pSceneManager->buildOctree(CBox3D(QVector3D(-100, -100, -100), QVector3D(+100, +100, +100)), 100, 5);
 

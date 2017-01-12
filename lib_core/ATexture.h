@@ -9,10 +9,9 @@ class LIB_CORE_SHARED_EXPORT ATexture : public AEntity
 
 public:
 
-    ATexture(const QString& name, EnumTextureType eType, int iTextureUnit)
+    ATexture(const QString& name, EnumTextureType eType)
         : AEntity(name)
         , m_eType(eType)
-        , m_iTextureUnit(iTextureUnit)
         , m_bIsValid(false)
     {
     }
@@ -33,9 +32,6 @@ public:
 
     //! Retourne le type de cible (2D, 3D, Cube...)
     EnumTextureType getType() const						{ return m_eType; }
-
-    //! Retourne le numéro d'unité de texture
-    int getTextureUnit() const							{ return m_iTextureUnit; }
 
     //! Retourne vrai si la texture est valide
     bool isValid() const								{ return m_bIsValid; }
@@ -101,9 +97,6 @@ protected:
 
     //! Type de cible (2D, 3D, Cube...)
     EnumTextureType m_eType;
-
-    //! Numéro d'unité de texture
-    int m_iTextureUnit;
 
     //! Vrai si la texture est valide
     bool m_bIsValid;

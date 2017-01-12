@@ -1,4 +1,6 @@
 ﻿#include <QApplication>
+#include <QQuickStyle>
+
 #include "TestQml.h"
 #include "CQmlWidget3D.h"
 
@@ -12,6 +14,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<CQmlWidget3D>("Humble3D", 1, 0, "Widget3D");
 
     TestQml humbleApp;
+
+    QQuickStyle::setStyle("Material");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl("qrc:/main.qml"));

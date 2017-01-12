@@ -108,17 +108,40 @@ bool CGLRenderer::init()
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::render()
 {
-    if (!m_pSceneManager)
-        return;
-
-    if (isEnabled() && isDirty())
+    if (isEnabled())
     {
-        m_iDrawCalls = 0;
-        m_iPolygonsPerFrame = 0;
-        m_iMaterialBind = 0;
-        m_iShaderBind = 0;
+        if (isDirty())
+        {
+            m_iDrawCalls = 0;
+            m_iPolygonsPerFrame = 0;
+            m_iMaterialBind = 0;
+            m_iShaderBind = 0;
 
-        // Need to restore Depth write before clear it
+            // Need to restore depth write before clear it
+            glDepthMask(GL_TRUE);
+
+            // Set background color
+            glClearColor(m_BackgroundColor.x(), m_BackgroundColor.y(), m_BackgroundColor.z(), m_BackgroundColor.w());
+
+            // Efface le buffer GL
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            ////////////////////////////////////////////////////////////////////////////
+            // Rendu des ARenderableItem
+            ////////////////////////////////////////////////////////////////////////////
+
+            // Items opaques
+            renderItems(m_pSceneManager->getRenderQueue());
+
+            // Items transparents
+            renderItems(m_pSceneManager->getTransparentRenderQueue());
+
+            wash();
+        }
+    }
+    else
+    {
+        // Need to restore depth write before clear it
         glDepthMask(GL_TRUE);
 
         // Set background color
@@ -126,18 +149,6 @@ void CGLRenderer::render()
 
         // Efface le buffer GL
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        ////////////////////////////////////////////////////////////////////////////
-        // Rendu des ARenderableItem
-        ////////////////////////////////////////////////////////////////////////////
-
-        // Items opaques
-        renderItems(m_pSceneManager->getRenderQueue());
-
-        // Items transparents
-        renderItems(m_pSceneManager->getTransparentRenderQueue());
-
-        wash();
     }
 }
 
@@ -557,6 +568,9 @@ void CGLRenderer::onDeleteSceneNode(CSceneNode* /*pSceneNode*/)
 //--------------------------------------------------------------------------------------------
 void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
 {
+    if (!m_pSceneManager)
+        return;
+
     QMap<const CCamera*, QSet<CSceneNode*> > cullingResultCache;
 
     const QList<CMaterial*> materials = CMaterialManager::getInstance().getMaterials();
@@ -830,12 +844,13 @@ void CGLRenderer::bindMaterial(CMaterial* pMaterial)
     m_MaterialParameterCount[eLightmap]		= 0;
     m_MaterialParameterCount[eReflection]	= 0;
 
+    int iUnit = 0;
     foreach (const CTextureParam& texture, pMaterial->getTextureParams())
     {
         if (ATexture* pTexture = CTextureManager::getInstance().getTextureByName(texture.getTextureName()))
         {
             EnumMaterialParameter eType = texture.getMaterialParameter();
-            int iUnit = pTexture->getTextureUnit();
+            iUnit++;
 
             switch (pTexture->getType())
             {

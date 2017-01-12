@@ -14,13 +14,21 @@
 class LIB_QT_UI_SHARED_EXPORT CQmlWidget3D : public QQuickFramebufferObject
 {
     Q_OBJECT
+    Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
+    Q_PROPERTY(QVector4D backgroundColor READ backgroundColor WRITE setBackgroundColor NOTIFY backgroundColorChanged)
+
     Q_PROPERTY(QVector3D eyePosition READ eyePosition WRITE setEyePosition NOTIFY eyePositionChanged)
     Q_PROPERTY(QVector3D center READ center WRITE setCenter NOTIFY centerChanged)
-
 public:
     CQmlWidget3D();
 
     Renderer *createRenderer() const;
+
+    bool enabled() const;
+    void setEnabled(bool enabled);
+
+    QVector4D backgroundColor() const;
+    void setBackgroundColor(const QVector4D& color);
 
     QVector3D eyePosition() const;
     void setEyePosition(const QVector3D& position);
@@ -41,10 +49,14 @@ public:
 
 
 signals:
+    void enabledChanged();
+    void backgroundColorChanged();
     void eyePositionChanged();
     void centerChanged();
 
 private:
+    bool m_Enabled;
+    QVector4D m_BackgroundColor;
     QVector3D m_EyePosition;
     QVector3D m_Center;
 };

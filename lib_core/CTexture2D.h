@@ -23,14 +23,14 @@ class LIB_CORE_SHARED_EXPORT CTexture2D : public ATexture
 public:
 
     //! Constructeur
-    CTexture2D(const QString& name, int iTextureUnit)
-        : ATexture(name, eTexture2D, iTextureUnit)
+    CTexture2D(const QString& name)
+        : ATexture(name, eTexture2D)
     {
     }
 
     //! Constructeur
-    CTexture2D(const QString& name, int iTextureUnit, const QString& fileName)
-        : ATexture(name, eTexture2D, iTextureUnit)
+    CTexture2D(const QString& name, const QString& fileName)
+        : ATexture(name, eTexture2D)
     {
         m_Size = QImage(fileName).size();
         m_ImageRects << SImageRect(fileName, QRect(0, 0, m_Size.width(), m_Size.height()));
@@ -39,8 +39,8 @@ public:
     }
 
     //! Constructeur
-    CTexture2D(const QString& name, int iTextureUnit, const QSize& size)
-        : ATexture(name, eTexture2D, iTextureUnit)
+    CTexture2D(const QString& name, const QSize& size)
+        : ATexture(name, eTexture2D)
         , m_Size(size)
     {
         m_bIsValid = true;

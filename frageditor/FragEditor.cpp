@@ -67,7 +67,7 @@ FragEditor::FragEditor()
     {
         CTexture2D* pTexture = CTextureManager::getInstance().createTexture2D("iChannel" + QString::number(i));
         pMat->addTexture(pTexture, eDiffuse);
-        m_pSDEdited->setUniformValue("iChannel" + QString::number(i), pTexture->getTextureUnit());
+        m_pSDEdited->setUniformValue("iChannel" + QString::number(i), i);
         m_pSDEdited->setUniformValue(QString("iChannelResolution[%1]").arg(i), QVector3D(0., 0., 0.));
     }
 

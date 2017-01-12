@@ -40,6 +40,7 @@ public:
         , m_isInitialized(false)
         , m_pSceneManager(pSceneManager)
         , m_bEnabled(false)
+        , m_BackgroundColor(0.0, 0.0, 0.0, 1.0)
         , m_eRasterizationMode(eRasterizationFill)
         , m_iWidth(DefaultResolutionWidth)
         , m_iHeight(DefaultResolutionHeight)

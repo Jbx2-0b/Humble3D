@@ -18,15 +18,15 @@ class LIB_CORE_SHARED_EXPORT CTextureTarget : public ATexture
 public:
 
     //! Constructeur
-    CTextureTarget(const QString& name, int iTextureUnit, EnumInternalFormat eFormat)
-        : ATexture(name, eTextureTarget, iTextureUnit)
+    CTextureTarget(const QString& name, EnumInternalFormat eFormat)
+        : ATexture(name, eTextureTarget)
         , m_eFormat(eFormat)
     {
     }
 
     //! Constructeur
-    CTextureTarget(const QString& name, int iTextureUnit, const QSize& size, EnumInternalFormat eFormat)
-        : ATexture(name, eTextureTarget, iTextureUnit)
+    CTextureTarget(const QString& name, const QSize& size, EnumInternalFormat eFormat)
+        : ATexture(name, eTextureTarget)
         , m_Size(size)
         , m_eFormat(eFormat)
     {

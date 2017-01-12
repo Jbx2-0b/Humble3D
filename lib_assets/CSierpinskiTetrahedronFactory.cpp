@@ -38,7 +38,10 @@ void CSierpinskiTetrahedronFactory::recursiveComputation(const QVector3D& center
         recursiveComputation(center + QVector3D(+0.0 * newSize.x(), 0.0 * newSize.y(), +0.5 * newSize.z()), iterationSize, currentIteration - 1);
         recursiveComputation(center + QVector3D(-0.5 * newSize.x(), 0.0 * newSize.y(), -0.5 * newSize.z()), iterationSize, currentIteration - 1);
         recursiveComputation(center + QVector3D(+0.5 * newSize.x(), 0.0 * newSize.y(), -0.5 * newSize.z()), iterationSize, currentIteration - 1);
-        recursiveComputation(center + QVector3D(+1.0 * newSize.x(), 1.0 * newSize.y(), +0.0 * newSize.z()), iterationSize, currentIteration - 1);
+        recursiveComputation(center + QVector3D(0.0, 1.0 * newSize.y(), sqrt(1.0 - pow((2.0/3.0) * sqrt(3.0/4.0), 2))),
+                             iterationSize, currentIteration - 1);
+
+        recursiveComputation(center + QVector3D(0.0, 1.0 * newSize.y(), 0), iterationSize, currentIteration - 1);
     }
     else
     {

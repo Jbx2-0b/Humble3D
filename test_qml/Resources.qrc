@@ -21,5 +21,6 @@
         <file>Resources/particle.png</file>
         <file>Resources/billboard.geometry.glsl</file>
         <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
     </qresource>
 </RCC>

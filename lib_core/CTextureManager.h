@@ -96,9 +96,6 @@ public:
     //! Libére l'ensemble des textures du manager
     void clearTextures();
 
-    //! Retourne un ID d'unité de texture non utilisé
-    int getUnReservedTextureUnit();
-
 protected:
 
     //! Implémentation de ATexture::ITextureListener

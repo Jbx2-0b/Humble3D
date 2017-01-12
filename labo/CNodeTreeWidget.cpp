@@ -30,7 +30,6 @@ static const QString TexturedKey = "Textured";
 static const QString ShaderNameKey = "Shader Name";
 static const QString TextureTypeKey = "Texture Type";
 static const QString MatParamKey = "Mat Param";
-static const QString TextureUnitKey = "Texture Unit";
 static const QString RenderingTargetKey = "Rendering Target";
 static const QString ClearColorBufferKey = "Clear Color Buffer";
 static const QString ClearDepthBufferKey = "Clear Depth Buffer";
@@ -214,7 +213,6 @@ void CNodeTreeWidget::onUpdate(AEntity* pEntity)
 
                 updateProperty(pTexture, TextureTypeKey,	CGeometryGlobal::stringFromTextureType(pTexture->getType()));
                 updateProperty(pTexture, MatParamKey,		CGeometryGlobal::stringFromMaterialParameter(texture.getMaterialParameter()));
-                updateProperty(pTexture, TextureUnitKey,	QString::number(pTexture->getTextureUnit()));
 
                 if (CTexture2D* pTexture2D = dynamic_cast<CTexture2D*>(pTexture))
                 {
@@ -620,7 +618,6 @@ void CNodeTreeWidget::createTreeMaterials(const QList<CMaterial*>& materials)
 
                 addProperty(pTexture, pTDWidgetItem, TextureTypeKey,	CGeometryGlobal::textureTypeEntries(), CGeometryGlobal::stringFromTextureType(pTexture->getType()), false);
                 addProperty(pTexture, pTDWidgetItem, MatParamKey,		CGeometryGlobal::materialParameterEntries(), CGeometryGlobal::stringFromMaterialParameter(texture.getMaterialParameter()), false);
-                addProperty(pTexture, pTDWidgetItem, TextureUnitKey,	QString::number(pTexture->getTextureUnit()), false);
 
                 if (CTexture2D* pTexture2D = dynamic_cast<CTexture2D*>(pTexture))
                 {
