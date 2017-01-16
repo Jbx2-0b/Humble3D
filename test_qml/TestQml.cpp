@@ -6,6 +6,7 @@
 #include "CSkyBox.h"
 #include "Shapes/CPolyLine.h"
 #include "CMaterialManager.h"
+#include "CShaderManager.h"
 #include "CTextureManager.h"
 
 // Qt

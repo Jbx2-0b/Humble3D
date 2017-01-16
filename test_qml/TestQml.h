@@ -1,9 +1,16 @@
 ﻿#ifndef TESTQML_H
 #define TESTQML_H
 
-#include "Humble3DApp.h"
+// Qt
+#include <QObject>
+#include <QVector3D>
+#include <QTime>
 
-class TestQml : public QObject, public Humble3DApp
+// Humble3D
+#include "Humble3DQmlApp.h"
+class CSceneNode;
+
+class TestQml : public QObject, public Humble3DQmlApp
 {
     Q_OBJECT
 

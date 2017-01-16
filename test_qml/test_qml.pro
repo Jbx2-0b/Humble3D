@@ -39,12 +39,12 @@ else:unix: LIBS += -L$$OUT_PWD/../lib_opengl/ -llib_opengl
 INCLUDEPATH += $$PWD/../lib_opengl
 DEPENDPATH += $$PWD/../lib_opengl
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib_qt_ui/release/ -llib_qt_ui
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../lib_qt_ui/debug/ -llib_qt_ui
-else:unix: LIBS += -L$$OUT_PWD/../lib_qt_ui/ -llib_qt_ui
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib_qml_ui/release/ -llib_qml_ui
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../lib_qml_ui/debug/ -llib_qml_ui
+else:unix: LIBS += -L$$OUT_PWD/../lib_qml_ui/ -llib_qml_ui
 
-INCLUDEPATH += $$PWD/../lib_qt_ui
-DEPENDPATH += $$PWD/../lib_qt_ui
+INCLUDEPATH += $$PWD/../lib_qml_ui
+DEPENDPATH += $$PWD/../lib_qml_ui
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib_assets/release/ -llib_assets

@@ -18,6 +18,7 @@ SUBDIRS += \
     lib_assimp \
     lib_opengl \
     lib_qt_ui \
+    lib_qml_ui \
     lib_scripting \
     bullet \
     lib_physics \
@@ -45,6 +46,7 @@ lib_math.depends =
 lib_opengl.depends = lib_tools lib_math lib_core
 lib_physics.depends = lib_tools lib_math lib_core lib_assets bullet
 lib_qt_ui.depends = lib_tools lib_math lib_core lib_opengl
+lib_qml_ui.depends = lib_tools lib_math lib_core lib_opengl
 lib_tools.depends =
 lib_scripting.depends = lib_tools lib_math lib_core lib_assimp assimp
 lib_xml.depends =
@@ -56,7 +58,7 @@ test_octree.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_u
 test_physics.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui lib_assets lib_assimp assimp lib_physics bullet
 test_software_renderer.depends = lib_tools lib_math lib_core lib_opengl lib_qt_ui lib_assimp assimp
 test_transformation.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui
-test_qml.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui
+test_qml.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qml_ui
 
 scriptloader.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui lib_scripting
 labo.depends = lib_tools lib_math lib_core lib_assets lib_opengl lib_qt_ui lib_assimp assimp lib_scripting

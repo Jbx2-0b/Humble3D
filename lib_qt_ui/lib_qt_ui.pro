@@ -1,7 +1,7 @@
 include(../Global.pri)
 
 
-QT += widgets opengl concurrent quick
+QT += widgets opengl concurrent #quick
 
 TARGET = lib_qt_ui
 TEMPLATE = lib
@@ -19,7 +19,7 @@ SOURCES += \
     CSoftwareView3D.cpp \
     Humble3DApp.cpp \
     CGraphicsScene3D.cpp \
-    CQmlWidget3D.cpp
+    #CQmlWidget3D.cpp
 
 HEADERS += \
     AView.h \
@@ -39,7 +39,7 @@ HEADERS += \
     Humble3DApp.h \
     CGraphicsScene3D.h \
     lib_qt_ui_global.h \
-    CQmlWidget3D.h
+    #CQmlWidget3D.h
 
 RESOURCES += \
     shaders.qrc
