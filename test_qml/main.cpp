@@ -1,4 +1,4 @@
-﻿#include <QApplication>
+﻿#include <QGuiApplication>
 #include <QQuickStyle>
 
 #include "TestQml.h"
@@ -9,7 +9,9 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QGuiApplication app(argc, argv);
 
     qmlRegisterType<CQmlWidget3D>("Humble3D", 1, 0, "Widget3D");
 
