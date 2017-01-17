@@ -19,7 +19,7 @@ TestTransformation::TestTransformation()
     , m_StartPan(-1, -1)
     , m_LastPan(-1, -1)
 {
-    // On cr�e une camera
+    // On cree une camera
     CCamera* pCamera = m_pSceneManager->createCamera();
 
     m_vNewEyePosition = QVector3D(8., 8., 4.);
@@ -31,10 +31,10 @@ TestTransformation::TestTransformation()
     m_pView->setAttribute(Qt::WA_AcceptTouchEvents);
     qDebug() << "End create View";
 
-    // On cr�e un noeud afin d'y placer une lumi�re
+    // On cree un noeud afin d'y placer une lumiere
     CSceneNode* pRootNode = getSceneManager()->getRootNode();
 
-    // On cr�e une lumi�re diffuse bleue
+    // On cree une lumiere diffuse bleue
     CLight* pLight = getSceneManager()->createLight();
     pLight->setDiffuseColor(1.0, 1.0, 1.0);
     pLight->setAmbientColor(1.0, 1.0, 1.0);
@@ -81,6 +81,7 @@ TestTransformation::TestTransformation()
     pSkyBoxMat->getRenderPass(0)->setShaderName(pShader->getName());
     pSkyBoxMat->getRenderPass(0)->renderStates().setFaceCulling(CFaceCulling(false));
 
+#ifndef EMBEDDED_TARGET
     // Particules
     CBillboard* pBillboard = getSceneManager()->createBillboard();
     QVector<QVector3D> pos;
@@ -114,6 +115,7 @@ TestTransformation::TestTransformation()
 
     CSceneNode* pBillboardNode = pRootNode->createChild("BillboardNode");
     pBillboardNode->addItem(pBillboard);
+#endif
 
     // Orbites
     CPolyLine* pPolyLine = CMeshManager::getInstance().createCustomMesh<CPolyLine>("CPolyLine", "CPolyLine");

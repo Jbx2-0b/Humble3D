@@ -28,7 +28,18 @@ public:
         m_Camera.setAspectRatio((real) width / (real) height);
 
         m_GLRenderer.setResolution(width, height);
+
+        CRenderStates& renderStates = m_GLRenderer.renderStates();
+
+        renderStates.depthTest().setEnabled(true);
+        renderStates.faceCulling().setEnabled(true);
+        m_GLRenderer.onUpdateRenderStates();
+
         m_GLRenderer.render();
+
+        renderStates.depthTest().setEnabled(false);
+        renderStates.faceCulling().setEnabled(false);
+        m_GLRenderer.onUpdateRenderStates();
 
         update();
     }

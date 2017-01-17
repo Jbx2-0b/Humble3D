@@ -64,7 +64,14 @@ target.path = $$[QT_INSTALL_EXAMPLES]/Humble3D/Test_Qml
 INSTALLS += target
 
 DISTFILES += \
-    main.qml
+    main.qml \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat
 
 
 

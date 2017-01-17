@@ -1,4 +1,4 @@
-#ifndef CFPSMANAGER_H
+ï»¿#ifndef CFPSMANAGER_H
 #define CFPSMANAGER_H
 
 // Foundations
@@ -33,23 +33,23 @@ public:
         delete m_pTimer;
     }
 
-    //! Démarre le gestionnaire de FPS
+    //! DÃ©marre le gestionnaire de FPS
     void start() { m_pTimer->start(); }
 
-    //! Arrête le gestionnaire de FPS
+    //! ArrÃªte le gestionnaire de FPS
     void stop() { m_pTimer->stop(); }
 
-    //! Définit le nombre de FPS désirées - 0 pour le maximum
+    //! DÃ©finit le nombre de FPS dÃ©sirÃ©es - 0 pour le maximum
     virtual void setDesiredFPS(int iDesiredFPS)
     {
         m_iDesiredFPS = iDesiredFPS;
         m_pTimer->setInterval(iDesiredFPS = 0 ? 0 : 1000. / (real)iDesiredFPS);
     }
 
-    //! Retourne le nombre de FPS désirées
+    //! Retourne le nombre de FPS dÃ©sirÃ©es
     int getDesiredFPS() const { return m_iDesiredFPS; }
 
-    //! Incrémente les FPS
+    //! IncrÃ©mente les FPS
     void incrFPS()
     {
         // FPS count
@@ -80,7 +80,7 @@ signals:
 
 private:
 
-    //! Définit le nombre de FPS désirée
+    //! DÃ©finit le nombre de FPS dÃ©sirÃ©e
     int m_iDesiredFPS;
 
     QTimer* m_pTimer;

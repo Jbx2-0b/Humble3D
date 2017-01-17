@@ -65,6 +65,7 @@ TestQml::TestQml()
     pSkyBoxMat->getRenderPass(0)->setShaderName(pShader->getName());
     pSkyBoxMat->getRenderPass(0)->renderStates().setFaceCulling(CFaceCulling(false));
 
+#ifndef EMBEDDED_TARGET
     // Particules
     CBillboard* pBillboard = getSceneManager()->createBillboard();
     QVector<QVector3D> pos;
@@ -98,6 +99,7 @@ TestQml::TestQml()
 
     CSceneNode* pBillboardNode = pRootNode->createChild("BillboardNode");
     pBillboardNode->addItem(pBillboard);
+#endif
 
     // Orbites
     CPolyLine* pPolyLine = CMeshManager::getInstance().createCustomMesh<CPolyLine>("CPolyLine", "CPolyLine");

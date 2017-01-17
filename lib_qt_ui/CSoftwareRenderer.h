@@ -1,4 +1,4 @@
-#ifndef CSOFTWARERENDERER_H
+ï»¿#ifndef CSOFTWARERENDERER_H
 #define CSOFTWARERENDERER_H
 
 // Foundations
@@ -19,7 +19,7 @@ public:
     //! Destructeur
     virtual ~CSoftwareRenderer();
 
-    //! Override - Définit la taille de l'image de rendu
+    //! Override - DÃ©finit la taille de l'image de rendu
     virtual void setResolution(int iWidth, int iHeight);
 
     //! Definit la couleur de fond
@@ -32,7 +32,7 @@ public:
     const QImage& getImage() const	{ return m_Rasterizer.getImage(); }
 
     //--------------------------------------------------------------------------------------------
-    // Implémentation ARenderer
+    // ImplÃ©mentation ARenderer
     //--------------------------------------------------------------------------------------------
 
     //! Initialise le renderer
@@ -51,7 +51,7 @@ public:
     virtual QString getTypeName() const	{ return "GLRenderer"; }
 
     //--------------------------------------------------------------------------------------------
-    // Fin implémentation ARenderer
+    // Fin implÃ©mentation ARenderer
     //--------------------------------------------------------------------------------------------
 
 protected:
@@ -61,34 +61,34 @@ protected:
     //--------------------------------------------------------------------------------------------
 
 
-    //! Implémentation - Interface CTextureManager::ITextureManagerListener
+    //! ImplÃ©mentation - Interface CTextureManager::ITextureManagerListener
     virtual void onUpdateTexture(ATexture*) {}
 
-    //! Implémentation - Interface CTextureManager::ITextureManagerListener
+    //! ImplÃ©mentation - Interface CTextureManager::ITextureManagerListener
     virtual void onDeleteTexture(ATexture*) {}
 
-    //! Implémentation - Interface CMeshManager::IMeshBufferListener
+    //! ImplÃ©mentation - Interface CMeshManager::IMeshBufferListener
     virtual void onDeleteMeshBuffer(CMeshBuffer*) {}
 
-    //! Implémentation - Interface CShaderManager::IShaderManagerListener
+    //! ImplÃ©mentation - Interface CShaderManager::IShaderManagerListener
     virtual void onUpdateShader(CShader*) {}
 
-    //! Implémentation - Interface CShaderManager::IShaderManagerListener
+    //! ImplÃ©mentation - Interface CShaderManager::IShaderManagerListener
     virtual void onDeleteShader(CShader*) {}
 
-    //! Implémentation - Interface CSceneManager::ISceneManagerListener
+    //! ImplÃ©mentation - Interface CSceneManager::ISceneManagerListener
     virtual void onUpdateCamera(CCamera* pCamera);
 
-    //! Implémentation - Interface CSceneManager::ISceneManagerListener
+    //! ImplÃ©mentation - Interface CSceneManager::ISceneManagerListener
     virtual void onUpdateAnimation(CAnimation* pAnimation);
 
-    //! Implémentation - Interface CSceneManager::ISceneManagerListener
+    //! ImplÃ©mentation - Interface CSceneManager::ISceneManagerListener
     virtual void onCreateSceneNode(CSceneNode*) {}
 
-    //! Implémentation - Interface CSceneManager::ISceneManagerListener
+    //! ImplÃ©mentation - Interface CSceneManager::ISceneManagerListener
     virtual void onUpdateSceneNode(CSceneNode*) {}
 
-    //! Implémentation - Interface CSceneManager::ISceneManagerListener
+    //! ImplÃ©mentation - Interface CSceneManager::ISceneManagerListener
     virtual void onDeleteSceneNode(CSceneNode*) {}
 
     virtual void onUpdateRenderStates();

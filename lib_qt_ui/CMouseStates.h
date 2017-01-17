@@ -1,4 +1,4 @@
-#ifndef CMOUSESTATES_H
+ï»¿#ifndef CMOUSESTATES_H
 #define CMOUSESTATES_H
 
 class CMouseStates
@@ -15,19 +15,19 @@ public:
     // Setters
     //-------------------------------------------------------------------------------------------------
 
-    //! Définit la position du pointeur
+    //! DÃ©finit la position du pointeur
     void setPosition(const QPoint& position) { m_Position = position; }
 
-    //! Définit la position globale du pointeur
+    //! DÃ©finit la position globale du pointeur
     void setGlobalPosition(const QPoint& globalPosition) { m_GlobalPosition = globalPosition; }
 
-    //! Définit si le button droit est pressé
+    //! DÃ©finit si le button droit est pressÃ©
     void setRightButtonPressed(bool bPressed) { m_bRightBtnPressed = bPressed; }
 
-    //! Définit si le button central est pressé
+    //! DÃ©finit si le button central est pressÃ©
     void setMidButtonPressed(bool bPressed) { m_bMidBtnPressed = bPressed; }
 
-    //! Définit si le button gauche est pressé
+    //! DÃ©finit si le button gauche est pressÃ©
     void setLeftButtonPressed(bool bPressed) { m_bLeftBtnPressed = bPressed; }
 
     //-------------------------------------------------------------------------------------------------
@@ -40,13 +40,13 @@ public:
     //! Retourne la position globale du pointeur
     QPoint getGlobalPosition() const { return m_GlobalPosition; }
 
-    //! Retourne vrai si le button droit est pressé
+    //! Retourne vrai si le button droit est pressÃ©
     bool isRightButtonPressed() const { return m_bRightBtnPressed; }
 
-    //! Retourne vrai si le button central est pressé
+    //! Retourne vrai si le button central est pressÃ©
     bool isMidButtonPressed() const { return m_bMidBtnPressed; }
 
-    //! Retourne vrai si le button gauche est pressé
+    //! Retourne vrai si le button gauche est pressÃ©
     bool isLeftButtonPressed() const { return m_bLeftBtnPressed; }
 
 private:

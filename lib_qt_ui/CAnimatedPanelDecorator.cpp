@@ -1,4 +1,4 @@
-#include "CAnimatedPanelDecorator.h"
+ï»¿#include "CAnimatedPanelDecorator.h"
 
 #include <QTimer>
 #include <QGraphicsScene>
@@ -31,7 +31,7 @@ PanelAnimator::PanelAnimator(QGraphicsScene* pScene,
     if (!openIconFileName.isEmpty()) m_OpenIcon = QIcon(openIconFileName);
     if (!closeIconFileName.isEmpty()) m_CloseIcon = QIcon(closeIconFileName);
 
-    // On place le panneau en postion initiale en fonction de son emplacement sur l'écran
+    // On place le panneau en postion initiale en fonction de son emplacement sur l'Ã©cran
     switch (ePlacement)
     {
     case eLeft:
@@ -109,7 +109,7 @@ PanelAnimator::PanelAnimator(QGraphicsItem* pItem,
     if (!openIconFileName.isEmpty()) m_OpenIcon = QIcon(openIconFileName);
     if (!closeIconFileName.isEmpty()) m_CloseIcon = QIcon(closeIconFileName);
 
-    // On place le panneau en postion initiale en fonction de son emplacement sur l'écran
+    // On place le panneau en postion initiale en fonction de son emplacement sur l'Ã©cran
     switch (ePlacement)
     {
     case eLeft:
@@ -176,7 +176,7 @@ PanelAnimator::~PanelAnimator()
     {
         m_pProxyBorderWidget->setWidget(0);
 
-        // Selon le mode, on détache l'pItem de la scéne ou de son pItem parent
+        // Selon le mode, on dÃ©tache l'pItem de la scÃ©ne ou de son pItem parent
         if (m_eMode == eScene)
         {
             m_pScene->removeItem(m_pProxyBorderWidget);
@@ -189,7 +189,7 @@ PanelAnimator::~PanelAnimator()
         delete m_pProxyBorderWidget;
     }
 
-    // Selon le mode, on détache l'pItem de la scéne ou de son pItem parent
+    // Selon le mode, on dÃ©tache l'pItem de la scÃ©ne ou de son pItem parent
     if (m_eMode == eScene)
     {
         m_pScene->removeItem(m_pProxyCentralWidget);
@@ -320,7 +320,7 @@ void PanelAnimator::animateOpen()
     {
         m_eCurrentAction = eOpened;
 
-        // On s'assure d'être en butée
+        // On s'assure d'Ãªtre en butÃ©e
         switch (m_ePlacement)
         {
         case eRight:
@@ -388,7 +388,7 @@ void PanelAnimator::animateClose()
     else
     {
         m_eCurrentAction = eClosed;
-        // On s'assure d'être en butée
+        // On s'assure d'Ãªtre en butÃ©e
         m_pProxyCentralWidget->setTransform(QTransform());
         if (m_pProxyBorderWidget) m_pProxyBorderWidget->setTransform(QTransform());
 
