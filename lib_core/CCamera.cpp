@@ -59,7 +59,7 @@ void CCamera::notifyUpdate()
 {
     if (m_bNotificationsEnabled)
     {
-        foreach (ICameraListener* pListener, m_CameraListeners)
+        for (ICameraListener* pListener : m_CameraListeners)
         {
             pListener->onUpdate(this);
         }

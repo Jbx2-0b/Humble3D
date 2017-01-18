@@ -66,7 +66,7 @@ public:
     //! Prévient les listeners que le matériau a changé
     void notifyMaterialChanged()
     {
-        foreach (ISubMeshListener* pListener, m_SubMeshListeners)
+        for (ISubMeshListener* pListener : m_SubMeshListeners)
         {
             pListener->onMaterialChanged(this);
         }

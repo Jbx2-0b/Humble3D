@@ -71,7 +71,7 @@ void CPhysicsManager::setTimeStep(real dTimeStep)
 //-----------------------------------------------------------------------
 CPhysicsManager::~CPhysicsManager()
 {
-    foreach (ASceneNodeItem* pItem, m_Items)
+    for (ASceneNodeItem* pItem : m_Items)
     {
         unregisterItem(pItem);
     }
@@ -103,7 +103,7 @@ void CPhysicsManager::unregisterItem(ASceneNodeItem* pItem)
     m_Items.remove(pItem);
     pItem->unregisterListener(this);
 
-    foreach (CSceneNode* pSceneNode, pItem->getNodes())
+    for (CSceneNode* pSceneNode : pItem->getNodes())
     {
         QPair<ASceneNodeItem*, CSceneNode*> key(pItem, pSceneNode);
         removeShapeInfo(key);
@@ -115,9 +115,9 @@ void CPhysicsManager::onTimeout()
 {
     m_pWorld->stepSimulation(m_TimeElaspedSinceLastStep.restart());
 
-    foreach (ASceneNodeItem* pItem, m_Items)
+    for (ASceneNodeItem* pItem : m_Items)
     {
-        foreach (CSceneNode* pSceneNode, pItem->getNodes())
+        for (CSceneNode* pSceneNode : pItem->getNodes())
         {
             if (!pSceneNode->isLocked())
             {
@@ -155,7 +155,7 @@ void CPhysicsManager::onTimeout()
 //-----------------------------------------------------------------------
 void CPhysicsManager::onUpdate(ASceneNodeItem* pNodeItem)
 {
-    foreach (CSceneNode* pSceneNode, pNodeItem->getNodes())
+    for (CSceneNode* pSceneNode : pNodeItem->getNodes())
     {
         QPair<ASceneNodeItem*, CSceneNode*> key(pNodeItem, pSceneNode);
 
@@ -171,7 +171,7 @@ void CPhysicsManager::onUpdate(ASceneNodeItem* pNodeItem)
 void CPhysicsManager::onDelete(ASceneNodeItem* pItem)
 {
     pItem->unregisterListener(this);
-    foreach (CSceneNode* pSceneNode, pItem->getNodes())
+    for (CSceneNode* pSceneNode : pItem->getNodes())
     {
         QPair<ASceneNodeItem*, CSceneNode*> key(pItem, pSceneNode);
         removeShapeInfo(key);
@@ -247,9 +247,9 @@ CPhysicsManager::CShapeInfo::CShapeInfo(btDiscreteDynamicsWorld* pWorld, CSceneN
             if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(pItem))
             {
                 btConvexHullShape* pConvexShape = static_cast<btConvexHullShape*>(m_pShape);
-                foreach (CSubMesh* pSubMesh, pMeshInstance->getMesh()->subMeshs())
+                for (CSubMesh* pSubMesh : pMeshInstance->getMesh()->subMeshs())
                 {
-                    foreach (const QVector3D& pt, pSubMesh->positionsBuffer())
+                    for (const QVector3D& pt : pSubMesh->positionsBuffer())
                     {
                         pConvexShape->addPoint(CBulletHelper::toBulletVector3D(pt), false);
                     }

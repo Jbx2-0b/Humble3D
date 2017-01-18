@@ -67,13 +67,13 @@ void CAnimationManager::onTimerTimeout()
     {
         bool bNeedUpdate = false;
 
-        foreach (CAnimation* pAnimation, m_Animations)
+        for (CAnimation* pAnimation : m_Animations)
         {
             real dTicksPerSecond = pAnimation->getTicksPerSecond() != 0 ? pAnimation->getTicksPerSecond() : DefaultTicksPerSecond;
 
             const QList<CSceneNodeAnimation*>& nodeChannels = pAnimation->getNodeAnimations();
 
-            foreach (CSceneNodeAnimation* pNodeAnimation, nodeChannels)
+            for (CSceneNodeAnimation* pNodeAnimation : nodeChannels)
             {
                 real dNodeAnimationTime = pNodeAnimation->getAnimationTime();
 
@@ -219,7 +219,7 @@ void CAnimationManager::onStopAnimation(CAnimation* pAnimation)
 //-----------------------------------------------------------------------------------------
 void CAnimationManager::notifyUpdate()
 {
-    foreach (IAnimationManagerListener* pListener, m_AnimationManagerListeners)
+    for (IAnimationManagerListener* pListener : m_AnimationManagerListeners)
     {
         pListener->onUpdateAnimation();
     }

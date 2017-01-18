@@ -40,7 +40,7 @@ int CRenderPass::getIndex() const
 {
     int iCount = 0;
 
-    foreach (CRenderPass* pPass, m_pMaterial->renderingPassList())
+    for (CRenderPass* pPass : m_pMaterial->renderingPassList())
     {
         if (pPass == this)
             return iCount;

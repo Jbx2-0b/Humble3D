@@ -78,7 +78,7 @@ TestAnimation::TestAnimation()
         {
             QList<CSceneNodeAnimation*> nodeAnimations = anims[0]->getNodeAnimations();
 
-            foreach (CSceneNodeAnimation* pNodeAnim, nodeAnimations)
+            for (CSceneNodeAnimation* pNodeAnim : nodeAnimations)
             {
                 pNodeAnim->setAnimationBehavior(eAnimationBehaviourRepeat);
             }

@@ -73,23 +73,22 @@ public:
         //! Affiche les propriétés sur la console
         virtual QString toString() const
         {
-        QString result;
-                                                          result += "[Texture 2D\n";
-                                                                                                            ATexture::toString();
-                                                                                                                                                              foreach (const SImageRect& imageRect, m_ImageRects)
-                                                                                                                                                              {
-                                                                                                                                                                  result += QString("Image Rect: %1 (%2, %3, %4x%5)\n")
-                                                                                                                                                                          .arg(imageRect.first)
-                                                                                                                                                                          .arg(imageRect.second.x())
-                                                                                                                                                                          .arg(imageRect.second.y())
-                                                                                                                                                                          .arg(imageRect.second.width())
-                                                                                                                                                                          .arg(imageRect.second.height());
-                                                                                                                                                              }
+            QString result;
+            result += "[Texture 2D\n";
+            ATexture::toString();
+            for (const SImageRect& imageRect : m_ImageRects)
+            {
+              result += QString("Image Rect: %1 (%2, %3, %4x%5)\n")
+                      .arg(imageRect.first)
+                      .arg(imageRect.second.x())
+                      .arg(imageRect.second.y())
+                      .arg(imageRect.second.width())
+                      .arg(imageRect.second.height());
+            }
 
-                                                                                                                                                                                                                result += QString("Size: %1x%2\n").arg(m_Size.width()).arg(m_Size.height());
-
-                                                                                                                                                                                                                                                                  return result;
-                                                        }
+            result += QString("Size: %1x%2\n").arg(m_Size.width()).arg(m_Size.height());
+            return result;
+        }
 
 protected:
 

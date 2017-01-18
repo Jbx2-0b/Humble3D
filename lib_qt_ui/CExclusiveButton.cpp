@@ -22,7 +22,7 @@ void CExclusiveButton::update()
 {
     if (QPushButton* pSender = dynamic_cast<QPushButton*>(sender()))
     {
-        foreach (QPushButton* pPushButton, m_ButtonList)
+        for (QPushButton* pPushButton : m_ButtonList)
         {
             if (pPushButton != pSender)
             {

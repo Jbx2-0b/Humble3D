@@ -139,7 +139,7 @@ void CShader::notifyUpdate()
 {
     if (m_bNotificationsEnabled)
     {
-        foreach (IShaderListener* pListener, m_ShaderListeners)
+        for (IShaderListener* pListener : m_ShaderListeners)
         {
             pListener->onUpdate(this);
         }
@@ -153,7 +153,7 @@ void CShader::notifyDelete()
 {
     if (m_bNotificationsEnabled)
     {
-        foreach (IShaderListener* pListener, m_ShaderListeners)
+        for (IShaderListener* pListener : m_ShaderListeners)
         {
             pListener->onDelete(this);
         }

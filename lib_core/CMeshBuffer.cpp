@@ -8,7 +8,7 @@ void CMeshBuffer::append(const CMeshBuffer& buffer)
 
     m_PositionsBuffer << buffer.positionsBuffer();
 
-    foreach (unsigned int id, buffer.indicesBuffer())
+    for (unsigned int id : buffer.indicesBuffer())
     {
         m_IndicesBuffer << id + iStartCount;
     }

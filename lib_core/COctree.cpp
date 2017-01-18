@@ -11,7 +11,7 @@ COctree::COctree(CSceneManager* pSceneManager, const CBox3D& worldBbox, unsigned
     , m_uiPolygonCountThreshold(uiPolygonCountThreshold)
     , m_uiMaxDepth(iMaxDepth)
 {
-    foreach (CSceneNode* pSceneNode, pSceneManager->getSceneNodes())
+    for (CSceneNode* pSceneNode : pSceneManager->getSceneNodes())
     {
         addSceneNode(pSceneNode);
     }
@@ -44,7 +44,7 @@ void COctree::updateSceneNode(CSceneNode* pSceneNode)
 //-----------------------------------------------------------------------------------------
 void COctree::removeSceneNode(CSceneNode* pSceneNode)
 {
-    foreach (COctreeNode* pOctreeNode, m_SceneNodes.values(pSceneNode))
+    for (COctreeNode* pOctreeNode : m_SceneNodes.values(pSceneNode))
     {
         pOctreeNode->removeSceneNode(pSceneNode);
 
@@ -82,9 +82,9 @@ void COctree::recursiveAddSceneNode(COctreeNode* pOctreeNode, CSceneNode* pScene
                 pOctreeNode->createChilds();
 
                 // On reporte les précédents noeuds sur les noeuds enfants
-                foreach (CSceneNode* pPrevSceneNode, sceneNodes)
+                for (CSceneNode* pPrevSceneNode : sceneNodes)
                 {
-                    foreach (COctreeNode* pChildNode, pOctreeNode->getChildNodes())
+                    for (COctreeNode* pChildNode : pOctreeNode->getChildNodes())
                     {
                         recursiveAddSceneNode(pChildNode, pPrevSceneNode, uiDepth + 1);
                     }
@@ -95,7 +95,7 @@ void COctree::recursiveAddSceneNode(COctreeNode* pOctreeNode, CSceneNode* pScene
         if (pOctreeNode->hasChildNodes())
         {
             // On cherche l'intersection avec chacun des enfants pour placer le SceneNode
-            foreach (COctreeNode* pChildNode, pOctreeNode->getChildNodes())
+            for (COctreeNode* pChildNode : pOctreeNode->getChildNodes())
             {
                 const CBox3D& childNodeBBox = pChildNode->getBoundingBox();
 
@@ -141,7 +141,7 @@ void COctree::recursiveFindVisibleSceneNodes(const CFrustum& frustum, const COct
             // It's a leaf : We test individualy all the items
             if (pOctreeNode->isLeaf())
             {
-                foreach (CSceneNode* pSceneNode, pOctreeNode->getSceneNodes())
+                for (CSceneNode* pSceneNode : pOctreeNode->getSceneNodes())
                 {
                     const CBox3D& sceneNodeBBox = pSceneNode->getLocalAxisAlignedBoundingBox();
                     if (frustum.isSphereInFrustum(CSphere(sceneNodeBBox)) != eOutside)
@@ -156,7 +156,7 @@ void COctree::recursiveFindVisibleSceneNodes(const CFrustum& frustum, const COct
             // It's not a leaf : let's test childs
             else if (!pOctreeNode->getSceneNodes().isEmpty())
             {
-                foreach (const COctreeNode* pChild, pOctreeNode->getChildNodes())
+                for (const COctreeNode* pChild : pOctreeNode->getChildNodes())
                 {
                     recursiveFindVisibleSceneNodes(frustum, pChild, visibleSceneNodes);
                 }

@@ -25,7 +25,7 @@ ASceneNodeItem::~ASceneNodeItem()
     notifyDelete();
 
     // On prévient les noeuds qu'on supprime l'item
-    foreach (CSceneNode* pNode, m_Nodes)
+    for (CSceneNode* pNode : m_Nodes)
     {
         pNode->removeItem(this);
     }
@@ -50,7 +50,7 @@ void ASceneNodeItem::notifyUpdate()
 {
     if (m_bNotificationsEnabled)
     {
-        foreach (ISceneNodeItemListener* pListener, m_SceneNodeListeners)
+        for (ISceneNodeItemListener* pListener : m_SceneNodeListeners)
         {
             pListener->onUpdate(this);
         }
@@ -64,7 +64,7 @@ void ASceneNodeItem::notifyDelete()
 {
     if (m_bNotificationsEnabled)
     {
-        foreach (ISceneNodeItemListener* pListener, m_SceneNodeListeners)
+        for (ISceneNodeItemListener* pListener : m_SceneNodeListeners)
         {
             pListener->onDelete(this);
         }

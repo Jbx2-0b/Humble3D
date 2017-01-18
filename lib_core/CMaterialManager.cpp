@@ -90,7 +90,7 @@ void CMaterialManager::removeMaterial(CMaterial* pMaterial)
 //-----------------------------------------------------------------------------------------
 void CMaterialManager::clearMaterials()
 {
-    foreach (CMaterial* pMaterial, m_Materials)
+    for (CMaterial* pMaterial : m_Materials)
     {
         removeMaterial(pMaterial);
     }
@@ -103,7 +103,7 @@ void CMaterialManager::initColorMaterials()
 
     if (!bAlreadyInit)
     {
-        foreach (const Color& color, Color::getColorList())
+        for (const Color& color : Color::getColorList())
         {
             CMaterial* pMat = createMaterial(color.toString());
 
@@ -143,7 +143,7 @@ bool CMaterialManager::isMaterialExist(int iID) const
 //-----------------------------------------------------------------------------------------
 void CMaterialManager::notifyUpdate(CMaterial* pMaterial)
 {
-    foreach (IMaterialManagerListener* pListener, m_MaterialManagerListeners)
+    for (IMaterialManagerListener* pListener : m_MaterialManagerListeners)
     {
         pListener->onUpdate(pMaterial);
     }
@@ -152,7 +152,7 @@ void CMaterialManager::notifyUpdate(CMaterial* pMaterial)
 //-----------------------------------------------------------------------------------------
 void CMaterialManager::notifyDelete(CMaterial* pMaterial)
 {
-    foreach (IMaterialManagerListener* pListener, m_MaterialManagerListeners)
+    for (IMaterialManagerListener* pListener : m_MaterialManagerListeners)
     {
         pListener->onDelete(pMaterial);
     }

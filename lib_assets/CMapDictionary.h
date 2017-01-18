@@ -31,7 +31,7 @@ public:
     //! Déstructeur
     ~CMapDictionary()
     {
-        foreach (CMap* pMap, m_Maps.get())
+        for (CMap* pMap : m_Maps.get())
         {
             delete pMap;
         }

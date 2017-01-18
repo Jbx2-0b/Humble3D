@@ -70,7 +70,7 @@ CToolBar::~CToolBar()
     m_pLayout->removeItem(m_pRightSpacer);
     delete m_pRightSpacer;
 
-    foreach (const ToolBarWidget& widget, m_Widgets)
+    for (const ToolBarWidget& widget : m_Widgets)
     {
         m_pLayout->removeWidget(widget.getQWidget());
         m_Widgets.removeAll(widget);
@@ -86,12 +86,12 @@ void CToolBar::updateWidgetPositions()
 
     m_pLayout->removeWidget(&m_TitleLabel);
 
-    foreach (const ToolBarWidget& widget, m_Widgets)
+    for (const ToolBarWidget& widget : m_Widgets)
     {
         m_pLayout->removeWidget(widget.getQWidget());
     }
 
-    foreach (const ToolBarWidget& widget, m_Widgets)
+    for (const ToolBarWidget& widget : m_Widgets)
     {
         if (widget.getPosition() == eWidgetLeft)
         {
@@ -104,7 +104,7 @@ void CToolBar::updateWidgetPositions()
     m_pLayout->addItem(m_pRightSpacer);
 
 
-    foreach (const ToolBarWidget& widget, m_Widgets)
+    for (const ToolBarWidget& widget : m_Widgets)
     {
         if (widget.getPosition() == eWidgetRight)
         {

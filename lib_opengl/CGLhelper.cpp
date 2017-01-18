@@ -69,429 +69,261 @@ const QString& CGLHelper::fromTypeCount(EnumMaterialParameter eType)
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(EnumPrimitiveType eType)
 {
-    switch (eType)
-    {
-    case ePrimitivePoint:
-    default:
-        return GL_POINTS;
-    case ePrimitiveLine:
-        return GL_LINES;
-    case ePrimitiveLineLoop:
-        return GL_LINE_LOOP;
-    case ePrimitiveLineStrip:
-        return GL_LINE_STRIP;
-    case ePrimitiveTriangles:
-        return GL_TRIANGLES;
-    case ePrimitiveTriangleStrip:
-        return GL_TRIANGLE_STRIP;
-    case ePrimitiveTriangleFan:
-        return GL_TRIANGLE_FAN;
+    static QMap<EnumPrimitiveType, GLenum> primitiveTypes {
+        { ePrimitivePoint, GL_POINTS },
+        { ePrimitiveLine, GL_LINES },
+        { ePrimitiveLineLoop, GL_LINE_LOOP },
+        { ePrimitiveLineStrip, GL_LINE_STRIP },
+        { ePrimitiveTriangles, GL_TRIANGLES },
+        { ePrimitiveTriangleStrip, GL_TRIANGLE_STRIP },
+        { ePrimitiveTriangleFan, GL_TRIANGLE_FAN },
 #ifdef DESKTOP_TARGET
-    case ePrimitiveLinesAdjacency:
-        return GL_LINES_ADJACENCY;
-    case ePrimitiveLineStripAdjacency:
-        return GL_LINE_STRIP_ADJACENCY;
-    case ePrimitiveTrianglesAdjacency:
-        return GL_TRIANGLES_ADJACENCY;
-    case ePrimitiveTrianglesStripAdjacency:
-        return GL_TRIANGLE_STRIP_ADJACENCY;
+        { ePrimitiveLinesAdjacency, GL_LINES_ADJACENCY },
+        { ePrimitiveLineStripAdjacency, GL_LINE_STRIP_ADJACENCY },
+        { ePrimitiveTrianglesAdjacency, GL_TRIANGLES_ADJACENCY },
+        { ePrimitiveTrianglesStripAdjacency, GL_TRIANGLE_STRIP_ADJACENCY }
 #endif
-    }
-
-    return GL_POINTS; // avoid warning
+    };
+    return primitiveTypes[eType];
 }
 
 //-------------------------------------------------------------------------------------------------
 CGLBuffer::UsagePattern CGLHelper::toQtType(EnumUsagePattern ePattern)
 {
-    switch (ePattern)
-    {
-    case eStreamDraw:
-        return CGLBuffer::StreamDraw;
-    case eStreamRead:
-        return CGLBuffer::StreamRead;
-    case eStreamCopy:
-        return CGLBuffer::StreamCopy;
-    case eStaticDraw:
-        return CGLBuffer::StaticDraw;
-    case eStaticRead:
-        return CGLBuffer::StaticRead;
-    case eStaticCopy:
-        return CGLBuffer::StaticCopy;
-    case eDynamicDraw:
-        return CGLBuffer::DynamicDraw;
-    case eDynamicRead:
-        return CGLBuffer::DynamicRead;
-    case eDynamicCopy:
-        return CGLBuffer::DynamicCopy;
-    }
-
-    return CGLBuffer::StreamDraw; // avoid warning
+    static QMap<EnumUsagePattern, CGLBuffer::UsagePattern> usagePatterns {
+        { eStreamDraw, CGLBuffer::StreamDraw },
+        { eStreamRead, CGLBuffer::StreamRead },
+        { eStreamCopy, CGLBuffer::StreamCopy },
+        { eStaticDraw, CGLBuffer::StaticDraw },
+        { eStaticRead, CGLBuffer::StaticRead },
+        { eStaticCopy, CGLBuffer::StaticCopy },
+        { eDynamicDraw, CGLBuffer::DynamicDraw },
+        { eDynamicRead, CGLBuffer::DynamicRead },
+        { eDynamicCopy, CGLBuffer::DynamicCopy }
+    };
+    return usagePatterns[ePattern];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(CDepthTest::EnumDepthTestFunction eFunction)
 {
-    switch (eFunction)
-    {
-    case CDepthTest::eNever:
-        return GL_NEVER;
-    case CDepthTest::eLess:
-        return GL_LESS;
-    case CDepthTest::eEqual:
-        return GL_EQUAL;
-    case CDepthTest::eLessThanOrEqual:
-        return GL_LEQUAL;
-    case CDepthTest::eGreater:
-        return GL_GREATER;
-    case CDepthTest::eNotEqual:
-        return GL_NOTEQUAL;
-    case CDepthTest::eGreaterThanOrEqual:
-        return GL_GEQUAL;
-    case CDepthTest::eAlways:
-        return GL_ALWAYS;
-    }
-    return GL_NEVER; /// avoid warning
+    static QMap<CDepthTest::EnumDepthTestFunction, GLenum> functions {
+        { CDepthTest::eNever, GL_NEVER },
+        { CDepthTest::eLess, GL_LESS },
+        { CDepthTest::eEqual, GL_EQUAL },
+        { CDepthTest::eLessThanOrEqual, GL_LEQUAL },
+        { CDepthTest::eGreater, GL_GREATER },
+        { CDepthTest::eNotEqual, GL_NOTEQUAL },
+        { CDepthTest::eGreaterThanOrEqual, GL_GEQUAL },
+        { CDepthTest::eAlways, GL_ALWAYS }
+    };
+    return functions[eFunction];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(Source::EnumBlendingFactor eFactor)
 {
-    switch (eFactor)
-    {
-    case Source::eZero:
-        return GL_ZERO;
-    case Source::eOne:
-        return GL_ONE;
-    case Source::eSourceAlpha:
-        return GL_SRC_ALPHA;
-    case Source::eOneMinusSourceAlpha:
-        return GL_ONE_MINUS_SRC_ALPHA;
-    case Source::eDestinationAlpha:
-        return GL_DST_ALPHA;
-    case Source::eOneMinusDestinationAlpha:
-        return GL_ONE_MINUS_DST_ALPHA;
-    case Source::eDestinationColor:
-        return GL_DST_COLOR;
-    case Source::eOneMinusDestinationColor:
-        return GL_ONE_MINUS_DST_COLOR;
-    case Source::eSourceAlphaSaturate:
-        return GL_SRC_ALPHA_SATURATE;
-    case Source::eConstantColor:
-        return GL_CONSTANT_COLOR;
-    case Source::eOneMinusConstantColor:
-        return GL_ONE_MINUS_CONSTANT_COLOR;
-    case Source::eConstantAlpha:
-        return GL_CONSTANT_ALPHA;
-    case Source::eOneMinusConstantAlpha:
-        return GL_ONE_MINUS_CONSTANT_ALPHA;
-    }
-    return GL_ONE; // avoid warning
+    static QMap<Source::EnumBlendingFactor, GLenum> blendingFactors {
+        { Source::eZero, GL_ZERO },
+        { Source::eOne, GL_ONE },
+        { Source::eSourceAlpha, GL_SRC_ALPHA },
+        { Source::eOneMinusSourceAlpha, GL_ONE_MINUS_SRC_ALPHA },
+        { Source::eDestinationAlpha, GL_DST_ALPHA },
+        { Source::eOneMinusDestinationAlpha, GL_ONE_MINUS_DST_ALPHA },
+        { Source::eDestinationColor, GL_DST_COLOR },
+        { Source::eOneMinusDestinationColor, GL_ONE_MINUS_DST_COLOR },
+        { Source::eSourceAlphaSaturate, GL_SRC_ALPHA_SATURATE },
+        { Source::eConstantColor, GL_CONSTANT_COLOR },
+        { Source::eOneMinusConstantColor, GL_ONE_MINUS_CONSTANT_COLOR },
+        { Source::eConstantAlpha, GL_CONSTANT_ALPHA },
+        { Source::eOneMinusConstantAlpha, GL_ONE_MINUS_CONSTANT_ALPHA }
+    };
+    return blendingFactors[eFactor];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(Destination::EnumBlendingFactor eFactor)
 {
-    switch (eFactor)
-    {
-    case Destination::eZero:
-        return GL_ZERO;
-    case Destination::eOne:
-        return GL_ONE;
-    case Destination::eSourceColor:
-        return GL_SRC_COLOR;
-    case Destination::eOneMinusSourceColor:
-        return GL_ONE_MINUS_SRC_COLOR;
-    case Destination::eSourceAlpha:
-        return GL_SRC_ALPHA;
-    case Destination::eOneMinusSourceAlpha:
-        return GL_ONE_MINUS_SRC_ALPHA;
-    case Destination::eDestinationAlpha:
-        return GL_DST_ALPHA;
-    case Destination::eOneMinusDestinationAlpha:
-        return GL_ONE_MINUS_DST_ALPHA;
-    case Destination::eDestinationColor:
-        return GL_DST_COLOR;
-    case Destination::eOneMinusDestinationColor:
-        return GL_ONE_MINUS_DST_COLOR;
-    case Destination::eConstantColor:
-        return GL_CONSTANT_COLOR;
-    case Destination::eOneMinusConstantColor:
-        return GL_ONE_MINUS_CONSTANT_COLOR;
-    case Destination::eConstantAlpha:
-        return GL_CONSTANT_ALPHA;
-    case Destination::eOneMinusConstantAlpha:
-        return GL_ONE_MINUS_CONSTANT_ALPHA;
-    }
-    return GL_ZERO; // avoid warning
+    static QMap<Destination::EnumBlendingFactor, GLenum> blendingFactors {
+        { Destination::eZero, GL_ZERO },
+        { Destination::eOne, GL_ONE },
+        { Destination::eSourceColor, GL_SRC_COLOR },
+        { Destination::eOneMinusSourceColor, GL_ONE_MINUS_SRC_COLOR },
+        { Destination::eSourceAlpha, GL_SRC_ALPHA },
+        { Destination::eOneMinusSourceAlpha, GL_ONE_MINUS_SRC_ALPHA },
+        { Destination::eDestinationAlpha, GL_DST_ALPHA },
+        { Destination::eOneMinusDestinationAlpha, GL_ONE_MINUS_DST_ALPHA },
+        { Destination::eDestinationColor, GL_DST_COLOR },
+        { Destination::eOneMinusDestinationColor, GL_ONE_MINUS_DST_COLOR },
+        { Destination::eConstantColor, GL_CONSTANT_COLOR },
+        { Destination::eOneMinusConstantColor, GL_ONE_MINUS_CONSTANT_COLOR },
+        { Destination::eConstantAlpha, GL_CONSTANT_ALPHA },
+        { Destination::eOneMinusConstantAlpha, GL_ONE_MINUS_CONSTANT_ALPHA }
+    };
+    return blendingFactors[eFactor];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(EnumBlendEquation eEquation)
 {
-    switch (eEquation)
-    {
-    case eAdd:
-        return GL_FUNC_ADD;
-        break;
-    case eMinimum:
-        return GL_MIN;
-        break;
-    case eMaximum:
-        return GL_MAX;
-        break;
-    case eSubtract:
-        return GL_FUNC_SUBTRACT;
-        break;
-    case eReverseSubtract:
-        return GL_FUNC_REVERSE_SUBTRACT;
-        break;
-    }
-
-    return GL_FUNC_ADD; // avoid warning
+    static QMap<EnumBlendEquation, GLenum> equations {
+        { eAdd, GL_FUNC_ADD },
+        { eMinimum, GL_MIN },
+        { eMaximum, GL_MAX },
+        { eSubtract, GL_FUNC_SUBTRACT },
+        { eReverseSubtract, GL_FUNC_REVERSE_SUBTRACT }
+    };
+    return equations[eEquation];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(EnumCullFace eCullFace)
 {
-    switch (eCullFace)
-    {
-    case eFront:
-        return GL_FRONT;
-        break;
-    case eBack:
-        return GL_BACK;
-        break;
-    case eFrontAndBack:
-        return GL_FRONT_AND_BACK;
-        break;
-    }
-
-    return GL_BACK; // avoid warning
+    static QMap<EnumCullFace, GLenum> cullFaceMode {
+        { eFront, GL_FRONT },
+        { eBack, GL_BACK },
+        { eFrontAndBack, GL_FRONT_AND_BACK }
+    };
+    return cullFaceMode[eCullFace];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(EnumWindingOrder eWindingOrder)
 {
-    switch (eWindingOrder)
-    {
-    case eClockwise:
-        return GL_CW;
-        break;
-    case eCounterclockwise:
-        return GL_CCW;
-        break;
-    }
-
-    return GL_CCW; // avoid warning
+    static QMap<EnumWindingOrder, GLenum> windingOrders {
+        { eClockwise, GL_CW },
+        { eCounterclockwise, GL_CCW }
+    };
+    return windingOrders[eWindingOrder];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(EnumStencilOperation eOperation)
 {
-    switch (eOperation)
-    {
-    case eZero:
-        return GL_ZERO;
-    case eInvert:
-        return GL_INVERT;
-    case eKeep:
-        return GL_KEEP;
-    case eReplace:
-        return GL_REPLACE;
-    case eIncrement:
-        return GL_INCR;
-    case eDecrement:
-        return GL_DECR;
-    case eIncrementWrap:
-        return GL_INCR_WRAP;
-    case eDecrementWrap:
-        return GL_DECR_WRAP;
-    }
-
-    return GL_ZERO; // avoid warning
+    static QMap<EnumStencilOperation, GLenum> operations {
+        { eZero, GL_ZERO },
+        { eInvert, GL_INVERT },
+        { eKeep, GL_KEEP },
+        { eReplace, GL_REPLACE },
+        { eIncrement, GL_INCR },
+        { eDecrement, GL_DECR },
+        { eIncrementWrap, GL_INCR_WRAP },
+        { eDecrementWrap, GL_DECR_WRAP }
+    };
+    return operations[eOperation];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(EnumStencilTestFunction eFunction)
 {
-    switch (eFunction)
-    {
-    case eNever:
-        return GL_NEVER;
-    case eLess:
-        return GL_LESS;
-    case eEqual:
-        return GL_EQUAL;
-    case eLessThanOrEqual:
-        return GL_LEQUAL;
-    case eGreater:
-        return GL_GREATER;
-    case eNotEqual:
-        return GL_NOTEQUAL;
-    case eGreaterThanOrEqual:
-        return GL_GEQUAL;
-    case eAlways:
-        return GL_ALWAYS;
-    }
-
-    return GL_ZERO; // avoid warning
+    static QMap<EnumStencilTestFunction, GLenum> functions {
+        { eNever, GL_NEVER },
+        { eLess, GL_LESS },
+        { eEqual, GL_EQUAL },
+        { eLessThanOrEqual, GL_LEQUAL },
+        { eGreater, GL_GREATER },
+        { eNotEqual, GL_NOTEQUAL },
+        { eGreaterThanOrEqual, GL_GEQUAL },
+        { eAlways, GL_ALWAYS }
+    };
+    return functions[eFunction];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(EnumAttachment eAttachment)
 {
-    switch (eAttachment)
-    {
-    case eAttachmentDepth:
-        return GL_DEPTH_ATTACHMENT;
-    case eAttachmentStencil:
-        return GL_STENCIL_ATTACHMENT;
-    case eAttachmentColor0:
-        return GL_COLOR_ATTACHMENT0;
-
-#ifndef EMBEDDED_TARGET
-    case eAttachmentColor1:
-        return GL_COLOR_ATTACHMENT1;
-    case eAttachmentColor2:
-        return GL_COLOR_ATTACHMENT2;
-    case eAttachmentColor3:
-        return GL_COLOR_ATTACHMENT3;
-    case eAttachmentColor4:
-        return GL_COLOR_ATTACHMENT4;
-    case eAttachmentColor5:
-        return GL_COLOR_ATTACHMENT5;
-    case eAttachmentColor6:
-        return GL_COLOR_ATTACHMENT6;
-    case eAttachmentColor7:
-        return GL_COLOR_ATTACHMENT7;
-    case eAttachmentColor8:
-        return GL_COLOR_ATTACHMENT8;
-    case eAttachmentColor9:
-        return GL_COLOR_ATTACHMENT9;
-    case eAttachmentColor10:
-        return GL_COLOR_ATTACHMENT10;
-    case eAttachmentColor11:
-        return GL_COLOR_ATTACHMENT11;
-    case eAttachmentColor12:
-        return GL_COLOR_ATTACHMENT12;
-    case eAttachmentColor13:
-        return GL_COLOR_ATTACHMENT13;
-    case eAttachmentColor14:
-        return GL_COLOR_ATTACHMENT14;
-    case eAttachmentColor15:
-        return GL_COLOR_ATTACHMENT15;
+    static QMap<EnumAttachment, GLenum> attachments {
+        { eAttachmentDepth, GL_DEPTH_ATTACHMENT },
+        { eAttachmentStencil, GL_STENCIL_ATTACHMENT },
+        { eAttachmentColor0, GL_COLOR_ATTACHMENT0 },
+#ifdef DESKTOP_TARGET
+        { eAttachmentColor1, GL_COLOR_ATTACHMENT1 },
+        { eAttachmentColor2, GL_COLOR_ATTACHMENT2 },
+        { eAttachmentColor3, GL_COLOR_ATTACHMENT3 },
+        { eAttachmentColor4, GL_COLOR_ATTACHMENT4 },
+        { eAttachmentColor5, GL_COLOR_ATTACHMENT5 },
+        { eAttachmentColor6, GL_COLOR_ATTACHMENT6 },
+        { eAttachmentColor7, GL_COLOR_ATTACHMENT7 },
+        { eAttachmentColor8, GL_COLOR_ATTACHMENT8 },
+        { eAttachmentColor9, GL_COLOR_ATTACHMENT9 },
+        { eAttachmentColor10, GL_COLOR_ATTACHMENT10 },
+        { eAttachmentColor11, GL_COLOR_ATTACHMENT11 },
+        { eAttachmentColor12, GL_COLOR_ATTACHMENT12 },
+        { eAttachmentColor13, GL_COLOR_ATTACHMENT13 },
+        { eAttachmentColor14, GL_COLOR_ATTACHMENT14 },
+        { eAttachmentColor15, GL_COLOR_ATTACHMENT15 }
 #endif
-    default:
-        return GL_DEPTH_ATTACHMENT;
-    }
-
-    return GL_DEPTH_ATTACHMENT; // avoid warning
+    };
+    return attachments[eAttachment];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(EnumInternalFormat eFormat)
 {
-    switch (eFormat)
-    {
-    case eInternalFormatRGB:
-        return GL_RGBA;
-    case eInternalFormatDepthComponent:
-        return GL_DEPTH_COMPONENT;
-    case eInternalFormatStencilIndex:
-        return GL_STENCIL_INDEX;
-    }
-
-    return GL_RGBA; // avoid warning
+    static QMap<EnumInternalFormat, GLenum> formats {
+        { eInternalFormatRGB, GL_RGBA },
+        { eInternalFormatDepthComponent, GL_DEPTH_COMPONENT },
+        { eInternalFormatStencilIndex, GL_STENCIL_INDEX }
+    };
+    return formats[eFormat];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(EnumDrawBuffer eDrawBuffer)
 {
-    switch (eDrawBuffer)
-    {
-    case eDrawBufferNone:
-        return GL_NONE;
-#ifndef EMBEDDED_TARGET
-    case eDrawBufferFrontLeft:
-        return GL_FRONT_LEFT;
-    case eDrawBufferFrontRight:
-        return GL_FRONT_RIGHT;
-    case eDrawBufferBackLeft:
-        return GL_BACK_LEFT;
-    case eDrawBufferBackRight:
-        return GL_BACK_RIGHT;
+    static QMap<EnumDrawBuffer, GLenum> drawBufferModes {
+        { eDrawBufferNone, GL_NONE },
+#ifdef DESKTOP_TARGET
+        { eDrawBufferFrontLeft, GL_FRONT_LEFT },
+        { eDrawBufferFrontRight, GL_FRONT_RIGHT },
+        { eDrawBufferBackLeft, GL_BACK_LEFT },
+        { eDrawBufferBackRight, GL_BACK_RIGHT },
 #endif
-    case eDrawBufferAttachmentColor0:
-        return GL_COLOR_ATTACHMENT0;
-#ifndef EMBEDDED_TARGET
-    case eDrawBufferAttachmentColor1:
-        return GL_COLOR_ATTACHMENT1;
-    case eDrawBufferAttachmentColor2:
-        return GL_COLOR_ATTACHMENT2;
-    case eDrawBufferAttachmentColor3:
-        return GL_COLOR_ATTACHMENT3;
-    case eDrawBufferAttachmentColor4:
-        return GL_COLOR_ATTACHMENT4;
-    case eDrawBufferAttachmentColor5:
-        return GL_COLOR_ATTACHMENT5;
-    case eDrawBufferAttachmentColor6:
-        return GL_COLOR_ATTACHMENT6;
-    case eDrawBufferAttachmentColor7:
-        return GL_COLOR_ATTACHMENT7;
-    case eDrawBufferAttachmentColor8:
-        return GL_COLOR_ATTACHMENT8;
-    case eDrawBufferAttachmentColor9:
-        return GL_COLOR_ATTACHMENT9;
-    case eDrawBufferAttachmentColor10:
-        return GL_COLOR_ATTACHMENT10;
-    case eDrawBufferAttachmentColor11:
-        return GL_COLOR_ATTACHMENT11;
-    case eDrawBufferAttachmentColor12:
-        return GL_COLOR_ATTACHMENT12;
-    case eDrawBufferAttachmentColor13:
-        return GL_COLOR_ATTACHMENT13;
-    case eDrawBufferAttachmentColor14:
-        return GL_COLOR_ATTACHMENT14;
-    case eDrawBufferAttachmentColor15:
-        return GL_COLOR_ATTACHMENT15;
+        { eDrawBufferAttachmentColor0, GL_COLOR_ATTACHMENT0 },
+#ifdef DESKTOP_TARGET
+        { eDrawBufferAttachmentColor1, GL_COLOR_ATTACHMENT1 },
+        { eDrawBufferAttachmentColor2, GL_COLOR_ATTACHMENT2 },
+        { eDrawBufferAttachmentColor3, GL_COLOR_ATTACHMENT3 },
+        { eDrawBufferAttachmentColor4, GL_COLOR_ATTACHMENT4 },
+        { eDrawBufferAttachmentColor5, GL_COLOR_ATTACHMENT5 },
+        { eDrawBufferAttachmentColor6, GL_COLOR_ATTACHMENT6 },
+        { eDrawBufferAttachmentColor7, GL_COLOR_ATTACHMENT7 },
+        { eDrawBufferAttachmentColor8, GL_COLOR_ATTACHMENT8 },
+        { eDrawBufferAttachmentColor9, GL_COLOR_ATTACHMENT9 },
+        { eDrawBufferAttachmentColor10, GL_COLOR_ATTACHMENT10 },
+        { eDrawBufferAttachmentColor11, GL_COLOR_ATTACHMENT11 },
+        { eDrawBufferAttachmentColor12, GL_COLOR_ATTACHMENT12 },
+        { eDrawBufferAttachmentColor13, GL_COLOR_ATTACHMENT13 },
+        { eDrawBufferAttachmentColor14, GL_COLOR_ATTACHMENT14 },
+        { eDrawBufferAttachmentColor1, GL_COLOR_ATTACHMENT15 }
 #endif
-    default:
-        return GL_NONE;
-    }
-
-    return GL_NONE; // avoid warning
+    };
+    return drawBufferModes[eDrawBuffer];
 }
 
 //-------------------------------------------------------------------------------------------------
 GLenum CGLHelper::toGLType(EnumFilterType eFilter)
 {
-    switch (eFilter)
-    {
-    case eNearest:
-        return GL_NEAREST;
-    case eLinear:
-        return GL_LINEAR;
-    }
-
-    return GL_LINEAR; // avoid warning
+    static QMap<EnumFilterType, GLenum> filterModes {
+        { eNearest, GL_NEAREST },
+        { eLinear, GL_LINEAR }
+    };
+    return filterModes[eFilter];
 }
 
 //-------------------------------------------------------------------------------------------------
 QByteArray CGLHelper::fromLightParam(int iLightID, EnumLightParameter eParam)
 {
-    switch (eParam)
-    {
-    case eIsEnabled				: return QString("lights[%1].enabled").arg(iLightID).toLatin1(); break;
-    case ePosition				: return QString("lights[%1].position").arg(iLightID).toLatin1(); break;
-    case eDirection				: return QString("lights[%1].direction").arg(iLightID).toLatin1(); break;
-    case eAmbientColor			: return QString("lights[%1].ambient").arg(iLightID).toLatin1(); break;
-    case eDiffuseColor			: return QString("lights[%1].diffuse").arg(iLightID).toLatin1(); break;
-    case eSpecularColor			: return QString("lights[%1].specular").arg(iLightID).toLatin1(); break;
-    case eConstantAttenuation	: return QString("lights[%1].constantAttenuation").arg(iLightID).toLatin1(); break;
-    case eLinearAttenuation		: return QString("lights[%1].linearAttenuation").arg(iLightID).toLatin1(); break;
-    case eQuadraticAttenuation	: return QString("lights[%1].quadraticAttenuation").arg(iLightID).toLatin1(); break;
-    default:
-        return QByteArray();
-    }
+    static QMap<EnumLightParameter, QString> lightParameters {
+        { eIsEnabled,  "lights[%1].enabled" },
+        { ePosition,  "lights[%1].position" },
+        { eDirection,  "lights[%1].direction" },
+        { eAmbientColor,  "lights[%1].ambient" },
+        { eDiffuseColor,  "lights[%1].diffuse" },
+        { eSpecularColor,  "lights[%1].specular" },
+        { eConstantAttenuation,  "lights[%1].constantAttenuation" },
+        { eLinearAttenuation,  "lights[%1].linearAttenuation" },
+        { eQuadraticAttenuation,  "lights[%1].quadraticAttenuation" }
+    };
+    return lightParameters[eParam].arg(iLightID).toLatin1();
 }

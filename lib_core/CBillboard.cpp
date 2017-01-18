@@ -33,7 +33,7 @@ void CBillboard::addPositions(const QVector<QVector3D>& positions)
     CBuffer<QVector3D>& posBuffer = m_MeshBuffer.positionsBuffer();
     CBuffer<IndiceType>& idBuffer = m_MeshBuffer.indicesBuffer();
 
-    foreach (const QVector3D& position, positions)
+    for (const QVector3D& position : positions)
     {
         posBuffer << position;
         idBuffer << idBuffer.size();

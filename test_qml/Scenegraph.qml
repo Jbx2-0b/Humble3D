@@ -8,7 +8,6 @@ Pane {
     Widget3D {
         id: view1
         anchors.fill: parent
-        enabled: true
 
         backgroundColor: Qt.vector4d(0.5, 0.5, 0.7, 1.0)
 
@@ -28,14 +27,14 @@ Pane {
 //        center: Qt.vector3d(0, 0, 0)
 //    }
 
-//    Switch {
-//        x: 10
-//        y: 10
+    Switch {
+        x: 10
+        y: 10
 
-//        onCheckedChanged: {
-//            view1.enabled = checked
-//        }
-//    }
+        onCheckedChanged: {
+            view1.enabled = checked
+        }
+    }
 
 //    Switch {
 //        x: parent.width / 2 + 10

@@ -61,7 +61,7 @@ public:
     virtual ~CRegisterFactory()
     {
         //détruire les instanciators
-        foreach (Instanciator<Base>* pInst, m_registerMap)
+        for (Instanciator<Base>* pInst : m_registerMap)
         {
             delete pInst;
         }

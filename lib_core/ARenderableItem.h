@@ -49,7 +49,7 @@ public:
     //! Prévient les listeners que le matériau a changé
     void notifyMaterialChanged()
     {
-        foreach (IRenderableItemListener* pListener, m_RenderableItemListeners)
+        for (IRenderableItemListener* pListener : m_RenderableItemListeners)
         {
             pListener->onMaterialChanged(this);
         }

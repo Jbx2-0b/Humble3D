@@ -364,7 +364,7 @@ GLSLSyntaxHighlighter::GLSLSyntaxHighlighter(QTextDocument* document)
 //-----------------------------------------------------------------------
 void GLSLSyntaxHighlighter::highlightBlock(const QString &text)
 {
-    foreach(QString variable, m_Variables)
+    for (QString variable : m_Variables)
     {
         QString pattern = "\\b" + variable + "\\b";
 
@@ -379,7 +379,7 @@ void GLSLSyntaxHighlighter::highlightBlock(const QString &text)
 
     }
 
-    foreach(QString keyword, m_Keywords)
+    for (QString keyword : m_Keywords)
     {
         QString pattern = "\\b" + keyword +"\\b";
 

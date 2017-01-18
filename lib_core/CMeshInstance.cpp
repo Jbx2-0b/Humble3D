@@ -10,7 +10,7 @@ CMeshInstance::CMeshInstance(CSceneManager* pSceneManager, CMesh* pMesh, const Q
     , m_pLocalRootNode(0)
 {
     m_pMesh->lock();
-    foreach (CSubMesh* pSubMesh, m_pMesh->subMeshs())
+    for (CSubMesh* pSubMesh : m_pMesh->subMeshs())
     {
         createSubMeshInstance(pSubMesh);
     }
@@ -24,7 +24,7 @@ CMeshInstance::~CMeshInstance(void)
 {
     m_pMesh->unregisterListener(this);
 
-    foreach (CSubMeshInstance* pSubMeshInstance, m_SubMeshInstanceMap.values())
+    for (CSubMeshInstance* pSubMeshInstance : m_SubMeshInstanceMap.values())
     {
         delete pSubMeshInstance;
     }
@@ -47,7 +47,7 @@ void CMeshInstance::notifyUpdate()
 {
     if (m_bNotificationsEnabled)
     {
-        foreach (IMeshInstanceListener* pListener, m_MeshInstanceListeners)
+        for (IMeshInstanceListener* pListener : m_MeshInstanceListeners)
         {
             pListener->onUpdate(this);
         }
@@ -61,7 +61,7 @@ void CMeshInstance::setMaterialName(const QString& materialName)
 {
     m_MaterialName = materialName;
 
-    foreach (CSubMeshInstance* pSubMeshInstance, m_SubMeshInstanceMap)
+    for (CSubMeshInstance* pSubMeshInstance : m_SubMeshInstanceMap)
     {
         pSubMeshInstance->setMaterialName(materialName);
     }
@@ -70,7 +70,7 @@ void CMeshInstance::setMaterialName(const QString& materialName)
 //-----------------------------------------------------------------------------------------
 void CMeshInstance::setRenderStates(const CRenderStates& renderStates)
 {
-    foreach (CSubMeshInstance* pSubMeshInstance, m_SubMeshInstanceMap)
+    for (CSubMeshInstance* pSubMeshInstance : m_SubMeshInstanceMap)
     {
         pSubMeshInstance->setRenderStates(renderStates);
     }
@@ -99,7 +99,7 @@ void CMeshInstance::removeSubMeshInstance(CSubMesh* pSubMesh)
 //-----------------------------------------------------------------------------------------
 void CMeshInstance::onUpdate(CMesh* pMesh)
 {
-    foreach (CSubMesh* pSubMesh, m_SubMeshInstanceMap.keys())
+    for (CSubMesh* pSubMesh : m_SubMeshInstanceMap.keys())
     {
         if (!pMesh->subMeshs().contains(pSubMesh))
         {
@@ -107,7 +107,7 @@ void CMeshInstance::onUpdate(CMesh* pMesh)
         }
     }
 
-    foreach (CSubMesh* pSubMesh, pMesh->subMeshs())
+    for (CSubMesh* pSubMesh : pMesh->subMeshs())
     {
         if (!m_SubMeshInstanceMap.contains(pSubMesh))
         {

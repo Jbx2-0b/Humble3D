@@ -46,7 +46,7 @@ public:
     //! Destructeur
     virtual ~CMeshBuffer()
     {
-        foreach (IMeshBufferListener* pListener, m_MeshBufferListeners)
+        for (IMeshBufferListener* pListener : m_MeshBufferListeners)
         {
             pListener->onDelete(this);
         }

@@ -234,7 +234,7 @@ private:
     //! Retourne vrai si au moins un items est visible et renderable
     inline bool isOneRenderable(const QList<ARenderableItem*>& items) const
     {
-        foreach (ARenderableItem* pItem, items)
+        for (ARenderableItem* pItem : items)
         {
             if (!pItem->isLocked())
             {

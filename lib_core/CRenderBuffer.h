@@ -55,7 +55,7 @@ protected:
     {
         if (m_bNotificationsEnabled)
         {
-            foreach (IRenderBufferListener* pListener, m_RenderBufferListeners)
+            for (IRenderBufferListener* pListener : m_RenderBufferListeners)
             {
                 pListener->onUpdate(this);
             }
@@ -69,7 +69,7 @@ protected:
     {
         if (m_bNotificationsEnabled)
         {
-            foreach (IRenderBufferListener* pListener, m_RenderBufferListeners)
+            for (IRenderBufferListener* pListener : m_RenderBufferListeners)
             {
                 pListener->onDelete(this);
             }

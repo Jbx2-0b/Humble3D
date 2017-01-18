@@ -113,7 +113,7 @@ bool CMeshManager::saveMesh(CMesh* pMesh, const QString& fileName, int iCompress
         int iSubMeshCount = pMesh->subMeshs().count();
         out << iSubMeshCount;
 
-        foreach (CSubMesh* pSubMesh, pMesh->subMeshs())
+        for (CSubMesh* pSubMesh : pMesh->subMeshs())
         {
             out << *pSubMesh;
         }
@@ -134,7 +134,7 @@ CMeshGroup CMeshManager::loadMeshGroup(const QString& fileName)
     CMeshGroup meshGroup;
     CBinaryLoader::load(fileName, &meshGroup);
 
-    foreach (CMesh* pMesh, meshGroup)
+    for (CMesh* pMesh : meshGroup)
     {
         appendMesh(pMesh);
     }
@@ -184,7 +184,7 @@ void CMeshManager::removeMesh(CMesh* pMesh)
 {
     pMesh->unregisterListener(this);
 
-    foreach (CSubMesh* pSubMesh, pMesh->subMeshs())
+    for (CSubMesh* pSubMesh : pMesh->subMeshs())
     {
         notifyDelete(pSubMesh);
     }
@@ -198,7 +198,7 @@ void CMeshManager::removeMesh(CMesh* pMesh)
 //-----------------------------------------------------------------------------------------
 void CMeshManager::clearMeshs()
 {
-    foreach (CMesh* pMesh, m_MeshByID)
+    for (CMesh* pMesh : m_MeshByID)
     {
         removeMesh(pMesh);
     }
@@ -219,7 +219,7 @@ bool CMeshManager::isMeshExist(int iID) const
 //-----------------------------------------------------------------------------------------
 void CMeshManager::notifyUpdate(CMesh* pMesh)
 {
-    foreach (IMeshManagerListener* pListener, m_MeshManagerListeners)
+    for (IMeshManagerListener* pListener : m_MeshManagerListeners)
     {
         pListener->onUpdate(pMesh);
     }
@@ -228,7 +228,7 @@ void CMeshManager::notifyUpdate(CMesh* pMesh)
 //-----------------------------------------------------------------------------------------
 void CMeshManager::notifyDelete(CMesh* pMesh)
 {
-    foreach (IMeshManagerListener* pListener, m_MeshManagerListeners)
+    for (IMeshManagerListener* pListener : m_MeshManagerListeners)
     {
         pListener->onDelete(pMesh);
     }
@@ -245,7 +245,7 @@ void CMeshManager::onDelete(CMeshBuffer* pBuffer)
 //-----------------------------------------------------------------------------------------
 void CMeshManager::notifyDelete(CMeshBuffer* pBuffer)
 {
-    foreach (IMeshBufferListener* pListener, m_MeshBufferListeners)
+    for (IMeshBufferListener* pListener : m_MeshBufferListeners)
     {
         pListener->onDeleteMeshBuffer(pBuffer);
     }
@@ -258,7 +258,7 @@ QDataStream& operator << (QDataStream& out, const CMeshGroup& meshGroup)
 {
     out << meshGroup.count();
 
-    foreach (CMesh* pMesh, meshGroup)
+    for (CMesh* pMesh : meshGroup)
     {
         out << *pMesh;
     }
@@ -289,7 +289,7 @@ QDataStream& operator >> (QDataStream& in, CMeshGroup& meshGroup)
 QDataStream& operator << (QDataStream& out, const CMesh& mesh)
 {
     out << mesh.subMeshs().count();
-    foreach (CSubMesh* pSubMesh, mesh.subMeshs())
+    for (CSubMesh* pSubMesh : mesh.subMeshs())
     {
         out << *pSubMesh;
     }

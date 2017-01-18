@@ -169,7 +169,7 @@ void CTextureManager::removeTexture(ATexture* pTexture)
 //-----------------------------------------------------------------------------------------
 void CTextureManager::clearTextures()
 {
-    foreach (ATexture* pTexture, m_TextureByID)
+    for (ATexture* pTexture : m_TextureByID)
     {
         removeTexture(pTexture);
     }
@@ -190,7 +190,7 @@ bool CTextureManager::isTextureExist(int iID) const
 //-----------------------------------------------------------------------------------------
 void CTextureManager::notifyUpdate(ATexture* pTexture)
 {
-    foreach (ITextureManagerListener* pListener, m_TextureManagerListeners)
+    for (ITextureManagerListener* pListener : m_TextureManagerListeners)
     {
         pListener->onUpdateTexture(pTexture);
     }
@@ -199,7 +199,7 @@ void CTextureManager::notifyUpdate(ATexture* pTexture)
 //-----------------------------------------------------------------------------------------
 void CTextureManager::notifyDelete(ATexture* pTexture)
 {
-    foreach (ITextureManagerListener* pListener, m_TextureManagerListeners)
+    for (ITextureManagerListener* pListener : m_TextureManagerListeners)
     {
         pListener->onDeleteTexture(pTexture);
     }

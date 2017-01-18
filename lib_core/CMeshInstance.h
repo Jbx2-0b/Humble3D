@@ -95,7 +95,7 @@ public:
         result += ASceneNodeItem::toString();
         result += QString("Mesh name: %1\n").arg(m_pMesh->getName());
         result += QString("Material name: %1\n").arg(m_MaterialName);
-        foreach (CSubMeshInstance* pSubMeshInstance, m_SubMeshInstanceMap.values())
+        for (CSubMeshInstance* pSubMeshInstance : m_SubMeshInstanceMap.values())
         {
             result += pSubMeshInstance->toString();
         }

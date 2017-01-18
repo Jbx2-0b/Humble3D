@@ -29,7 +29,7 @@ public:
 
         // On supprime l'ensemble des enfants
 
-        foreach (CNode* pNode, m_ChildNodes)
+        for (CNode* pNode : m_ChildNodes)
         {
             delete pNode;
         }
@@ -88,7 +88,7 @@ public:
             }
             else
             {
-                foreach (T* pChild, getChildNodes())
+                for (T* pChild : getChildNodes())
                 {
                     if (pNode == pChild)
                     {
@@ -113,7 +113,7 @@ public:
         }
         else
         {
-            foreach (T* pChild, getChildNodes())
+            for (T* pChild : getChildNodes())
             {
                 if (nodeName == pChild->getName())
                 {
@@ -181,7 +181,7 @@ public:
     //! Détache l'ensemble des noeuds enfants. Ne détruit pas les noeuds
     virtual void clearChildNodes()
     {
-        foreach (T* pNode, m_ChildNodes)
+        for (T* pNode : m_ChildNodes)
         {
             pNode->setParent(0);
         }
@@ -193,7 +193,7 @@ public:
     //! Détache l'ensemble des noeuds enfants. Ne détruit pas les noeuds
     virtual void deleteChildNodes()
     {
-        foreach (T* pNode, m_ChildNodes)
+        for (T* pNode : m_ChildNodes)
         {
             delete pNode;
         }
@@ -207,7 +207,7 @@ public:
     {
         if (getName() == name) return static_cast<T*>(this);
 
-        foreach (T* pChildNode, m_ChildNodes)
+        for (T* pChildNode : m_ChildNodes)
         {
             if (T* pNode = pChildNode->findNode(name))
             {
@@ -222,7 +222,7 @@ public:
     {
         if (getID() == iID) return static_cast<T*>(this);
 
-        foreach (T* pChildNode, m_ChildNodes)
+        for (T* pChildNode : m_ChildNodes)
         {
             if (T* pNode = pChildNode->findNode(iID))
             {
@@ -255,12 +255,12 @@ protected:
                 m_pParent->onChildUpdate(static_cast<T*>(this));
             }
 
-            foreach (INodeListener* pListener, m_NodeListeners)
+            for (INodeListener* pListener : m_NodeListeners)
             {
                 pListener->onUpdate(static_cast<T*>(this));
             }
 
-            foreach (T* pNode, m_ChildNodes)
+            for (T* pNode : m_ChildNodes)
             {
                 pNode->onParentUpdate(static_cast<T*>(this));
             }
@@ -274,7 +274,7 @@ protected:
     {
         if (m_bNotificationsEnabled)
         {
-            foreach (INodeListener* pListener, m_NodeListeners)
+            for (INodeListener* pListener : m_NodeListeners)
             {
                 pListener->onDelete(static_cast<T*>(this));
             }
@@ -305,7 +305,7 @@ protected:
         }
         LogManager.addMessage(eINFO, QString("%1 Node name : %2.").arg(branchNode).arg(getName()));
 
-        foreach (T* pChild, m_ChildNodes)
+        for (T* pChild : m_ChildNodes)
         {
             pChild->recursiveDump(iLevel + 1);
         }

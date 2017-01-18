@@ -73,7 +73,7 @@ protected:
     // Monde physique
     btDiscreteDynamicsWorld* m_pWorld;
 
-    // Interface pour détecter les objets où leurs AABB se chevauchent.
+    // Interface pour détecter les objets dont les AABB se chevauchent.
     btBroadphaseInterface* m_pBroadphase;
 
     // btCollisionDispatcher supporte des algorithmes qui peuvent gérer des pairs de collisions ConvexConvex et ConvexConcave. Temps de l'impact, le point le plus proche et pénétration de profondeur.

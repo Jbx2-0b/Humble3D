@@ -51,7 +51,7 @@ QVector<QMatrix4x4> CSubMeshInstance::getBoneTransformations() const
         int iCurrentID = 0;
         // TODO : Pour des raisons de performance, enregistrer un tableau associatif CSceneNode[bone.getNodeName()]
         // Après chargement du mesh
-        foreach (const CBone& bone, m_pSubMesh->bonesBuffer())
+        for (const CBone& bone : m_pSubMesh->bonesBuffer())
         {
             if (CSceneNode* pNode = m_pSceneManager->findNode(bone.getNodeName()))
             {

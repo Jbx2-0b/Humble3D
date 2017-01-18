@@ -19,7 +19,7 @@ CIDGenerator::~CIDGenerator()
         LogManager.addMessage(eDEBUG, "Entities have not been released :(");
         LogManager.addMessage(eDEBUG, QString("Entities count: %1").arg(m_Entities.size()));
 
-        foreach (AEntity* pEntity, m_Entities)
+        for (AEntity* pEntity : m_Entities)
         {
             LogManager.addMessage(eDEBUG, QString("%1 : %2.").arg(pEntity->getTypeName()).arg(pEntity->getName()));
         }

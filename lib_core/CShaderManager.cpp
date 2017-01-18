@@ -115,7 +115,7 @@ void CShaderManager::removeShader(CShader* pShader)
 //-----------------------------------------------------------------------------------------
 void CShaderManager::clearShaders()
 {
-    foreach (CShader* pShader, m_Shaders)
+    for (CShader* pShader : m_Shaders)
     {
         removeShader(pShader);
     }
@@ -136,7 +136,7 @@ bool CShaderManager::isShaderExist(int iID) const
 //-----------------------------------------------------------------------------------------
 void CShaderManager::notifyUpdate(CShader* pShader)
 {
-    foreach (IShaderManagerListener* pListener, m_ShaderManagerListeners)
+    for (IShaderManagerListener* pListener : m_ShaderManagerListeners)
     {
         pListener->onUpdateShader(pShader);
     }
@@ -145,7 +145,7 @@ void CShaderManager::notifyUpdate(CShader* pShader)
 //-----------------------------------------------------------------------------------------
 void CShaderManager::notifyDelete(CShader* pShader)
 {
-    foreach (IShaderManagerListener* pListener, m_ShaderManagerListeners)
+    for (IShaderManagerListener* pListener : m_ShaderManagerListeners)
     {
         pListener->onDeleteShader(pShader);
     }

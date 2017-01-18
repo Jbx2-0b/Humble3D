@@ -93,7 +93,7 @@ void CRenderBufferManager::removeRenderBuffer(CRenderBuffer* pRenderBuffer)
 //-----------------------------------------------------------------------------------------
 void CRenderBufferManager::clearRenderBuffers()
 {
-    foreach (CRenderBuffer* pRenderBuffer, m_RenderBuffers)
+    for (CRenderBuffer* pRenderBuffer : m_RenderBuffers)
     {
         removeRenderBuffer(pRenderBuffer);
     }
@@ -114,7 +114,7 @@ bool CRenderBufferManager::isRenderBufferExist(int iID) const
 //-----------------------------------------------------------------------------------------
 void CRenderBufferManager::notifyUpdate(CRenderBuffer* pRenderBuffer)
 {
-    foreach (IRenderBufferManagerListener* pListener, m_RenderBufferManagerListeners)
+    for (IRenderBufferManagerListener* pListener : m_RenderBufferManagerListeners)
     {
         pListener->onUpdateRenderBuffer(pRenderBuffer);
     }
@@ -123,7 +123,7 @@ void CRenderBufferManager::notifyUpdate(CRenderBuffer* pRenderBuffer)
 //-----------------------------------------------------------------------------------------
 void CRenderBufferManager::notifyDelete(CRenderBuffer* pRenderBuffer)
 {
-    foreach (IRenderBufferManagerListener* pListener, m_RenderBufferManagerListeners)
+    for (IRenderBufferManagerListener* pListener : m_RenderBufferManagerListeners)
     {
         pListener->onDeleteRenderBuffer(pRenderBuffer);
     }

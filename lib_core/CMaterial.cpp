@@ -22,7 +22,7 @@ CMaterial::~CMaterial()
 {
     notifyDelete();
 
-    foreach (CRenderPass* pPass, m_RenderingPassList)
+    for (CRenderPass* pPass : m_RenderingPassList)
     {
         delete pPass;
     }
@@ -104,7 +104,7 @@ void CMaterial::unregisterListener(IMaterialListener* pListener)
 //--------------------------------------------------------------------------
 void CMaterial::notifyDelete()
 {
-    foreach (IMaterialListener* pListener, m_MaterialListeners)
+    for (IMaterialListener* pListener : m_MaterialListeners)
     {
         pListener->onDelete(this);
     }
@@ -117,7 +117,7 @@ void CMaterial::notifyUpdate()
 {
     if (m_bNotificationsEnabled)
     {
-        foreach (IMaterialListener* pListener, m_MaterialListeners)
+        for (IMaterialListener* pListener : m_MaterialListeners)
         {
             pListener->onUpdate(this);
         }
@@ -150,7 +150,7 @@ void CMaterial::addTexture(const QString& textureName, EnumMaterialParameter eMa
 //--------------------------------------------------------------------------
 void CMaterial::removeTexture(const QString& textureName)
 {
-    foreach (const CTextureParam& texture, m_Textures)
+    for (const CTextureParam& texture : m_Textures)
     {
         if (texture.getTextureName() == textureName)
         {

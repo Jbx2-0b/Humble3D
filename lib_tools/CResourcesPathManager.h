@@ -91,7 +91,7 @@ public:
     {
         qDebug() << "Resources Files :";
 
-        foreach (const QString& sPath, m_sPaths)
+        for (const QString& sPath : m_sPaths)
         {
             qDebug() << sPath;
             QDirIterator dirIterator(sPath);
@@ -130,7 +130,7 @@ public:
             return fileInfo.absolutePath();
         }
 
-        foreach (const QString& sPath, m_sPaths)
+        for (const QString& sPath : m_sPaths)
         {
             if (QFileInfo(sPath + resourceName).exists())
             {

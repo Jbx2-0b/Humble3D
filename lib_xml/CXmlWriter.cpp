@@ -13,7 +13,7 @@ bool CXmlWriter::saveFile(const QString& fileName, const CXmlElement* pRootEleme
     QDomElement rootElement = doc.createElement(pRootElement->getName());
     doc.appendChild(rootElement);
 
-    foreach (const CXmlElement* pXmlElement, pRootElement->getChildElements())
+    for (const CXmlElement* pXmlElement : pRootElement->getChildElements())
     {
         recursiveAppendElements(&doc, &rootElement, pXmlElement);
     }
@@ -48,7 +48,7 @@ void CXmlWriter::recursiveAppendElements(
 
     pParentElement->appendChild(element);
 
-    foreach (const CXmlElement* xmlChildElement, pXmlElement->getChildElements())
+    for (const CXmlElement* xmlChildElement : pXmlElement->getChildElements())
     {
         recursiveAppendElements(pDocument, &element, xmlChildElement);
     }

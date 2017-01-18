@@ -46,28 +46,28 @@ CGLRenderer::~CGLRenderer()
     CTextureManager::getInstance().unregisterListener(this);
 
     // On supprime le stuff OpenGL
-    foreach (AGLTexture* pGLTexture, m_Textures)
+    for (AGLTexture* pGLTexture : m_Textures)
     {
         delete pGLTexture;
     }
 
     m_Textures.clear();
 
-    foreach (CGLFrameBuffer* pGLFrameBuffer, m_FrameBuffers)
+    for (CGLFrameBuffer* pGLFrameBuffer : m_FrameBuffers)
     {
         delete pGLFrameBuffer;
     }
 
     m_FrameBuffers.clear();
 
-    foreach (CGLShaderProgram* pGLShaderProgram, m_ShaderPrograms)
+    for (CGLShaderProgram* pGLShaderProgram : m_ShaderPrograms)
     {
         delete pGLShaderProgram;
     }
 
     m_ShaderPrograms.clear();
 
-    foreach (CGLMeshBuffer* pGLMeshBuffer, m_HardwareBuffers.values())
+    for (CGLMeshBuffer* pGLMeshBuffer : m_HardwareBuffers.values())
     {
         delete pGLMeshBuffer;
     }
@@ -182,7 +182,7 @@ void CGLRenderer::renderMeshBuffer(const QList<CMeshBuffer*>& buffers)
     if (!ARenderer::isInit())
         return;
 
-    foreach (CMeshBuffer* pBuffer, buffers)
+    for (CMeshBuffer* pBuffer : buffers)
     {
         if (!pBuffer->isLocked())
         {
@@ -575,9 +575,11 @@ void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
 
     const QList<CMaterial*> materials = CMaterialManager::getInstance().getMaterials();
 
-    foreach (CMaterial* pMaterial, materials)
+    for (CMaterial* pMaterial : materials)
     {
-        foreach (CRenderPass* pPass, pMaterial->renderingPassList())
+        const QList<CRenderPass*>& passes = pMaterial->renderingPassList();
+
+        for (CRenderPass* pPass : passes)
         {
             const CCamera* pCamera = pPass->getCamera() ? pPass->getCamera() : m_pCurrentCamera;
 
@@ -602,7 +604,7 @@ void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
                             if (pFrameBuffer->isValid())
                             {
 #ifdef DESKTOP_TARGET // Not supported before OpenGL ES 3.0
-                                foreach (const CRenderOperation& op, pPass->getPreOperations())
+                                for (const CRenderOperation& op : pPass->getPreOperations())
                                 {
                                     CGLFrameBuffer* pSrcFrameBuffer = getFrameBuffer(op.getSource());
                                     CGLFrameBuffer* pDstFrameBuffer = getFrameBuffer(op.getDestination());
@@ -674,7 +676,7 @@ void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
                         bindMaterial(pMaterial);
                         bindUserUniformValues(pPass);
 
-                        foreach (ARenderableItem* pItem, items)
+                        for (ARenderableItem* pItem : items)
                         {
                             QSet<CSceneNode*> itemNodes = pItem->getNodes();
                             QSet<CSceneNode*> nodesToRender = m_bFrustumCullingEnabled ? visibleSceneNodes & itemNodes : itemNodes;
@@ -685,7 +687,7 @@ void CGLRenderer::renderItems(const CRenderQueue& renderQueue)
                                 if (pItem->isVisible() && pItem->isRenderable())
                                 {
                                     bindSkeleton(pItem);
-                                    foreach (CSceneNode* pNode, nodesToRender)
+                                    for (CSceneNode* pNode : nodesToRender)
                                     {
                                         bindNode(pCamera, pNode);
                                         pItem->doRender(this);
@@ -795,7 +797,7 @@ void CGLRenderer::bindLights(const CCamera* pCamera)
 
     int iLightID = 0;
 
-    foreach (CLight* pLight, m_pSceneManager->getLights())
+    for (CLight* pLight : m_pSceneManager->getLights())
     {
         if (CSceneNode* pLightNode = pLight->getNode())
         {
@@ -845,7 +847,7 @@ void CGLRenderer::bindMaterial(CMaterial* pMaterial)
     m_MaterialParameterCount[eReflection]	= 0;
 
     int iUnit = 0;
-    foreach (const CTextureParam& texture, pMaterial->getTextureParams())
+    for (const CTextureParam& texture : pMaterial->getTextureParams())
     {
         if (ATexture* pTexture = CTextureManager::getInstance().getTextureByName(texture.getTextureName()))
         {
@@ -1047,7 +1049,7 @@ void CGLRenderer::createTexture(const ATexture* pTexture)
             CGLTexture2D* pGLTexture2D = new CGLTexture2D(texSize.width(), texSize.height());
             pGLTexture = pGLTexture2D;
 
-            foreach (const SImageRect& imgRect, pTexture2D->imageRects())
+            for (const SImageRect& imgRect : pTexture2D->imageRects())
             {
                 pGLTexture2D->loadSub(imgRect.first, imgRect.second);
             }
@@ -1182,7 +1184,7 @@ CGLFrameBuffer* CGLRenderer::getFrameBuffer(CFrameBuffer* pFrameBuffer)
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::releaseMaterial(CMaterial* pMaterial)
 {
-    foreach (const CTextureParam& texture, pMaterial->getTextureParams())
+    for (const CTextureParam& texture : pMaterial->getTextureParams())
     {
         if (ATexture* pTexture = CTextureManager::getInstance().getTextureByName(texture.getTextureName()))
         {
@@ -1203,7 +1205,7 @@ void CGLRenderer::bindUserUniformValues(const CRenderPass* pPass)
 {
     if (CShader* pShader = CShaderManager::getInstance().getShaderByName(pPass->getShaderName()))
     {
-        foreach (const TUniformValue& uniformValue, pShader->getUniformValues())
+        for (const TUniformValue& uniformValue : pShader->getUniformValues())
         {
             QByteArray name = uniformValue.first.toLatin1();
 
@@ -1235,7 +1237,7 @@ void CGLRenderer::bindUserUniformValues(const CRenderPass* pPass)
             }
         }
 
-        foreach (const TUniformArray& uniformArray, pShader->getUniformValueArrays())
+        for (const TUniformArray& uniformArray : pShader->getUniformValueArrays())
         {
             QVariant array = uniformArray.second;
             QByteArray name = uniformArray.first.toLatin1();
@@ -1447,7 +1449,7 @@ void CGLRenderer::checkError(const QString& message)
 //-----------------------------------------------------------------------------------------
 void CGLRenderer::notifyNewMessage(bool bIsError, const QString& message)
 {
-    foreach (IGLRendererListener* pListener, m_GLRendererListeners)
+    for (IGLRendererListener* pListener : m_GLRendererListeners)
     {
         pListener->onNewMessage(bIsError, message);
     }

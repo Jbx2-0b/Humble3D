@@ -243,14 +243,14 @@ int main(int, char **)
     QTime timer;
 
     timer.start();
-    foreach (const CBox3D& box, bboxList)
+    for (const CBox3D& box : bboxList)
     {
         frustum.isVisible(box);
     }
     qDebug() << "IsVisible: " << timer.elapsed();
 
     timer.start();
-    foreach (const CBox3D& box, bboxList)
+    for (const CBox3D& box : bboxList)
     {
         frustum.isBoxInFrustum(box);
     }

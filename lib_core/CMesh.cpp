@@ -23,7 +23,7 @@ CMesh::CMesh(const QString& name)
 //-----------------------------------------------------------------------------------------
 CMesh::~CMesh(void)
 {
-    foreach (CSubMesh* pSubMesh, m_SubMeshs)
+    for (CSubMesh* pSubMesh : m_SubMeshs)
     {
         removeSubMesh(pSubMesh);
     }
@@ -65,7 +65,7 @@ void CMesh::removeSubMesh(CSubMesh* pSubMesh)
 //-----------------------------------------------------------------------------------------
 void CMesh::clearSubMeshs()
 {
-    foreach (CSubMesh* pSubMesh, m_SubMeshs)
+    for (CSubMesh* pSubMesh : m_SubMeshs)
     {
         removeSubMesh(pSubMesh);
     }
@@ -75,7 +75,7 @@ void CMesh::clearSubMeshs()
 //-----------------------------------------------------------------------------------------
 void CMesh::setMaterialName(const QString& materialName)
 {
-    foreach (CSubMesh* pSubMesh, m_SubMeshs)
+    for (CSubMesh* pSubMesh : m_SubMeshs)
     {
         pSubMesh->setMaterialName(materialName);
     }
@@ -125,7 +125,7 @@ const CSphere& CMesh::getBoundingSphere() const
 //-----------------------------------------------------------------------------------------
 bool CMesh::hasSkeleton() const
 {
-    foreach (const CSubMesh* pSubMesh, m_SubMeshs)
+    for (const CSubMesh* pSubMesh : m_SubMeshs)
     {
         if (pSubMesh->hasSkeleton())
             return true;
@@ -139,7 +139,7 @@ unsigned int CMesh::getPolygonCount() const
 {
     unsigned int iPolygonCount = 0;
 
-    foreach (CSubMesh* pSubMesh, m_SubMeshs)
+    for (CSubMesh* pSubMesh : m_SubMeshs)
     {
         iPolygonCount += pSubMesh->getPolygonCount();
     }
@@ -154,9 +154,9 @@ QMultiHash<CSceneNode*, CBone> CMesh::getBoneNodes(CSceneManager* pSceneManager)
 {
     QMultiHash<CSceneNode*, CBone> nodeMap;
 
-    foreach (const CSubMesh* pSubMesh, m_SubMeshs)
+    for (const CSubMesh* pSubMesh : m_SubMeshs)
     {
-        foreach (const CBone& bone, pSubMesh->bonesBuffer())
+        for (const CBone& bone : pSubMesh->bonesBuffer())
         {
             if (CSceneNode* pNode = pSceneManager->findNode(bone.getNodeName()))
             {
@@ -173,7 +173,7 @@ QMultiHash<CSceneNode*, CBone> CMesh::getBoneNodes(CSceneManager* pSceneManager)
 //-----------------------------------------------------------------------------------------
 void CMesh::computeNormals()
 {
-    foreach (CSubMesh* pSubMesh, m_SubMeshs)
+    for (CSubMesh* pSubMesh : m_SubMeshs)
     {
         if (pSubMesh->getAutoComputeNormals())
         {
@@ -193,7 +193,7 @@ bool CMesh::intersection(const CRay& ray, real* dDistance, const QMatrix4x4& tra
 {
     bool bIntersect = false;
 
-    foreach (CSubMesh* pSubMesh, m_SubMeshs)
+    for (CSubMesh* pSubMesh : m_SubMeshs)
     {
         real dD = std::numeric_limits<real>::infinity();
 
@@ -213,7 +213,7 @@ bool CMesh::intersection(const CRay& ray, real* dDistance, const QMatrix4x4& tra
 //-----------------------------------------------------------------------------------------
 bool CMesh::intersects(const CRay &ray, const QMatrix4x4& transformation /*= QMatrix4x4()*/) const
 {
-    foreach (CSubMesh* pSubMesh, m_SubMeshs)
+    for (CSubMesh* pSubMesh : m_SubMeshs)
     {
         if (pSubMesh->intersects(ray, transformation))
         {
@@ -246,7 +246,7 @@ void CMesh::update()
 //--------------------------------------------------------------------------
 void CMesh::setDirty()
 {
-    foreach (CSubMesh* pSubMesh, m_SubMeshs)
+    for (CSubMesh* pSubMesh : m_SubMeshs)
     {
         pSubMesh->setDirty();
     }
@@ -261,7 +261,7 @@ void CMesh::notifyUpdate()
 {
     if (m_bNotificationsEnabled)
     {
-        foreach (IMeshListener* pListener, m_MeshListeners)
+        for (IMeshListener* pListener : m_MeshListeners)
         {
             pListener->onUpdate(this);
         }
@@ -273,7 +273,7 @@ void CMesh::notifyUpdate()
 //--------------------------------------------------------------------------
 void CMesh::notifyDelete()
 {
-    foreach (IMeshListener* pListener, m_MeshListeners)
+    for (IMeshListener* pListener : m_MeshListeners)
     {
         pListener->onDelete(this);
     }

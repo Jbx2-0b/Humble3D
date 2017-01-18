@@ -105,7 +105,7 @@ bool CBox3D::contains(const QVector3D& vector) const
 //-----------------------------------------------------------------------------------------
 bool CBox3D::contains(const CBox3D& bbox) const
 {
-    foreach (const QVector3D& corner, bbox.getCorners())
+    for (const QVector3D& corner : bbox.getCorners())
     {
         if (!contains(corner))
             return false;

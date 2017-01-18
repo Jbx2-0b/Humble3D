@@ -57,7 +57,7 @@ void CSoftwareRenderer::render()
         QList<int> materialIDs = renderQueue.materialIDs();
 
 
-        foreach (int materialID, materialIDs)
+        for (int materialID : materialIDs)
         {
 
             if (CMaterial* pMaterial = CMaterialManager::getInstance().getMaterialByID(materialID))
@@ -66,11 +66,11 @@ void CSoftwareRenderer::render()
 
                 const QList<ARenderableItem*>& items = renderQueue.getItemsByMaterialID(materialID);
 
-                foreach (ARenderableItem* pItem, items)
+                for (ARenderableItem* pItem : items)
                 {
                     if (pItem->isVisible())
                     {
-                        foreach (CSceneNode* pNode, pItem->getNodes())
+                        for (CSceneNode* pNode : pItem->getNodes())
                         {
                             // On concaténe les matrices pour obtenir la matrice "Model-Vue-Projection" qui correspond
                             // au changement de repére pour passer du répére de l'objet à celui de la caméra
@@ -174,7 +174,7 @@ void CSoftwareRenderer::renderMeshBuffer(CMeshBuffer* pBuffer)
 //-----------------------------------------------------------------------------------------
 void CSoftwareRenderer::renderMeshBuffer(const QList<CMeshBuffer*>& buffers)
 {
-    foreach (CMeshBuffer* pBuffer, buffers)
+    for (CMeshBuffer* pBuffer : buffers)
     {
         renderMeshBuffer(pBuffer);
     }

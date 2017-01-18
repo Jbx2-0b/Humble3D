@@ -191,7 +191,7 @@ protected:
         m_bNeedUpdateGlobalBoundingBox = true;
         if (m_pParent) m_pParent->needUpdateBoundingBox();
 
-        foreach (CSceneNode* pChild, m_ChildNodes)
+        for (CSceneNode* pChild : m_ChildNodes)
         {
             pChild->needUpdateTransformationMatrix();
         }

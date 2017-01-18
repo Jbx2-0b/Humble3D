@@ -105,7 +105,7 @@ protected:
     {
         if (m_bNotificationsEnabled)
         {
-            foreach (IEntityListener* pListener, m_EntityListeners)
+            for (IEntityListener* pListener : m_EntityListeners)
             {
                 pListener->onUpdate(this);
             }
@@ -117,7 +117,7 @@ protected:
     {
         if (m_bNotificationsEnabled)
         {
-            foreach (IEntityListener* pListener, m_EntityListeners)
+            for (IEntityListener* pListener : m_EntityListeners)
             {
                 pListener->onDelete(this);
             }

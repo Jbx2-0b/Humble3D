@@ -12,13 +12,13 @@ CAnimation::CAnimation(const QString& name)
 //--------------------------------------------------------------------------
 CAnimation::~CAnimation()
 {
-    foreach (CSceneNodeAnimation* pNodeAnimation, m_NodeAnimations)
+    for (CSceneNodeAnimation* pNodeAnimation : m_NodeAnimations)
     {
         m_NodeAnimations.removeOne(pNodeAnimation);
         delete pNodeAnimation;
     }
 
-    foreach (CMeshAnimation* pMeshAnimation, m_MeshAnimations)
+    for (CMeshAnimation* pMeshAnimation : m_MeshAnimations)
     {
         m_MeshAnimations.removeOne(pMeshAnimation);
         delete pMeshAnimation;
@@ -74,7 +74,7 @@ CMeshAnimation* CAnimation::createMeshAnimation(const QString& meshName, const Q
 //--------------------------------------------------------------------------
 void CAnimation::notifyStart()
 {
-    foreach (IAnimationListener* pListener, m_AnimationListeners)
+    for (IAnimationListener* pListener : m_AnimationListeners)
     {
         pListener->onStart(this);
     }
@@ -83,7 +83,7 @@ void CAnimation::notifyStart()
 //--------------------------------------------------------------------------
 void CAnimation::notifyPause()
 {
-    foreach (IAnimationListener* pListener, m_AnimationListeners)
+    for (IAnimationListener* pListener : m_AnimationListeners)
     {
         pListener->onPause(this);
     }
@@ -92,7 +92,7 @@ void CAnimation::notifyPause()
 //--------------------------------------------------------------------------
 void CAnimation::notifyStop()
 {
-    foreach (IAnimationListener* pListener, m_AnimationListeners)
+    for (IAnimationListener* pListener : m_AnimationListeners)
     {
         pListener->onStop(this);
     }

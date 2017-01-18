@@ -30,10 +30,10 @@ CSceneNode::CSceneNode(CSceneManager* pSceneManager, const QString& name, CScene
 //-----------------------------------------------------------------------------------------
 CSceneNode::~CSceneNode()
 {
-    foreach (CSceneNode* pNode, m_ChildNodes)
+    for (CSceneNode* pNode : m_ChildNodes)
     {
         // On prévient les NodeItems qu'on détruit ler noeud
-        foreach (ASceneNodeItem* pNodeItem, m_NodeItems)
+        for (ASceneNodeItem* pNodeItem : m_NodeItems)
         {
             pNodeItem->removeNode(pNode);
         }
@@ -65,7 +65,7 @@ const CBox3D& CSceneNode::getLocalAxisAlignedBoundingBox(bool bTransformed /*= t
     if (m_bNeedUpdateLocalBoundingBox)
     {
         m_LocalBoundingBox.setNull();
-        foreach (ASceneNodeItem* pItem, m_NodeItems)
+        for (ASceneNodeItem* pItem : m_NodeItems)
         {
             const CBox3D& meshBbox = pItem->getBoundingBox();
             m_LocalBoundingBox = m_LocalBoundingBox.united(meshBbox);
@@ -84,13 +84,13 @@ const CBox3D& CSceneNode::getGlobalAxisAlignedBoundingBox() const
 {
     if (m_bNeedUpdateGlobalBoundingBox)
     {
-        foreach (ASceneNodeItem* pItem, m_NodeItems)
+        for (ASceneNodeItem* pItem : m_NodeItems)
         {
             CBox3D meshBbox = pItem->getBoundingBox();
             m_GlobalBoundingBox = m_GlobalBoundingBox.united(meshBbox);
         }
 
-        foreach (CSceneNode* pNode, m_ChildNodes)
+        for (CSceneNode* pNode : m_ChildNodes)
         {
             m_GlobalBoundingBox = m_GlobalBoundingBox.united(pNode->getGlobalAxisAlignedBoundingBox());
         }
@@ -108,7 +108,7 @@ real CSceneNode::getLocalMass() const
 {
     real dMass = 0.;
 
-    foreach (ASceneNodeItem* pItem, m_NodeItems)
+    for (ASceneNodeItem* pItem : m_NodeItems)
     {
         dMass += pItem->getMass();
     }
@@ -121,7 +121,7 @@ real CSceneNode::getGlobalMass() const
 {
     real dMass = getLocalMass();
 
-    foreach (CSceneNode* pNode, m_ChildNodes)
+    for (CSceneNode* pNode : m_ChildNodes)
     {
         dMass += pNode->getGlobalMass();
     }
@@ -134,7 +134,7 @@ unsigned int CSceneNode::getLocalPolygonCount() const
 {
     unsigned int iPolygonCount = 0;
 
-    foreach (ASceneNodeItem* pItem, m_NodeItems)
+    for (ASceneNodeItem* pItem : m_NodeItems)
     {
         iPolygonCount += pItem->getPolygonCount();
     }
@@ -148,7 +148,7 @@ unsigned int CSceneNode::getGlobalPolygonCount() const
     unsigned int iPolygonCount = getLocalPolygonCount();
 
 
-    foreach (CSceneNode* pNode, m_ChildNodes)
+    for (CSceneNode* pNode : m_ChildNodes)
     {
         iPolygonCount += pNode->getGlobalPolygonCount();
     }
@@ -169,7 +169,7 @@ void CSceneNode::addItem(ASceneNodeItem* pNodeItem)
 //-----------------------------------------------------------------------------------------
 void CSceneNode::addItems(const QList<ASceneNodeItem*>& nodeItems)
 {
-    foreach (ASceneNodeItem* pNodeItem, nodeItems)
+    for (ASceneNodeItem* pNodeItem : nodeItems)
     {
         m_NodeItems.append(pNodeItem);
         pNodeItem->addNode(this);
@@ -194,7 +194,7 @@ QList<ASceneNodeItem*> CSceneNode::getAllChildItems() const
 {
     QList<ASceneNodeItem*> items = m_NodeItems;
 
-    foreach (CSceneNode* pSceneNode, m_ChildNodes)
+    for (CSceneNode* pSceneNode : m_ChildNodes)
     {
         items += pSceneNode->getAllChildItems();
     }
@@ -432,12 +432,12 @@ void CSceneNode::recursiveDump(int iLevel) const
     }
     qDebug() << branchNode << "Node name : " << getName();
 
-    foreach (ASceneNodeItem* pItem, m_NodeItems)
+    for (ASceneNodeItem* pItem : m_NodeItems)
     {
         qDebug() << branchItems << "Node item : " << pItem->getName();
     }
 
-    foreach (CSceneNode* pChild, m_ChildNodes)
+    for (CSceneNode* pChild : m_ChildNodes)
     {
         pChild->recursiveDump(iLevel + 1);
     }

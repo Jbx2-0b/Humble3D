@@ -53,7 +53,7 @@ CGraphicsView3D::CGraphicsView3D(CSceneManager* pSceneManager, CCamera* pCamera,
 //-----------------------------------------------------------------------------------------
 CGraphicsView3D::~CGraphicsView3D()
 {
-    foreach (QWidget* pWidget, m_GraphicsWidgetItems.keys())
+    for (QWidget* pWidget : m_GraphicsWidgetItems.keys())
     {
         removeWidget(pWidget);
     }   

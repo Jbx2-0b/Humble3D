@@ -30,7 +30,7 @@ template<typename T>
 QVariantList toVariantList(const QVector<T>& list)
 {
     QVariantList newList;
-    foreach(const T& item, list)
+    for(const T& item : list)
         newList << item;
 
     return newList;
@@ -288,7 +288,7 @@ public:
     //! Affiche l'ensemble des valeurs uniformes sur la console
     void dumpUniformValues() const
     {
-        foreach (const TUniformValue& uniformValue, m_UniformValues)
+        for (const TUniformValue& uniformValue : m_UniformValues)
         {
             qDebug() << uniformValue.first << uniformValue.second;
         }

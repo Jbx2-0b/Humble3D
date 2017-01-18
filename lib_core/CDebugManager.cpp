@@ -16,12 +16,12 @@ CDebugManager::CDebugManager(CSceneManager* pSceneManager)
 //-----------------------------------------------------------------------------------------
 CDebugManager::~CDebugManager()
 {
-    foreach (CMeshInstance* pMeshInstance, m_MeshInstances)
+    for (CMeshInstance* pMeshInstance : m_MeshInstances)
     {
         m_pSceneManager->deleteMeshInstance(pMeshInstance);
     }
 
-    foreach (CMesh* pMesh, m_Meshs)
+    for (CMesh* pMesh : m_Meshs)
     {
         CMeshManager::getInstance().removeMesh(pMesh);
     }
@@ -30,7 +30,7 @@ CDebugManager::~CDebugManager()
 //-----------------------------------------------------------------------------------------
 void CDebugManager::setVisible(bool bVisible)
 {
-    foreach (CMeshInstance* pMeshInstance, m_MeshInstances)
+    for (CMeshInstance* pMeshInstance : m_MeshInstances)
     {
         pMeshInstance->setVisible(bVisible);
     }
@@ -78,7 +78,7 @@ CMeshInstance* CDebugManager::createNormals(CMeshInstance* pMeshInstance, const 
     CBuffer<QVector3D>& posBuffer = pNormalSubMesh->positionsBuffer();
     CBuffer<IndiceType>& idBuffer = pNormalSubMesh->indicesBuffer();
 
-    foreach (CSubMesh* pSubMesh, pMeshInstance->getMesh()->subMeshs())
+    for (CSubMesh* pSubMesh : pMeshInstance->getMesh()->subMeshs())
     {
         if (pSubMesh->normalsBuffer().count() == pSubMesh->positionsBuffer().count())
         {
@@ -95,7 +95,7 @@ CMeshInstance* CDebugManager::createNormals(CMeshInstance* pMeshInstance, const 
     CMeshInstance* pNormalMeshInstance = m_pSceneManager->createMeshInstance(pMesh, pMeshInstance->getName() + "NormalMeshInstance");
     pNormalMeshInstance->setMaterialName(CMaterialManager::getInstance().getMaterialNameByColor(color));
 
-    foreach (CSceneNode* pSceneNode, pMeshInstance->getNodes())
+    for (CSceneNode* pSceneNode : pMeshInstance->getNodes())
     {
         pSceneNode->addItem(pNormalMeshInstance);
     }
@@ -199,7 +199,7 @@ void CMesh::createTangentsSubMesh()
         CBuffer<QVector3D>& posBuffer = m_pTangentsSubMesh->positionsBuffer();
         CBuffer<IndiceType>& idBuffer = m_pTangentsSubMesh->indicesBuffer();
 
-        foreach (CSubMesh* pSubMesh, m_SubMeshs)
+        for (CSubMesh* pSubMesh : m_SubMeshs)
         {
             for (int i = 0; i < pSubMesh->positionsBuffer().count(); ++i)
             {
@@ -229,7 +229,7 @@ void CMesh::createBitangentsSubMesh()
         CBuffer<QVector3D>& posBuffer = m_pBitangentsSubMesh->positionsBuffer();
         CBuffer<IndiceType>& idBuffer = m_pBitangentsSubMesh->indicesBuffer();
 
-        foreach (CSubMesh* pSubMesh, m_SubMeshs)
+        for (CSubMesh* pSubMesh : m_SubMeshs)
         {
             for (int i = 0; i < pSubMesh->positionsBuffer().count(); ++i)
             {
@@ -296,7 +296,7 @@ void CMesh::createSkeletonSubMesh()
         CBuffer<IndiceType>& indicesBuffer = pBuffer->indicesBuffer();
 
         int iCurrentIndice = 0;
-        foreach (const TLine& line, t.lines)
+        for (const TLine& line : t.lines)
         {
             positionsBuffer << line.first << line.second;
             indicesBuffer << iCurrentIndice << iCurrentIndice + 1;

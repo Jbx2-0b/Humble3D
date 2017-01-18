@@ -12,7 +12,7 @@ CXmlElement::CXmlElement(const QString& name, CXmlElement* parent, bool debugMod
 CXmlElement::~CXmlElement()
 {
     // On supprime l'ensemble des enfants
-    foreach (CXmlElement* element, m_ChildElements)
+    for (CXmlElement* element : m_ChildElements)
     {
         delete element;
     }
@@ -123,7 +123,7 @@ const QList<CXmlElement*>& CXmlElement::getChildElements() const
 //-----------------------------------------------------------------------------------------
 CXmlElement* CXmlElement::getChildByName(const QString& name) const
 {
-    foreach (CXmlElement* element, m_ChildElements)
+    for (CXmlElement* element : m_ChildElements)
     {
         if (element->getName() == name)
         {
@@ -138,7 +138,7 @@ CXmlElement* CXmlElement::getChildByName(const QString& name) const
 QList<CXmlElement*> CXmlElement::getChildElementsByName(const QString& name) const
 {
     QList<CXmlElement*> elements;
-    foreach (CXmlElement* element, m_ChildElements)
+    for (CXmlElement* element : m_ChildElements)
     {
         if (element->getName() == name)
         {
@@ -168,7 +168,7 @@ void CXmlElement::recursiveDump(int iLevel) const
     }
     qDebug() << branchNode << "Node name : " << getName();
 
-    foreach (CXmlElement* pChild, m_ChildElements)
+    for (CXmlElement* pChild : m_ChildElements)
     {
         pChild->recursiveDump(iLevel + 1);
     }

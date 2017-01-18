@@ -205,7 +205,7 @@ public:
         result += QString("Opacity: %1\n").arg(m_dOpacity);
         result += QString("Alpha Mask Func: %1\n").arg(CGeometryGlobal::stringFromAlphaMaskFunc(m_eAlphaMaskFunc));
 
-        foreach (const CTextureParam& texture, m_Textures)
+        for (const CTextureParam& texture : m_Textures)
         {
             result += QString("Texture : ID %1 Parameter %2\n")
                     .arg(texture.getTextureName())
@@ -217,7 +217,7 @@ public:
             }
         }
 
-        foreach (CRenderPass* pPass, m_RenderingPassList)
+        for (CRenderPass* pPass : m_RenderingPassList)
         {
             result += pPass->toString();
         }

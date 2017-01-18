@@ -87,7 +87,7 @@ TestPhysics::TestPhysics()
     //    pModelMat->getRenderPass(0)->renderStates().setDepthMask(false);
     //    pModelMat->getRenderPass(0)->setShaderName("toon");
 
-    //    foreach (AEntity* pEntity, loadedEntities)
+    //    for (AEntity* pEntity : loadedEntities)
     //    {
     //        if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(pEntity))
     //        {

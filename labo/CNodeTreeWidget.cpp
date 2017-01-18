@@ -114,7 +114,7 @@ CNodeTreeWidget::CNodeTreeWidget(CSceneManager* pSceneManager, AView* pView, CEd
 //-----------------------------------------------------------------------------------------
 CNodeTreeWidget::~CNodeTreeWidget()
 {
-    foreach (AEntity* pEntity, m_Entities)
+    for (AEntity* pEntity : m_Entities)
     {
         pEntity->unregisterListener(this);
     }
@@ -123,7 +123,7 @@ CNodeTreeWidget::~CNodeTreeWidget()
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::clearData()
 {
-    foreach (AEntity* pEntity, m_Entities)
+    for (AEntity* pEntity : m_Entities)
     {
         pEntity->unregisterListener(this);
     }
@@ -207,7 +207,7 @@ void CNodeTreeWidget::onUpdate(AEntity* pEntity)
             updateProperty(pMaterial, OpacityKey,				QString::number(pMaterial->getOpacity()));
             updateProperty(pMaterial, TexturedKey,				pMaterial->isTextured());
 
-            foreach (const CTextureParam& texture, pMaterial->getTextureParams())
+            for (const CTextureParam& texture : pMaterial->getTextureParams())
             {
                 ATexture* pTexture = CTextureManager::getInstance().getTextureByName(texture.getTextureName());
 
@@ -262,23 +262,23 @@ void CNodeTreeWidget::onUpdate(AEntity* pEntity)
             updateProperty(pAnimation, DurationKey,		QString::number(pAnimation->getDuration()));
             updateProperty(pAnimation, TicksPerSecKey,	QString::number(pAnimation->getTicksPerSecond()));
 
-            foreach (CSceneNodeAnimation* pNA, pAnimation->getNodeAnimations())
+            for (CSceneNodeAnimation* pNA : pAnimation->getNodeAnimations())
             {
                 updateProperty(pNA, StateBehaviorKey, CGeometryGlobal::stringFromAnimationBehaviorType(pNA->getAnimationBehavior()));
 
 
-                foreach (const CVectorKey& vK, pNA->positionKeys())
+                for (const CVectorKey& vK : pNA->positionKeys())
                 {
                     updateProperty(pNA, TimeKey,		QString::number(vK.getTime()));
                     updateProperty(pNA, ValueKey,		vK.getValue());
                 }
 
-                foreach (const CQuaternionKey& qK, pNA->rotationKeys())
+                for (const CQuaternionKey& qK : pNA->rotationKeys())
                 {
                     updateProperty(pNA, TimeKey,		QString::number(qK.getTime()));
                 }
 
-                foreach (const CVectorKey& vK, pNA->scalingKeys())
+                for (const CVectorKey& vK : pNA->scalingKeys())
                 {
                     updateProperty(pNA, TimeKey,		QString::number(vK.getTime()));
                     updateProperty(pNA, ValueKey,		vK.getValue());
@@ -287,7 +287,7 @@ void CNodeTreeWidget::onUpdate(AEntity* pEntity)
         }
         else if (CShader* pShader = dynamic_cast<CShader*>(pEntity))
         {
-            foreach (const TUniformValue& uniformValue, pShader->getUniformValues())
+            for (const TUniformValue& uniformValue : pShader->getUniformValues())
             {
                 switch (int(uniformValue.second.type()))
                 {
@@ -337,7 +337,7 @@ void CNodeTreeWidget::onDelete(AEntity* pEntity)
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onUpdate(CMaterial* pMaterial)
 {
-    foreach (CMeshInstance* pMeshInstance, m_pSceneManager->getMeshInstances())
+    for (CMeshInstance* pMeshInstance : m_pSceneManager->getMeshInstances())
     {
         if (QTreeWidgetItem* pItem = getPropertyTreeItem(pMeshInstance, MaterialKey))
         {
@@ -349,7 +349,7 @@ void CNodeTreeWidget::onUpdate(CMaterial* pMaterial)
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::onDelete(CMaterial* pMaterial)
 {
-    foreach (CMeshInstance* pMeshInstance, m_pSceneManager->getMeshInstances())
+    for (CMeshInstance* pMeshInstance : m_pSceneManager->getMeshInstances())
     {
         if (QTreeWidgetItem* pItem = getPropertyTreeItem(pMeshInstance, MaterialKey))
         {
@@ -426,7 +426,7 @@ void CNodeTreeWidget::recursiveCreateTreeNodes(CSceneNode* pNode, QTreeWidgetIte
     pNodeWidgetItem->setText(0, pNode->getName());
     pNodeWidgetItem->setIcon(0, QIcon(":/Resources/node.png"));
 
-    foreach (ASceneNodeItem* pItem, pNode->getItems())
+    for (ASceneNodeItem* pItem : pNode->getItems())
     {
         QTreeWidgetItem* pNodeItemWidgetItem = new QTreeWidgetItem();
         pNodeItemWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
@@ -445,7 +445,7 @@ void CNodeTreeWidget::recursiveCreateTreeNodes(CSceneNode* pNode, QTreeWidgetIte
         {
             pNodeItemWidgetItem->setIcon(0, QIcon(":/Resources/geometry.png"));
 
-            foreach (CSubMeshInstance* pSubMeshInstance, pMeshInstance->subMeshInstances())
+            for (CSubMeshInstance* pSubMeshInstance : pMeshInstance->subMeshInstances())
             {
                 QTreeWidgetItem* pSubMeshInstanceWidgetItem = new QTreeWidgetItem();
                 pSubMeshInstanceWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
@@ -489,7 +489,7 @@ void CNodeTreeWidget::recursiveCreateTreeNodes(CSceneNode* pNode, QTreeWidgetIte
         }
     }
 
-    foreach (CSceneNode* pChild, pNode->getChildNodes())
+    for (CSceneNode* pChild : pNode->getChildNodes())
     {
         recursiveCreateTreeNodes(pChild, pNodeWidgetItem);
     }
@@ -498,7 +498,7 @@ void CNodeTreeWidget::recursiveCreateTreeNodes(CSceneNode* pNode, QTreeWidgetIte
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::createTreeMeshs(const QList<CMesh*>& meshs)
 {
-    foreach (CMesh* pMesh, meshs)
+    for (CMesh* pMesh : meshs)
     {
         QTreeWidgetItem* pMeshWidgetItem = new QTreeWidgetItem();
         addTopLevelItem(pMeshWidgetItem);
@@ -510,7 +510,7 @@ void CNodeTreeWidget::createTreeMeshs(const QList<CMesh*>& meshs)
         pMeshWidgetItem->setText(0, pMesh->getName());
         pMeshWidgetItem->setIcon(0, QIcon(":/Resources/geometry.png"));
 
-        foreach (CSubMesh* pSubMesh, pMesh->subMeshs())
+        for (CSubMesh* pSubMesh : pMesh->subMeshs())
         {
             QTreeWidgetItem* pSubMeshWidgetItem = new QTreeWidgetItem();
             pSubMeshWidgetItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
@@ -531,7 +531,7 @@ void CNodeTreeWidget::createTreeMeshs(const QList<CMesh*>& meshs)
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::createTreeLights(const QList<CLight*>& lights)
 {
-    foreach (CLight* pLight, lights)
+    for (CLight* pLight : lights)
     {
         QTreeWidgetItem* pLightWidgetItem = new QTreeWidgetItem();
         addTopLevelItem(pLightWidgetItem);
@@ -560,7 +560,7 @@ void CNodeTreeWidget::createTreeLights(const QList<CLight*>& lights)
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::createTreeCameras(const QList<CCamera*>& cameras)
 {
-    foreach (CCamera* pCamera, cameras)
+    for (CCamera* pCamera : cameras)
     {
         QTreeWidgetItem* pCameraWidgetItem = new QTreeWidgetItem();
         addTopLevelItem(pCameraWidgetItem);
@@ -587,7 +587,7 @@ void CNodeTreeWidget::createTreeCameras(const QList<CCamera*>& cameras)
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::createTreeMaterials(const QList<CMaterial*>& materials)
 {
-    foreach (CMaterial* pMaterial, materials)
+    for (CMaterial* pMaterial : materials)
     {
         QTreeWidgetItem* pMaterialWidgetItem = new QTreeWidgetItem();
         addTopLevelItem(pMaterialWidgetItem);
@@ -608,7 +608,7 @@ void CNodeTreeWidget::createTreeMaterials(const QList<CMaterial*>& materials)
         addProperty(pMaterial, pMaterialWidgetItem, OpacityKey,				QString::number(pMaterial->getOpacity()));
         addProperty(pMaterial, pMaterialWidgetItem, TexturedKey,			pMaterial->isTextured(), false);
 
-        foreach (const CTextureParam& texture, pMaterial->getTextureParams())
+        for (const CTextureParam& texture : pMaterial->getTextureParams())
         {
             if (ATexture* pTexture = CTextureManager::getInstance().getTextureByName(texture.getTextureName()))
             {
@@ -635,7 +635,7 @@ void CNodeTreeWidget::createTreeMaterials(const QList<CMaterial*>& materials)
         pRenderingPassWidgetItem->setText(0, "Rendering Pass");
         pMaterialWidgetItem->addChild(pRenderingPassWidgetItem);
 
-        foreach (CRenderPass* pPass, pMaterial->renderingPassList())
+        for (CRenderPass* pPass : pMaterial->renderingPassList())
         {
             QTreeWidgetItem* pTargetWidgetItem = new QTreeWidgetItem();
             pTargetWidgetItem->setText(0, QString("RenderingPass%1").arg(pPass->getIndex()));
@@ -652,7 +652,7 @@ void CNodeTreeWidget::createTreeMaterials(const QList<CMaterial*>& materials)
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::createTreeAnimations(const QList<CAnimation*>& animations)
 {
-    foreach (CAnimation* pAnimation, animations)
+    for (CAnimation* pAnimation : animations)
     {
         CAnimationTreeItem* pAnimationWidgetItem = new CAnimationTreeItem(this, invisibleRootItem());
         addTopLevelItem(pAnimationWidgetItem);
@@ -668,7 +668,7 @@ void CNodeTreeWidget::createTreeAnimations(const QList<CAnimation*>& animations)
         addProperty(pAnimation, pAnimationWidgetItem, TicksPerSecKey,	QString::number(pAnimation->getTicksPerSecond()));
 
 
-        foreach (CSceneNodeAnimation* pNA, pAnimation->getNodeAnimations())
+        for (CSceneNodeAnimation* pNA : pAnimation->getNodeAnimations())
         {
             QTreeWidgetItem* pNAWidgetItem = new QTreeWidgetItem();
             pNAWidgetItem->setText(0, pNA->getName());
@@ -677,7 +677,7 @@ void CNodeTreeWidget::createTreeAnimations(const QList<CAnimation*>& animations)
             addProperty(pNA, pNAWidgetItem, StateBehaviorKey,	CGeometryGlobal::animationBehaviorTypeEntries(), CGeometryGlobal::stringFromAnimationBehaviorType(pNA->getAnimationBehavior()));
 
 
-            foreach (const CVectorKey& vK, pNA->positionKeys())
+            for (const CVectorKey& vK : pNA->positionKeys())
             {
                 QTreeWidgetItem* pPKWidgetItem = new QTreeWidgetItem();
                 pPKWidgetItem->setText(0, PositionKey);
@@ -687,7 +687,7 @@ void CNodeTreeWidget::createTreeAnimations(const QList<CAnimation*>& animations)
                 addProperty(pNA, pPKWidgetItem, ValueKey,	vK.getValue());
             }
 
-            foreach (const CQuaternionKey& qK, pNA->rotationKeys())
+            for (const CQuaternionKey& qK : pNA->rotationKeys())
             {
                 QTreeWidgetItem* pRKWidgetItem = new QTreeWidgetItem();
                 pRKWidgetItem->setText(0, RotationKey);
@@ -697,7 +697,7 @@ void CNodeTreeWidget::createTreeAnimations(const QList<CAnimation*>& animations)
                 //addProperty(pNA, pQKWidgetItem, ValueKey,	qK.getValue());
             }
 
-            foreach (const CVectorKey& vK, pNA->scalingKeys())
+            for (const CVectorKey& vK : pNA->scalingKeys())
             {
                 QTreeWidgetItem* pSKWidgetItem = new QTreeWidgetItem();
                 pSKWidgetItem->setText(0, ScaleKey);
@@ -708,7 +708,7 @@ void CNodeTreeWidget::createTreeAnimations(const QList<CAnimation*>& animations)
             }
         }
 
-        foreach (CMeshAnimation* pMA, pAnimation->getMeshAnimations())
+        for (CMeshAnimation* pMA : pAnimation->getMeshAnimations())
         {
             QTreeWidgetItem* pMAWidgetItem = new QTreeWidgetItem();
             pMAWidgetItem->setText(0, pMA->getName());
@@ -720,7 +720,7 @@ void CNodeTreeWidget::createTreeAnimations(const QList<CAnimation*>& animations)
 //-----------------------------------------------------------------------------------------
 void CNodeTreeWidget::createTreeShaders(const QList<CShader*>& shaders)
 {
-    foreach (CShader* pShader, shaders)
+    for (CShader* pShader : shaders)
     {
         CEditShaderTreeItem* pSDWidgetItem = new CEditShaderTreeItem(this, invisibleRootItem(), true);
         addTopLevelItem(pSDWidgetItem);
@@ -735,7 +735,7 @@ void CNodeTreeWidget::createTreeShaders(const QList<CShader*>& shaders)
         addFileProperty(pShader, pSDWidgetItem, FragmentShaderKey,	pShader->getFragmentShaderFileName());
         addFileProperty(pShader, pSDWidgetItem, GeometryShaderKey,	pShader->getGeometryShaderFileName());
 
-        foreach (const TUniformValue& uniformValue, pShader->getUniformValues())
+        for (const TUniformValue& uniformValue : pShader->getUniformValues())
         {
             switch (int(uniformValue.second.type()))
             {
@@ -998,7 +998,7 @@ QList<QTreeWidgetItem*> CNodeTreeWidget::getPropertiesTreeItems(AEntity* pEntity
 {
     QList<QTreeWidgetItem*> propertiesTreeItems;
 
-    foreach (const TProperty& property, m_PropertiesItems.values())
+    for (const TProperty& property : m_PropertiesItems.values())
     {
         if (property.first == pEntity)
         {

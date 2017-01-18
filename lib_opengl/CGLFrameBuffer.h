@@ -54,7 +54,7 @@ public:
         {
             QVector<GLenum> buffers;
 
-            foreach (EnumDrawBuffer eDrawBuffer, drawBuffers)
+            for (EnumDrawBuffer eDrawBuffer : drawBuffers)
             {
                 buffers << CGLHelper::toGLType(eDrawBuffer);
             }

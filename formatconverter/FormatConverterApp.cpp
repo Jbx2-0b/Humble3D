@@ -59,7 +59,7 @@ void FormatConverterApp::onBrowseClicked()
         }
     }
 
-    foreach (const QString& filePathName, m_FilePathNameList)
+    for (const QString& filePathName : m_FilePathNameList)
     {
         ui.listWidget->addItem(filePathName);
     }
@@ -73,7 +73,7 @@ void FormatConverterApp::onConvertClicked()
     int iFileCount = m_FilePathNameList.count();
     int i = 0;
 
-    foreach (const QString& filePathName, m_FilePathNameList)
+    for (const QString& filePathName : m_FilePathNameList)
     {
         QFileInfo fileInfo(filePathName);
 

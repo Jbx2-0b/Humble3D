@@ -69,7 +69,7 @@ protected:
     {
         if (m_bNotificationsEnabled)
         {
-            foreach (ITextureListener* pListener, m_TextureListeners)
+            for (ITextureListener* pListener : m_TextureListeners)
             {
                 pListener->onUpdate(this);
             }
@@ -83,7 +83,7 @@ protected:
     {
         if (m_bNotificationsEnabled)
         {
-            foreach (ITextureListener* pListener, m_TextureListeners)
+            for (ITextureListener* pListener : m_TextureListeners)
             {
                 pListener->onDelete(this);
             }

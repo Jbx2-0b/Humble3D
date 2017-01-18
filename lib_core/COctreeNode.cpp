@@ -44,7 +44,7 @@ unsigned int COctreeNode::getPolygonCount() const
 {
     unsigned int uiPolygonCount = 0;
 
-    foreach (CSceneNode* pSceneNode, m_SceneNodes)
+    for (CSceneNode* pSceneNode : m_SceneNodes)
     {
         uiPolygonCount += pSceneNode->getLocalPolygonCount();
     }
@@ -99,7 +99,7 @@ void COctreeNode::recursiveDump(int iLevel) const
     qDebug() << branchNode + "O";
 
 
-    foreach (COctreeNode* pChild, m_ChildNodes)
+    for (COctreeNode* pChild : m_ChildNodes)
     {
         pChild->recursiveDump(iLevel + 1);
     }

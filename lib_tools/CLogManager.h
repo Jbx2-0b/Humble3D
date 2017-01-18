@@ -89,7 +89,7 @@ protected:
 
     void notifyNewMessage(EnumLogType eType, const QString& message)
     {
-        foreach (ILogManagerListener* pListener, m_LogManagerListeners)
+        for (ILogManagerListener* pListener : m_LogManagerListeners)
         {
             pListener->onNewMessage(eType, message);
         }

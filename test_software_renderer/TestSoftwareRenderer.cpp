@@ -60,7 +60,7 @@ TestSoftwareRenderer::TestSoftwareRenderer()
 
         pView->getRenderer()->setRasterizationMode(eRasterizationLine);
 
-        //foreach (AMesh* pMesh, m_pSceneManager->getMeshs())
+        //for (AMesh* pMesh : m_pSceneManager->getMeshs())
         //{
         //	pMesh->setSkeletonVisible(true);
         //}
@@ -77,7 +77,7 @@ TestSoftwareRenderer::TestSoftwareRenderer()
         {
             QList<CSceneNodeAnimation*> nodeAnimations = anims[0]->getNodeAnimations();
 
-            foreach (CSceneNodeAnimation* pNodeAnim, nodeAnimations)
+            for (CSceneNodeAnimation* pNodeAnim : nodeAnimations)
             {
                 pNodeAnim->setAnimationBehavior(eAnimationBehaviourRepeat);
             }

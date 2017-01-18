@@ -37,7 +37,7 @@ bool CScriptManager::loadScript(const QString& fileName, CSceneNode* pNode)
 //-----------------------------------------------------------------------------------------
 void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNode)
 {
-    foreach (CXmlElement* pChild, pElement->getChildElements())
+    for (CXmlElement* pChild : pElement->getChildElements())
     {
         if (pChild->getName() == "SceneNode")
         {
@@ -137,7 +137,7 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
 
             if (CXmlElement* pRenderPassesElement = pChild->getChildByName("RenderPasses"))
             {
-                foreach (CXmlElement* pRenderPassElement, pRenderPassesElement->getChildElementsByName("RenderPass"))
+                for (CXmlElement* pRenderPassElement : pRenderPassesElement->getChildElementsByName("RenderPass"))
                 {
                     EnumTarget eTarget = CGeometryGlobal::targetTypeFromString(pRenderPassElement->getAttributeValue<QString>("target"));
                     QVector2D size = pRenderPassElement->getAttributeValue<QVector2D>("size");
@@ -162,7 +162,7 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
 
             if (CXmlElement* pTexturesElement = pChild->getChildByName("Textures"))
             {
-                foreach (CXmlElement* pTextureElement, pTexturesElement->getChildElementsByName("Texture"))
+                for (CXmlElement* pTextureElement : pTexturesElement->getChildElementsByName("Texture"))
                 {
                     QString textureName = pTextureElement->getAttributeValue<QString>("name");
                     EnumMaterialParameter eMatParam = CGeometryGlobal::materialParameterFromString(pTextureElement->getAttributeValue<QString>("materialParameter"));
@@ -278,7 +278,7 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
 
                 if (CXmlElement* pNodeAnimationsElement = pChild->getChildByName("NodeAnimations"))
                 {
-                    foreach (CXmlElement* pNodeAnimationElement, pNodeAnimationsElement->getChildElementsByName("NodeAnimation"))
+                    for (CXmlElement* pNodeAnimationElement : pNodeAnimationsElement->getChildElementsByName("NodeAnimation"))
                     {
                         QString nodeName = pNodeAnimationElement->getAttributeValue<QString>("nodeName");
                         CSceneNodeAnimation* pNodeAnimation = pAnimation->createNodeAnimation(nodeName);
@@ -287,7 +287,7 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
 
                         if (CXmlElement* pPosKeysElement = pNodeAnimationElement->getChildByName("PosKeys"))
                         {
-                            foreach (CXmlElement* pPosKey, pPosKeysElement->getChildElementsByName("PosKey"))
+                            for (CXmlElement* pPosKey : pPosKeysElement->getChildElementsByName("PosKey"))
                             {
                                 QVector3D value = pPosKey->getAttributeValue<QVector3D>("value");
                                 double dTime = pPosKey->getAttributeValue<double>("time");
@@ -297,7 +297,7 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
 
                         if (CXmlElement* pRotKeysElement = pNodeAnimationElement->getChildByName("RotKeys"))
                         {
-                            foreach (CXmlElement* pRotKey, pRotKeysElement->getChildElementsByName("RotKey"))
+                            for (CXmlElement* pRotKey : pRotKeysElement->getChildElementsByName("RotKey"))
                             {
                                 QQuaternion value = QQuaternion(pRotKey->getAttributeValue<QVector4D>("value"));
                                 double dTime = pRotKey->getAttributeValue<double>("time");
@@ -307,7 +307,7 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
 
                         if (CXmlElement* pScaKeysElement = pNodeAnimationElement->getChildByName("ScaKeys"))
                         {
-                            foreach (CXmlElement* pScaKey, pScaKeysElement->getChildElementsByName("ScaKey"))
+                            for (CXmlElement* pScaKey : pScaKeysElement->getChildElementsByName("ScaKey"))
                             {
                                 QVector3D value = pScaKey->getAttributeValue<QVector3D>("value");
                                 double dTime = pScaKey->getAttributeValue<double>("time");
@@ -319,14 +319,14 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
 
                 if (CXmlElement* pMeshAnimationsElement = pChild->getChildByName("MeshAnimations"))
                 {
-                    foreach (CXmlElement* pMeshAnimationElement, pMeshAnimationsElement->getChildElementsByName("MeshAnimation"))
+                    for (CXmlElement* pMeshAnimationElement : pMeshAnimationsElement->getChildElementsByName("MeshAnimation"))
                     {
                         QString meshName = pMeshAnimationElement->getAttributeValue<QString>("meshName");
                         CMeshAnimation* pMeshAnimation = pAnimation->createMeshAnimation(meshName);
 
                         if (CXmlElement* pMeshKeysElement = pMeshAnimationElement->getChildByName("MeshKeys"))
                         {
-                            foreach (CXmlElement* pMeshKey, pMeshKeysElement->getChildElementsByName("MeshKey"))
+                            for (CXmlElement* pMeshKey : pMeshKeysElement->getChildElementsByName("MeshKey"))
                             {
                                 unsigned int value = pMeshKey->getAttributeValue<unsigned int>("value");
                                 double dTime = pMeshKey->getAttributeValue<double>("time");
@@ -363,7 +363,7 @@ bool CScriptManager::saveScript(const QString& fileName)
     CXmlElement rootElement("root");
 
     QSet<CShader*> shaders = m_bSaveOnlyUsed ? m_pSceneManager->getUsedShaders() : CShaderManager::getInstance().getShaders().toSet();
-    foreach (CShader* pShader, shaders)
+    for (CShader* pShader : shaders)
     {
         CXmlElement* pChild = rootElement.createChild("Shader");
         pChild->addAttribute("name", pShader->getName());
@@ -373,7 +373,7 @@ bool CScriptManager::saveScript(const QString& fileName)
     }
 
     QSet<ATexture*> textures = m_bSaveOnlyUsed ? m_pSceneManager->getUsedTextures() : CTextureManager::getInstance().getTextures().toSet();
-    foreach (ATexture* pTexture, textures)
+    for (ATexture* pTexture : textures)
     {
         CXmlElement* pChild = rootElement.createChild("Texture");
         pChild->addAttribute("name", pTexture->getName());
@@ -405,13 +405,13 @@ bool CScriptManager::saveScript(const QString& fileName)
     }
 
     QSet<CMaterial*> materials = m_bSaveOnlyUsed ? m_pSceneManager->getUsedMaterials() : CMaterialManager::getInstance().getMaterials().toSet();
-    foreach (CMaterial* pMaterial, materials)
+    for (CMaterial* pMaterial : materials)
     {
         CXmlElement* pChild = rootElement.createChild("Material");
         pChild->addAttribute("name", pMaterial->getName());
 
         CXmlElement* pRenderPassesElement = pChild->createChild("RenderPasses");
-        foreach (CRenderPass* pRenderPass, pMaterial->getRenderPasses())
+        for (CRenderPass* pRenderPass : pMaterial->getRenderPasses())
         {
             CXmlElement* pRenderPassElement = pRenderPassesElement->createChild("RenderPass");
 
@@ -467,7 +467,7 @@ bool CScriptManager::saveScript(const QString& fileName)
         }
 
         CXmlElement* pTexturesElement = pChild->createChild("Textures");
-        foreach (const CTextureParam& textureParam, pMaterial->getTextureParams())
+        for (const CTextureParam& textureParam : pMaterial->getTextureParams())
         {
             CXmlElement* pTextureElement = pTexturesElement->createChild("Texture");
             pTextureElement->addAttribute("name", textureParam.getTextureName());
@@ -483,13 +483,13 @@ bool CScriptManager::saveScript(const QString& fileName)
         pChild->addAttribute("opacity", pMaterial->getOpacity());
     }
 
-    foreach (CAnimation* pAnimation, m_pSceneManager->getAnimations())
+    for (CAnimation* pAnimation : m_pSceneManager->getAnimations())
     {
         CXmlElement* pChild = rootElement.createChild("Animation");
         pChild->addAttribute("name", pAnimation->getName());
 
         CXmlElement* pNodeAnimationsElement = pChild->createChild("NodeAnimations");
-        foreach (CSceneNodeAnimation* pNodeAnimation, pAnimation->getNodeAnimations())
+        for (CSceneNodeAnimation* pNodeAnimation : pAnimation->getNodeAnimations())
         {
             CXmlElement* pNodeAnimationElement = pNodeAnimationsElement->createChild("NodeAnimation");
 
@@ -497,7 +497,7 @@ bool CScriptManager::saveScript(const QString& fileName)
             pNodeAnimationElement->addAttribute("behavior", CGeometryGlobal::stringFromAnimationBehaviorType(pNodeAnimation->getAnimationBehavior()));
 
             CXmlElement* pPosKeysElement = pNodeAnimationElement->createChild("PosKeys");
-            foreach (const CVectorKey& posKey, pNodeAnimation->positionKeys())
+            for (const CVectorKey& posKey : pNodeAnimation->positionKeys())
             {
                 CXmlElement* pPosKeyElement = pPosKeysElement->createChild("PosKey");
                 pPosKeyElement->addAttribute("value", posKey.getValue());
@@ -505,7 +505,7 @@ bool CScriptManager::saveScript(const QString& fileName)
             }
 
             CXmlElement* pRotKeysElement = pNodeAnimationElement->createChild("RotKeys");
-            foreach (const CQuaternionKey& rotKey, pNodeAnimation->rotationKeys())
+            for (const CQuaternionKey& rotKey : pNodeAnimation->rotationKeys())
             {
                 CXmlElement* pRotKeyElement = pRotKeysElement->createChild("RotKey");
                 pRotKeyElement->addAttribute("value", rotKey.getValue());
@@ -513,7 +513,7 @@ bool CScriptManager::saveScript(const QString& fileName)
             }
 
             CXmlElement* pScaKeysElement = pNodeAnimationElement->createChild("ScaKeys");
-            foreach (const CVectorKey& scaKey, pNodeAnimation->scalingKeys())
+            for (const CVectorKey& scaKey : pNodeAnimation->scalingKeys())
             {
                 CXmlElement* pScaKeyElement = pScaKeysElement->createChild("ScaKey");
                 pScaKeyElement->addAttribute("value", scaKey.getValue());
@@ -522,13 +522,13 @@ bool CScriptManager::saveScript(const QString& fileName)
         }
 
         CXmlElement* pMeshAnimationsElement = pChild->createChild("MeshAnimations");
-        foreach (CMeshAnimation* pMeshAnimation, pAnimation->getMeshAnimations())
+        for (CMeshAnimation* pMeshAnimation : pAnimation->getMeshAnimations())
         {
             CXmlElement* pMeshAnimationElement = pMeshAnimationsElement->createChild("MeshAnimation");
             pMeshAnimationElement->addAttribute("meshName", pMeshAnimation->getMeshInstanceName());
 
             CXmlElement* pMeshKeysElement = pMeshAnimationElement->createChild("MeshKeys");
-            foreach (const CMeshKey& meshKey, pMeshAnimation->keys())
+            for (const CMeshKey& meshKey : pMeshAnimation->keys())
             {
                 CXmlElement* pMeshKeyElement = pMeshKeysElement->createChild("MeshKey");
                 pMeshKeyElement->addAttribute("value", meshKey.getValue());
@@ -546,7 +546,7 @@ bool CScriptManager::saveScript(const QString& fileName)
     pRootXmlElement->addAttribute("translation", m_pSceneManager->getRootNode()->getGlobalPosition());
 
     // Caméras libres - On les attaches au noeud principal
-    foreach (CCamera* pCamera, m_pSceneManager->getCameras())
+    for (CCamera* pCamera : m_pSceneManager->getCameras())
     {
         if (pCamera->getNodes().isEmpty())
         {
@@ -570,7 +570,7 @@ bool CScriptManager::saveScript(const QString& fileName)
 
 void CScriptManager::recursiveSave(CXmlElement* pElement, CSceneNode* pCurrentNode)
 {
-    foreach (ASceneNodeItem* pItem, pCurrentNode->getItems())
+    for (ASceneNodeItem* pItem : pCurrentNode->getItems())
     {
         pElement->addAttribute("name", pItem->getName());
         if (CMeshInstance* pMeshInstance = dynamic_cast<CMeshInstance*>(pItem))
@@ -607,7 +607,7 @@ void CScriptManager::recursiveSave(CXmlElement* pElement, CSceneNode* pCurrentNo
         }
     }
 
-    foreach (CSceneNode* pChildNode, pCurrentNode->getChildNodes())
+    for (CSceneNode* pChildNode : pCurrentNode->getChildNodes())
     {
         CXmlElement* pXmlElement = pElement->createChild("SceneNode");
         pXmlElement->addAttribute("name", pChildNode->getName());
@@ -618,13 +618,13 @@ void CScriptManager::recursiveSave(CXmlElement* pElement, CSceneNode* pCurrentNo
 
 void CScriptManager::saveData()
 {
-    foreach (CMesh* pMesh, CMeshManager::getInstance().getMeshs())
+    for (CMesh* pMesh : CMeshManager::getInstance().getMeshs())
     {
         CMeshManager::getInstance().saveMesh(pMesh, m_CurrentPath + pMesh->getName() + ".mesh", 7);
     }
 
     QSet<ATexture*> textures = m_bSaveOnlyUsed ? m_pSceneManager->getUsedTextures() : CTextureManager::getInstance().getTextures().toSet();
-    foreach (ATexture* pTexture, textures)
+    for (ATexture* pTexture : textures)
     {
         if (CTexture2D* pTexture2D = dynamic_cast<CTexture2D*>(pTexture))
         {
@@ -632,7 +632,7 @@ void CScriptManager::saveData()
         }
         else if (CTextureCube* pTextureCube = dynamic_cast<CTextureCube*>(pTexture))
         {
-            foreach (const QString& fileName, pTextureCube->getFileNames())
+            for (const QString& fileName : pTextureCube->getFileNames())
             {
                 QFile::copy(fileName, m_CurrentPath + QFileInfo(fileName).fileName());
             }
@@ -640,7 +640,7 @@ void CScriptManager::saveData()
     }
 
     QSet<CShader*> shaders = m_bSaveOnlyUsed ? m_pSceneManager->getUsedShaders() : CShaderManager::getInstance().getShaders().toSet();
-    foreach (CShader* pShader, shaders)
+    for (CShader* pShader : shaders)
     {
         if (pShader->hasVertexShader())
         {
