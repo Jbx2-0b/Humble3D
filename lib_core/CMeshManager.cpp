@@ -189,7 +189,7 @@ void CMeshManager::removeMesh(CMesh* pMesh)
         notifyDelete(pSubMesh);
     }
 
-    notifyDelete(pMesh);
+    //notifyDelete(pMesh);
     m_MeshByName.remove(pMesh->getName());
     m_MeshByID.remove(pMesh->getID());
     delete pMesh;
@@ -200,8 +200,19 @@ void CMeshManager::clearMeshs()
 {
     for (CMesh* pMesh : m_MeshByID)
     {
-        removeMesh(pMesh);
+        pMesh->unregisterListener(this);
+
+        for (CSubMesh* pSubMesh : pMesh->subMeshs())
+        {
+            notifyDelete(pSubMesh);
+        }
+
+        notifyDelete(pMesh);
+        delete pMesh;
     }
+
+    m_MeshByName.clear();
+    m_MeshByID.clear();
 }
 
 //-----------------------------------------------------------------------------------------

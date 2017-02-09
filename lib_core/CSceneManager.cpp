@@ -85,8 +85,18 @@ void CSceneManager::clearMeshInstances()
 {
     for (CMeshInstance* pMeshInstance : m_MeshInstances)
     {
-        deleteMeshInstance(pMeshInstance);
+        m_NodeItemByID.remove(pMeshInstance->getID());
+
+        pMeshInstance->unregisterListener(this);
+
+        for (CSubMeshInstance* pSubMeshInstance : pMeshInstance->subMeshInstances())
+        {
+            removeRenderableItem(pSubMeshInstance);
+        }
+        delete pMeshInstance;
     }
+
+    m_MeshInstances.clear();
 }
 
 //-----------------------------------------------------------------------------------------
@@ -94,8 +104,10 @@ void CSceneManager::clearLights()
 {
     for (CLight* pLight : m_Lights)
     {
-        deleteLight(pLight);
+        m_NodeItemByID.remove(pLight->getID());
+        delete pLight;
     }
+    m_Lights.clear();
 }
 
 //-----------------------------------------------------------------------------------------
@@ -103,8 +115,11 @@ void CSceneManager::clearCameras()
 {
     for (CCamera* pCamera : m_Cameras)
     {
-        deleteCamera(pCamera);
+        m_NodeItemByID.remove(pCamera->getID());
+        pCamera->unregisterListener(this);
+        delete pCamera;
     }
+    m_Cameras.clear();
 }
 
 //-----------------------------------------------------------------------------------------
@@ -112,8 +127,10 @@ void CSceneManager::clearAnimations()
 {
     for (CAnimation* pAnimation : m_AnimationByID)
     {
-        deleteAnimation(pAnimation);
+        pAnimation->unregisterListener(this);
+        delete pAnimation;
     }
+    m_AnimationByID.clear();
 }
 
 //-----------------------------------------------------------------------------------------
@@ -121,8 +138,12 @@ void CSceneManager::clearBillboards()
 {
     for (CBillboard* pBillboard : m_Billboards)
     {
-        deleteBillboards(pBillboard);
+
+        m_NodeItemByID.remove(pBillboard->getID());
+        removeRenderableItem(pBillboard);
+        delete pBillboard;
     }
+    m_Billboards.clear();
 }
 
 //-----------------------------------------------------------------------------------------

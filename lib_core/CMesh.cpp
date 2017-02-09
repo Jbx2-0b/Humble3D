@@ -23,10 +23,7 @@ CMesh::CMesh(const QString& name)
 //-----------------------------------------------------------------------------------------
 CMesh::~CMesh(void)
 {
-    for (CSubMesh* pSubMesh : m_SubMeshs)
-    {
-        removeSubMesh(pSubMesh);
-    }
+    clearSubMeshs();
 }
 
 //--------------------------------------------------------------------------
@@ -67,8 +64,10 @@ void CMesh::clearSubMeshs()
 {
     for (CSubMesh* pSubMesh : m_SubMeshs)
     {
-        removeSubMesh(pSubMesh);
+        delete pSubMesh;
     }
+    m_SubMeshs.clear();
+    notifyUpdate();
     setDirty();
 }
 

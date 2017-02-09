@@ -92,8 +92,13 @@ void CMaterialManager::clearMaterials()
 {
     for (CMaterial* pMaterial : m_Materials)
     {
-        removeMaterial(pMaterial);
+        pMaterial->unregisterListener(this);
+        notifyDelete(pMaterial);
+        delete pMaterial;
     }
+
+    m_Materials.clear();
+    m_MaterialIDs.clear();
 }
 
 //-----------------------------------------------------------------------------------------

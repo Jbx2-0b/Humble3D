@@ -143,15 +143,15 @@ void CNodeTreeWidget::updateData()
 
     // On bloque les signaux pour éviter de boucler sur les événements Listener
     blockSignals(true);
-    createTreeSceneManager();
-    createTreeRenderer();
-    recursiveCreateTreeNodes(m_pSceneManager->getRootNode());
-    //createTreeMeshs(CMeshManager::getInstance().getMeshs());
-    createTreeLights(m_pSceneManager->getLights());
-    createTreeCameras(m_pSceneManager->getCameras());
-    createTreeMaterials(CMaterialManager::getInstance().getMaterials());
-    createTreeAnimations(m_pSceneManager->getAnimations());
-    createTreeShaders(CShaderManager::getInstance().getShaders());
+//    createTreeSceneManager();
+//    createTreeRenderer();
+//    recursiveCreateTreeNodes(m_pSceneManager->getRootNode());
+//    createTreeMeshs(CMeshManager::getInstance().getMeshs());
+//    createTreeLights(m_pSceneManager->getLights());
+//    createTreeCameras(m_pSceneManager->getCameras());
+//    createTreeMaterials(CMaterialManager::getInstance().getMaterials());
+//    createTreeAnimations(m_pSceneManager->getAnimations());
+//    createTreeShaders(CShaderManager::getInstance().getShaders());
     blockSignals(false);
 }
 

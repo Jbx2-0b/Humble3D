@@ -183,7 +183,6 @@ void CSceneNode::addItems(const QList<ASceneNodeItem*>& nodeItems)
 void CSceneNode::removeItem(ASceneNodeItem* pNodeItem)
 {
     m_NodeItems.removeOne(pNodeItem);
-    pNodeItem->removeNode(this);
     pNodeItem->unregisterListener(this);
     needUpdateBoundingBox();
     notifyUpdate();

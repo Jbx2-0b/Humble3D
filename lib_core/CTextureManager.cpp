@@ -171,8 +171,13 @@ void CTextureManager::clearTextures()
 {
     for (ATexture* pTexture : m_TextureByID)
     {
-        removeTexture(pTexture);
+        pTexture->unregisterListener(this);
+        notifyDelete(pTexture);
+        delete pTexture;
     }
+
+    m_TextureByName.clear();
+    m_TextureByID.clear();
 }
 
 //-----------------------------------------------------------------------------------------

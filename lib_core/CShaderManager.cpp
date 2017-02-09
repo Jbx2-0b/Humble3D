@@ -117,8 +117,12 @@ void CShaderManager::clearShaders()
 {
     for (CShader* pShader : m_Shaders)
     {
-        removeShader(pShader);
+        pShader->unregisterListener(this);
+        notifyDelete(pShader);
+        delete pShader;
     }
+    m_Shaders.clear();
+    m_ShaderIDs.clear();
 }
 
 //-----------------------------------------------------------------------------------------
