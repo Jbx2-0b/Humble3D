@@ -50,6 +50,9 @@ public:
     //! Destructeur
     ~CGLMeshBuffer();
 
+    //! Définit le type des indices (unsigned short, unsigned int...)
+    static void setIndiceValuesType(GLenum type);
+
     //! COnstruit en fonction d'un MeshBuffer
     void create(CMeshBuffer* pBuffer);
 
@@ -126,6 +129,9 @@ private:
         if (buffer.isCreated())
             pShaderProgram->disableAttributeArray(iLocation);
     }
+
+    //! Type des indices
+    static unsigned int s_IndiceValuesType;
 
     EnumUsagePattern m_eUsagePattern;
     EnumPrimitiveType m_ePrimitiveType;

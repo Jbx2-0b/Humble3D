@@ -47,9 +47,10 @@ public:
         m_RenderBuffers[eAttachment] = iRenderbuffer;
     }
 
-#ifdef DESKTOP_TARGET // Not supported on OpenGL ES
+
     void setDrawBuffers(const QList<EnumDrawBuffer>& drawBuffers)
     {
+#ifdef DESKTOP_TARGET // Not supported on OpenGL ES
         if (drawBuffers.size() > 0)
         {
             QVector<GLenum> buffers;
@@ -61,8 +62,11 @@ public:
 
             glDrawBuffers(drawBuffers.size(), buffers.constData());
         }
-    }
+#else
+    Q_UNUSED(drawBuffers)
 #endif // DESKTOP_TARGET
+    }
+
 
     int getWidth() const { return m_iWidth; }
 

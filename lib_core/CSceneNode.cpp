@@ -32,7 +32,7 @@ CSceneNode::~CSceneNode()
 {
     for (CSceneNode* pNode : m_ChildNodes)
     {
-        // On prévient les NodeItems qu'on détruit ler noeud
+        // On prévient les NodeItems qu'on détruit le noeud
         for (ASceneNodeItem* pNodeItem : m_NodeItems)
         {
             pNodeItem->removeNode(pNode);

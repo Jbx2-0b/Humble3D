@@ -144,7 +144,7 @@ void CNodeTreeWidget::updateData()
     // On bloque les signaux pour éviter de boucler sur les événements Listener
     blockSignals(true);
 //    createTreeSceneManager();
-//    createTreeRenderer();
+    createTreeRenderer();
 //    recursiveCreateTreeNodes(m_pSceneManager->getRootNode());
 //    createTreeMeshs(CMeshManager::getInstance().getMeshs());
 //    createTreeLights(m_pSceneManager->getLights());

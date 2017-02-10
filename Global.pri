@@ -4,7 +4,10 @@ android {
     message("Android target. Define EMBEDDED_TARGET.")
 }
 
-DEFINES += EMBEDDED_TARGET
+win32-g++ {
+    DEFINES += EMBEDDED_TARGET
+}
+
 CONFIG += c++11
 
 #DEFINES+= MULTITHREAD_RENDERING

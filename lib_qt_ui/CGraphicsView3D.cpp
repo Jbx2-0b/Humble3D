@@ -10,7 +10,6 @@
 
 // Qt
 #include <QDesktopWidget>
-#include <QGLWidget>
 #include <QPolygonF>
 #include <QtAlgorithms>
 #include <QMouseEvent>
@@ -24,10 +23,16 @@ CGraphicsView3D::CGraphicsView3D(CSceneManager* pSceneManager, CCamera* pCamera,
     : QGraphicsView(pParent)
     , AView(pSceneManager)
 {
-    m_pGLRenderer = new CGLRenderer(m_pSceneManager);
+    m_pGLWidget = new CGLWidget();
+
+    m_pGLRenderer = new CGLRenderer(
+                m_pSceneManager,
+                m_pGLWidget->context()->openGLModuleType() == QOpenGLContext::LibGL ?
+                    CGLRenderer::eOpenGLDesktop :
+                    CGLRenderer::eOpenGLES2);
+
     m_pRenderer = m_pGLRenderer;
     m_pRenderer->setCurrentCamera(pCamera);
-    m_pGLWidget = new CGLWidget();
 
     setFrameShape(QFrame::NoFrame);
     setViewport(m_pGLWidget);

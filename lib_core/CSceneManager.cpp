@@ -138,7 +138,6 @@ void CSceneManager::clearBillboards()
 {
     for (CBillboard* pBillboard : m_Billboards)
     {
-
         m_NodeItemByID.remove(pBillboard->getID());
         removeRenderableItem(pBillboard);
         delete pBillboard;

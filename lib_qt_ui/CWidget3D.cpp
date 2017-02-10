@@ -10,7 +10,12 @@ CWidget3D::CWidget3D(CSceneManager* pSceneManager, CCamera* pCamera, QWidget *pa
     , AView(pSceneManager)
     , m_bForceUpdate(false)
 {
-    m_pGLRenderer = new CGLRenderer(m_pSceneManager);
+    m_pGLRenderer = new CGLRenderer(
+                m_pSceneManager,
+                context()->openGLModuleType() == QOpenGLContext::LibGL ?
+                    CGLRenderer::eOpenGLDesktop :
+                    CGLRenderer::eOpenGLES2);
+
     m_pRenderer = m_pGLRenderer;
 
     m_pRenderer->setCurrentCamera(pCamera);

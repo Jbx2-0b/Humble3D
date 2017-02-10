@@ -418,7 +418,12 @@ bool CScriptManager::saveScript(const QString& fileName)
             pRenderPassElement->addAttribute("target", CGeometryGlobal::stringFromTargetType(pRenderPass->getTargetType()));
             pRenderPassElement->addAttribute("size", QVector2D(pRenderPass->getSize().width(), pRenderPass->getSize().height()));
             pRenderPassElement->addAttribute("shader", pRenderPass->getShaderName());
-            pRenderPassElement->addAttribute("camera", pRenderPass->getCamera()->getName());
+
+            if (pRenderPass->getCamera())
+            {
+                pRenderPassElement->addAttribute("camera", pRenderPass->getCamera()->getName());
+            }
+
             pRenderPassElement->addAttribute("clearBufferFlags", pRenderPass->getClearBufferFlags());
 
             const CRenderStates& renderStates = pRenderPass->getRenderStates();

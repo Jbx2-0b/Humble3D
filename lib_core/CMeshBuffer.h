@@ -15,12 +15,13 @@
 
 #include <QDebug>
 
+//#ifdef EMBEDDED_TARGET
+//typedef unsigned short IndiceType;
+//#else
+//typedef unsigned int IndiceType;
+//#endif
 
-#ifdef EMBEDDED_TARGET
-typedef unsigned short IndiceType;
-#else
 typedef unsigned int IndiceType;
-#endif
 
 // typedef CArray<float, DefaultMaxBonesPerVertex> TBoneIDs;
 // typedef CArray<float, DefaultMaxBonesPerVertex> TBoneWeights;

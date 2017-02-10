@@ -1,15 +1,10 @@
 include(../Global.pri)
 
-QT       += core gui opengl concurrent
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui widgets opengl concurrent
 
 TARGET = converter
 TEMPLATE = app
 
-android {
-    DEFINES += EMBEDDED_TARGET
-}
 
 SOURCES += main.cpp \
     FormatConverterApp.cpp

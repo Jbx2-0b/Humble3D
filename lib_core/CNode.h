@@ -276,7 +276,7 @@ protected:
         {
             for (INodeListener* pListener : m_NodeListeners)
             {
-                pListener->onDelete(static_cast<T*>(this));
+                //pListener->onDelete(static_cast<T*>(this));
             }
 
             AEntity::notifyDelete();

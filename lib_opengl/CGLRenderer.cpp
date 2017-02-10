@@ -11,8 +11,9 @@
 #include <QVector3D>
 
 //-----------------------------------------------------------------------------------------
-CGLRenderer::CGLRenderer(CSceneManager* pSceneManager)
+CGLRenderer::CGLRenderer(CSceneManager* pSceneManager, OpenGLImplementation implementation)
     : ARenderer(pSceneManager)
+    , m_Implementation(implementation)
     , m_pCurrentShader(0)
     , m_iDrawCalls(0)
     , m_iPolygonsPerFrame(0)
@@ -21,11 +22,21 @@ CGLRenderer::CGLRenderer(CSceneManager* pSceneManager)
 
     setName("OpenGL Renderer");
 
-#ifdef EMBEDDED_TARGET
-    LogManager.addMessage(eINFO, "Creating OpenGL Renderer - Embedded Version");
-#else
-    LogManager.addMessage(eINFO, "Creating OpenGL Renderer - Desktop Version");
-#endif
+    switch (implementation)
+    {
+    case eOpenGLDesktop:
+        LogManager.addMessage(eINFO, "Creating Desktop OpenGL Renderer");
+        CGLMeshBuffer::setIndiceValuesType(GL_UNSIGNED_INT);
+        break;
+    case eOpenGLES2:
+        LogManager.addMessage(eINFO, "Creating OpenGL ES 2 Renderer");
+        CGLMeshBuffer::setIndiceValuesType(GL_UNSIGNED_SHORT);
+        break;
+    case eOpenGLES3:
+        LogManager.addMessage(eINFO, "Creating OpenGL ES 3 Renderer");
+        CGLMeshBuffer::setIndiceValuesType(GL_UNSIGNED_INT);
+        break;
+    }
 
     pSceneManager->registerListener(this);
     CMeshManager::getInstance().registerMeshBufferListener(this);
@@ -101,6 +112,10 @@ bool CGLRenderer::init()
 
     forceGLStates(m_CurrentRenderStates);
     checkError("init()");
+
+    qDebug() << "GPU Name: " << getGPUName();
+    qDebug() << "OpenGL Version: " << getOpenGLVersion();
+    qDebug() << "GLSL Version: " << getGLSLVersion();
 
     return ARenderer::init();
 }
@@ -453,8 +468,7 @@ QString CGLRenderer::getOpenGLVersion()
 //-------------------------------------------------------------------------------------------------
 bool CGLRenderer::isExtensionSupported(const QString& strExtension)
 {
-    QString extensionString(reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS)));
-
+    static QString extensionString(reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS)));
     return extensionString.contains(strExtension, Qt::CaseInsensitive);
 }
 
@@ -1129,9 +1143,7 @@ void CGLRenderer::createFrameBuffer(CFrameBuffer* pFrameBuffer)
         iRenderBufferCount++;
     }
 
-#ifdef DESKTOP_TARGET // Not supported before OpenGL ES 3.0
     pGLFrameBuffer->setDrawBuffers(pFrameBuffer->getDrawBuffers());
-#endif // DESKTOP_TARGET
 
     pGLFrameBuffer->checkFrameBufferStatus();
 

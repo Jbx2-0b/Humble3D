@@ -10,7 +10,7 @@ class CQmlGLRenderer : public QQuickFramebufferObject::Renderer
 {
 public:
     CQmlGLRenderer()
-        : m_GLRenderer(Humble3DQmlApp::instance()->getSceneManager())
+        : m_GLRenderer(Humble3DQmlApp::instance()->getSceneManager(), CGLRenderer::eOpenGLES3)
         , m_Camera(Humble3DQmlApp::instance()->getSceneManager(), "QmlCamera")
     {
         m_GLRenderer.init();

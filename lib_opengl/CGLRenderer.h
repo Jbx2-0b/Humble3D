@@ -34,8 +34,15 @@ class LIB_OPENGLSHARED_EXPORT CGLRenderer : public ARenderer, protected CGLFunct
 {
 public:
 
+    enum OpenGLImplementation
+    {
+        eOpenGLDesktop,
+        eOpenGLES2,
+        eOpenGLES3
+    };
+
     //! Ctor
-    CGLRenderer(CSceneManager* pSceneManager);
+    CGLRenderer(CSceneManager* pSceneManager, OpenGLImplementation implementation);
 
     //! Dtor
     virtual ~CGLRenderer();
@@ -218,6 +225,8 @@ protected:
     void createFrameBuffer(CFrameBuffer* pFrameBuffer);
 
 private:
+
+    OpenGLImplementation m_Implementation;
 
     //! Notifie les listeners qu'une les propriétés de la caméra ont changées
     virtual void notifyNewMessage(bool bIsError, const QString& message);

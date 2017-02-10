@@ -1,5 +1,13 @@
 ﻿#include "CGLMeshBuffer.h"
 
+GLenum CGLMeshBuffer::s_IndiceValuesType = GL_UNSIGNED_INT;
+
+//--------------------------------------------------------------------------
+void CGLMeshBuffer::setIndiceValuesType(GLenum type)
+{
+    s_IndiceValuesType = type;
+}
+
 //-------------------------------------------------------------------------------------------------
 CGLMeshBuffer::CGLMeshBuffer()
     : m_eUsagePattern(eStaticDraw)
@@ -154,7 +162,7 @@ void CGLMeshBuffer::draw(CGLShaderProgram* pShaderProgram)
 
         m_IndiceBuffer.bind();
         // TODO : if (m_uiPrimitiveIndex > 0) glPrimitiveRestartIndex(m_uiPrimitiveIndex);
-        glDrawElements(CGLHelper::toGLType(m_ePrimitiveType), m_iIndicesCount, GL_TYPE_SIZE, 0);
+        glDrawElements(CGLHelper::toGLType(m_ePrimitiveType), m_iIndicesCount, s_IndiceValuesType, 0);
         m_IndiceBuffer.release();
 
         release(pShaderProgram, m_PositionBuffer, PROGRAM_POSITION_ATTRIBUTE);
