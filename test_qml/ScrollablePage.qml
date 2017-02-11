@@ -1,6 +1,5 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.0
-import Humble3D 1.0
 
 Page {
     id: page

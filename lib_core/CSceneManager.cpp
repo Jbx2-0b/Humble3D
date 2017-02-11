@@ -588,8 +588,6 @@ void CSceneManager::onUpdate(CSceneNode* pSceneNode)
 //-----------------------------------------------------------------------------------------
 void CSceneManager::onDelete(CSceneNode* pSceneNode)
 {
-    pSceneNode->unregisterListener(this);
-
     for (ISceneManagerListener* pListener : m_SceneManagerListeners)
     {
         pListener->onDeleteSceneNode(pSceneNode);

@@ -99,6 +99,9 @@ public:
     //! Supprime une passe de rendu
     void removeRenderingPass(CRenderPass* pPass);
 
+    //! Supprime l'ensemble des passes de rendu
+    void clearRenderingPasses();
+
     //! Retourne une passe de rendu
     CRenderPass* getRenderPass(int iIndex);
 

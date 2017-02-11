@@ -433,7 +433,7 @@ void CSceneNode::recursiveDump(int iLevel) const
 
     for (ASceneNodeItem* pItem : m_NodeItems)
     {
-        qDebug() << branchItems << "Node item : " << pItem->getName();
+        qDebug() << branchItems << "Node [type: " << pItem->getTypeName() << ", name: " << pItem->getName() << "]";
     }
 
     for (CSceneNode* pChild : m_ChildNodes)

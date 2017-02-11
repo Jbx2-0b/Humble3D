@@ -134,6 +134,7 @@ void CScriptManager::recursiveLoad(CXmlElement* pElement, CSceneNode* pCurrentNo
             QString name = pChild->getAttributeValue<QString>("name");
 
             CMaterial* pMaterial = CMaterialManager::getInstance().createMaterial(name);
+            pMaterial->clearRenderingPasses();
 
             if (CXmlElement* pRenderPassesElement = pChild->getChildByName("RenderPasses"))
             {

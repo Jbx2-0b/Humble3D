@@ -62,6 +62,16 @@ void CMaterial::removeRenderingPass(CRenderPass* pPass)
 }
 
 //--------------------------------------------------------------------------
+void CMaterial::clearRenderingPasses()
+{
+    for (CRenderPass* pass : m_RenderingPassList)
+    {
+        delete pass;
+    }
+    m_RenderingPassList.clear();
+}
+
+//--------------------------------------------------------------------------
 CRenderPass* CMaterial::getRenderPass(int iIndex)
 {
     if (m_RenderingPassList.size() > iIndex && iIndex >= 0)

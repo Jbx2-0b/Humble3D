@@ -721,30 +721,31 @@ void LaboApp::loadScene(const QString& fileName)
         CMeshManager::getInstance().loadMeshGroup(fileName);
         qDebug() << "MeshGroup load time : " << time.elapsed();
     }
-    else if (fileInfo.completeSuffix() == "xml")
-    {
-        CSceneNode* pNode = m_pSceneManager->getRootNode()->createChild(fileInfo.baseName());
-
-        QTime time;
-        time.start();
-        CScriptManager sManager(m_pSceneManager);
-        sManager.loadScript(fileName, pNode);
-        qDebug() << "Script : " << time.elapsed();
-    }
     else
     {
-        CSceneNode* pNode = m_pSceneManager->getRootNode()->createChild(fileInfo.baseName());
-
+        CSceneNode* pNode = nullptr;
         QTime time;
         time.start();
 
-        if (!CAssimpImporter::mergeScene(fileName, m_pSceneManager, m_bMergeMaterials, pNode).isEmpty())
-        {
+        bool result = false;
 
+        if (fileInfo.completeSuffix() == "h3d")
+        {
+            pNode = m_pSceneManager->getRootNode()->createChild(fileInfo.baseName());
+            CScriptManager sManager(m_pSceneManager);
+            result = sManager.loadScript(fileName, pNode);
+        }
+        else
+        {
+            pNode = m_pSceneManager->getRootNode()->createChild(fileInfo.baseName());
+            result = !CAssimpImporter::mergeScene(fileName, m_pSceneManager, m_bMergeMaterials, pNode).isEmpty();
+        }
+
+        if (result)
+        {
+            qDebug() << "Loading time: " << time.elapsed() / 1000. << "s.";
             qDebug() << "Loaded node tree: " << fileInfo.baseName();
             pNode->dumpNodeTree();
-
-            qDebug() << "Loading time :" << time.elapsed();
 
             if (m_bRescaleMeshs)
             {
@@ -872,7 +873,7 @@ void LaboApp::onOptionChanged()
         else if (pSender == m_pSaveButton)
         {
             QString outDirectory = m_Settings.value("OutDirectory", QCoreApplication::applicationDirPath()).toString();
-            QString fileName = QFileDialog::getSaveFileName(m_pView,	tr("Save 3D Scene"), outDirectory, tr("*.xml"));
+            QString fileName = QFileDialog::getSaveFileName(m_pView,	tr("Save 3D Scene"), outDirectory, tr("*.h3d"));
 
             if (!fileName.isEmpty())
             {

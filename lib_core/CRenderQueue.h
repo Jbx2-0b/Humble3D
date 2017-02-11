@@ -14,6 +14,11 @@ public:
 
     CRenderQueue() {}
 
+    int itemCount() const
+    {
+        return m_RenderHashMap.size();
+    }
+
     QList<int> materialIDs() const
     {
         return m_RenderHashMap.uniqueKeys();

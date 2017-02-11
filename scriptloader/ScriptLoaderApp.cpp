@@ -18,7 +18,7 @@ ScriptLoaderApp::ScriptLoaderApp()
     pView->setForceUpdate(true);
     pView->getFPSManager()->setDesiredFPS(1000);
 
-    QString fileName = QFileDialog::getOpenFileName(0, "Open Script", QCoreApplication::applicationDirPath(), "*.xml");
+    QString fileName = QFileDialog::getOpenFileName(0, "Open Script", QCoreApplication::applicationDirPath(), "*.h3d");
 
     if (!fileName.isEmpty())
     {

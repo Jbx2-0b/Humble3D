@@ -35,7 +35,8 @@ public:
 
     //! Constructeur
     CMeshBuffer(EnumPrimitiveType ePrimitiveType = ePrimitiveTriangles, unsigned int iEdgeCount = 3)
-        : m_bDirty(true)
+        : AEntity("MeshBuffer")
+        , m_bDirty(true)
         , m_eUsagePattern(eStaticDraw)
         , m_bNeedBoundingBoxUpdate(true)
         , m_uiPrimitiveIndex(iEdgeCount)

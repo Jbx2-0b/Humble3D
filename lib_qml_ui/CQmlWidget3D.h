@@ -22,7 +22,7 @@ class LIB_QML_UI_SHARED_EXPORT CQmlWidget3D : public QQuickFramebufferObject
 public:
     CQmlWidget3D();
 
-    Renderer *createRenderer() const;
+    Renderer *createRenderer() const override;
 
     bool enabled() const;
     void setEnabled(bool enabled);
