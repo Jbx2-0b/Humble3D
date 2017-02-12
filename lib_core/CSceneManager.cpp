@@ -668,9 +668,9 @@ QSet<CSceneNode*> CSceneManager::getVisibleSceneNodes(const CFrustum& frustum)
             const CBox3D& sceneNodeBBox = pSceneNode->getLocalAxisAlignedBoundingBox();
             if (!sceneNodeBBox.isNull())
             {
-                if (frustum.isSphereInFrustum(CSphere(sceneNodeBBox)) != eOutside)
+                if (frustum.intersect(CSphere(sceneNodeBBox)) != eOutside)
                 {
-                    if (frustum.isBoxInFrustum(sceneNodeBBox) != eOutside)
+                    if (frustum.intersect(sceneNodeBBox) != eOutside)
                     {
                         visibleItems.insert(pSceneNode);
                     }

@@ -204,7 +204,7 @@ private slots:
     //! Callback de changement sur un item
     void onItemChanged(QTreeWidgetItem*, int);
 
-    //! Callback de mise e jour
+    //! Callback de mise de jour
     void onUpdate();
 
     //! Callback de suppression d'un item

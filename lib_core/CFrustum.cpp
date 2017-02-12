@@ -56,7 +56,7 @@ void CFrustum::update(const QMatrix4x4& mvp)
 }
 
 //-----------------------------------------------------------------------------------------
-EnumIntersectionType CFrustum::isPointInFrustum(const QVector3D& point) const
+EnumIntersectionType CFrustum::intersect(const QVector3D& point) const
 {
     EnumIntersectionType eResult = eInside;
 
@@ -70,7 +70,7 @@ EnumIntersectionType CFrustum::isPointInFrustum(const QVector3D& point) const
 }
 
 //-----------------------------------------------------------------------------------------
-EnumIntersectionType CFrustum::isSphereInFrustum(const CSphere& sphere) const
+EnumIntersectionType CFrustum::intersect(const CSphere& sphere) const
 {
     real dDistance;
     EnumIntersectionType eResult = eInside;
@@ -88,7 +88,7 @@ EnumIntersectionType CFrustum::isSphereInFrustum(const CSphere& sphere) const
 }
 
 //-----------------------------------------------------------------------------------------
-EnumIntersectionType CFrustum::isBoxInFrustum(const CBox3D& box) const
+EnumIntersectionType CFrustum::intersect(const CBox3D& box) const
 {
     EnumIntersectionType eResult = eInside;
     int out, in;

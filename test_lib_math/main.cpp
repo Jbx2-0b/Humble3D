@@ -252,41 +252,41 @@ int main(int, char **)
     timer.start();
     for (const CBox3D& box : bboxList)
     {
-        frustum.isBoxInFrustum(box);
+        frustum.intersect(box);
     }
     qDebug() << "IsBoxInFrustum: " << timer.elapsed();
 
 
-    Q_ASSERT(frustum.isBoxInFrustum(myBBox0) == eOutside);
+    Q_ASSERT(frustum.intersect(myBBox0) == eOutside);
     Q_ASSERT(!frustum.isVisible(myBBox0));
 
-    Q_ASSERT(frustum.isBoxInFrustum(myBBox1) == eIntersect);
-    Q_ASSERT(frustum.isSphereInFrustum(CSphere(myBBox1)) == eIntersect);
+    Q_ASSERT(frustum.intersect(myBBox1) == eIntersect);
+    Q_ASSERT(frustum.intersect(CSphere(myBBox1)) == eIntersect);
     Q_ASSERT(frustum.isVisible(myBBox1));
 
-    Q_ASSERT(frustum.isBoxInFrustum(myBBox2) == eInside);
-    Q_ASSERT(frustum.isSphereInFrustum(CSphere(myBBox2)) == eIntersect);
+    Q_ASSERT(frustum.intersect(myBBox2) == eInside);
+    Q_ASSERT(frustum.intersect(CSphere(myBBox2)) == eIntersect);
     Q_ASSERT(frustum.isVisible(myBBox2));
 
-    Q_ASSERT(frustum.isBoxInFrustum(myBBox3) == eIntersect);
-    Q_ASSERT(frustum.isSphereInFrustum(CSphere(myBBox3)) == eIntersect);
+    Q_ASSERT(frustum.intersect(myBBox3) == eIntersect);
+    Q_ASSERT(frustum.intersect(CSphere(myBBox3)) == eIntersect);
     Q_ASSERT(frustum.isVisible(myBBox3));
 
-    Q_ASSERT(frustum.isBoxInFrustum(myBBox4) == eOutside);
+    Q_ASSERT(frustum.intersect(myBBox4) == eOutside);
     Q_ASSERT(!frustum.isVisible(myBBox4));
 
-    Q_ASSERT(frustum.isBoxInFrustum(myBBox5) == eOutside);
+    Q_ASSERT(frustum.intersect(myBBox5) == eOutside);
     Q_ASSERT(!frustum.isVisible(myBBox5));
 
-    Q_ASSERT(frustum.isBoxInFrustum(myBBox6) == eIntersect);
-    Q_ASSERT(frustum.isSphereInFrustum(CSphere(myBBox6)) == eIntersect);
+    Q_ASSERT(frustum.intersect(myBBox6) == eIntersect);
+    Q_ASSERT(frustum.intersect(CSphere(myBBox6)) == eIntersect);
     Q_ASSERT(frustum.isVisible(myBBox6));
 
-    Q_ASSERT(frustum.isBoxInFrustum(myBBox7) == eOutside);
+    Q_ASSERT(frustum.intersect(myBBox7) == eOutside);
     Q_ASSERT(!frustum.isVisible(myBBox7));
 
-    Q_ASSERT(frustum.isBoxInFrustum(myBBox8) == eInside);
-    Q_ASSERT(frustum.isSphereInFrustum(CSphere(myBBox8)) == eInside);
+    Q_ASSERT(frustum.intersect(myBBox8) == eInside);
+    Q_ASSERT(frustum.intersect(CSphere(myBBox8)) == eInside);
     Q_ASSERT(frustum.isVisible(myBBox8));
 
 

@@ -147,11 +147,11 @@ void CNodeTreeWidget::updateData()
     createTreeRenderer();
 //    recursiveCreateTreeNodes(m_pSceneManager->getRootNode());
 //    createTreeMeshs(CMeshManager::getInstance().getMeshs());
-//    createTreeLights(m_pSceneManager->getLights());
-//    createTreeCameras(m_pSceneManager->getCameras());
-//    createTreeMaterials(CMaterialManager::getInstance().getMaterials());
-//    createTreeAnimations(m_pSceneManager->getAnimations());
-//    createTreeShaders(CShaderManager::getInstance().getShaders());
+    createTreeLights(m_pSceneManager->getLights());
+    createTreeCameras(m_pSceneManager->getCameras());
+    createTreeMaterials(CMaterialManager::getInstance().getMaterials());
+    createTreeAnimations(m_pSceneManager->getAnimations());
+    createTreeShaders(CShaderManager::getInstance().getShaders());
     blockSignals(false);
 }
 
@@ -194,8 +194,6 @@ void CNodeTreeWidget::onUpdate(AEntity* pEntity)
 {
     if (m_Entities.key(pEntity, 0))
     {
-        pEntity->unregisterListener(this);
-
         if (CMaterial* pMaterial = dynamic_cast<CMaterial*>(pEntity))
         {
             updateProperty(pMaterial, AmbientColorKey,			pMaterial->getAmbientColor());
@@ -317,8 +315,6 @@ void CNodeTreeWidget::onUpdate(AEntity* pEntity)
                 }
             }
         }
-
-        pEntity->registerListener(this);
     }
 }
 

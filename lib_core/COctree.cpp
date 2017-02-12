@@ -70,18 +70,18 @@ void COctree::recursiveAddSceneNode(COctreeNode* pOctreeNode, CSceneNode* pScene
         QSet<CSceneNode*> sceneNodes = pOctreeNode->getSceneNodes();
         pOctreeNode->addSceneNode(pSceneNode);
 
-        // Le noeud n'a pas encore d'enfants
+        // Node has no children yet
         if (!pOctreeNode->hasChildNodes())
         {
             QVector3D octreeNodeBBoxSize = octreeNodeBBox.getSize();
-            // Si le noeud est saturé, et qu'on a pas atteint les limites de l'arbre, on lui crée des enfants
+            // If the node is saturated, and we have not reached the limits of the tree, we create children
             if ((octreeNodeBBoxSize.x() > 1 || octreeNodeBBoxSize.y() > 1 || octreeNodeBBoxSize.z() > 1) &&
                     pOctreeNode->getPolygonCount() > m_uiPolygonCountThreshold &&
                     uiDepth < m_uiMaxDepth)
             {
                 pOctreeNode->createChilds();
 
-                // On reporte les précédents noeuds sur les noeuds enfants
+                // The previous nodes are transferred to the child nodes
                 for (CSceneNode* pPrevSceneNode : sceneNodes)
                 {
                     for (COctreeNode* pChildNode : pOctreeNode->getChildNodes())
@@ -94,7 +94,7 @@ void COctree::recursiveAddSceneNode(COctreeNode* pOctreeNode, CSceneNode* pScene
 
         if (pOctreeNode->hasChildNodes())
         {
-            // On cherche l'intersection avec chacun des enfants pour placer le SceneNode
+            // We look for the intersection with each child to place the SceneNode
             for (COctreeNode* pChildNode : pOctreeNode->getChildNodes())
             {
                 const CBox3D& childNodeBBox = pChildNode->getBoundingBox();
@@ -127,9 +127,9 @@ void COctree::recursiveFindVisibleSceneNodes(const CFrustum& frustum, const COct
 
     const CBox3D& octreeNodeBBox = pOctreeNode->getBoundingBox();
 
-    if (frustum.isSphereInFrustum(CSphere(octreeNodeBBox)) != eOutside)
+    if (frustum.intersect(CSphere(octreeNodeBBox)) != eOutside)
     {
-        EnumIntersectionType eIntersectionType = frustum.isBoxInFrustum(octreeNodeBBox);
+        EnumIntersectionType eIntersectionType = frustum.intersect(octreeNodeBBox);
 
         // Inside : take them all !
         if (eIntersectionType == eInside)
@@ -144,9 +144,9 @@ void COctree::recursiveFindVisibleSceneNodes(const CFrustum& frustum, const COct
                 for (CSceneNode* pSceneNode : pOctreeNode->getSceneNodes())
                 {
                     const CBox3D& sceneNodeBBox = pSceneNode->getLocalAxisAlignedBoundingBox();
-                    if (frustum.isSphereInFrustum(CSphere(sceneNodeBBox)) != eOutside)
+                    if (frustum.intersect(CSphere(sceneNodeBBox)) != eOutside)
                     {
-                        if (frustum.isBoxInFrustum(sceneNodeBBox) != eOutside)
+                        if (frustum.intersect(sceneNodeBBox) != eOutside)
                         {
                             visibleSceneNodes.insert(pSceneNode);
                         }
